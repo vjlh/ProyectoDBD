@@ -64,6 +64,8 @@
         </style>
     </head>
     <body>
+
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -81,7 +83,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Percy te amo
+                    ProyectoDBD Grupo 8
                 </div>
 
                 <div class="links">
