@@ -8,65 +8,17 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
+        
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+        <link href="https://bootswatch.com/4/sandstone/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <!-- Scripts -->
     </head>
     <body>
 
-
-        <div class="flex-center position-ref full-height">
+        @include('includes.navbar')
+        @include('includes.carousel')
+        <div class="flex-center position-ref">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -83,11 +35,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    ProyectoDBD Grupo 8
+                    Aerolínea G8
                 </div>
 
                 <div class="links">
-                    <a href="https://www.facebook.com/valentina.ligueno">Sigueme en FB</a>
+                    <a href="https://www.facebook.com/paulvicente.videlacortes">Sigueme en FB</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://www.generadormemes.com/media/created/x13q2duetlwgwxzcr76hl5vobhe9r644tqlz253mmslf23jgd1gnslp9ga7qy9ou.jpg.pagespeed.ic.imagenes-memes-fotos-frases-graciosas-chistosas-divertidas-risa-chida-español-whatsapp-facebook.jpg">Gato llorando</a>
                     <a href="https://nova.laravel.com">Nova</a>
