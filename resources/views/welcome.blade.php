@@ -15,23 +15,10 @@
         <!-- Scripts -->
     </head>
     <body>
-
         @include('includes.navbar')
         @include('includes.carousel')
         <div class="flex-center position-ref">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+            
 
             <div class="content">
                 <div class="title m-b-md">
@@ -39,9 +26,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://www.facebook.com/paulvicente.videlacortes">Sigueme en FB</a>
+                    <a href="https://www.google.cl">Google</a>
                     <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://www.generadormemes.com/media/created/x13q2duetlwgwxzcr76hl5vobhe9r644tqlz253mmslf23jgd1gnslp9ga7qy9ou.jpg.pagespeed.ic.imagenes-memes-fotos-frases-graciosas-chistosas-divertidas-risa-chida-español-whatsapp-facebook.jpg">Gato llorando</a>
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>

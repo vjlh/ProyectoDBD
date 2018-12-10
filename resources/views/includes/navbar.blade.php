@@ -23,5 +23,20 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
+    
+    @if (Route::has('login'))
+                <div class="links">
+                    @auth
+                        <a href="{{ url('/home') }}">Inicio</a>
+                    @else
+                        <a href="{{ route('login') }}">Iniciar sesión</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Registrarse</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
   </div>
 </nav>
