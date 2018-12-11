@@ -10525,17 +10525,17 @@ body {
 }
 
 .navbar-laravel {
-  background-color: #f5f5f8;
+  background-color: #040408;
   -webkit-box-shadow: 0 2px 4px rgba(97, 9, 9, 0.04);
           box-shadow: 0 2px 4px rgba(97, 9, 9, 0.04);
 }
 
 .carousel-inner img {
   width: 100%;
-  max-height: 460px;
+  max-height: 400px;
 }
 
 .carousel-inner {
-  height: 350px;
+  height: 300px;
 }
 

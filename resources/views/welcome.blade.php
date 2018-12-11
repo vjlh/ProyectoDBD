@@ -10,8 +10,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         
         <!-- Styles -->
-        <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-        <link href="https://bootswatch.com/4/sandstone/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="https://bootswatch.com/4/flatly/bootstrap.css" rel="stylesheet">
+        
         <!-- Scripts -->
     </head>
     <body>
