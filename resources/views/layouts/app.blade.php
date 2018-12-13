@@ -22,10 +22,10 @@
     <link href="{{ asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="https://bootswatch.com/4/flatly/bootstrap.css" rel="stylesheet">
 
+<div class="loginbody">
 </head>
-
 <body>
-    <div class="loginbody">
+    
     <div id="app">
         @include('includes.navbar')
         <main>
@@ -33,4 +33,5 @@
         </main>
     </div>
 </body>
+</div>
 </html>
