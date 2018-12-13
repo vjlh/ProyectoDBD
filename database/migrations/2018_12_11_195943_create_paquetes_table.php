@@ -15,6 +15,11 @@ class CreatePaquetesTable extends Migration
     {
         Schema::create('paquetes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('num_dias');
+            $table->integer('num_noches');
+            $table->integer('precio_paquete');
+            $table->integer('num_dias');
+            $table->string('destino_paquete');
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('id');
+            $table->time('hora_vuelo');
+            $table->time('duracion_vuelo');
+            $table->date('fecha_vuelo');
+            $table->string('origen_vuelo');
+            $table->string('destino_vuelo');
             $table->timestamps();
         });
     }

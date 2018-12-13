@@ -15,6 +15,11 @@ class CreateAvionesTable extends Migration
     {
         Schema::create('aviones', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('capacidad_avion');
+            $table->integer('salidas_emergencia');
+            $table->integer('sanitarios_avion');
+            $table->integer('longitud_avion');
+            $table->string('envergadura_avion');
             $table->timestamps();
         });
     }

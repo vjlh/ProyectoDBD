@@ -10473,7 +10473,7 @@ body {
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
   height: 100vh;
-  margin: 0;
+  margin: 100;
 }
 
 .full-height {
@@ -10545,10 +10545,11 @@ body {
 
 .dbd-auth {
   margin-top: 10% !important;
+  background-color: #ffffff59 !important;
 }
 
 .loginbody {
-  background-image: url("/images/2.jpg") !important;
+  background-image: url("/images/congruent_pentagon.png") !important;
   padding: 100x;
   margin: 100x;
 }

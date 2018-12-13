@@ -15,6 +15,14 @@ class CreateHospedajesTable extends Migration
     {
         Schema::create('hospedajes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre_hospedaje');
+            $table->string('cadena_hospedaje');
+            $table->integer('estrellas_hospedaje');
+            $table->boolean('estacionamiento_hospedaje');
+            $table->boolean('piscina_hospedaje');
+            $table->boolean('sauna_hospedaje');
+            $table->boolean('zona_infantil_hospedaje');
+            $table->boolean('gimnasio_hospedaje');
             $table->timestamps();
         });
     }

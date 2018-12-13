@@ -15,6 +15,13 @@ class CreateHabitacionesTable extends Migration
     {
         Schema::create('habitaciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('capacidad_habitación');
+            $table->boolean('banio_privado');
+            $table->boolean('aire_acondicionado_habitacion');
+            $table->boolean('disponibilidad');
+            $table->string('tipo');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
         });
     }

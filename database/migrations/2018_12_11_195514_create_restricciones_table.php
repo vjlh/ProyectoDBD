@@ -15,6 +15,9 @@ class CreateRestriccionesTable extends Migration
     {
         Schema::create('restricciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre_restriccion');
+            $table->longText('descripcion_restriccion');
+            $table->longText('sancion_restriccion');
             $table->timestamps();
         });
     }
