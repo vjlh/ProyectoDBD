@@ -17,13 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="https://bootswatch.com/4/flatly/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+    
     <div id="app">
         @include('includes.navbar')
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
