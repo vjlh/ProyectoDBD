@@ -15,6 +15,11 @@ class CreateEquipajesTable extends Migration
     {
         Schema::create('equipajes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('ancho');
+            $table->integer('alto');
+            $table->integer('largo');
+            $table->string('tipo_equipaje');
+            $table->longText('restricion_equipaje');
             $table->timestamps();
         });
     }

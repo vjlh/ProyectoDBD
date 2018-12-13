@@ -15,6 +15,9 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tipo_pago');
+            $table->integer('monto_pago');
+            $table->date('fecha_pago');
             $table->timestamps();
         });
     }

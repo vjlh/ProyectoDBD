@@ -15,6 +15,10 @@ class CreateSegurosTable extends Migration
     {
         Schema::create('seguros', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('precio_seguro');
+            $table->string('tipo_seguro');
+            $table->integer('precio_ticket');
+            $table->integer('numero_pasajeros_seguros');
             $table->timestamps();
         });
     }

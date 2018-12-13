@@ -15,6 +15,11 @@ class CreateAsientosTable extends Migration
     {
         Schema::create('asientos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('numero_asiento');
+            $table->string('letra_asiento');
+            $table->integer('precio_asiento');
+            $table->boolean('disponibilidad');
+            $table->string('cabina');
             $table->timestamps();
         });
     }

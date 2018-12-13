@@ -15,6 +15,14 @@ class CreateTransportesTable extends Migration
     {
         Schema::create('transportes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('patente_transporte');
+            $table->string('modelo_trasnporte');
+            $table->integer('num_asientos_transportes');
+            $table->integer('num_puertas_transportes');
+            $table->boolean('aire_acondicionado_transporte');
+            $table->integer('puntuacion_transporte');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
         });
     }
