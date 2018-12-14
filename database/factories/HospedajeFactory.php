@@ -1,12 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Hospedaje;
 
-$factory->define(Hospedaje::class, function (Faker $faker) {
-    $id = DB::table('hospedajes')->select('id')->get();
+$factory->define(App\Hospedaje::class, function (Faker $faker) {
     return [
-        'id' => $id->random()->id,
         'nombre_hospedaje' => $faker->name,
         'cadena_hospedaje' => $faker->name,
         'estrellas_hospedaje' => $faker->rand(1,6),

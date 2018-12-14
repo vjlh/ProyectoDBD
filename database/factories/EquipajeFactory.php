@@ -1,9 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Equipaje;
 
-$factory->define(Equipaje::class, function (Faker $faker) {
+$factory->define(App\Equipaje::class, function (Faker $faker) {
     return [
         'ancho' => $faker->rand(10,40),
         'alto' => $faker->rand(10,50),

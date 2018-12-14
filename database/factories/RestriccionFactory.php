@@ -1,12 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Restriccion;
 
-$factory->define(Restriccion::class, function (Faker $faker) {
-    $id = DB::table('restricciones')->select('id')->get();
+$factory->define(App\Restriccion::class, function (Faker $faker) {
     return [
-        'id' => $id->random()->id,
         'nombre_restriccion' => $faker->name,
         'descripcion_restriccion' => $faker->text,
         'sancion_restriccion' => $faker->text,

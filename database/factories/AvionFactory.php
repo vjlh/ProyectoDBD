@@ -1,13 +1,10 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Avion;
 
-$factory->define(Avion::class, function (Faker $faker) {
-    $id = DB::table('aviones')->select('id')->get();
+$factory->define(App\Avion::class, function (Faker $faker) {
 
     return [
-        'id' => $id->random()->id,
         'capacidad_avion' => $faker->randomElement($array = array(100,150,200,250,300)),
         'salidas_emergencia' => $faker->rand(1,20),
         'sanitarios_avion' => $faker->rand(1,10),

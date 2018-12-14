@@ -1,12 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Reserva;
 
-$factory->define(Reserva::class, function (Faker $faker) {
-    $id = DB::table('reservas')->select('id')->get();
+$factory->define(App\Reserva::class, function (Faker $faker) {
     return [
-        'id' => $id->random()->id,
         'monto_total_reserva' => $faker->rand(20000,1000000),
         'check_in' => $faker->boolean,
     ];

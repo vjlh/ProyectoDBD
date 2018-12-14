@@ -1,12 +1,10 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Pasajero;
 
-$factory->define(Pasajero::class, function (Faker $faker) {
-    $id = DB::table('pasajeros')->select('id')->get();
+$factory->define(App\Pasajero::class, function (Faker $faker) {
     return [
-        'id' => $id->random()->id,
+
         'nombre_pasajero' => $faker->firstName,
         'apellido_pasajero' => $faker->lastName,
         'edad_pasajero' => $faker->rand(1,100),
