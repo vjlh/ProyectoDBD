@@ -24,5 +24,36 @@ class Reserva extends Model
     {
         return $this->belongsTo('App\Seguro');
     }
+
+    public function pasajeros_reservas()
+    {
+        return $this->belongsTo('App\Pasajero_Reserva');
+    }
+
+    public function asientos()
+    {
+        return $this->belongsTo('App\Asiento');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function transportes_reservas()
+    {
+        return $this->belongsTo('App\Transporte_Reserva');
+    }
+
+    public function habitaciones_reservas()
+    {
+        return $this->belongsTo('App\Habitacion_Reserva');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
+    }
+
     
 }
