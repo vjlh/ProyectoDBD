@@ -1,8 +1,9 @@
+
 @extends('layouts.app')
-@section('content')    
+@section('content')
 @include('includes.carousel')
         
-        <div class="loginbody">
+        
         <div class="flex-center position-ref">
             
             
