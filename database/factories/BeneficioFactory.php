@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Beneficio;
+use app\Beneficio;
 
 $factory->define(Beneficio::class, function (Faker $faker) {
     $id = DB::table('beneficios')->select('id')->get();

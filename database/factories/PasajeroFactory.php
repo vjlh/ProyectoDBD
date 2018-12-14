@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Pasajero;
+use app\Pasajero;
 
 $factory->define(Pasajero::class, function (Faker $faker) {
     $id = DB::table('pasajeros')->select('id')->get();

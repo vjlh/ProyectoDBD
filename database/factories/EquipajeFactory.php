@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Equipaje;
+use app\Equipaje;
 
 $factory->define(Equipaje::class, function (Faker $faker) {
     return [

@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Hospedaje;
+use app\Hospedaje;
 
 $factory->define(Hospedaje::class, function (Faker $faker) {
     $id = DB::table('hospedajes')->select('id')->get();

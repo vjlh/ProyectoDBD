@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Historial;
+use app\Historial;
 
 $factory->define(Historial::class, function (Faker $faker) {
     $id = DB::table('historiales')->select('id')->get();

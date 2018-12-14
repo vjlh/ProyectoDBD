@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Asiento;
+use app\Asiento;
 
 $factory->define(Asiento::class, function (Faker $faker) {
     $id = DB::table('asientos')->select('id')->get();

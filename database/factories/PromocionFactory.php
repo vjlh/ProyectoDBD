@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Promocion;
+use app\Promocion;
 
 $factory->define(Promocion::class, function (Faker $faker) {
     $id = DB::table('promociones')->select('id')->get();

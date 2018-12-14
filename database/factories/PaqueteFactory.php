@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Paquete;
+use app\Paquete;
 
 $factory->define(Paquete::class, function (Faker $faker) {
     $id = DB::table('paquetes')->select('id')->get();

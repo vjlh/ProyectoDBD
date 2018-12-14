@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Reserva;
+use app\Reserva;
 
 $factory->define(Reserva::class, function (Faker $faker) {
     $id = DB::table('reservas')->select('id')->get();

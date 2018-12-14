@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Administrador;
+use app\Administrador;
 
 $factory->define(Administrador::class, function (Faker $faker) {
     $id = DB::table('administradores')->select('id')->get();

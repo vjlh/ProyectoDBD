@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use app\Providers\Ticket;
+use app\Ticket;
 
 $factory->define(Ticket::class, function (Faker $faker) {
     $id = DB::table('tickets')->select('id')->get();
