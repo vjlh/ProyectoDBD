@@ -11,6 +11,6 @@ class PasajerosSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Pasajero'::class, 30)->create();
     }
 }

@@ -11,6 +11,6 @@ class PaisesSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Pais'::class, 50)->create();
     }
 }

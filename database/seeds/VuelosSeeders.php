@@ -11,6 +11,6 @@ class VuelosSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Vuelo'::class, 30)->create();
     }
 }

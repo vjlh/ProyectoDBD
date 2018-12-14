@@ -11,6 +11,6 @@ class AdministradoresSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Administrador'::class, 10)->create();
     }
 }
