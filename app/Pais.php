@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pais extends Model
 {
-    //
+    protected $fillable = [
+        'nombre_pais', 'moneda_pais',
+    ];
+
+    public function ciudades(){
+        return $this ->hasMany('App\Ciudad');
+    }
 }

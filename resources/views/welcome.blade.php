@@ -1,8 +1,11 @@
+
 @extends('layouts.app')
-@section('content')    
+@section('content')
 @include('includes.carousel')
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
         
-        <div class="loginbody">
         <div class="flex-center position-ref">
             
             
