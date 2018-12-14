@@ -11,6 +11,6 @@ class EquipajesSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Equipaje'::class, 20)->create();
     }
 }

@@ -11,6 +11,6 @@ class TicketsSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Ticket'::class, 30)->create();
     }
 }

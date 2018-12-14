@@ -11,6 +11,6 @@ class RestriccionesSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Restriccion'::class, 20)->create();
     }
 }

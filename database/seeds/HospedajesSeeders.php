@@ -11,6 +11,6 @@ class HospedajesSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Hospedaje'::class, 20)->create();
     }
 }

@@ -11,6 +11,6 @@ class AvionesSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Avion'::class, 30)->create();
     }
 }

@@ -11,6 +11,6 @@ class ReservasSeeders extends Seeder
      */
     public function run()
     {
-        //
+        factory('App/Reserva'::class, 25)->create();
     }
 }
