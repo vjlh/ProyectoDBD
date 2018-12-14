@@ -17,8 +17,8 @@ class CreateTransportesTable extends Migration
             $table->increments('id');
             $table->integer('patente_transporte');
             $table->string('modelo_trasnporte');
-            $table->integer('num_asientos_transportes');
-            $table->integer('num_puertas_transportes');
+            $table->integer('num_asientos_transporte');
+            $table->integer('num_puertas_transporte');
             $table->boolean('aire_acondicionado_transporte');
             $table->integer('puntuacion_transporte');
             $table->date('fecha_inicio');
