@@ -2,7 +2,9 @@
 @extends('layouts.app')
 @section('content')
 @include('includes.carousel')
-        
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
         
         <div class="flex-center position-ref">
             
