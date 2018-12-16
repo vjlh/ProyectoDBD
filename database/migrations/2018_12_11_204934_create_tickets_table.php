@@ -18,7 +18,16 @@ class CreateTicketsTable extends Migration
             $table->string('tipo_pago');
             $table->integer('monto_pago');
             $table->date('fecha_pago');
+            $table->unsigned('id_reserva');
             $table->timestamps();
+
+            
+            $table->foreing('id_reserva')
+                ->references('id')
+                ->on('reservas')
+                ->onDelete('cascade');
+
+
         });
     }
 

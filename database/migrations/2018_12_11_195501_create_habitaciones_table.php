@@ -22,7 +22,17 @@ class CreateHabitacionesTable extends Migration
             $table->string('tipo');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
+            $table->unsigned('id_hospedaje');
             $table->timestamps();
+
+            
+
+            $table->foreing('id_hospedaje')
+                ->references('id')
+                ->on('hospedajes')
+                ->onDelete('cascade');
+
+
         });
     }
 

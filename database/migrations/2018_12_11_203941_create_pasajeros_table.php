@@ -20,6 +20,7 @@ class CreatePasajerosTable extends Migration
             $table->integer('edad_pasajero');
             $table->string('tipo_pasajero');
             $table->timestamps();
+            
         });
     }
 

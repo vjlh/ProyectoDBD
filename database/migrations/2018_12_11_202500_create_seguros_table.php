@@ -20,6 +20,7 @@ class CreateSegurosTable extends Migration
             $table->integer('precio_ticket');
             $table->integer('numero_pasajeros_seguros');
             $table->timestamps();
+            
         });
     }
 

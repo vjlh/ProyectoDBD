@@ -21,6 +21,7 @@ class CreateAvionesTable extends Migration
             $table->integer('longitud_avion');
             $table->string('envergadura_avion');
             $table->timestamps();
+
         });
     }
 

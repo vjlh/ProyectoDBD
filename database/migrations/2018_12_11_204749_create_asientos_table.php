@@ -20,7 +20,24 @@ class CreateAsientosTable extends Migration
             $table->integer('precio_asiento');
             $table->boolean('disponibilidad');
             $table->string('cabina');
+            $table->unsigned('id_reserva');
+            $table->unsigned('id_avion');
             $table->timestamps();
+
+            
+            
+            $table->foreing('id_reserva')
+                ->references('id')
+                ->on('reservas')
+                ->onDelete('cascade');
+
+            
+            
+            $table->foreing('id_avion')
+                ->references('id')
+                ->on('aviones')
+                ->onDelete('cascade');
+
         });
     }
 

@@ -24,6 +24,9 @@ class CreateHospedajesTable extends Migration
             $table->boolean('zona_infantil_hospedaje');
             $table->boolean('gimnasio_hospedaje');
             $table->timestamps();
+
+
+
         });
     }
 

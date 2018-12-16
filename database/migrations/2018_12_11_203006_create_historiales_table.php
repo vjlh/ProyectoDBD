@@ -16,7 +16,17 @@ class CreateHistorialesTable extends Migration
         Schema::create('historiales', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha_cambio');
+            $table->unsigned('id_usuario');
             $table->timestamps();
+
+            
+
+            $table->foreing('id_usuario')
+                ->references('id')
+                ->on('usuarios')
+                ->onDelete('cascade');
+
+
         });
     }
 

@@ -19,6 +19,7 @@ class CreateBeneficiosTable extends Migration
             $table->longText('descripcion_beneficio');
             $table->integer('precio_beneficio');
             $table->timestamps();
+            
         });
     }
 

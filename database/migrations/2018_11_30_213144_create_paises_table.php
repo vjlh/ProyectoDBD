@@ -18,6 +18,7 @@ class CreatePaisesTable extends Migration
             $table->string('nombre_pais');
             $table->string('moneda_pais');
             $table->timestamps();
+
         });
     }
 

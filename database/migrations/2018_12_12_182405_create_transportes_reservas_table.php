@@ -15,7 +15,24 @@ class CreateTransportesReservasTable extends Migration
     {
         Schema::create('transportes_reservas', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsigned('id_transporte');
+            $table->unsigned('id_reserva');
             $table->timestamps();
+
+            
+            
+            $table->foreing('id_transporte')
+                ->references('id')
+                ->on('transportes')
+                ->onDelete('cascade');
+
+            
+            
+            $table->foreing('id_reserva')
+                ->references('id')
+                ->on('reservas')
+                ->onDelete('cascade');
+
         });
     }
 

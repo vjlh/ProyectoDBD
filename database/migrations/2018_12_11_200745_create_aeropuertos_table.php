@@ -19,7 +19,15 @@ class CreateAeropuertosTable extends Migration
             $table->string('direccion aeropuerto');
             $table->string('telefono_aeropuerto');
             $table->string('pagina_web');
+            $table->unsigned('id_ciudad');
             $table->timestamps();
+
+
+            $table->foreing('id_ciudad')
+                ->references('id')
+                ->on('ciudades')
+                ->onDelete('cascade');
+
         });
     }
 
