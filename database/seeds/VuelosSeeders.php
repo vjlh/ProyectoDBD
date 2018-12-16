@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Vuelo;
 
 class VuelosSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class VuelosSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Vuelo'::class, 30)->create();
+        factory(Vuelo::class, 30)->create();
     }
 }

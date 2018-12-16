@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Seguro;
 
 class SegurosSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class SegurosSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Seguro'::class, 10)->create();
+        factory(Seguro::class, 10)->create();
     }
 }

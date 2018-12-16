@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Equipaje;
 
 class EquipajesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class EquipajesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Equipaje'::class, 20)->create();
+        factory(Equipaje::class, 20)->create();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Promocion;
 
 class PromocionesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class PromocionesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Promocion'::class, 20)->create();
+        factory(Promocion::class, 20)->create();
     }
 }

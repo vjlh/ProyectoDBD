@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Hospedaje;
 
 class HospedajesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class HospedajesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Hospedaje'::class, 20)->create();
+        factory(Hospedaje::class, 20)->create();
     }
 }
