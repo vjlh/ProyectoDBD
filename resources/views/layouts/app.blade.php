@@ -21,10 +21,8 @@
     <link href="{{ asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="https://bootswatch.com/4/flatly/bootstrap.css" rel="stylesheet">
 
-
 </head>
 <body>
-    <div class="welcomebody">
     <div id="app">
         @include('includes.navbar')
         <main>
