@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Transporte;
 
 class TransportesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class TransportesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Transporte'::class, 20)->create();
+        factory(Transporte::class, 20)->create();
     }
 }

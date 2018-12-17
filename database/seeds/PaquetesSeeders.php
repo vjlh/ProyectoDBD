@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Paquete;
 
 class PaquetesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class PaquetesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Paquete'::class, 20)->create();
+        factory(Paquete::class, 20)->create();
     }
 }
