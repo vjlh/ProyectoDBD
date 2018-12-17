@@ -33,9 +33,5 @@ class DatabaseSeeder extends Seeder
         $this->call(AeropuertosSeeders::class);
         $this->call(TicketsSeeders::class); 
         $this->call(VuelosSeeders::class);
-        
-        
-        
-
     }
 }
