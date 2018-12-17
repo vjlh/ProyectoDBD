@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PromocionesSeeders::class);
         $this->call(PaquetesSeeders::class);
         $this->call(AvionesSeeders::class);
-        $this->call(VuelosSeeders::class);
         $this->call(BeneficiosSeeders::class);
         $this->call(SegurosSeeders::class);
         $this->call(TransportesSeeders::class);
@@ -33,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AsientosSeeders::class);
         $this->call(AeropuertosSeeders::class);
         $this->call(TicketsSeeders::class); 
+        $this->call(VuelosSeeders::class);
         
         
         

@@ -6,7 +6,7 @@ $factory->define(App\Hospedaje::class, function (Faker $faker) {
     return [
         'nombre_hospedaje' => $faker->name,
         'cadena_hospedaje' => $faker->name,
-        'estrellas_hospedaje' => $faker->rand(1,6),
+        'estrellas_hospedaje' => $faker->numberBetween(1,6),
         'estacionamiento_hospedaje' => $faker->boolean,
         'piscina_hospedaje' => $faker->boolean,
         'sauna_hospedaje' => $faker->boolean,

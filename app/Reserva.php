@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-
+    protected $table = 'reservas';
     protected $fillable = [
         'monto_total_reserva', 'check_in', 'id_user', 'id_paquete', 'id_seguro', 'id_promocion',
     ];
