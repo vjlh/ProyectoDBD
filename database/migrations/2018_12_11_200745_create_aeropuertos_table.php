@@ -19,7 +19,7 @@ class CreateAeropuertosTable extends Migration
             $table->string('direccion_aeropuerto');
             $table->string('telefono_aeropuerto');
             $table->string('pagina_web');
-            $table->unsignedInteger('id_ciudad')->nullable();
+            $table->unsignedInteger('id_ciudad');
             $table->timestamps();
 
 
