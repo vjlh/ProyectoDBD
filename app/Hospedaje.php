@@ -12,6 +12,6 @@ class Hospedaje extends Model
     ];
 
     public function habitaciones(){
-        return $this ->hasMany('App\Habitacion');
+        return $this ->hasMany(Habitacion::class);
     }
 }

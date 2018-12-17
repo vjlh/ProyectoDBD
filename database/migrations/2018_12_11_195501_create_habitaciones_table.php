@@ -33,6 +33,7 @@ class CreateHabitacionesTable extends Migration
                 ->onDelete('cascade');
 
 
+
         });
     }
 

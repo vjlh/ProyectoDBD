@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Asiento extends Model
 {
     protected $fillable = [
-        'num_asiento', 'letra_asiento', 'precio_asiento', 'disponibilidad','cabina',
+        'num_asiento', 'letra_asiento', 'precio_asiento', 'disponibilidad','cabina', 'id_avion', 'id_reserva',
     ];
 
     public function aviones(){
-        return $this ->belongsTo('App\Avion');
+        return $this ->belongsTo(Avion::class, 'id_avion');
     }
 
     public function reservas(){
-        return $this ->belongTo('App\Reserva');
+        return $this ->belongTo(Reserva::class, 'id_reserva');
     }
 }

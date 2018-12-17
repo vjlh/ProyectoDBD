@@ -10,11 +10,11 @@ class Pasajero extends Model
         'nombre_pasajero', 'apellido_pasajero', 'edad_pasajero', 'tipo_pasajero',
     ];
 
-    public function pasajeros_reservas(){
-        return $this ->belongsTo('App\Pasajero_Reserva');
+    public function reservas(){
+        return $this ->belongsToMany(Reserva::class, 'pasajeros_reservas', 'id_pasajero', 'id_reserva');
     }
 
     public function equipajes(){
-        return $this ->hasMany('App\Equipaje');
+        return $this ->hasMany(Equipaje::class);
     }
 }

@@ -37,7 +37,7 @@ class User extends Authenticatable
     }
 
     public function reservas(){
-        return $this ->hasMany('App\Reserva');
+        return $this ->hasMany(Reserva::class);
     }
 
 }

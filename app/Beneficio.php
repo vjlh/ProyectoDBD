@@ -10,8 +10,8 @@ class Beneficio extends Model
         'nombre_beneficio', 'descripcion_beneficio', 'precio_beneficio',
     ];
 
-    public function beneficios_seguros(){
-        return $this ->belongsTo('App\Beneficio_Seguro');
+    public function seguros(){
+        return $this ->belongsToMany(Seguro::class, 'beneficios_seguros', 'id_beneficios', 'id_roles');
     }
 
 }

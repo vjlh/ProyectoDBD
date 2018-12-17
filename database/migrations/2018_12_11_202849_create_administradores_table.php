@@ -15,14 +15,14 @@ class CreateAdministradoresTable extends Migration
     {
         Schema::create('administradores', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsigned('id_usuario');
+            $table->unsigned('id_user');
             $table->timestamps();
 
             
 
-            $table->foreing('id_usuario')
+            $table->foreing('id_user')
                 ->references('id')
-                ->on('usuarios')
+                ->on('users')
                 ->onDelete('cascade');
 
         });

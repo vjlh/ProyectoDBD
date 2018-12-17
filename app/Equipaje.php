@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Equipaje extends Model
 {
     protected $fillable = [
-        'ancho', 'alto', 'largo', 'tipo_equipaje', 'restricciones_equipaje',
+        'ancho', 'alto', 'largo', 'tipo_equipaje', 'restricciones_equipaje','id_pasajero',
     ];
 
     public function pasajeros(){
-        return $this ->belongsTo('App\Pasajero');
+        return $this ->belongsTo(Pasajero::class, 'id_pasajero');
     }
 }

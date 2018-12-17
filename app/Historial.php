@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Historial extends Model
 {
     protected $fillable = [
-        'fecha_cambio',
+        'fecha_cambio', 'id_user',
     ];
 
     public function users(){
-        return $this ->belongsTo('App\User');
+        return $this ->belongsTo(User::clases, 'id_user');
     }
 }

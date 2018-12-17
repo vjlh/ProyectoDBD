@@ -8,51 +8,51 @@ class Reserva extends Model
 {
 
     protected $fillable = [
-        'monto_total_reserva', 'check_in',
+        'monto_total_reserva', 'check_in', 'id_user', 'id_paquete', 'id_seguro', 'id_promocion',
     ];
 
     
     public function promociones()
     {
-        return $this->belongsTo('App\Promocion');
+        return $this->belongsTo(Promocion::class, 'id_promocion');
     }
     public function paquetes()
     {
-        return $this->belongsTo('App\Paquete');
+        return $this->belongsTo(Paquete::class, 'id_paquete');
     }
     public function seguros()
     {
-        return $this->belongsTo('App\Seguro');
+        return $this->belongsTo(Seguro::class, 'id_seguro');
     }
 
-    public function pasajeros_reservas()
+    public function pasajeros()
     {
-        return $this->belongsTo('App\Pasajero_Reserva');
+        return $this->belongsToMany(Pasajero::class, 'pasajeros_reservas', 'id_pasajero', 'id_reserva');
     }
 
     public function asientos()
     {
-        return $this->belongsTo('App\Asiento');
+        return $this->hasMany(Asiento::class);
     }
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function transportes_reservas()
+    public function transportes()
     {
-        return $this->belongsTo('App\Transporte_Reserva');
+        return $this->belongsToMany(Transporte::class, 'transportes_reservas', 'id_transporte', 'id_reserva');
     }
 
-    public function habitaciones_reservas()
+    public function habitaciones()
     {
-        return $this->belongsTo('App\Habitacion_Reserva');
+        return $this->belongsToMany(Habitacion::class. 'habitaciones_reservas', 'id_habitacion', 'id_reserva');
     }
 
     public function tickets()
     {
-        return $this->hasMany('App\Ticket');
+        return $this->hasMany(Ticket::class);
     }
 
     

@@ -11,7 +11,7 @@ class Transporte extends Model
         'aire_acondicionado_transporte', 'puntuacion_transporte', 'fecha_inicio', 'fecha_fin',
     ];
 
-    public function transportes_reservas(){
-        return $this ->belongsTo('App\Transporte_Reserva');
+    public function reservas(){
+        return $this ->belongsToMany(Reserva::class, 'transportes_reservas', 'id_reserva', 'id_transporte');
     }
 }

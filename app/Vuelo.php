@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Vuelo extends Model
 {
     protected $fillable = [
-        'hora_vuelo', 'duracion_vuelo', 'fecha_vuelo', 'origen_vuelo', 'destino_vuelo',
+        'hora_vuelo', 'duracion_vuelo', 'fecha_vuelo', 'origen_vuelo', 'destino_vuelo', 'id_avion', 'id_aeropuerto',
     ];
 
     public function aviones(){
-        return $this ->belongsTo('App\Avion');
+        return $this ->belongsTo(Avion::class, 'id_avion');
     }
 
     public function aeropuertos(){
-        return $this ->belongsTo('App\Aeropuerto');
+        return $this ->belongsTo(Aeropuerto::class, 'id_aeropuerto');
     }
     
 }
