@@ -11,27 +11,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AdministradoresSeeders::class);
-        $this->call(AeropuertosSeeders::class);
-        $this->call(AsientosSeeders::class);
-        $this->call(AvionesSeeders::class);
-        $this->call(BeneficiosSeeders::class);
-        $this->call(CiudadesSeeders::class);
-        $this->call(EquipajesSeeders::class);
-        $this->call(HabitacionesSeeders::class);
-        $this->call(HistorialesSeeders::class);
-        $this->call(HospedajesSeeders::class);
-        $this->call(PaisesSeeders::class);
-        $this->call(PaquetesSeeders::class);
-        $this->call(PasajerosSeeders::class);
-        $this->call(PromocionesSeeders::class);
-        $this->call(ReservasSeeders::class);
-        $this->call(RestriccionesSeeders::class);
-        $this->call(SegurosSeeders::class);
-        $this->call(TicketsSeeders::class); 
-        $this->call(TransportesSeeders::class);
+        
         $this->call(UsersSeeders::class);
+        $this->call(PaisesSeeders::class);
+        $this->call(CiudadesSeeders::class);
+        $this->call(HospedajesSeeders::class);
+        $this->call(HabitacionesSeeders::class);
+        $this->call(RestriccionesSeeders::class);
+        $this->call(PromocionesSeeders::class);
+        $this->call(PaquetesSeeders::class);
+        $this->call(AvionesSeeders::class);
         $this->call(VuelosSeeders::class);
+        $this->call(BeneficiosSeeders::class);
+        $this->call(SegurosSeeders::class);
+        $this->call(TransportesSeeders::class);
+        $this->call(AdministradoresSeeders::class);
+        $this->call(HistorialesSeeders::class);
+        $this->call(PasajerosSeeders::class);
+        $this->call(EquipajesSeeders::class);
+        $this->call(ReservasSeeders::class);
+        $this->call(AsientosSeeders::class);
+        $this->call(AeropuertosSeeders::class);
+        $this->call(TicketsSeeders::class); 
+        
+        
+        
 
     }
 }

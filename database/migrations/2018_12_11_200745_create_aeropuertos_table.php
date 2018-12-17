@@ -16,10 +16,10 @@ class CreateAeropuertosTable extends Migration
         Schema::create('aeropuertos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_aeropuerto');
-            $table->string('direccion aeropuerto');
+            $table->string('direccion_aeropuerto');
             $table->string('telefono_aeropuerto');
             $table->string('pagina_web');
-            $table->unsignedInteger('id_ciudad');
+            $table->unsignedInteger('id_ciudad')->nullable();
             $table->timestamps();
 
 

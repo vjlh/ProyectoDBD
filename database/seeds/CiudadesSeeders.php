@@ -12,6 +12,6 @@ class CiudadesSeeders extends Seeder
      */
     public function run()
     {
-        factory(Ciudad::class, 40)->create();
+        factory(Ciudad::class, 50)->create();
     }
 }
