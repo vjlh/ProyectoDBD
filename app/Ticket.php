@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     protected $fillable = [
-        'tipo_pago', 'monto_pago', 'fecha_pago',
+        'tipo_pago', 'monto_pago', 'fecha_pago', 'id_reserva'
     ];
 
     public function reservas(){
-        return $this ->belongsTo('App\Reserva');
+        return $this ->belongsTo(Reserva::class, 'id_reserva');
     }
 }

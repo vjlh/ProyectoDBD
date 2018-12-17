@@ -10,7 +10,7 @@ class Seguro extends Model
         'precio_seguro', 'tipo_seguro', 'precio_ticket', 'num_pasajeros_seguro',
     ];
 
-    public function beneficios_seguros(){
-        return $this ->belongsTo('App\Beneficio_Seguro');
+    public function beneficios(){
+        return $this ->belongsToMany(Beneficio::class, 'beneficios_seguros', 'id_beneficio', 'id_seguro');
     }
 }

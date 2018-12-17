@@ -8,15 +8,15 @@ class Habitacion extends Model
 {
     protected $fillable = [
         'capacidad_habitacion', 'banio_privado', 'aire_acondicionado_habitacion', 'disponibilidad',
-        'tipo', 'fecha_inicio', 'fecha_fin',
+        'tipo', 'fecha_inicio', 'fecha_fin', 'id_hospedaje',
     ];
 
     public function hospedajes(){
-        return $this ->belongsTo('App\Hospedaje');
+        return $this ->belongsTo(Hospedaje::class, 'id_hospedaje');
     }
 
-    public function habitaciones_reservas(){
-        return $this ->belongsTo('App\Habitacion_Reserva');
+    public function reservas(){
+        return $this ->belongsToMany(Reserva::class, 'habitaciones_reservas', 'id_reserva', 'id_habitacion');
     }
 
 }
