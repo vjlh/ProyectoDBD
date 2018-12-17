@@ -20,7 +20,7 @@ class CreateEquipajesTable extends Migration
             $table->integer('largo');
             $table->string('tipo_equipaje');
             $table->unsignedInteger('id_pasajero');
-            $table->longText('restricion_equipaje');
+            $table->longText('restriccion_equipaje');
             $table->timestamps();
 
             

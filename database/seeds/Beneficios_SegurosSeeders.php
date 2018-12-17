@@ -11,6 +11,6 @@ class Beneficios_SegurosSeeders extends Seeder
      */
     public function run()
     {
-        //
+    	//
     }
 }

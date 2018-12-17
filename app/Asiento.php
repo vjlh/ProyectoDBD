@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asiento extends Model
 {
+	protected $table = 'asientos';
     protected $fillable = [
         'num_asiento', 'letra_asiento', 'precio_asiento', 'disponibilidad','cabina', 'id_avion', 'id_reserva',
     ];

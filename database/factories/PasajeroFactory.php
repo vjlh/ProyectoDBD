@@ -7,7 +7,7 @@ $factory->define(App\Pasajero::class, function (Faker $faker) {
 
         'nombre_pasajero' => $faker->firstName,
         'apellido_pasajero' => $faker->lastName,
-        'edad_pasajero' => $faker->rand(1,100),
+        'edad_pasajero' => $faker->numberBetween(1,100),
         'tipo_pasajero' => $faker->randomElement($array = array('bebe','joven','adulto','adulto_mayor')),
     ];
 });

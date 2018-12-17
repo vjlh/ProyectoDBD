@@ -17,9 +17,9 @@ class CreateReservasTable extends Migration
             $table->increments('id');
             $table->integer('monto_total_reserva');
             $table->boolean('check_in');
-            $table->unsignedInteger('id_paquete');
-            $table->unsignedInteger('id_promocion');
-            $table->unsignedInteger('id_seguro');
+            $table->unsignedInteger('id_paquete')->nullable();
+            $table->unsignedInteger('id_promocion')->nullable();
+            $table->unsignedInteger('id_seguro')->nullable();
             $table->unsignedInteger('id_user');
             $table->timestamps();
 
