@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Pais;
 use Illuminate\Http\Request;
 
-class PaisesController extends Controller
+class PaisController extends Controller
 {
     /**
      * Display a listing of the resource.
