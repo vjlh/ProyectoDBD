@@ -12,7 +12,7 @@ class Beneficio extends Model
     ];
 
     public function seguros(){
-        return $this ->belongsToMany(Seguro::class, 'beneficios_seguros', 'id_beneficios', 'id_roles');
+        return $this ->belongsToMany(Seguro::class, 'beneficios_seguros', 'id_beneficio', 'id_seguro');
     }
 
 }

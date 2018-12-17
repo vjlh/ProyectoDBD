@@ -11,6 +11,9 @@
 |
 */
 
+
+use App\Vuelo;  
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/vuelos', function () {
+    $vuelos = Vuelo::all();
+    return View('vuelos')->with('vuelos', $vuelos);
+});
