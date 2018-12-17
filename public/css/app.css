@@ -10468,6 +10468,12 @@ a.text-dark:focus {
 
 html,
 body {
+  background: #bdc3c7 !important;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#2c3e50), to(#bdc3c7)) !important;
+  background: linear-gradient(to right, #2c3e50, #bdc3c7) !important;
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-color: #fff;
   color: #636b6f;
   font-family: 'Nunito', sans-serif;
