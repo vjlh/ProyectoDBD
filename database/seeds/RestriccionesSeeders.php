@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Restriccion;
 
 class RestriccionesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class RestriccionesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Restriccion'::class, 20)->create();
+        factory(Restriccion::class, 20)->create();
     }
 }

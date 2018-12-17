@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Pais;
 
 class PaisesSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class PaisesSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Pais'::class, 50)->create();
+        factory(Pais::class, 50)->create();
     }
 }
