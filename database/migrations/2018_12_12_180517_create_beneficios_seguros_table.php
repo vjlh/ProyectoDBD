@@ -15,19 +15,19 @@ class CreateBeneficiosSegurosTable extends Migration
     {
         Schema::create('beneficios_seguros', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsigned('id_beneficio');
-            $table->unsigned('id_seguro');
+            $table->unsignedInteger('id_beneficio');
+            $table->unsignedInteger('id_seguro');
             $table->timestamps();
 
             
-            $table->foreing('id_beneficio')
+            $table->foreign('id_beneficio')
                 ->references('id')
                 ->on('beneficios')
                 ->onDelete('cascade');
 
             
             
-            $table->foreing('id_seguro')
+            $table->foreign('id_seguro')
                 ->references('id')
                 ->on('seguros')
                 ->onDelete('cascade');

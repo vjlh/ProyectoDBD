@@ -20,20 +20,20 @@ class CreateVuelosTable extends Migration
             $table->date('fecha_vuelo');
             $table->string('origen_vuelo');
             $table->string('destino_vuelo');
-            $table->unsigned('id_avion');
-            $table->unsigned('id_aeropuerto');
+            $table->unsignedInteger('id_avion');
+            $table->unsignedInteger('id_aeropuerto');
             $table->timestamps();
 
             
 
-            $table->foreing('id_avion')
+            $table->foreign('id_avion')
                 ->references('id')
                 ->on('aviones')
                 ->onDelete('cascade');
             
             
 
-            $table->foreing('id_aeropuerto')
+            $table->foreign('id_aeropuerto')
                 ->references('id')
                 ->on('aeropuertos')
                 ->onDelete('cascade');

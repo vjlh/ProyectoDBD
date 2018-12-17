@@ -19,13 +19,13 @@ class CreateEquipajesTable extends Migration
             $table->integer('alto');
             $table->integer('largo');
             $table->string('tipo_equipaje');
-            $table->unsigned('id_pasajero');
+            $table->unsignedInteger('id_pasajero');
             $table->longText('restricion_equipaje');
             $table->timestamps();
 
             
             
-            $table->foreing('id_pasajero')
+            $table->foreign('id_pasajero')
                 ->references('id')
                 ->on('pasajeros')
                 ->onDelete('cascade');

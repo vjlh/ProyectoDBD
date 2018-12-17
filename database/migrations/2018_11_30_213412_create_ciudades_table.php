@@ -17,11 +17,11 @@ class CreateCiudadesTable extends Migration
             $table->increments('id');
             $table->string('nombre_ciudad');
             $table->string('idioma_ciudad');
-            $table->unsigned('id_pais');
+            $table->unsignedInteger('id_pais');
             $table->timestamps();
 
 
-            $table->foreing('id_pais')
+            $table->foreign('id_pais')
                 ->references('id')
                 ->on('paises')
                 ->onDelete('cascade');

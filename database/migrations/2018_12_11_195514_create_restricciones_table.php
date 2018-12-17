@@ -18,12 +18,12 @@ class CreateRestriccionesTable extends Migration
             $table->string('nombre_restriccion');
             $table->longText('descripcion_restriccion');
             $table->longText('sancion_restriccion');
-            $table->unsigned('id_ciudad');
+            $table->unsignedInteger('id_ciudad');
             $table->timestamps();
 
             
 
-            $table->foreing('id_ciudad')
+            $table->foreign('id_ciudad')
                 ->references('id')
                 ->on('ciudades')
                 ->onDelete('cascade');

@@ -17,36 +17,36 @@ class CreateReservasTable extends Migration
             $table->increments('id');
             $table->integer('monto_total_reserva');
             $table->boolean('check_in');
-            $table->unsigned('id_paquete');
-            $table->unsigned('id_promocion');
-            $table->unsigned('id_seguro');
-            $table->unsigned('id_user');
+            $table->unsignedInteger('id_paquete');
+            $table->unsignedInteger('id_promocion');
+            $table->unsignedInteger('id_seguro');
+            $table->unsignedInteger('id_user');
             $table->timestamps();
 
             
             
-            $table->foreing('id_user')
+            $table->foreign('id_user')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
 
             
             
-            $table->foreing('id_seguro')
+            $table->foreign('id_seguro')
                 ->references('id')
                 ->on('seguros')
                 ->onDelete('cascade');
 
             
             
-            $table->foreing('id_promocion')
+            $table->foreign('id_promocion')
                 ->references('id')
                 ->on('promociones')
                 ->onDelete('cascade');
 
             
             
-            $table->foreing('id_paquete')
+            $table->foreign('id_paquete')
                 ->references('id')
                 ->on('paquetes')
                 ->onDelete('cascade');

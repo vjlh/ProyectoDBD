@@ -15,20 +15,20 @@ class CreatePasajerosReservasTable extends Migration
     {
         Schema::create('pasajeros_reservas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsigned('id_reserva');
-            $table->unsigned('id_pasajero');
+            $table->unsignedInteger('id_reserva');
+            $table->unsignedInteger('id_pasajero');
             $table->timestamps();
 
             
             
-            $table->foreing('id_pasajero')
+            $table->foreign('id_pasajero')
                 ->references('id')
                 ->on('pasajeros')
                 ->onDelete('cascade');
 
             
             
-            $table->foreing('id_reserva')
+            $table->foreign('id_reserva')
                 ->references('id')
                 ->on('reservas')
                 ->onDelete('cascade');
