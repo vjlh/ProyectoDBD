@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Asiento;
 
 class AsientosSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class AsientosSeeders extends Seeder
      */
     public function run()
     {
-        factory('App/Asiento'::class, 50)->create();
+        factory(Asiento::class, 50)->create();
     }
 }
