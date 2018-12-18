@@ -10,7 +10,8 @@ class BeneficiosController extends Controller
 
     public function index()
     {
-        //
+        $beneficio = Beneficio::all();
+        return $beneficio;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class BeneficiosController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $beneficio = Beneficio::create($request->all());
+        $beneficio->save();
+        return "";
     }
 
-    public function show(Beneficio $beneficio)
+    public function show($id)
     {
-        //
+        $beneficio = Beneficio::find($id);
+        return $beneficio;
     }
 
     public function edit(Beneficio $beneficio)
@@ -38,8 +42,10 @@ class BeneficiosController extends Controller
         //
     }
 
-    public function destroy(Beneficio $beneficio)
+    public function destroy($id)
     {
-        //
+        $beneficio = Beneficio::find($id);
+        $beneficio->delete();
+        return "";
     }
 }

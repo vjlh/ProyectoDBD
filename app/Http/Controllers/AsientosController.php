@@ -10,7 +10,8 @@ class AsientosController extends Controller
 
     public function index()
     {
-        //
+        $asiento = Asiento::all();
+        return $asiento;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class AsientosController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $asiento = Asiento::create($request->all());
+        $asiento->save();
+        return "";
     }
 
-    public function show(Asiento $asiento)
+    public function show($id)
     {
-        //
+        $asiento = Asiento::find($id);
+        return $asiento;
     }
 
     public function edit(Asiento $asiento)
@@ -38,8 +42,10 @@ class AsientosController extends Controller
         //
     }
 
-    public function destroy(Asiento $asiento)
+    public function destroy($id)
     {
-        //
+        $asiento = Asiento::find($id);
+        $asiento->delete();
+        return "";
     }
 }

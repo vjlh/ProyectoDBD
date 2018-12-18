@@ -10,7 +10,8 @@ class RestriccionesController extends Controller
 
     public function index()
     {
-        //
+        $restriccion = Restriccion::all();
+        return $restriccion;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class RestriccionesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $restriccion = Restriccion::create($request->all());
+        $restriccion->save();
+        return "";
     }
 
-    public function show(Restriccion $restriccion)
+    public function show($id)
     {
-        //
+        $restriccion = Restriccion::find($id);
+        return $restriccion;
     }
 
     public function edit(Restriccion $restriccion)
@@ -38,8 +42,10 @@ class RestriccionesController extends Controller
         //
     }
 
-    public function destroy(Restriccion $restriccion)
+    public function destroy($id)
     {
-        //
+        $restriccion = Restriccion::find($id);
+        $restriccion->delete();
+        return "";
     }
 }

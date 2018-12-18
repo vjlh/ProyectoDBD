@@ -10,7 +10,8 @@ class HistorialesController extends Controller
 
     public function index()
     {
-        //
+        $historial = Historial::all();
+        return $historial;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class HistorialesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $historial = Historial::create($request->all());
+        $historial->save();
+        return "";
     }
 
-    public function show(Historial $historial)
+    public function show($id)
     {
-        //
+        $historial = Historial::find($id);
+        return $historial;
     }
 
     public function edit(Historial $historial)
@@ -38,8 +42,10 @@ class HistorialesController extends Controller
         //
     }
 
-    public function destroy(Historial $historial)
+    public function destroy($id)
     {
-        //
+        $historial = Historial::find($id);
+        $historial->delete();
+        return "";
     }
 }

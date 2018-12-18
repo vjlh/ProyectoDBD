@@ -10,7 +10,8 @@ class UsersController extends Controller
 
     public function index()
     {
-        //
+        $user = User::all();
+        return $user;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+        $user->save();
+        return $user;
     }
 
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+        return $user;
     }
 
     public function edit(User $user)
@@ -38,8 +42,10 @@ class UsersController extends Controller
         //
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return "";
     }
 }

@@ -10,7 +10,8 @@ class ReservasController extends Controller
 
     public function index()
     {
-        //
+        $reserva = Reserva::all();
+        return $reserva;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class ReservasController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $reserva = Reserva::create($request->all());
+        $reserva->save();
+        return "";
     }
 
-    public function show(Reserva $reserva)
+    public function show($id)
     {
-        //
+        $reserva = Reserva::find($id);
+        return $reserva;
     }
 
     public function edit(Reserva $reserva)
@@ -38,8 +42,10 @@ class ReservasController extends Controller
         //
     }
 
-    public function destroy(Reserva $reserva)
+    public function destroy($id)
     {
-        //
+        $reserva = Reserva::find($id);
+        $reserva->delete();
+        return "";
     }
 }

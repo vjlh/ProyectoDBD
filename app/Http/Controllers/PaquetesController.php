@@ -10,7 +10,8 @@ class PaquetesController extends Controller
 
     public function index()
     {
-        //
+        $paquete = Paquete::all();
+        return $paquete;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class PaquetesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $paquete = Paquete::create($request->all());
+        $paquete->save();
+        return "";
     }
 
-    public function show(Paquete $paquete)
+    public function show($id)
     {
-        //
+        $paquete = Paquete::find($id);
+        return $paquete;
     }
 
     public function edit(Paquete $paquete)
@@ -38,8 +42,10 @@ class PaquetesController extends Controller
         //
     }
 
-    public function destroy(Paquete $paquete)
+    public function destroy($id)
     {
-        //
+        $paquete = Paquete::find($id);
+        $paquete->delete();
+        return "";
     }
 }

@@ -10,7 +10,8 @@ class AeropuertosController extends Controller
 
     public function index()
     {
-        //
+        $aeropuerto = Aeropuerto::all();
+        return $aeropuerto;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class AeropuertosController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $aeropuerto = Aeropuerto::create($request->all());
+        $aeropuerto->save();
+        return "";
     }
 
-    public function show(Aeropuerto $aeropuerto)
+    public function show($id)
     {
-        //
+        $aeropuerto = Aeropuerto::find($id);
+        return $aeropuerto;
     }
 
     public function edit(Aeropuerto $aeropuerto)
@@ -38,8 +42,10 @@ class AeropuertosController extends Controller
         //
     }
 
-    public function destroy(Aeropuerto $aeropuerto)
+    public function destroy($id)
     {
-        //
+        $aeropuerto = Aeropuerto::find($id);
+        $aeropuerto->delete();
+        return "";
     }
 }

@@ -10,7 +10,8 @@ class EquipajesController extends Controller
 
     public function index()
     {
-        //
+        $equipaje = Equipaje::all();
+        return $equipaje;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class EquipajesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $equipaje = Equipaje::create($request->all());
+        $equipaje->save();
+        return "";
     }
 
-    public function show(Equipaje $equipaje)
+    public function show($id)
     {
-        //
+        $equipaje = Equipaje::find($id);
+        return $equipaje;
     }
 
     public function edit(Equipaje $equipaje)
@@ -38,8 +42,10 @@ class EquipajesController extends Controller
         //
     }
 
-    public function destroy(Equipaje $equipaje)
+    public function destroy($id)
     {
-        //
+        $equipaje = Equipaje::find($id);
+        $equipaje->delete();
+        return "";
     }
 }

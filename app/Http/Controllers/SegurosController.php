@@ -10,7 +10,8 @@ class SegurosController extends Controller
 
     public function index()
     {
-        //
+        $seguro = Seguro::all();
+        return $seguro;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class SegurosController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $seguro = Seguro::create($request->all());
+        $seguro->save();
+        return "";
     }
 
-    public function show(Seguro $seguro)
+    public function show($id)
     {
-        //
+        $seguro = Seguro::find($id);
+        return $seguro;
     }
 
     public function edit(Seguro $seguro)
@@ -38,8 +42,10 @@ class SegurosController extends Controller
         //
     }
 
-    public function destroy(Seguro $seguro)
+    public function destroy($id)
     {
-        //
+        $seguro = Seguro::find($id);
+        $seguro->delete();
+        return "";
     }
 }

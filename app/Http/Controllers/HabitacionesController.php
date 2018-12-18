@@ -10,7 +10,8 @@ class HabitacionesController extends Controller
 
     public function index()
     {
-        //
+        $habitacion = Habitacion::all();
+        return $habitacion;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class HabitacionesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $habitacion = Habitacion::create($request->all());
+        $habitacion->save();
+        return $habitacion;
     }
 
-    public function show(Habitacion $habitacion)
+    public function show($id)
     {
-        //
+        $habitacion = Habitacion::find($id);
+        return $habitacion;
     }
 
     public function edit(Habitacion $habitacion)
@@ -38,8 +42,10 @@ class HabitacionesController extends Controller
         //
     }
 
-    public function destroy(Habitacion $habitacion)
+    public function destroy($id)
     {
-        //
+        $habitacion = Habitacion::find($id);
+        $habitacion->delete();
+        return "";
     }
 }

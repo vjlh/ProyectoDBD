@@ -10,7 +10,8 @@ class HospedajesController extends Controller
 
     public function index()
     {
-        //
+        $hospedaje = Hospedaje::all();
+        return $hospedaje;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class HospedajesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $hospedaje = Hospedaje::create($request->all());
+        $hospedaje->save();
+        return "";
     }
 
-    public function show(Hospedaje $hospedaje)
+    public function show($id)
     {
-        //
+        $hospedaje = Hospedaje::find($id);
+        return $hospedaje;
     }
 
     public function edit(Hospedaje $hospedaje)
@@ -38,8 +42,10 @@ class HospedajesController extends Controller
         //
     }
 
-    public function destroy(Hospedaje $hospedaje)
+    public function destroy($id)
     {
-        //
+        $hospedaje = Hospedaje::find($id);
+        $hospedaje->delete();
+        return "";
     }
 }

@@ -10,7 +10,8 @@ class PasajerosController extends Controller
 
     public function index()
     {
-        //
+        $pasajero = Pasajero::all();
+        return $pasajero;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class PasajerosController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $pasajero = Pasajero::create($request->all());
+        $pasajero->save();
+        return $pasajero;
     }
 
-    public function show(Pasajero $pasajero)
+    public function show($id)
     {
-        //
+        $pasajero = Pasajero::find($id);
+        return $pasajero;
     }
 
     public function edit(Pasajero $pasajero)
@@ -38,8 +42,10 @@ class PasajerosController extends Controller
         //
     }
 
-    public function destroy(Pasajero $pasajero)
+    public function destroy($id)
     {
-        //
+        $pasajero = Pasajero::find($id);
+        $pasajero->delete();
+        return "";
     }
 }

@@ -10,7 +10,8 @@ class PromocionesController extends Controller
 
     public function index()
     {
-        //
+        $promocion = Promocion::all();
+        return $promocion;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class PromocionesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $promocion = Promocion::create($request->all());
+        $promocion->save();
+        return "";
     }
 
-    public function show(Promocion $promocion)
+    public function show($id)
     {
-        //
+        $promocion = Promocion::find($id);
+        return $promocion
     }
 
     public function edit(Promocion $promocion)
@@ -38,8 +42,10 @@ class PromocionesController extends Controller
         //
     }
 
-    public function destroy(Promocion $promocion)
+    public function destroy($id)
     {
-        //
+        $promocion = Promocion::find($id);
+        $promocion->delete();
+        return "";
     }
 }

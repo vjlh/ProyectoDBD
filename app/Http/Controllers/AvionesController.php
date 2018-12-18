@@ -10,7 +10,8 @@ class AvionesController extends Controller
 
     public function index()
     {
-        //
+        $avion = Avion::all();
+        return $avion;
     }
 
     public function create()
@@ -20,12 +21,15 @@ class AvionesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $avion = Avion::create($request->all());
+        $avion->save();
+        return "";
     }
 
-    public function show(Avion $avion)
+    public function show($id)
     {
-        //
+        $avion = Avion::find($id);
+        return $avion;
     }
 
     public function edit(Avion $avion)
@@ -38,8 +42,10 @@ class AvionesController extends Controller
         //
     }
 
-    public function destroy(Avion $avion)
+    public function destroy($id)
     {
-        //
+        $avion = Avion::find($id);
+        $avion->delete();
+        return "";
     }
 }
