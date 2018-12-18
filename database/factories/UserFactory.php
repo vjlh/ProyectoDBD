@@ -16,6 +16,10 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+        'apellido_usuario' => $faker->lastName,
+        'pais_usuario' => $faker->name,
+        'fecha_nacimiento' => $faker->dateTimeBetween($startDate = '-70 years', $endDate = 'now', $timezone = NULL),
+        'num_documento_usuario' => $faker->numberBetween(8000000,25000000),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
