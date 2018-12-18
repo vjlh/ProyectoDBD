@@ -6,25 +6,64 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         
+       
+       
+          <div class="content">
+       
         <div class="flex-center position-ref">
             
-            
-            <div class="content">
-            
-            <div class="title m-b-md"
-                style="font-family: 'Lato', -apple-system !important;";
-            >
-                    Aerolínea G8
-            </div>
-            
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h4 class="card-title">Seguros</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
 
-                <div class="links">
-                    <a href="https://www.google.cl">Google</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h4 class="card-title">Paquetes</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h4 class="card-title">Promociones</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
             </div>
+
+<div class="flex-center position-ref">
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h4 class="card-title">Hoteles</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h4 class="card-title">Autos</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h4 class="card-title">Destinos</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
         </div>
+
         @endsection
