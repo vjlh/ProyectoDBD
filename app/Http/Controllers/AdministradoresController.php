@@ -15,7 +15,7 @@ class AdministradoresController extends Controller
 
     public function create()
     {
-        $administrador = Administrador:all();
+        $administrador = Administrador::all();
         return $administrador;
     }
 

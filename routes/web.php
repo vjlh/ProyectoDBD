@@ -102,10 +102,10 @@ Route::get('/Reserva/show/{id}', 'ReservasController@show');
 Route::post('/Reserva/destroy/{id}', 'ReservasController@destroy');
 Route::get('/Reserva/store', 'ReservasController@store');
 
-Route::get('/Restriccion/all', 'RestrinccionesController@index'); 
-Route::get('/Restriccion/show/{id}', 'RestrinccionesController@show'); 
-Route::post('/Restriccion/destroy/{id}', 'RestrinccionesController@destroy');
-Route::get('/Restriccion/store', 'RestrinccionesController@store');
+Route::get('/Restriccion/all', 'RestriccionesController@index'); 
+Route::get('/Restriccion/show/{id}', 'RestriccionesController@show'); 
+Route::post('/Restriccion/destroy/{id}', 'RestriccionesController@destroy');
+Route::get('/Restriccion/store', 'RestriccionesController@store');
 
 Route::get('/Seguro/all', 'SegurosController@index'); 
 Route::get('/Seguro/show/{id}', 'SegurosController@show'); 

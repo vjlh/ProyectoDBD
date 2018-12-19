@@ -29,7 +29,7 @@ class PromocionesController extends Controller
     public function show($id)
     {
         $promocion = Promocion::find($id);
-        return $promocion
+        return $promocion;
     }
 
     public function edit(Promocion $promocion)
