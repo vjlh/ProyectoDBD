@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reserva;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReservasRequest;
 
 class ReservasController extends Controller
 {
@@ -19,11 +20,23 @@ class ReservasController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(ReservasRequest $request)
     {
-        $reserva = Reserva::create($request->all());
-        $reserva->save();
-        return "";
+        try{
+            $id_paquete = $request->get('id_paquete');
+            \App\Paquete::find($id_paquete)->id;
+            $id_seguro = $request->get('id_seguro');
+            \App\Seguro::find($id_seguro)->id;
+            $id_promocion = $request->get('id_promocion');
+            \App\Seguro::find($id_promocion)->id;
+
+            $reserva = Reserva::create($request->all());
+            $reserva->save();
+            return $reserva;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
@@ -37,15 +50,30 @@ class ReservasController extends Controller
         //
     }
 
-    public function update(Request $request, Reserva $reserva)
+    public function update(ReservasRequest $request, $id)
     {
-        //
+        $reserva = Reserva::find($id);
+        try{
+            $id_paquete = $request->get('id_paquete');
+            \App\Paquete::find($id_paquete)->id;
+            $id_seguro = $request->get('id_seguro');
+            \App\Seguro::find($id_seguro)->id;
+            $id_promocion = $request->get('id_promocion');
+            \App\Seguro::find($id_promocion)->id;
+
+            $reserva->fill($request->all());
+            $reserva->save();
+            return $reserva;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
         $reserva = Reserva::find($id);
         $reserva->delete();
-        return "";
+        return "Se ha eliminado la reserva de la DB";
     }
 }

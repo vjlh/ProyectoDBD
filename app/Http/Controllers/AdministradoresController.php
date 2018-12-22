@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Administrador;
 use Illuminate\Http\Request;
-use Validator;
+use App\Http\Requests\AdministradoresRequest;
 
 class AdministradoresController extends Controller
 {
-    public function reglas(){
-        return[
-        'id_user' => 'required|numeric'
-        ];
-    }
+
     public function index()
     {
         return Administrador::all();
@@ -23,18 +19,15 @@ class AdministradoresController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(AdministradoresRequest $request)
     {
-        $validator = Validator::make($request->all(),$this->reglas());
-        if($validator->fails()){
-            return json_encode(['Datos Mal ingresados' => 'Error']);
-        }
-        $Administrador = new Administrador;
         try{
-            $id = $request->get('id_user');
-            $Administrador->id_user = \App\User::find($id)->id;
-            $Administrador->save();
-            return $Administrador;
+            $id_user = $request->get('id_user');
+            \App\User::find($id_user)->id;
+
+            $administrador = Administrador::create($request->all());
+            $administrador->save();
+            return $administrador;
         }
         catch(\Exception $e){
             return $e->getMessage();
@@ -52,16 +45,14 @@ class AdministradoresController extends Controller
         //
     }
 
-    public function update(Request $request, Administrador $administrador)
+    public function update(AdministradoresRequest $request, $id)
     {
-        $validator = Validator::make($request->all(),$this->reglas());
-        if($validator->fails()){
-            return json_encode(['Datos Mal ingresados' => 'Error']);
-        }
-
+        $administrador = Administrador::find($id);
         try{
-            $id = $request->get('id_user');
-            $administrador->id_user = \App\User::find($id)->id;
+            $id_user = $request->get('id_user');
+            \App\User::find($id_user)->id;
+
+            $administrador->fill($request->all());
             $administrador->save();
             return $administrador;
         }
@@ -74,6 +65,6 @@ class AdministradoresController extends Controller
     {
         $administrador = Administrador::find($id);
         $administrador->delete();
-        return "";
+        return "El Administrador ha sido eliminado de la DB";
     }
 }

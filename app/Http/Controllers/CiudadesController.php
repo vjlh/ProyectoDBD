@@ -4,88 +4,65 @@ namespace App\Http\Controllers;
 
 use App\Ciudad;
 use Illuminate\Http\Request;
+use App\Http\Requests\CiudadesRequest;
 
 class CiudadesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $ciudad = Ciudad::all();
-        return $ciudad;
+        return Ciudad::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CiudadesRequest $request)
     {
-        $ciudad = Ciudad::create($request->all());
-        $ciudad->save();
-        return "";
+        try{
+            $id_pais = $request->get('id_pais');
+            \App\Pais::find($id_pais)->id;
+
+            $ciudad = Ciudad::create($request->all());
+            $ciudad->save();
+            return $ciudad;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $ciudad = Ciudad::find($id);
-        return $ciudad;
+        return Ciudad::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Ciudad $ciudad)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ciudad $ciudad)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function update(CiudadesRequest $request,$id)
     {
         $ciudad = Ciudad::find($id);
-        $ciudad->delete();
-        return $ciudad;
+        try{
+            $id_pais = $request->get('id_pais');
+            \App\Pais::find($id_pais)->id;
+
+            $ciudad->fill($request->all());
+            $ciudad->save();
+            return $ciudad;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
+    }
+
+    public function destroy($id)
+    {
+        Ciudad::find($id)->delete();
+        return "Se ha eliminado la ciudad";
     }
 }

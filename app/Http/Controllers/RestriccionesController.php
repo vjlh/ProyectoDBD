@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Restriccion;
 use Illuminate\Http\Request;
+use App\Http\Requests\RestriccionesRequest;
 
 class RestriccionesController extends Controller
 {
@@ -19,11 +20,19 @@ class RestriccionesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(RestriccionesRequest $request)
     {
-        $restriccion = Restriccion::create($request->all());
-        $restriccion->save();
-        return "";
+        try{
+            $id_ciudad = $request->get('id_ciudad');
+            \App\Ciudad::find($id_ciudad)->id;
+
+            $restriccion = Ciudad::create($request->all());
+            $restriccion->save();
+            return $restriccion;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
@@ -37,15 +46,26 @@ class RestriccionesController extends Controller
         //
     }
 
-    public function update(Request $request, Restriccion $restriccion)
+    public function update(RestriccionesRequest $request, $id)
     {
-        //
+        $restriccion = Ciudad::find($id);
+        try{
+            $id_ciudad = $request->get('id_ciudad');
+            \App\Ciudad::find($id_ciudad)->id;
+
+            $restriccion->fill($request->all());
+            $restriccion->save();
+            return $restriccion;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
         $restriccion = Restriccion::find($id);
         $restriccion->delete();
-        return "";
+        return "Se ha eliminado la restriccion de la DB";
     }
 }

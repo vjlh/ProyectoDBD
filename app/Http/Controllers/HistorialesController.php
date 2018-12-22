@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Historial;
 use Illuminate\Http\Request;
+use App\Http\Requests\HistorialesRequest;
 
 class HistorialesController extends Controller
 {
 
     public function index()
     {
-        $historial = Historial::all();
-        return $historial;
+        return Historial::all();
     }
 
     public function create()
@@ -19,17 +19,24 @@ class HistorialesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(HistorialesRequest $request)
     {
-        $historial = Historial::create($request->all());
-        $historial->save();
-        return "";
+        try{
+            $id_user = $request->get('id_user');
+            \App\User::find($id_user)->id;
+
+            $historial = Historial::create($request->all());
+            $historial->save();
+            return $historial;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
     {
-        $historial = Historial::find($id);
-        return $historial;
+        return Historial::find($id);
     }
 
     public function edit(Historial $historial)
@@ -37,15 +44,25 @@ class HistorialesController extends Controller
         //
     }
 
-    public function update(Request $request, Historial $historial)
+    public function update(HistorialesRequest $request, $id)
     {
-        //
+        $historial = Historial::find($id);
+        try{
+            $id_user = $request->get('id_user');
+            \App\User::find($id_user)->id;
+
+            $historial->fill($request->all());
+            $historial->save();
+            return $historial;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
-        $historial = Historial::find($id);
-        $historial->delete();
-        return "";
+        Historial::find($id)->delete();
+        return "Se ha eliminado el historial";
     }
 }

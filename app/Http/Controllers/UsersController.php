@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersRequest;
 
 class UsersController extends Controller
 {
@@ -19,7 +20,7 @@ class UsersController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
         $user = User::create($request->all());
         $user->save();
@@ -37,15 +38,18 @@ class UsersController extends Controller
         //
     }
 
-    public function update(Request $request, User $user)
+    public function update(UsersRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        return $user;
     }
 
     public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
-        return "";
+        return "Se ha eliminado el usuario de la DB";
     }
 }

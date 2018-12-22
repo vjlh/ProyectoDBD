@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ticket;
 use Illuminate\Http\Request;
+use App\Http\Requests\TicketsRequest;
 
 class TicketsController extends Controller
 {
@@ -19,11 +20,19 @@ class TicketsController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TicketsRequest $request)
     {
-        $ticket = Ticket::create($request->all());
-        $ticket->save();
-        return $ticket;
+        try{
+            $id_reserva = $request->get('id_reserva');
+            \App\Reserva::find($id_reserva)->id;
+
+            $ticket = Ticket::create($request->all());
+            $ticket->save();
+            return $ticket;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
@@ -37,15 +46,26 @@ class TicketsController extends Controller
         //
     }
 
-    public function update(Request $request, Ticket $ticket)
+    public function update(TicketsRequest $request, $id)
     {
-        //
+        $ticket = Ticket::find($id);
+        try{
+            $id_reserva = $request->get('id_reserva');
+            \App\Reserva::find($id_reserva)->id;
+
+            $ticket->fill($request->all());
+            $ticket->save();
+            return $ticket;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
         $ticket = Ticket::find($id);
         $ticket->delete();
-        return "";
+        return "Se ha eliminado el ticket de la DB";
     }
 }

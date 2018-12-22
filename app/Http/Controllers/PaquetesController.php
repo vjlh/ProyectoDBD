@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Paquete;
 use Illuminate\Http\Request;
+use App\Http\Requests\PaquetesRequest;
 
 class PaquetesController extends Controller
 {
 
     public function index()
     {
-        $paquete = Paquete::all();
-        return $paquete;
+        return Paquete::all();
     }
 
     public function create()
@@ -19,17 +19,16 @@ class PaquetesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(PaquetesRequest $request)
     {
         $paquete = Paquete::create($request->all());
         $paquete->save();
-        return "";
+        return $paquete;
     }
 
     public function show($id)
-    {
-        $paquete = Paquete::find($id);
-        return $paquete;
+    { 
+        return Paquete::find($id);
     }
 
     public function edit(Paquete $paquete)
@@ -37,15 +36,17 @@ class PaquetesController extends Controller
         //
     }
 
-    public function update(Request $request, Paquete $paquete)
+    public function update(PaquetesRequest $request, $id)
     {
-        //
+        $paquete = Paquete::find($id);
+        $paquete->fill($request->all());
+        $paquete->save();
+        return $paquete;
     }
 
     public function destroy($id)
     {
-        $paquete = Paquete::find($id);
-        $paquete->delete();
-        return "";
+        Paquete::find($id)->delete();
+        return "Se ha eliminado el paquete de la DB";
     }
 }

@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Beneficio;
 use Illuminate\Http\Request;
+use App\Http\Requests\BeneficiosRequest;
 
 class BeneficiosController extends Controller
 {
 
     public function index()
     {
-        $beneficio = Beneficio::all();
-        return $beneficio;
+        return Beneficio::all();
     }
 
     public function create()
@@ -19,17 +19,16 @@ class BeneficiosController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(BeneficiosRequest $request)
     {
         $beneficio = Beneficio::create($request->all());
         $beneficio->save();
-        return "";
+        return $beneficio;
     }
 
     public function show($id)
     {
-        $beneficio = Beneficio::find($id);
-        return $beneficio;
+        return Beneficio::find($id);
     }
 
     public function edit(Beneficio $beneficio)
@@ -37,15 +36,17 @@ class BeneficiosController extends Controller
         //
     }
 
-    public function update(Request $request, Beneficio $beneficio)
+    public function update(BeneficiosRequest $request, $id)
     {
-        //
+        $beneficio = Beneficio::find($id);
+        $beneficio->fill($request->all());
+        $beneficio->save();
+        return $beneficio;
     }
 
     public function destroy($id)
     {
-        $beneficio = Beneficio::find($id);
-        $beneficio->delete();
-        return "";
+        Beneficio::find($id)->delete();
+        return "El beneficio se ha eliminado";
     }
 }

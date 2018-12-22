@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Avion;
 use Illuminate\Http\Request;
+use App\Http\Requests\AvionesRequest;
 
 class AvionesController extends Controller
 {
 
     public function index()
     {
-        $avion = Avion::all();
-        return $avion;
+        return Avion::all();
     }
 
     public function create()
@@ -19,17 +19,24 @@ class AvionesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(AvionesRequest $request)
     {
-        $avion = Avion::create($request->all());
-        $avion->save();
-        return "";
+        try{
+            $id_vuelo = $request->get('id_vuelo');
+            \App\Vuelo::find($id_vuelo)->id;
+
+            $avion = Avion::create($request->all());
+            $avion->save();
+            return $avion;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
-    {
-        $avion = Avion::find($id);
-        return $avion;
+    { 
+        return Avion::find($id);
     }
 
     public function edit(Avion $avion)
@@ -37,15 +44,25 @@ class AvionesController extends Controller
         //
     }
 
-    public function update(Request $request, Avion $avion)
+    public function update(AvionesRequest $request, $id)
     {
-        //
+        $avion = Avion::find($id);
+        try{
+            $id_vuelo = $request->get('id_vuelo');
+            \App\Vuelo::find($id_vuelo)->id;
+
+            $avion->fill($request->all());
+            $avion->save();
+            return $avion;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
-        $avion = Avion::find($id);
-        $avion->delete();
-        return "";
+        Avion::find($id)->delete();
+        return "El avion se ha eliminado";
     }
 }

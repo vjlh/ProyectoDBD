@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Equipaje;
 use Illuminate\Http\Request;
+use App\Http\Requests\EquipajesRequest;
 
 class EquipajesController extends Controller
 {
 
     public function index()
     {
-        $equipaje = Equipaje::all();
-        return $equipaje;
+        return Equipaje::all();
     }
 
     public function create()
@@ -19,11 +19,19 @@ class EquipajesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(EquipajesRequest $request)
     {
-        $equipaje = Equipaje::create($request->all());
-        $equipaje->save();
-        return "";
+        try{
+            $id_pasajero = $request->get('id_pasajero');
+            \App\Pasajero::find($id_pasajero)->id;
+
+            $equipaje = Equipaje::create($request->all());
+            $equipaje->save();
+            return $equipaje;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
@@ -37,15 +45,25 @@ class EquipajesController extends Controller
         //
     }
 
-    public function update(Request $request, Equipaje $equipaje)
+    public function update(EquipajesRequest $request, $id)
     {
-        //
+        $equipaje = Equipaje::find($id);
+        try{
+            $id_pasajero = $request->get('id_pasajero');
+            \App\Pasajero::find($id_pasajero)->id;
+
+            $equipaje->fill($request->all());
+            $equipaje->save();
+            return $equipaje;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
-        $equipaje = Equipaje::find($id);
-        $equipaje->delete();
-        return "";
+        Equipaje::find($id)->delete();
+        return "Se ha eliminado el equipaje de la DB";
     }
 }

@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Asiento;
 use Illuminate\Http\Request;
+use App\Http\Requests\AsientosRequest;
 
 class AsientosController extends Controller
 {
-
     public function index()
     {
-        $asiento = Asiento::all();
-        return $asiento;
+        return Asiento::all();
     }
 
     public function create()
@@ -19,17 +18,28 @@ class AsientosController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(AsientosRequest $request)
     {
-        $asiento = Asiento::create($request->all());
-        $asiento->save();
-        return "";
+
+        try{
+            $id_reserva = $request->get('id_reserva');
+            \App\Reserva::find($id_reserva)->id;
+            $id_avion = $request->get('id_avion');
+            \App\Avion::find($id_avion)->id;
+
+            $asiento = Asiento::create($request->all());
+            $asiento->save();
+            return $asiento;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
+
     }
 
     public function show($id)
     {
-        $asiento = Asiento::find($id);
-        return $asiento;
+        return Asiento::find($id);
     }
 
     public function edit(Asiento $asiento)
@@ -37,15 +47,29 @@ class AsientosController extends Controller
         //
     }
 
-    public function update(Request $request, Asiento $asiento)
+    public function update(AsientosRequest $request, $id)
     {
-        //
+        $asiento = Asiento::find($id);
+        try{
+            $id_reserva = $request->get('id_reserva');
+            \App\Reserva::find($id_reserva)->id;
+            $id_avion = $request->get('id_avion');
+            \App\Avion::find($id_avion)->id;
+
+            $asiento->fill($request->all());
+            $asiento->save();
+            return $asiento;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
         $asiento = Asiento::find($id);
         $asiento->delete();
-        return "";
+        Asiento::destroy($id);
+        return "El asiento ha sido eliminado";
     }
 }

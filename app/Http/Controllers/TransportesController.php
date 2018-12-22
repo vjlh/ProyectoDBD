@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transporte;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransportesRequest;
 
 class TransportesController extends Controller
 {
@@ -19,7 +20,7 @@ class TransportesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TransportesRequest $request)
     {
         $transporte = Transporte::create($request->all());
         $transporte->save();
@@ -37,15 +38,18 @@ class TransportesController extends Controller
         //
     }
 
-    public function update(Request $request, Transporte $transporte)
+    public function update(TransportesRequest $request, $id)
     {
-        //
+        $transporte = Transporte::find($id);
+        $transporte->fill($request->all());
+        $transporte->save();
+        return $transporte;
     }
 
     public function destroy($id)
     {
         $transporte = Transporte::find($id);
         $transporte->delete();
-        return "";
+        return "Se ha eliminado el transporte de la DB";
     }
 }

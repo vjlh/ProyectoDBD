@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Hospedaje;
 use Illuminate\Http\Request;
+use App\Http\Requests\HospedajesRequest;
 
 class HospedajesController extends Controller
 {
 
     public function index()
     {
-        $hospedaje = Hospedaje::all();
-        return $hospedaje;
+        return Hospedaje::all();
     }
 
     public function create()
@@ -19,17 +19,16 @@ class HospedajesController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(HospedajesRequest $request)
     {
         $hospedaje = Hospedaje::create($request->all());
         $hospedaje->save();
-        return "";
+        return $hospedaje;
     }
 
     public function show($id)
     {
-        $hospedaje = Hospedaje::find($id);
-        return $hospedaje;
+        return Hospedaje::find($id);
     }
 
     public function edit(Hospedaje $hospedaje)
@@ -37,15 +36,17 @@ class HospedajesController extends Controller
         //
     }
 
-    public function update(Request $request, Hospedaje $hospedaje)
+    public function update(HospedajesRequest $request, $id)
     {
-        //
+        $hospedaje = Hospedaje::find($id);
+        $hospedaje->fill($request->all());
+        $hospedaje->save();
+        return $hospedaje;
     }
 
     public function destroy($id)
     {
-        $hospedaje = Hospedaje::find($id);
-        $hospedaje->delete();
-        return "";
+        Hospedaje::find($id)->delete();
+        return "Se ha eliminado el hospedaje de la DB";
     }
 }

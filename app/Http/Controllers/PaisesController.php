@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pais;
 use Illuminate\Http\Request;
+use App\Http\Requests\PaisesRequest;
 
 class PaisesController extends Controller
 {
@@ -14,8 +15,7 @@ class PaisesController extends Controller
      */
     public function index()
     {
-        $pais = Pais::all();
-        return $pais;
+        return Pais::all();
     }
 
     /**
@@ -34,7 +34,7 @@ class PaisesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaisesRequest $request)
     {
         $pais = Pais::create($request->all());
         $pais->save();
@@ -49,8 +49,7 @@ class PaisesController extends Controller
      */
     public function show($id)
     {
-        $pais = Pais::find($id);
-        return $pais;
+        return Pais::find($id);
     }
 
     /**
@@ -71,9 +70,12 @@ class PaisesController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pais $pais)
+    public function update(PaisesRequest $request, $id)
     {
-        //
+        $pais = Pais::find($id);
+        $pais->fill($request->all());
+        $pais->save();
+        return $pais;
     }
 
     /**
@@ -84,8 +86,7 @@ class PaisesController extends Controller
      */
     public function destroy($id)
     {
-        $pais = Pais::find($id);
-        $pais->delete();
-        return "";
+        Pais::find($id)->delete();
+        return "Se ha eliminado el pais de la DB";
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Seguro;
 use Illuminate\Http\Request;
+use App\Http\Requests\SegurosRequest;
 
 class SegurosController extends Controller
 {
@@ -19,11 +20,11 @@ class SegurosController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(SegurosRequest $request)
     {
         $seguro = Seguro::create($request->all());
         $seguro->save();
-        return "";
+        return $eguro;
     }
 
     public function show($id)
@@ -37,15 +38,18 @@ class SegurosController extends Controller
         //
     }
 
-    public function update(Request $request, Seguro $seguro)
+    public function update(SegurosRequest $request, $id)
     {
-        //
+        $seguro = Seguro::find($id);
+        $seguro->fill($request->all());
+        $seguro->save();
+        return $seguro;
     }
 
     public function destroy($id)
     {
         $seguro = Seguro::find($id);
         $seguro->delete();
-        return "";
+        return "Se ha eliminado el seguro de la DB";
     }
 }

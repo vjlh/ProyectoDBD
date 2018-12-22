@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vuelo;
 use Illuminate\Http\Request;
+use App\Http\Requests\VuelosRequest;
 
 class VuelosController extends Controller
 {
@@ -19,11 +20,21 @@ class VuelosController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(VuelosRequest $request)
     {
-        $vuelo = Vuelo::create($request->all());
-        $vuelo->save();
-        return "";
+        try{
+            $id_avion = $request->get('id_avion');
+            \App\Avion::find($id_avion)->id;
+            $id_aeropuerto = $request->get('id_aeropuerto');
+            \App\Aeropuerto::find($id_aeropuerto)->id;
+
+            $vuelo = Vuelo::create($request->all());
+            $vuelo->save();
+            return $vuelo;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function show($id)
@@ -37,15 +48,28 @@ class VuelosController extends Controller
         //
     }
 
-    public function update(Request $request, Vuelo $vuelo)
+    public function update(VuelosRequest $request, $id)
     {
-        //
+        $vuelo = Vuelo::find($id);
+        try{
+            $id_avion = $request->get('id_avion');
+            \App\Avion::find($id_avion)->id;
+            $id_aeropuerto = $request->get('id_aeropuerto');
+            \App\Aeropuerto::find($id_aeropuerto)->id;
+
+            $vuelo->fill($request->all());
+            $vuelo->save();
+            return $vuelo;
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function destroy($id)
     {
         $vuelo = Vuelo::find($id);
         $vuelo->delete();
-        return "";
+        return "Se ha eliminado el vuelo de la DB";
     }
 }
