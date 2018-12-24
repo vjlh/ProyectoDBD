@@ -25,7 +25,7 @@ class HabitacionesController extends Controller
             $id_hospedaje = $request->get('id_hospedaje');
             \App\Hospedaje::find($id_hospedaje)->id;
 
-            $habitacion = Avion::create($request->all());
+            $habitacion = Hospedaje::create($request->all());
             $habitacion->save();
             return $habitacion;
         }

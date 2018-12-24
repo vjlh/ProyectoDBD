@@ -26,7 +26,7 @@ class RestriccionesController extends Controller
             $id_ciudad = $request->get('id_ciudad');
             \App\Ciudad::find($id_ciudad)->id;
 
-            $restriccion = Ciudad::create($request->all());
+            $restriccion = Restriccion::create($request->all());
             $restriccion->save();
             return $restriccion;
         }
@@ -48,7 +48,7 @@ class RestriccionesController extends Controller
 
     public function update(RestriccionesRequest $request, $id)
     {
-        $restriccion = Ciudad::find($id);
+        $restriccion = Restriccion::find($id);
         try{
             $id_ciudad = $request->get('id_ciudad');
             \App\Ciudad::find($id_ciudad)->id;

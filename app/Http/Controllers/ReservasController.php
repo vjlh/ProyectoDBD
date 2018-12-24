@@ -28,7 +28,7 @@ class ReservasController extends Controller
             $id_seguro = $request->get('id_seguro');
             \App\Seguro::find($id_seguro)->id;
             $id_promocion = $request->get('id_promocion');
-            \App\Seguro::find($id_promocion)->id;
+            \App\Promocion::find($id_promocion)->id;
 
             $reserva = Reserva::create($request->all());
             $reserva->save();
@@ -59,7 +59,7 @@ class ReservasController extends Controller
             $id_seguro = $request->get('id_seguro');
             \App\Seguro::find($id_seguro)->id;
             $id_promocion = $request->get('id_promocion');
-            \App\Seguro::find($id_promocion)->id;
+            \App\Promocion::find($id_promocion)->id;
 
             $reserva->fill($request->all());
             $reserva->save();
