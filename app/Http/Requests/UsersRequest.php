@@ -30,6 +30,7 @@ class UsersRequest extends FormRequest
             'apellido_usuario' => 'required|string', 
             'fecha_nacimiento' => 'required|date', 
             'num_documento_usuario' => 'required|numeric',
+            'pais_usuario' => 'required|string',
         ];
     }
 }
