@@ -8,7 +8,7 @@ use App\Http\Requests\BeneficiosRequest;
 
 class BeneficiosController extends Controller
 {
-
+    //Probado
     public function index()
     {
         return Beneficio::all();
@@ -28,7 +28,11 @@ class BeneficiosController extends Controller
 
     public function show($id)
     {
-        return Beneficio::find($id);
+        $beneficio = Beneficio::find($id);
+        if($beneficio != NULL)
+            return $beneficio;
+        else
+            return "No existe beneficio con la id ingresada";    
     }
 
     public function edit(Beneficio $beneficio)
@@ -42,11 +46,20 @@ class BeneficiosController extends Controller
         $beneficio->fill($request->all());
         $beneficio->save();
         return $beneficio;
+        
     }
 
     public function destroy($id)
     {
-        Beneficio::find($id)->delete();
-        return "El beneficio se ha eliminado";
+        $beneficio = Beneficio::find($id);
+        if ($beneficio != NULL)
+        {
+            $beneficio->delete();
+            Beneficio::destroy($id);
+            return "El beneficio se ha eliminado";
+        }
+        else
+            return "El beneficio con el id ingresado no existe o ya fue eliminado";
+        
     }
 }

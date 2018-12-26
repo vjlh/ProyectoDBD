@@ -8,7 +8,7 @@ use App\Http\Requests\CiudadesRequest;
 
 class CiudadesController extends Controller
 {
-
+    //Probado
     public function index()
     {
         return Ciudad::all();
@@ -36,7 +36,11 @@ class CiudadesController extends Controller
 
     public function show($id)
     {
-        return Ciudad::find($id);
+        $ciudad = Ciudad::find($id);
+        if($ciudad != NULL)
+            return $ciudad;
+        else
+            return "No existe una ciudad con el id ingresado";    
     }
 
     public function edit(Ciudad $ciudad)
@@ -62,7 +66,15 @@ class CiudadesController extends Controller
 
     public function destroy($id)
     {
-        Ciudad::find($id)->delete();
-        return "Se ha eliminado la ciudad";
+        $ciudad = Ciudad::find($id);
+        if($ciudad !=NULL)
+        {
+            $ciudad->delete();
+            Ciudad::destroy($id);
+            return "Se ha eliminado la ciudad";
+        }
+        else
+            return "La ciudad con el id ingresado no existe o ya fue eliminado";
+
     }
 }

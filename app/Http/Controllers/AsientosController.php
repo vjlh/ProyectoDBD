@@ -8,6 +8,7 @@ use App\Http\Requests\AsientosRequest;
 
 class AsientosController extends Controller
 {
+    //Probado
     public function index()
     {
         return Asiento::all();
