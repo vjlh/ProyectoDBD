@@ -10,8 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Vuelo; 
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/vuelos', function () {
+    $vuelos = Vuelo::all();
+    return View('vuelos')->with('vuelos', $vuelos);
 });
 
 Auth::routes();

@@ -26,7 +26,7 @@ class AeropuertosRequest extends FormRequest
         return [
             'nombre_aeropuerto' => 'required|string',
             'direccion_aeropuerto' => 'required|string',
-            'telefono_aeropuerto' => 'required|numeric'
+            'telefono_aeropuerto' => 'required|numeric',
             'pagina_web' => 'required|string',
             'id_ciudad' => 'required|numeric'
         ];
