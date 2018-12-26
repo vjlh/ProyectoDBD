@@ -28,7 +28,7 @@ class AvionesRequest extends FormRequest
             'capacidad_avion' => 'required|integer', 
             'salidas_emergencia' => 'required|integer|max:20|min:1', 
             'sanitarios_avion' => 'required|integer|max:10|min:1', 
-            'longitud_avion' => 'required|integer|max:10|min:1',
+            'longitud_avion' => 'required|integer|max:500|min:1',
             'envergadura_avion' => 'required|in:Grande,Chico,Mediano'
             
         ];

@@ -8,6 +8,7 @@ use App\Http\Requests\AeropuertosRequest;
 
 class AeropuertosController extends Controller
 {
+    //Probado
     public function index()
     {
         return Aeropuerto::all();
@@ -24,7 +25,7 @@ class AeropuertosController extends Controller
             $id_ciudad = $request->get('id_ciudad');
             \App\Ciudad::find($id_ciudad)->id;
 
-            $aeropuerto = Aeropuert::create($request->all());
+            $aeropuerto = Aeropuerto::create($request->all());
             $aeropuerto->save();
             return $aeropuerto;
         }
@@ -36,7 +37,11 @@ class AeropuertosController extends Controller
     public function show($id)
     {
         $aeropuerto = Aeropuerto::find($id);
-        return $aeropuerto;
+       
+        if($aeropuerto != NULL)
+            return $aeropuerto;
+        else 
+            return "No existe un aeropuerto con la id ingresada";
     }
 
     public function edit(Aeropuerto $aeropuerto)
@@ -44,7 +49,7 @@ class AeropuertosController extends Controller
         //
     }
 
-    public function update(Request $request, Aeropuerto $aeropuerto)
+    public function update(AeropuertosRequest $request, $id)
     {
         $aeropuerto = Aeropuerto::find($id);
         try{
@@ -62,7 +67,13 @@ class AeropuertosController extends Controller
 
     public function destroy($id)
     {
-        Aeropuerto::find($id)->delete();
-        return "El aeropuerto se ha eliminado";
+        $aeropuerto = Aeropuerto::find($id);
+        if($aeropuerto != NULL){
+            $aeropuerto->delete();
+            Aeropuerto::destroy($id);
+            return "El aeropuerto se ha eliminado";
+        }
+        else
+            return "No existe un aeropuerto con la id ingresada";
     }
 }

@@ -36,7 +36,11 @@ class AvionesController extends Controller
 
     public function show($id)
     { 
-        return Avion::find($id);
+        $avion = Avion::find($id);
+        if($avion != NULL)
+            return $avion;
+        else
+            return "No existe avión con la id ingresada";    
     }
 
     public function edit(Avion $avion)
@@ -62,7 +66,15 @@ class AvionesController extends Controller
 
     public function destroy($id)
     {
-        Avion::find($id)->delete();
-        return "El avion se ha eliminado";
+        $avion = Avion::find($id);
+        if($avion != NULL){
+            
+            $avion->delete();
+            Avion::destroy($id);
+            return "El avion se ha eliminado";
+        }
+        else
+            return "El avion con el id ingresado no existe o ya fue eliminado";
+        
     }
 }

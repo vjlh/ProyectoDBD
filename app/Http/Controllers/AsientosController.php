@@ -39,7 +39,12 @@ class AsientosController extends Controller
 
     public function show($id)
     {
-        return Asiento::find($id);
+        $asiento = Asiento::find($id);
+        if($asiento!=NULL)
+            return $asiento;
+        
+        else
+            return "No existe asiento con la id ingresada";
     }
 
     public function edit(Asiento $asiento)
@@ -68,8 +73,14 @@ class AsientosController extends Controller
     public function destroy($id)
     {
         $asiento = Asiento::find($id);
-        $asiento->delete();
-        Asiento::destroy($id);
-        return "El asiento ha sido eliminado";
+        if($asiento != NULL)
+        {
+            $asiento->delete();
+            Asiento::destroy($id);
+            return "El asiento ha sido eliminado";
+        }
+        else
+            return "El asiento con el id ingresado no existe o ya fue eliminado";
+        
     }
 }
