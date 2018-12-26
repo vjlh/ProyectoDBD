@@ -24,7 +24,6 @@ class AvionesRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_vuelo' => 'required|numeric',
             'capacidad_avion' => 'required|integer', 
             'salidas_emergencia' => 'required|integer|max:20|min:1', 
             'sanitarios_avion' => 'required|integer|max:10|min:1', 
