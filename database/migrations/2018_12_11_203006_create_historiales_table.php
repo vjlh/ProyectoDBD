@@ -15,7 +15,7 @@ class CreateHistorialesTable extends Migration
     {
         Schema::create('historiales', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha_cambio');
+            $table->string('descripcion');
             $table->unsignedInteger('id_user');
             $table->timestamps();
 

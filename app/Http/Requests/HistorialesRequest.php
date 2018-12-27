@@ -24,7 +24,7 @@ class HistorialesRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha_cambio' => 'required|date', 
+            'descripcion' => 'required|string', 
             'id_user'=> 'required|numeric'
         ];
     }
