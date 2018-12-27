@@ -8,7 +8,7 @@ use App\Http\Requests\EquipajesRequest;
 
 class EquipajesController extends Controller
 {
-
+    //Probado
     public function index()
     {
         return Equipaje::all();
@@ -37,7 +37,10 @@ class EquipajesController extends Controller
     public function show($id)
     {
         $equipaje = Equipaje::find($id);
-        return $equipaje;
+        if($equipaje != NULL)
+            return $equipaje;
+        else
+            return "El equipaje con el id ingresado no existe o fue eliminado";    
     }
 
     public function edit(Equipaje $equipaje)
@@ -63,7 +66,15 @@ class EquipajesController extends Controller
 
     public function destroy($id)
     {
-        Equipaje::find($id)->delete();
-        return "Se ha eliminado el equipaje de la DB";
+        $equipaje = Equipaje::find($id);
+        if($equipaje != NULL)
+        {
+            $equipaje->delete();
+            Equipaje::destroy($id);
+            return "Se ha eliminado el equipaje de la DB";
+        }
+        else
+            return "El equipaje con el id ingresado no existe o fue eliminado";
+        
     }
 }

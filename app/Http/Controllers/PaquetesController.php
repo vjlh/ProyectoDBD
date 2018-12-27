@@ -8,7 +8,7 @@ use App\Http\Requests\PaquetesRequest;
 
 class PaquetesController extends Controller
 {
-
+    //Probado
     public function index()
     {
         return Paquete::all();
@@ -28,7 +28,12 @@ class PaquetesController extends Controller
 
     public function show($id)
     { 
-        return Paquete::find($id);
+        $paquete = Paquete::find($id);
+        if($paquete != NULL)
+            return $paquete;
+        else
+            return "El paquete con el id ingresado no existe o fue eliminado"; 
+
     }
 
     public function edit(Paquete $paquete)
@@ -46,7 +51,15 @@ class PaquetesController extends Controller
 
     public function destroy($id)
     {
-        Paquete::find($id)->delete();
-        return "Se ha eliminado el paquete de la DB";
+        $paquete = Paquete::find($id);
+        if($paquete!=NULL)
+        {
+            $paquete->delete();
+            Paquete::destroy($id);
+            return "Se ha eliminado el paquete de la DB";
+        }
+        else
+            return "El paquete con el id ingresado no existe o fue eliminado"; 
+
     }
 }

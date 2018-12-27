@@ -37,7 +37,10 @@ class HabitacionesController extends Controller
     public function show($id)
     {
         $habitacion = Habitacion::find($id);
-        return $habitacion;
+        if($habitacion != NULL)
+            return $habitacion;
+        else
+            return "La habitación con el id ingresado no existe o fue eliminado";     
     }
 
     public function edit(Habitacion $habitacion)
@@ -63,7 +66,14 @@ class HabitacionesController extends Controller
 
     public function destroy($id)
     {
-        Habitacion::find($id)->delete();
-        return "Se ha eliminado la habitacion de la DB";
+        $habitacion = Habitacion::find($id);
+        if($habitacion != NULL)
+        {
+            $habitacion->delete();
+            Habitacion::destroy($id);
+            return "Se ha eliminado la habitacion de la DB";
+        }
+        else
+            return "La habitacion con el id ingresado no existe o fue eliminado"; 
     }
 }

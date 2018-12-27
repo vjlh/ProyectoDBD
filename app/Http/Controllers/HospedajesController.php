@@ -8,7 +8,7 @@ use App\Http\Requests\HospedajesRequest;
 
 class HospedajesController extends Controller
 {
-
+    //probado
     public function index()
     {
         return Hospedaje::all();
@@ -28,7 +28,12 @@ class HospedajesController extends Controller
 
     public function show($id)
     {
-        return Hospedaje::find($id);
+        $hospedaje = Hospedaje::find($id);
+        if($hospedaje != NULL)
+            return $hospedaje;
+        else
+            return "El hospedaje con el id ingresado no existe o fue eliminado"; 
+        
     }
 
     public function edit(Hospedaje $hospedaje)
@@ -46,7 +51,15 @@ class HospedajesController extends Controller
 
     public function destroy($id)
     {
-        Hospedaje::find($id)->delete();
-        return "Se ha eliminado el hospedaje de la DB";
+        $hospedaje = Hospedaje::find($id);
+        if($hospedaje != NULL)
+        {
+            $hospedaje->delete();
+            Hospedaje::destroy($id);
+            return "Se ha eliminado el hospedaje de la DB";
+        }
+        else
+            return "El hospedaje con el id ingresado no existe o fue eliminado"; 
+
     }
 }

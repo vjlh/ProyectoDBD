@@ -8,6 +8,7 @@ use App\Http\Requests\PaisesRequest;
 
 class PaisesController extends Controller
 {
+    //Probado
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +50,12 @@ class PaisesController extends Controller
      */
     public function show($id)
     {
-        return Pais::find($id);
+        $pais = Pais::find($id);
+        if($pais != NULL)
+            return $pais;
+        else
+            return "El país con el id ingresado no existe o fue eliminado"; 
+
     }
 
     /**
@@ -86,7 +92,15 @@ class PaisesController extends Controller
      */
     public function destroy($id)
     {
-        Pais::find($id)->delete();
-        return "Se ha eliminado el pais de la DB";
+        $pais = Pais::find($id);
+        if($pais != NULL)
+        {
+            $pais->delete();
+            Pais::destroy($id);
+            return "Se ha eliminado el pais de la DB";
+        }
+        else
+            return "El país con el id ingresado no existe o fue eliminado"; 
+
     }
 }

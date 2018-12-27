@@ -8,7 +8,7 @@ use App\Http\Requests\HistorialesRequest;
 
 class HistorialesController extends Controller
 {
-
+    //Probado
     public function index()
     {
         return Historial::all();
@@ -36,7 +36,11 @@ class HistorialesController extends Controller
 
     public function show($id)
     {
-        return Historial::find($id);
+        $historial = Historial::find($id);
+        if($historial != NULL)
+            return $historial;
+        else
+            return "El historial con el id ingresado no existe o fue eliminado"; 
     }
 
     public function edit(Historial $historial)
@@ -62,7 +66,15 @@ class HistorialesController extends Controller
 
     public function destroy($id)
     {
-        Historial::find($id)->delete();
-        return "Se ha eliminado el historial";
+        $historial = Historial::find($id);
+        if($historial != NULL)
+        {
+            $historial->delete();
+            Historial::destroy($id);
+            return "Se ha eliminado el historial";
+        }
+        else
+            return "El historial con el id ingresado no existe o fue eliminado"; 
+            
     }
 }
