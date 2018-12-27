@@ -8,7 +8,7 @@ use App\Http\Requests\RestriccionesRequest;
 
 class RestriccionesController extends Controller
 {
-
+    //Probado
     public function index()
     {
         $restriccion = Restriccion::all();
@@ -38,7 +38,11 @@ class RestriccionesController extends Controller
     public function show($id)
     {
         $restriccion = Restriccion::find($id);
-        return $restriccion;
+        if($restriccion != NULL)
+            return $restriccion;
+        else 
+            return "La restriccion con el id ingresado no existe o fue eliminada"; 
+            
     }
 
     public function edit(Restriccion $restriccion)
@@ -65,7 +69,15 @@ class RestriccionesController extends Controller
     public function destroy($id)
     {
         $restriccion = Restriccion::find($id);
-        $restriccion->delete();
-        return "Se ha eliminado la restriccion de la DB";
+        if($restriccion != NULL)
+        {
+            $restriccion->delete();
+            Restriccion::destroy($id);
+            return "Se ha eliminado la restriccion de la DB";
+        }
+        
+        else 
+            return "La restricción con el id ingresado no existe o fue eliminada"; 
+
     }
 }

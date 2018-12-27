@@ -8,7 +8,7 @@ class Seguro extends Model
 {
 	protected $table = 'seguros';
     protected $fillable = [
-        'precio_seguro', 'tipo_seguro', 'precio_ticket', 'num_pasajeros_seguro',
+        'precio_seguro', 'tipo_seguro', 'precio_ticket', 'numero_pasajeros_seguros',
     ];
 
     public function beneficios(){

@@ -8,7 +8,7 @@ use App\Http\Requests\PasajerosRequest;
 
 class PasajerosController extends Controller
 {
-
+    //Probado
     public function index()
     {
         return Pasajero::all();
@@ -28,7 +28,12 @@ class PasajerosController extends Controller
 
     public function show($id)
     { 
-        return Pasajero::find($id);
+        $pasajero = Pasajero::find($id);
+        if($pasajero != NULL)
+            return $pasajero;
+        else
+            return "El pasajero con el id ingresado no existe o fue eliminado"; 
+
     }
 
     public function edit(Pasajero $pasajero)
@@ -46,7 +51,15 @@ class PasajerosController extends Controller
 
     public function destroy($id)
     {
-        Pasajero::find($id)->delete();
-        return "Se ha eliminado el pasajero";
+        $pasajero = Pasajero::find($id);
+        if($pasajero != NULL)
+        {    
+            $pasajero->delete();
+            Pasajero::destroy($id);
+            return "Se ha eliminado el pasajero";
+        }
+        else   
+            return "El pasajero con el id ingresado no existe o fue eliminado"; 
+
     }
 }

@@ -25,7 +25,8 @@ class PromocionesRequest extends FormRequest
     {
         return [
             'nombre_promocion' => 'required|string', 
-            'descuento_promocion' => 'required|string'
+            'descuento_promocion' => 'required|string',
+            'descripcion_promocion' => 'required|string'
         ];
     }
 }

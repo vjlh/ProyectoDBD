@@ -8,7 +8,7 @@ class Promocion extends Model
 {
 	protected $table = 'promociones';
     protected $fillable = [
-        'nombre_promocion', 'descuento_promocion',
+        'nombre_promocion', 'descuento_promocion','descripcion_promocion'
     ];
 
     public function reservas(){

@@ -22,7 +22,10 @@ class UsersController extends Controller
 
     public function store(UsersRequest $request)
     {
-        $user = User::create($request->all());
+        $now = date('Y-m-d H:i:s');
+        $user = new User;
+        $user->fill($request->all());
+        $user->email_verified_at = $now;
         $user->save();
         return $user;
     }
@@ -30,7 +33,11 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return $user;
+        if($user!=NULL)
+            return $user;
+        else
+            return "El usuario con el id ingresado no existe o fue eliminado"; 
+                
     }
 
     public function edit(User $user)
@@ -40,8 +47,10 @@ class UsersController extends Controller
 
     public function update(UsersRequest $request, $id)
     {
+        $now = date('Y-m-d H:i:s');
         $user = User::find($id);
         $user->fill($request->all());
+        $user->email_verified_at = $now;
         $user->save();
         return $user;
     }
@@ -49,7 +58,14 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $user->delete();
-        return "Se ha eliminado el usuario de la DB";
+        if($user!=NULL)
+        {
+            $user->delete();
+            User::destroy($id);
+            return "Se ha eliminado el usuario de la DB";
+        }
+        
+        else
+            return "El usuario con el id ingresado no existe o fue eliminado"; 
     }
 }

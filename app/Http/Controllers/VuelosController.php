@@ -40,7 +40,10 @@ class VuelosController extends Controller
     public function show($id)
     {
         $vuelo = Vuelo::find($id);
-        return $vuelo;
+        if($vuelo!=NULL)
+            return $vuelo;
+        else
+            return "El vuelo con el id ingresado no existe o fue eliminado";  
     }
 
     public function edit(Vuelo $vuelo)
@@ -69,7 +72,14 @@ class VuelosController extends Controller
     public function destroy($id)
     {
         $vuelo = Vuelo::find($id);
-        $vuelo->delete();
-        return "Se ha eliminado el vuelo de la DB";
+        if($vuelo!=NULL)
+        {
+            $vuelo->delete();
+            Vuelo::destroy($id);
+            return "Se ha eliminado el vuelo de la DB";
+        }
+
+        else
+            return "El vuelo con el id ingresado no existe o fue eliminado";  
     }
 }

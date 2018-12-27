@@ -27,7 +27,7 @@ class SegurosRequest extends FormRequest
             'precio_seguro' => 'required|integer', 
             'tipo_seguro' => 'required|string', 
             'precio_ticket' => 'required|integer', 
-            'num_pasajeros_seguro' => 'required|integer|min:1|max:20'
+            'numero_pasajeros_seguros' => 'required|integer|min:1|max:20'
         ];
     }
 }

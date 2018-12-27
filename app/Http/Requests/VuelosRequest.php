@@ -13,7 +13,7 @@ class VuelosRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,10 @@ class VuelosRequest extends FormRequest
     public function rules()
     {
         return [
-            'hora_vuelo' => 'required|', 
+            'hora_vuelo' => 'required|string', 
             'duracion_vuelo' => 'required|integer', 
             'fecha_vuelo' => 'required|date', 
-            'origen_vuelo' => 'required|date', 
+            'origen_vuelo' => 'required|string', 
             'destino_vuelo' => 'required|string', 
             'id_avion' => 'required|numeric', 
             'id_aeropuerto' => 'required|numeric',

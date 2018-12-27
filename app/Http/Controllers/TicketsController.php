@@ -38,7 +38,11 @@ class TicketsController extends Controller
     public function show($id)
     {
         $ticket = Ticket::find($id);
-        return $ticket;
+        if($ticket != NULL)
+            return $ticket;
+        else
+            return "El ticket con el id ingresado no existe o fue eliminado"; 
+    
     }
 
     public function edit(Ticket $ticket)
@@ -65,7 +69,15 @@ class TicketsController extends Controller
     public function destroy($id)
     {
         $ticket = Ticket::find($id);
-        $ticket->delete();
-        return "Se ha eliminado el ticket de la DB";
+        if($ticket!=NULL)
+        {
+            $ticket->delete();
+            Ticket::destroy($id);
+            return "Se ha eliminado el ticket de la DB";
+        }
+        
+        else
+            return "El ticket con el id ingresado no existe o fue eliminado"; 
+
     }
 }

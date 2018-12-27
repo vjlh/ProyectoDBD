@@ -8,7 +8,7 @@ use App\Http\Requests\ReservasRequest;
 
 class ReservasController extends Controller
 {
-
+    //Probado
     public function index()
     {
         $reserva = Reserva::all();
@@ -42,7 +42,10 @@ class ReservasController extends Controller
     public function show($id)
     {
         $reserva = Reserva::find($id);
-        return $reserva;
+        if($reserva != NULL)
+            return $reserva;
+        else
+            return "La reserva con el id ingresado no existe o fue eliminada"; 
     }
 
     public function edit(Reserva $reserva)
@@ -73,7 +76,14 @@ class ReservasController extends Controller
     public function destroy($id)
     {
         $reserva = Reserva::find($id);
-        $reserva->delete();
-        return "Se ha eliminado la reserva de la DB";
+        if($reserva!=NULL)
+        {
+            $reserva->delete();
+            Reserva::destroy($id);
+            return "Se ha eliminado la reserva de la DB";
+        }
+        else
+            return "La reserva con el id ingresado no existe o fue eliminada"; 
+
     }
 }

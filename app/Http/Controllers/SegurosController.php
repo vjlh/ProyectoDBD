@@ -24,13 +24,17 @@ class SegurosController extends Controller
     {
         $seguro = Seguro::create($request->all());
         $seguro->save();
-        return $eguro;
+        return $seguro;
     }
 
     public function show($id)
     {
         $seguro = Seguro::find($id);
-        return $seguro;
+        if($seguro!=NULL)
+            return $seguro;
+        else
+            return "El seguro con el id ingresado no existe o fue eliminado"; 
+
     }
 
     public function edit(Seguro $seguro)
@@ -49,7 +53,13 @@ class SegurosController extends Controller
     public function destroy($id)
     {
         $seguro = Seguro::find($id);
-        $seguro->delete();
-        return "Se ha eliminado el seguro de la DB";
+        if($seguro!=NULL)
+        {
+            $seguro->delete();
+            Seguro::destroy($id);
+            return "Se ha eliminado el seguro de la DB";
+        }
+        else
+            return "El seguro con el id ingresado no existe o fue eliminado"; 
     }
 }

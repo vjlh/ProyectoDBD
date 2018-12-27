@@ -8,7 +8,7 @@ use App\Http\Requests\PromocionesRequest;
 
 class PromocionesController extends Controller
 {
-
+    //Probado
     public function index()
     {
         $promocion = Promocion::all();
@@ -30,7 +30,10 @@ class PromocionesController extends Controller
     public function show($id)
     {
         $promocion = Promocion::find($id);
-        return $promocion;
+        if ($promocion != NULL)
+            return $promocion;
+        else
+            return "La promocion con el id ingresado no existe o fue eliminado"; 
     }
 
     public function edit(Promocion $promocion)
@@ -49,7 +52,14 @@ class PromocionesController extends Controller
     public function destroy($id)
     {
         $promocion = Promocion::find($id);
-        $promocion->delete();
-        return "Se ha eliminado la promoción";
+        if($promocion!=NULL)
+        {
+            $promocion->delete();
+            Promocion::destroy($id);
+            return "Se ha eliminado la promoción";
+        }
+        else
+            return "La promocion con el id ingresado no existe o fue eliminado"; 
+
     }
 }
