@@ -20,8 +20,6 @@ class CreateHabitacionesTable extends Migration
             $table->boolean('aire_acondicionado_habitacion');
             $table->boolean('disponibilidad');
             $table->string('tipo');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
             $table->unsignedInteger('id_hospedaje');
             $table->timestamps();
 

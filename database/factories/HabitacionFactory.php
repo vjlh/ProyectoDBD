@@ -11,7 +11,5 @@ $factory->define(App\Habitacion::class, function (Faker $faker) {
         'aire_acondicionado_habitacion' => $faker->boolean,
         'disponibilidad' => $faker->boolean,
         'tipo' => $faker->randomElement($array = array('Permium','VIP','Suite','Luxury','Economica')),
-        'fecha_inicio' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+4 weeks', $timezone = NULL),
-        'fecha_fin' => $faker->dateTimeBetween($startDate = '+4 weeks', $endDate = '+8 weeks', $timezone = NULL),
     ];
 });
