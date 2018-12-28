@@ -14,22 +14,15 @@ class CreateMontoReservaTrigger extends Migration
     public function up()
     {
 
-        DB::statement('
-        CREATE OR REPLACE FUNCTION AplicarDescuento()
-        RETURNS trigger AS
-        $$
-        BEGIN           
-            UPDATE reservas
-            SET monto_total_reserva = monto_total_reserva-NEW.descuento_promocion
-            WHERE reservas.id = NEW.id;
-            RETURN NEW;
+        DB::unprepared('
+        CREATE TRIGGER tr_updMontoReserva AFTER INSERT ON reservas FOR EACH ROW
+        BEGIN
+            FROM promociones         
+            SET NEW.monto_total_reserva = NEW.monto_total_reserva*(100-promociones.descuento_promocion)
+            WHERE NEW.id_promocion = promociones.id;
         END
         $$ LANGUAGE plpgsql;
-        ');
 
-        DB::unprepared('
-        CREATE TRIGGER tr_updMontoReserva AFTER INSERT ON promociones FOR EACH ROW
-        EXECUTE PROCEDURE AplicarDescuento();
         ');
 
     }
