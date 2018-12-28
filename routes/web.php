@@ -48,3 +48,7 @@ Route::resource('/Seguro','SegurosController');
 Route::resource('/User','UsersController');
 Route::resource('/Seguro','SegurosController');
 Route::resource('/Vuelo','VuelosController');
+Route::resource('/Beneficio_Seguro','Beneficio_SeguroController');
+Route::resource('/Habitacion_Reserva','Habitacion_ReservaController');
+Route::resource('/Pasajero_Reserva','Pasajero_ReservaController');
+Route::resource('/Transporte_Reserva','Transporte_ReservaController');

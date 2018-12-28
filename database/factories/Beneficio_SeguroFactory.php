@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(App\Beneficio_Seguro::class, function (Faker $faker) {
 	$id_beneficio = DB::table('beneficios')->select('id')->get();
 	$id_seguro = DB::table('seguros')->select('id')->get();
     return [

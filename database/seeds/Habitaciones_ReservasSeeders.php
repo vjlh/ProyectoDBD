@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Habitacion_Reserva;
 
 class Habitaciones_ReservasSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class Habitaciones_ReservasSeeders extends Seeder
      */
     public function run()
     {
-       //
+       factory(Habitacion_Reserva::class, 50)->create();
     }
 }

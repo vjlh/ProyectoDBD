@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Beneficio_Seguro;
 
 class Beneficios_SegurosSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class Beneficios_SegurosSeeders extends Seeder
      */
     public function run()
     {
-    	//
+    	factory(Beneficio_Seguro::class, 50)->create();
     }
 }
