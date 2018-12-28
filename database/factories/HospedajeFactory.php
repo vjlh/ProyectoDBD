@@ -3,7 +3,6 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Hospedaje::class, function (Faker $faker) {
-    $cantidad = 
     return [
         'nombre_hospedaje' => $faker->name,
         'cadena_hospedaje' => $faker->name,
