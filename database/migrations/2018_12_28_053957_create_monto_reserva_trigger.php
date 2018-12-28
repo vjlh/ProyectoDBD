@@ -21,7 +21,7 @@ class CreateMontoReservaTrigger extends Migration
         BEGIN           
             UPDATE reservas
             SET monto_total_reserva = monto_total_reserva-NEW.descuento_promocion
-            WHERE monto_total_reservas.id = NEW.id;
+            WHERE reservas.id = NEW.id;
             RETURN NEW;
         END
         $$ LANGUAGE plpgsql;
