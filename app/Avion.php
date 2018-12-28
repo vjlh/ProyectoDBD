@@ -8,7 +8,7 @@ class Avion extends Model
 {
     protected $table = 'aviones';
     protected $fillable = [
-        'capacidad_avion', 'salidas_emergencia', 'sanitarios_avion', 'longitud_avion', 'envergadura_avion'
+        'capacidad_avion', 'salidas_emergencia', 'sanitarios_avion', 'longitud_avion', 'envergadura_avion', 'cantidad_disponible',
     ];
 
     public function asientos(){

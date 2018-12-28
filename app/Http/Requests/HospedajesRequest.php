@@ -25,7 +25,8 @@ class HospedajesRequest extends FormRequest
     {
         return [
             'nombre_hospedaje' => 'required|string', 
-            'cadena_hospedaje' => 'required|string', 
+            'cadena_hospedaje' => 'required|string',
+            'cantidad_disponible' => 'required|integer', 
             'estrellas_hospedaje' => 'required|integer|min:1|max:6', 
             'estacionamiento_hospedaje' => 'required|boolean',
             'piscina_hospedaje' => 'required|boolean', 

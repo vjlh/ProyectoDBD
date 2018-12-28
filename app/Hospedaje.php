@@ -9,7 +9,7 @@ class Hospedaje extends Model
 	protected $table = 'hospedajes';
     protected $fillable = [
         'nombre_hospedaje', 'cadena_hospedaje', 'estrellas_hospedaje', 'estacionamiento_hospedaje',
-        'piscina_hospedaje', 'sauna_hospedaje', 'zona_infantil_hospedaje', 'gimnasio_hospedaje',
+        'piscina_hospedaje', 'sauna_hospedaje', 'zona_infantil_hospedaje', 'gimnasio_hospedaje', 'cantidad_disponible'
     ];
 
     public function habitaciones(){

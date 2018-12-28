@@ -17,6 +17,7 @@ class CreateHospedajesTable extends Migration
             $table->increments('id');
             $table->string('nombre_hospedaje');
             $table->string('cadena_hospedaje');
+            $table->integer('cantidad_disponible');
             $table->integer('estrellas_hospedaje');
             $table->boolean('estacionamiento_hospedaje');
             $table->boolean('piscina_hospedaje');
