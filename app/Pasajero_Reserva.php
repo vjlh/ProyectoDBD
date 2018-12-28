@@ -8,7 +8,7 @@ class Pasajero_Reserva extends Model
 {
     protected $table = 'pasajeros_reservas';
     protected $fillable = [
-    	'id_pasajero', 'id_reserva', 'fecha_inicio', 'fecha_fin',
+    	'id_pasajero', 'id_reserva',
     ];
 
 	public function pasajero(){

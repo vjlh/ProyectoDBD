@@ -8,7 +8,7 @@ class Habitacion_Reserva extends Model
 {
     protected $table = 'habitaciones_reservas';
     protected $fillable = [
-    	'id_habitacion', 'id_reserva', 'fecha_inicio', 'fecha_fin',
+    	'id_habitacion', 'id_reserva', 'fecha_inicio', 'fecha_fin'
     ];
 	
 
