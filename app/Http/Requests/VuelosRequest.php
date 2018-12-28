@@ -24,8 +24,8 @@ class VuelosRequest extends FormRequest
     public function rules()
     {
         return [
-            'hora_vuelo' => 'required|string', 
-            'duracion_vuelo' => 'required|integer', 
+            'hora_vuelo' => 'required|date_format:"H:i:s"', 
+            'duracion_vuelo' => 'required|date_format:"H:i"', 
             'fecha_vuelo' => 'required|date', 
             'origen_vuelo' => 'required|string', 
             'destino_vuelo' => 'required|string', 
