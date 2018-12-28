@@ -17,6 +17,8 @@ class CreateHabitacionesReservasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_habitacion');
             $table->unsignedInteger('id_reserva');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
 
             

@@ -14,8 +14,6 @@ $factory->define(App\Reserva::class, function (Faker $faker) {
         'id_seguro' => $id_seguro->random()->id,
         'id_promocion' => $id_promocion->random()->id,
         'id_paquete' => $id_paquete->random()->id,
-        'fecha_inicio' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL),
-        'fecha_fin' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL),
         'tipo_reserva' => $faker->randomElement($array = array('Transporte','Vuelo','Habitacion')),
     ];
 });

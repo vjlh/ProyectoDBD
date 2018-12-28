@@ -17,6 +17,8 @@ class CreateTransportesReservasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_transporte');
             $table->unsignedInteger('id_reserva');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
 
             

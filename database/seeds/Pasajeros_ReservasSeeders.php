@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Pasajero_Reserva;
 
 class Pasajeros_ReservasSeeders extends Seeder
 {
@@ -11,6 +12,6 @@ class Pasajeros_ReservasSeeders extends Seeder
      */
     public function run()
     {
-    	//
+    	factory(Pasajero_Reserva::class, 50)->create();
     }
 }

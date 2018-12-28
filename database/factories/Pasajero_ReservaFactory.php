@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(App\Pasajero_Reserva::class, function (Faker $faker) {
 	$id_pasajero = DB::table('pasajeros')->select('id')->get();
 	$id_reserva = DB::table('reservas')->select('id')->get();
     return [
