@@ -29,7 +29,7 @@ class UsersRequest extends FormRequest
             'password' => 'required|string', 
             'apellido_usuario' => 'required|string', 
             'fecha_nacimiento' => 'required|date', 
-            'num_documento_usuario' => 'required|numeric',
+            'num_documento_usuario' => 'required|string',
             'pais_usuario' => 'required|string',
         ];
     }
