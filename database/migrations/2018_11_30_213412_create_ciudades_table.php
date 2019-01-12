@@ -19,8 +19,6 @@ class CreateCiudadesTable extends Migration
             $table->string('idioma_ciudad');
             $table->unsignedInteger('id_pais');
             $table->timestamps();
-
-
             $table->foreign('id_pais')
                 ->references('id')
                 ->on('paises')

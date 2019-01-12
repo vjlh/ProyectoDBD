@@ -67,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $now = date('Y-m-d H:i:s');
+       // $now = date('Y-m-d H:i:s');
         return User::create([
             'name' => $data['name'],
             'apellido_usuario' => $data['apellido_usuario'],
@@ -76,7 +76,7 @@ class RegisterController extends Controller
             'pais_usuario' => $data['pais_usuario'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'email_verified_at' => $now,
+           // 'email_verified_at' => $now,
         ]);
     }
 }

@@ -16,7 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'apellido_usuario', 'fecha_nacimiento', 'num_documento_usuario', 'pais_usuario',
+        'name', 
+        'email', 
+        'password', 
+        'apellido_usuario', 
+        'fecha_nacimiento', 
+        'num_documento_usuario', 
+        'pais_usuario',
     ];
 
     /**
@@ -29,7 +35,7 @@ class User extends Authenticatable
     ];
 
     public function administradores(){
-        return $this ->hasOne(Adinistrador::class);
+        return $this ->hasOne(Administrador::class);
     }
 
     public function historiales(){

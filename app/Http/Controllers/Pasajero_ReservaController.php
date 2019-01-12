@@ -8,6 +8,7 @@ use App\Pasajero_Reserva;
 
 class Pasajero_ReservaController extends Controller
 {
+    //Probado
     public function index()
     {
         return Pasajero_Reserva::all();

@@ -8,6 +8,7 @@ use App\Habitacion_Reserva;
 
 class Habitacion_ReservaController extends Controller
 {
+    //Probado
     public function index()
     {
         return Habitacion_Reserva::all();
