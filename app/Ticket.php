@@ -8,7 +8,7 @@ class Ticket extends Model
 {
 	protected $table = 'tickets';
     protected $fillable = [
-        'tipo_pago', 'monto_pago', 'fecha_pago', 'id_reserva'
+        'tipo_pago', 'monto_pago','fecha_pago', 'id_reserva'
     ];
 
     public function reservas(){

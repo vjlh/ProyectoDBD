@@ -32,7 +32,7 @@ class ReservasController extends Controller
 
             $reserva = Reserva::create($request->all());
             $reserva->save();
-            return $reserva;
+            return Reserva::all();
         }
         catch(\Exception $e){
             return $e->getMessage();
