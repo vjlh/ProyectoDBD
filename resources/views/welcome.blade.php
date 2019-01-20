@@ -16,7 +16,9 @@
   <div class="card-header"></div>
   <div class="card-body">
     <h4 class="card-title">Seguros</h4>
-    <img src="/images/seguro.jpg" alt="" style="height: 155px; width: 280px">
+    <a title="img_seguro" href="/seguros">
+    <img src="/images/seguro.jpg" alt="img_seguro" style="height: 155px; width: 280px">
+    </a>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>

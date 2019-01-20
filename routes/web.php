@@ -17,10 +17,43 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/paquetes', function () {
+    return view('paquetes');
+});
+
+Route::get('/seguros', function () {
+    return view('seguros');
+});
+
+Route::get('/promociones', function () {
+    return view('promociones');
+});
+
+Route::get('/hoteles', function () {
+    return view('hoteles');
+});
+
+Route::get('/autos', function () {
+    return view('autos');
+});
+
+Route::get('/destinos', function () {
+    return view('destinos');
+});
+
+
+
+
 Route::get('/vuelos', function () {
     $vuelos = Vuelo::all();
     return View('vuelos')->with('vuelos', $vuelos);
 });
+
+
+
+
+
+
 
 Auth::routes();
 
