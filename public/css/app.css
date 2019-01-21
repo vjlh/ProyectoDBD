@@ -10564,3 +10564,13 @@ body {
   height: 100% !important;
 }
 
+.card_compra {
+  width: 800px !important;
+  height: 500px !important;
+}
+
+.custom-select {
+  max-width: 300px;
+  margin-right: 60px;
+}
+
