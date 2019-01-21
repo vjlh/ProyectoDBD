@@ -82,4 +82,21 @@ class VuelosController extends Controller
         else
             return "El vuelo con el id ingresado no existe o fue eliminado";  
     }
+    public function filtrarVuelos(Request $request){
+        $origen = $request->get('origen');        
+        $destino = $request->get('destino');
+        $fecha = $request->get('fecha');
+
+        $vuelos = \DB::table('vuelos')
+        ->where('destino_vuelo',$destino)
+        ->where('origen_vuelo',$origen)
+        ->where('fecha_vuelo',$fecha)
+        ->get();
+
+        /*$vuelos = Vuelo::has('destino_vuelo','=',$destino)->get();
+        $vuelos = Vuelo::has('destino_vuelo',$destino)->get();
+        $vuelos = Vuelo::has('destino_vuelo',$destino)->get();*/
+
+    return view('prueba',compact('vuelos'));
+    }
 }

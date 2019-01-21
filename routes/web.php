@@ -58,7 +58,8 @@ Route::get('/vuelos', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::post('/Reserva/Habitacion','ReservarHabitacionController@store');
+
+Route::get('/BuscarVuelo', 'VuelosController@filtrarVuelos')->name('filtrado');
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');
