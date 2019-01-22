@@ -13,9 +13,17 @@
 
 use App\Vuelo; 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'HomeController@index')->name('welcome');
+
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::get('/paquetes', function () {
     return view('paquetes');
@@ -53,11 +61,6 @@ Route::get('/vuelos', function () {
 
 
 
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/BuscarVuelo', 'VuelosController@filtrarVuelos')->name('filtrado');
 Route::resource('/Administrador','AdministradoresController');

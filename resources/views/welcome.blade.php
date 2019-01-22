@@ -5,6 +5,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+<form action="/Vuelo" method="get">
         
        
        
@@ -19,20 +21,25 @@
     <div class="form-group row">
         <label for="city_origen" style="margin-right: 103px; margin-left: -75px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Origen') }}</label><label for="city_destino" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Destino') }}</label>
       </div>
-    <select class="custom-select">
-      <option selected="">Ciudad Origen</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+    <span><select class="form-control selectpicker custom-select" id="ciudad_origen" name="ciudad_origen">
+      <option selected disable>Ciudad Origen</option>
+      @foreach ($ciudades as $ciudad)
+      <option value="{{ $ciudad->nombre_ciudad }}">
+        {{$ciudad->nombre_ciudad}}
+      </option>
+      @endforeach
+    </select></span>
 
     
-    <select class="custom-select">
-    <option selected="">Ciudad Destino</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+    <span><select class="form-control selectpicker custom-select" id="ciudad_destino" name="ciudad_destino">
+      <option selected disable>Ciudad Destino</option>
+      @foreach ($ciudades as $ciudad)
+      <option value="{{ $ciudad->nombre_ciudad }}">
+        {{$ciudad->nombre_ciudad}}
+      </option>
+      @endforeach
+    </select></span>
+
   </div>
 
   <div class="form-group">
@@ -62,8 +69,8 @@
                 </span>
             @endif
 
-            <button type="button" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
-
+            <button type="submit" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
+            </form>
         </div>
     </div>
 
