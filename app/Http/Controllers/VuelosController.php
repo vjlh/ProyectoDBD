@@ -11,9 +11,10 @@ class VuelosController extends Controller
 
     public function index()
     {
-        $vuelos = Vuelo::whereIn('origen_vuelo', request("ciudad_origen"))
-            ->where('destino_vuelo', '=', request("ciudad_destino"))
-            ->get();
+        $vuelos = Vuelo::all()->where('origen_vuelo', '=' , request("ciudad_origen"))
+            ->where('destino_vuelo', '=' , request("ciudad_destino"));
+            
+            
 
 
         return view('vuelos',compact('vuelos'));

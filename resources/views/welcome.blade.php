@@ -70,7 +70,6 @@
             @endif
 
             <button type="submit" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
-            </form>
         </div>
     </div>
 
@@ -79,6 +78,8 @@
 </div>
 </div>
 </div>
+
+</form>
 
 <div class="content">
   <div class="flex-center position-ref">
