@@ -14,6 +14,7 @@ return array(
     'App\\Avion' => $baseDir . '/app/Avion.php',
     'App\\Beneficio' => $baseDir . '/app/Beneficio.php',
     'App\\Beneficio_Seguro' => $baseDir . '/app/Beneficio_Seguro.php',
+    'App\\Carrito' => $baseDir . '/app/Carrito.php',
     'App\\Ciudad' => $baseDir . '/app/Ciudad.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Equipaje' => $baseDir . '/app/Equipaje.php',

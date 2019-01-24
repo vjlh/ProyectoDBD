@@ -7,7 +7,8 @@
 
 
 <!-- Left Side Of Navbar -->
-<a class="navbar-brand" href="{{ url('/') }}">
+<i class="fas fa-3x fa-cat" style="color: white;"></i>
+<a class="navbar-brand" style="margin-left: 2%;" href="{{ url('/') }}">
     AEROLÍNEAG8
 </a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

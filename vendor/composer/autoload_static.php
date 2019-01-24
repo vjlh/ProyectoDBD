@@ -449,6 +449,7 @@ class ComposerStaticInit44513f4530043f367a2ff51e15bbe43e
         'App\\Avion' => __DIR__ . '/../..' . '/app/Avion.php',
         'App\\Beneficio' => __DIR__ . '/../..' . '/app/Beneficio.php',
         'App\\Beneficio_Seguro' => __DIR__ . '/../..' . '/app/Beneficio_Seguro.php',
+        'App\\Carrito' => __DIR__ . '/../..' . '/app/Carrito.php',
         'App\\Ciudad' => __DIR__ . '/../..' . '/app/Ciudad.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Equipaje' => __DIR__ . '/../..' . '/app/Equipaje.php',
