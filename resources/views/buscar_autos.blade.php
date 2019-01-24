@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 @include('includes.carousel')
+@include('includes.carousel')
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+
 <form action="/seleccionar_auto" method="get">
 
 <div class="content" style="padding: 50px;">

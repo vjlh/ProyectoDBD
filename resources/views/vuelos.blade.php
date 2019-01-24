@@ -2,6 +2,9 @@
 @section('content')
 @include('includes.carousel')
 
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+
 <h1>
     Vuelos Disponibles
 </h1>

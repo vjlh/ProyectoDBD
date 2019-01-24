@@ -36,4 +36,12 @@
 
 </body>
 </div>
+
+<footer class="text-center" style="margin-top: 5%;">
+    &copy; 2019 AEROLÍNEAG8
+    <br>
+    <address>Departamento de Ingeniería en Informática - Universidad de Santiago de Chile, Santiago de Chile</address>
+    </center>
+</footer>
+
 </html>

@@ -3,8 +3,8 @@
 @section('content')
 @include('includes.carousel')
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 
 <form action="/Vuelo" method="get">
         
@@ -81,20 +81,21 @@
 
 </form>
 
-<div class="content">
-  <div class="flex-center position-ref">
-            
+<div class="content" style="margin-top: -5%;">
+  <div class="flex-center position-ref">    
+
+<a title="img_seguro" href="/seguros">     
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">
     <h4 class="card-title">Seguros</h4>
-    <a title="img_seguro" href="/seguros">
     <img src="/images/seguro.jpg" alt="img_seguro" style="height: 155px; width: 280px">
-    </a>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
+</a>
 
+<a title="img_paquetes" href="/paquetes">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">
@@ -103,7 +104,9 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
+</a> 
 
+<a title="img_promociones" href="/promociones">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">
@@ -112,11 +115,13 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
+</a>
+</div>
 
-            </div>
 
 <div class="flex-center position-ref">
 
+<a title="img_hoteles" href="/hoteles">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">
@@ -125,7 +130,10 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
+</a>
 
+
+<a title="img_autos" href="/autos">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">
@@ -134,7 +142,9 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
+</a>
 
+<a title="img_destinos" href="/destinos">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">
@@ -143,6 +153,7 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
+</a>
 
         </div>
 

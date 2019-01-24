@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 @include('includes.carousel')
+
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+
 <form action="/Habitacion" method="get">
 <div class="form-group row" style="margin-left:50px">
 @foreach ($hospedajes as $hospedaje)
