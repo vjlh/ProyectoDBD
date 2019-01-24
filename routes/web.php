@@ -29,6 +29,10 @@ Route::get('/paquetes', function () {
     return view('paquetes');
 });
 
+Route::get('/carrito', function () {
+    return view('carrito');
+});
+
 Route::get('/seguros', function () {
     return view('seguros');
 });
