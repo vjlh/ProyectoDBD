@@ -22,7 +22,7 @@
 <tr>
 <th>
     <center>
-    <a href="\" class="btn btn-danger" style="vertical-align:middle"><span>Reservar</span></a>
+    <a href="/reservar_vuelo/{{$vuelo->id}}" class="btn btn-danger" style="vertical-align:middle"><span>Reservar</span></a>
     </center>
     </th>
 <th><h5 class="card-title">{{$vuelo->duracion_vuelo}}</h5></th>
