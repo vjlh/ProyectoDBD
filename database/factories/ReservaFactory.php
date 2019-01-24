@@ -7,6 +7,7 @@ $factory->define(App\Reserva::class, function (Faker $faker) {
     $id_seguro = DB::table('seguros')->select('id')->get();
     $id_promocion = DB::table('promociones')->select('id')->get();
     $id_paquete = DB::table('paquetes')->select('id')->get();
+    
     return [
         'monto_total_reserva' => $faker->numberBetween(20000,1000000),
         'check_in' => $faker->boolean,

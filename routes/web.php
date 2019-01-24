@@ -12,6 +12,9 @@
 */
 
 use App\Vuelo; 
+use App\Hospedaje; 
+use App\Ciudad; 
+use Illuminate\Pagination\LengthAwarePaginator;
 
 Auth::routes();
 
@@ -49,20 +52,21 @@ Route::get('/destinos', function () {
     return view('destinos');
 });
 
-
-
-
 Route::get('/vuelos', function () {
     $vuelos = Vuelo::all();
     return View('vuelos')->with('vuelos', $vuelos);
 });
 
+Route::get('/reservaHospedaje', function () {
+    $ciudades = Ciudad::all();
+    return View('reservaHospedaje')->with('ciudades', $ciudades);
+});
 
+Route::get('/hospedajes', function () {
+    $hospedajes = Hospedaje::all();
+    return View('hospedajes')->with('hospedajes', $hospedajes);
+});
 
-
-
-
-Route::get('/BuscarVuelo', 'VuelosController@filtrarVuelos')->name('filtrado');
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');

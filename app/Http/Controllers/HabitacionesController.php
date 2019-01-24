@@ -11,7 +11,11 @@ class HabitacionesController extends Controller
 
     public function index()
     { 
-        return Habitacion::all();
+        $habitaciones = Habitacion::all()->where('id_hospedaje', '=' , request("id_hospedaje"))
+                                        ->where('capacidad_habitacion', '>=' , request("numero_personas"))
+                                        ->where('disponibilidad', '=' , 1);
+        
+        return view('habitaciones',compact('habitaciones'));
     }
 
     public function create()
@@ -36,11 +40,10 @@ class HabitacionesController extends Controller
 
     public function show($id)
     {
-        $habitacion = Habitacion::find($id);
-        if($habitacion != NULL)
-            return $habitacion;
-        else
-            return "La habitación con el id ingresado no existe o fue eliminado";     
+        $habitaciones = Habitacion::all()->where('id_hospedaje', '=' , $id)
+                                         ->where('disponibilidad', '=' , 1);
+        return view('habitaciones',compact('habitaciones'));
+                 
     }
 
     public function edit(Habitacion $habitacion)
@@ -50,7 +53,6 @@ class HabitacionesController extends Controller
 
     public function update(HabitacionesRequest $request, $id)
     {
-        $habitacion = Habitacion::find($id);
         try{
             $id_hospedaje = $request->get('id_hospedaje');
             \App\Hospedaje::find($id_hospedaje)->id;

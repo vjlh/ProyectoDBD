@@ -11,7 +11,10 @@ class HospedajesController extends Controller
     //probado
     public function index()
     {
-        return Hospedaje::all();
+        $hospedajes = Hospedaje::all()->where('ubicacion','=',request('ciudad_origen'))
+                                    ->where('cantidad_disponible','>=',request('num_habitaciones'));
+        
+        return view('hospedajes',compact('hospedajes'));
     }
 
     public function create()
