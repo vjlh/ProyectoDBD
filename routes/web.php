@@ -11,6 +11,7 @@
 |
 */
 
+use App\Transporte;
 use App\Vuelo; 
 use App\Hospedaje; 
 use App\Ciudad; 
@@ -32,6 +33,10 @@ Route::get('/paquetes', function () {
     return view('paquetes');
 });
 
+Route::get('/carrito', function () {
+    return view('carrito');
+});
+
 Route::get('/seguros', function () {
     return view('seguros');
 });
@@ -51,6 +56,23 @@ Route::get('/autos', function () {
 Route::get('/destinos', function () {
     return view('destinos');
 });
+
+Route::get('/reservar_vuelo/{id}', function ($id) {
+    $vuelo = Vuelo::find($id);
+    return View('reservar_vuelo')->with('vuelo', $vuelo);
+});
+
+Route::get('/seleccionar_auto', function () {
+    $transportes = Transporte::all();
+    return View('seleccionar_auto', ['transportes' => $transportes]);
+});
+
+Route::get('/buscar_autos', function () {
+    $ciudades = Ciudad::all();
+    $transportes = Transporte::all();
+    return View('buscar_autos', ['ciudades' => $ciudades, 'transportes' => $transportes]);
+});
+ 
 
 Route::get('/vuelos', function () {
     $vuelos = Vuelo::all();

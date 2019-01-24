@@ -35,9 +35,10 @@
         <ul class="navbar-nav ml-auto">
     <!-- Authentication Links -->
 <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <a title="icono_carrito" href="/carrito">
+        <i class="fas fa-shopping-cart fa-3x" style="color: white;"> </i>
+    </a>
+</form>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>

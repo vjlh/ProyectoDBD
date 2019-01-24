@@ -13,7 +13,7 @@
 <div class="content" style="padding: 50px;">
 <div class="flex-center position-ref">
 <div class="card card_compra text-white bg-primary mb-3 border-success" style="top: -155px; background-color: #2c3e50d9 !important;">
-  <h1><div class="card-header">Reserva tu vuelo!</div></h1>
+  <h1><div class="card-header"> <i class="fas fa-plane-departure"></i> Reserva tu vuelo!</div></h1>
   <div class="card-body">
     <h4 class="card-title"></h4>
     <div class="form-group">
