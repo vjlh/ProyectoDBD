@@ -63,6 +63,8 @@ class CreateTrigger extends Migration
         CREATE TRIGGER aplicarDescuento BEFORE INSERT ON reservas FOR EACH ROW EXECUTE PROCEDURE aplicarDescuento();
 
         ');
+        //Trigger para que al momento de crear usuario se le asocie un historial
+       
 
     }
 

@@ -121,7 +121,7 @@
 
 <div class="flex-center position-ref">
 
-<a title="img_hoteles" href="/hoteles">
+<a title="img_hoteles" href="/reservaHospedaje">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">

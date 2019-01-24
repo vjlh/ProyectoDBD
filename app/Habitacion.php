@@ -9,7 +9,7 @@ class Habitacion extends Model
     protected $table = 'habitaciones';
     protected $fillable = [
         'capacidad_habitacion', 'banio_privado', 'aire_acondicionado_habitacion', 'disponibilidad',
-        'tipo', 'id_hospedaje',
+        'tipo', 'id_hospedaje','precio'
     ];
 
     public function hospedajes(){

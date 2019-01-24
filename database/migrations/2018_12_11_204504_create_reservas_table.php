@@ -16,12 +16,15 @@ class CreateReservasTable extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('monto_total_reserva');
-            $table->boolean('check_in');
-            $table->string('tipo_reserva');
+            $table->boolean('check_in')->nullable();
             $table->unsignedInteger('id_paquete')->nullable();
             $table->unsignedInteger('id_promocion')->nullable();
             $table->unsignedInteger('id_seguro')->nullable();
             $table->unsignedInteger('id_user');
+            $table->boolean('transporte');
+            $table->boolean('hospedaje');
+            $table->boolean('vuelo');
+
             $table->timestamps();
 
             

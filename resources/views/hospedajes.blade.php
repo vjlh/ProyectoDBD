@@ -10,7 +10,7 @@
 <div class="form-group row" style="margin-left:50px">
 @foreach ($hospedajes as $hospedaje)
     <div class="card mb-3 border-dark mb-3" style="width: 18rem; margin-top:20px;margin-left:40px;margin-rigth:20px">
-        <img class="card-img-top" src="https://www.ahstatic.com/photos/7205_ho_00_p_2048x1536.jpg" alt="Card image cap">
+        <img class="card-img-top" src="/images/hotel.jpg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{$hospedaje->nombre_hospedaje}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{$hospedaje->ubicacion}}</h6>

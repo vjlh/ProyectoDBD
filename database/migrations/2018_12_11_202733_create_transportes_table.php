@@ -15,6 +15,7 @@ class CreateTransportesTable extends Migration
     {
         Schema::create('transportes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('precio');
             $table->integer('patente_transporte');
             $table->boolean('disponibilidad');
             $table->string('modelo_transporte');
