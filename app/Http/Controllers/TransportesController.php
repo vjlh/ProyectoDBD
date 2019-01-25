@@ -11,10 +11,11 @@ class TransportesController extends Controller
 
     public function index()
     {
-        $transporte = Transporte::all()->where('modelo_transporte','=',request("modelo_transporte"));
-                                       /*->where('num_asientos_transporte','=',request("num_asientos_transporte"))
-                                       ->where('num_puertas_transporte','=',request("num_puertas_transporte"))
-                                       ->where('aire_acondicioando_transporte','=',request("aire_acondicionado_transporte"));*/
+        $transporte = Transporte::all()
+        ->where('modelo_transporte','=',request("modelo_transporte"));
+        ->where('num_asientos_transporte','=',request("num_asientos_transporte"))
+        ->where('num_puertas_transporte','=',request("num_puertas_transporte"))
+        ->where('aire_acondicioando_transporte','=',request("aire_acondicionado_transporte"));
         return view('seleccionar_auto', compact('seleccionar_auto'));
     }
 

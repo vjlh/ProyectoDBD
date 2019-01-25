@@ -6,7 +6,7 @@
 <script src="{{ asset('js/app.js') }}" defer></script>
 <?php
 $dias = session()->get('diasDiferencia');
-$hospedaje = session()->get('hospedaje');
+$transporte = session()->get('hospedaje');
 ?>
 
 <div class="content" style="padding: 50px;">
@@ -17,16 +17,12 @@ $hospedaje = session()->get('hospedaje');
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Nombre Hotel</th>
-                            <td>{{$hospedaje->nombre_hospedaje}}</td>
+                            <th>Modelo vehículo</th>
+                            <td>{{$transporte->modelo_transporte}}</td>
                         </tr>
                         <tr>
-                            <th>Tipo de habitacion:</th>
-                            <td>{{$habitacion->tipo}}</td>
-                        </tr>
-                        <tr>
-                            <th>Costo diario habitacion:</th>
-                            <td>${{$habitacion->precio}}</td>
+                            <th>Patente:</th>
+                            <td>{{$transporte->patente_transporte}}</td>
                         </tr>
                         <tr>
                             <th>Numero de días</th>
