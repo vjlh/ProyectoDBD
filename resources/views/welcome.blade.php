@@ -133,7 +133,7 @@
 </a>
 
 
-<a title="img_autos" href="/autos">
+<a title="img_autos" href="/buscar_autos">
 <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
   <div class="card-header"></div>
   <div class="card-body">

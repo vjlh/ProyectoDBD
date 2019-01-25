@@ -9,9 +9,10 @@ use App\Transporte_reserva;
 class Transporte_ReservaController extends Controller
 {
     //Probado
-    public function index()
+    public function index($id)
     {
-        return Transporte_reserva::all();
+        $transporte = Transporte::find($id);
+        return view('reservar_auto', compact('reservar_auto'));
     }
 
     public function create()
