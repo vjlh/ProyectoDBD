@@ -29,8 +29,7 @@ class ReservasRequest extends FormRequest
             'id_user' => 'required|numeric', 
             'id_paquete' => 'required|numeric', 
             'id_seguro' => 'required|numeric', 
-            'id_promocion' => 'required|numeric',
-            'id_asiento' => 'required|numeric'
+            'id_promocion' => 'required|numeric'
         ];
     }
 }

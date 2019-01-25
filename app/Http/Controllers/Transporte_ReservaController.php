@@ -22,29 +22,63 @@ class Transporte_ReservaController extends Controller
 
     public function store(Transporte_reservaRequest $request)
     {
-        try{
-            $id_transporte = $request->get('id_transporte');
-            \App\Transporte::find($id_transporte)->id;
-            $id_reserva = $request->get('id_reserva');
-            \App\Reserva::find($id_reserva)->id;
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=271660000;
+        $reserva->check_in=null;
+        $reserva->id_user=4;
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=true;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=false;
+        $reserva->save();
 
-            $tran_res = Transporte_reserva::create($request->all());
-            $tran_res->save();
-            return $tran_res;
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
-        }
+
+        $res_trans = new Transporte_Reserva;
+        $res_trans->id_transporte = $id;
+        $res_trans->id_reserva = $reserva->id;
+        $res_trans->fecha_inicio = "2019-10-10";
+        $res_trans->fecha_fin ="2019-10-10";
+        $res_trans->save();
+        
+        Hospedaje::all();
+        return view('hospedajes',compact('hospedajes'));
     }
 
     public function show($id)
     {
-        $tran_res = Transporte_reserva::find($id);
-        
-        if($tran_res != NULL)
-            return $tran_res;
-        else 
-            return "No existe un tan_res con la id ingresada";
+        $transporte = Transporte::find($id);
+        $numero_dias = session()->get('diasDiferencia');
+        $costoFinal = $numero_dias* $transporte->precio;
+        $fecha_inicio = session()->get('fecha_ida');
+        $fecha_fin = session()->get('fecha_vuelta');
+
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=$costoFinal;
+        $reserva->check_in=null;
+        $reserva->id_user=auth()->id();
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
+
+
+        $res_trans = new Habitacion_Reserva;
+        $res_trans->id_habitacion = $id;
+        $res_trans->id_reserva = $reserva->id;
+        $res_trans->fecha_inicio = $fecha_inicio;
+        $res_trans->fecha_fin =$fecha_fin;
+        $res_trans->save();
+
+        $habitacion->disponibilidad = false;
+        $habitacion->save();
+        session()->put('costo_final', $costoFinal);        
+        $hospedajes = Hospedaje::all();
+        return view('detallesReservaHospedaje',compact('habitacion'));
     }
 
     public function edit(Transporte_reserva $tran_res)

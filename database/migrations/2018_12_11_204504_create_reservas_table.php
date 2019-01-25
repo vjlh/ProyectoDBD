@@ -21,7 +21,6 @@ class CreateReservasTable extends Migration
             $table->unsignedInteger('id_promocion')->nullable();
             $table->unsignedInteger('id_seguro')->nullable();
             $table->unsignedInteger('id_user');
-            $table->unsignedInteger('id_asiento');
             $table->boolean('transporte');
             $table->boolean('hospedaje');
             $table->boolean('vuelo');
@@ -55,12 +54,6 @@ class CreateReservasTable extends Migration
                 ->references('id')
                 ->on('paquetes')
                 ->onDelete('cascade');
-
-
-            $table->foreign('id_asiento')
-            ->references('id')
-            ->on('asientos')
-            ->onDelete('cascade');
 
 
         });
