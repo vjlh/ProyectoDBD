@@ -5,35 +5,26 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-<h1>
-    Vuelos Disponibles
-</h1>
+<form action="/Asiento" method="get">
+<div class="form-group row" style="margin-left:50px">
+@foreach ($vuelos as $vuelo)
+    <div class="card mb-3 border-dark mb-3" style="width: 18rem; margin-top:20px;margin-left:40px;margin-rigth:20px">
+        <img class="card-img-top" src="/images/hotel.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Origen: {{$vuelo->origen_vuelo}}</h5>
+                <h5 class="card-title">Destino: {{$vuelo->destino_vuelo}}</h5>
+                <p class="card-text">
+                
+                    <p>fecha: {{$vuelo->fecha_vuelo}}</p>
+                    <p>hora despegue: {{$vuelo->hora_vuelo}}</p>
+                    <p>duración vuelo: {{$vuelo->duracion_vuelo}}</p>
+                    
+                </p>
+            <a class="btn btn-primary">Reservar</a>
+        </div>
+    </div>          
+@endforeach
+</div>
 
-<table class="table table-hover table-striped">
-<tr>
-<th><h5 class="card-title"></h5></th>
-<th><h5 class="card-title">Origen</h5></th>
-<th><h5 class="card-title">Destino</h5></th>
-<th><h5 class="card-title">Duración</h5></th>
-<th><h5 class="card-title">Fecha</h5></th>
-</tr>
-
-@foreach($vuelos as $vuelo)
-
-<tr>
-<th>
-    <center>
-    <a href="/reservar_vuelo/{{$vuelo->id}}" class="btn btn-danger" style="vertical-align:middle"><span>Reservar</span></a>
-    </center>
-    </th>
-<th><h5 class="card-title">{{$vuelo->origen_vuelo}}</h5></th>
-<th><h5 class="card-title">{{$vuelo->destino_vuelo}}</h5></th>    
-<th><h5 class="card-title">{{$vuelo->duracion_vuelo}}</h5></th>
-<th><h5 class="card-title">{{$vuelo->fecha_vuelo}}</h5></th>
-
-
-</tr>
-    @endforeach
-    </table>
-
+</form>
 @endsection

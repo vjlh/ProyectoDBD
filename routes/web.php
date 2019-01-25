@@ -16,6 +16,9 @@ use App\Vuelo;
 use App\Hospedaje; 
 use App\Ciudad; 
 use App\Paquete;
+use App\Seguro;
+use App\Promocion;
+use App\Pais;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 Auth::routes();
@@ -40,24 +43,28 @@ Route::get('/carrito', function () {
 });
 
 Route::get('/seguros', function () {
-    return view('seguros');
+    $seguros = Seguro::all();
+    return view('seguros')->with('seguros',$seguros);
 });
 
 Route::get('/promociones', function () {
-    return view('promociones');
+    $promociones = Promocion::all();
+    return view('promociones')->with('promociones',$promociones);
 });
 
 Route::get('/hoteles', function () {
     $hospedajes = Hospedaje::all();
     return View('hoteles')->with('hospedajes', $hospedajes);
 });
-/*
+
 Route::get('/autos', function () {
-    return view('autos');
-});*/
+    $transportes = Transporte::all();
+    return view('autos')->with('transportes',$transportes);
+});
 
 Route::get('/destinos', function () {
-    return view('destinos');
+    $paises = Pais::all();
+    return view('destinos')->with('paises',$paises);
 });
 
 Route::get('/reservar_vuelo/{id}', function ($id) {
@@ -68,11 +75,6 @@ Route::get('/reservar_vuelo/{id}', function ($id) {
 Route::get('/reservar_auto/{id}', function ($id) {
     $transporte = Transporte::find($id);
     return View('reservar_auto', ['transporte' => $transporte]);
-});
-
-Route::get('/seleccionar_auto', function () {
-    $transportes = Transporte::all();
-    return View('seleccionar_auto')->with('transportes',$transportes);
 });
 
 Route::get('/buscar_autos', function () {
