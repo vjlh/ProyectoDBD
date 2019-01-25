@@ -110,7 +110,7 @@ Route::get('/detallePaquete', function () {
     return view('detallePaquete');
 });
 
-Route::post('/Reserva/Habitacion/{id}','ReservasController@reservaHab')->name('Reservas.reservaHab');
+Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');

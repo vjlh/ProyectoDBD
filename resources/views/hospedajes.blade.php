@@ -19,7 +19,6 @@
                 <p>Estrellas: {{$hospedaje->estrellas_hospedaje}}</p>
                 <p>Estacionamiento: {{$hospedaje->estacionamiento_hospedaje}}</p>
                 <p>Piscina: {{$hospedaje->piscina_hospedaje}}</p>
-                <p>Habitaciones disponibles: {{$hospedaje->cantidad_disponible}}</p>
             </p>
             <a href="/Habitacion/{{$hospedaje->id}}" class="btn btn-primary">Ver Habitaciones</a>
         </div>

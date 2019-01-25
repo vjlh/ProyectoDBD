@@ -65,8 +65,8 @@ class Habitacion_ReservaController extends Controller
         $reserva->id_promocion=null;
         $reserva->id_paquete=null;
         $reserva->transporte=false;
-        $reserva->hospedaje=false;
-        $reserva->vuelo=true;
+        $reserva->hospedaje=true;
+        $reserva->vuelo=false;
         $reserva->save();
 
 
