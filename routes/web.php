@@ -102,6 +102,10 @@ Route::get('/reservaHospedaje', function () {
     return View('reservaHospedaje')->with('ciudades', $ciudades);
 });
 
+Route::get('/detallesReservaTransporte', function () {
+    return view('detallesReservaTransporte');
+});
+
 Route::get('/detallesReservaHospedaje', function () {
     return view('detallesReservaHospedaje');
 });
