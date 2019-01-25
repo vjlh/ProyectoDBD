@@ -20,7 +20,8 @@
                     <p>duración vuelo: {{$vuelo->duracion_vuelo}}</p>
                     
                 </p>
-            <a class="btn btn-primary">Reservar</a>
+            <input type="hidden" value="{{$vuelo->aviones->id}}" name="avioncito_id" id="avioncito_id">
+            <button type="submit" class="btn btn-primary">Reservar</button>
         </div>
     </div>          
 @endforeach
