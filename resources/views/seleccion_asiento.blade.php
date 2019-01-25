@@ -27,7 +27,7 @@
 <tr>
 <th>
 <center>
-    <a href="/Asiento/Reservar/{{$asiento->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Reservar</a>
+    <a href="/Asiento/Reservar/{{$asiento->id}}" class="btn btn-success">Reservar</a>
     </center>
     </th>
 
