@@ -29,10 +29,9 @@ class PaquetesController extends Controller
     public function show($id)
     { 
         $paquete = Paquete::find($id);
-        if($paquete != NULL)
-            return $paquete;
-        else
-            return "El paquete con el id ingresado no existe o fue eliminado"; 
+        session()->put('paquete', $paquete);
+        return view('detallePaquete',compact('paquete'));
+        
 
     }
 

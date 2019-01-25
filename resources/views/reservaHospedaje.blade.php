@@ -44,7 +44,7 @@
                   
                   <div class="form-group row">
                       <label for="numero_personas" style="margin-top: 20px" class="col-md-3 col-form-label">{{ __('Número de Personas') }}</label>
-                      <label for="fecha_viaje" style="margin-top: 20px" class="col-md-9 col-form-label">{{ __('Fecha de llegada') }}</label>
+                      <label for="fecha_viaje" style="margin-top: 20px" class="col-md-9 col-form-label">{{ __('Fecha de inicio') }}</label>
                   </div>
                   <div class="form-group row">
                           <select name="numero_personas" style="margin-left: 30px; max-width: 300px" class="custom-select">
@@ -65,7 +65,7 @@
                   </div>
               
                   <div class="form-group row">
-                      <label for="fecha_vuelta" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de Viaje') }}</label>
+                      <label for="fecha_vuelta" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de termino') }}</label>
                   </div>
                   <div class="form-group row">
                       <input id="fecha_vuelta" style="max-width: 300px;margin-left: 30px" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}">

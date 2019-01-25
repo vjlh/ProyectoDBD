@@ -103,6 +103,9 @@ Route::get('/detallesReservaHospedaje', function () {
     return view('detallesReservaHospedaje');
 });
 
+Route::get('/detallePaquete', function () {
+    return view('detallePaquete');
+});
 
 Route::post('/Reserva/Habitacion/{id}','ReservasController@reservaHab')->name('Reservas.reservaHab');
 Route::resource('/Administrador','AdministradoresController');
