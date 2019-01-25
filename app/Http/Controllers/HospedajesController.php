@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use App\Hospedaje;
 use Illuminate\Http\Request;
 use App\Http\Requests\HospedajesRequest;
+use Carbon\Carbon;
 
 class HospedajesController extends Controller
 {
     //probado
     public function index()
     {
+        $fechaEmision = Carbon::parse(request('fecha_ida'));
+        $fechaExpiracion = Carbon::parse(request('fecha_vuelta'));
+
+        $diasDiferencia = $fechaExpiracion->diffInDays($fechaEmision);
+
         $hospedajes = Hospedaje::all()->where('ubicacion','=',request('ciudad_origen'))
                                     ->where('cantidad_disponible','>=',request('num_habitaciones'));
         
-        return view('hospedajes',compact('hospedajes'));
+        return view('hospedajes',compact('hospedajes','diasDiferencia'));
     }
 
     public function create()

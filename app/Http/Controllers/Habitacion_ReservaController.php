@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Habitacion_ReservaRequest;
 use App\Habitacion_Reserva;
+use App\Reserva;
+use App\Hospedaje;
 
 class Habitacion_ReservaController extends Controller
 {
@@ -21,29 +23,54 @@ class Habitacion_ReservaController extends Controller
 
     public function store(Habitacion_ReservaRequest $request)
     {
-        try{
-            $id_habitacion = $request->get('id_habitacion');
-            \App\Habitacion::find($id_habitacion)->id;
-            $id_reserva = $request->get('id_reserva');
-            \App\Reserva::find($id_reserva)->id;
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=271660000;
+        $reserva->check_in=null;
+        $reserva->id_user=4;
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
 
-            $hab_res = Habitacion_Reserva::create($request->all());
-            $hab_res->save();
-            return $hab_res;
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
-        }
+
+        $res_hab = new Habitacion_Reserva;
+        $res_hab->id_habitacion = $id;
+        $res_hab->id_reserva = $reserva->id;
+        $res_hab->fecha_inicio = "2019-10-10";
+        $res_hab->fecha_fin ="2019-10-10";
+        $res_hab->save();
+        
+        Hospedaje::all();
+        return view('hospedajes',compact('hospedajes'));
     }
 
     public function show($id)
     {
-        $hab_res = Habitacion_Reserva::find($id);
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=271660000;
+        $reserva->check_in=null;
+        $reserva->id_user=4;
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
+
+
+        $res_hab = new Habitacion_Reserva;
+        $res_hab->id_habitacion = $id;
+        $res_hab->id_reserva = $reserva->id;
+        $res_hab->fecha_inicio = "2019-10-10";
+        $res_hab->fecha_fin ="2019-10-10";
+        $res_hab->save();
         
-        if($hab_res != NULL)
-            return $hab_res;
-        else 
-            return "No existe un hab_res con la id ingresada";
+        $hospedajes = Hospedaje::all();
+        return view('hospedajes',compact('hospedajes'));
     }
 
     public function edit(Habitacion_Reserva $hab_res)
@@ -51,22 +78,30 @@ class Habitacion_ReservaController extends Controller
         //
     }
 
-    public function update(Habitacion_ReservaRequest $request, $id)
+    public function update($id)
     {
-        $hab_res = Habitacion_Reserva::find($id);
-        try{
-            $id_habitacion = $request->get('id_habitacion');
-            \App\Habitacion::find($id_habitacion)->id;
-            $id_reserva = $request->get('id_reserva');
-            \App\Reserva::find($id_reserva)->id;
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=271660000;
+        $reserva->check_in=null;
+        $reserva->id_user=4;
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
 
-            $hab_res->fill($request->all());
-            $hab_res->save();
-            return $hab_res;
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
-        }
+
+        $res_hab = new Habitacion_Reserva;
+        $res_hab->id_habitacion = $id;
+        $res_hab->id_reserva = $reserva->id;
+        $res_hab->fecha_inicio = "2019-10-10";
+        $res_hab->fecha_fin ="2019-10-10";
+        $res_hab->save();
+        
+        Hospedaje::all();
+        return view('hospedajes',compact('hospedajes'));
     }
 
     public function destroy($id)

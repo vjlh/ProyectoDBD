@@ -57,19 +57,19 @@
                               <option value="6">6</option>
                           </select>   
                       <div >           
-                          <input id="fecha_viaje" style="width: 300px; margin-left: 45px" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}">
-                              @if ($errors->has('fecha_viaje'))
+                          <input id="fecha_ida" style="width: 300px; margin-left: 45px" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}">
+                              @if ($errors->has('fecha_ida'))
                               <span class="invalid-feedback" role="alert"></span>
                               @endif
                       </div>          
                   </div>
               
                   <div class="form-group row">
-                      <label for="fecha_viaje" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de Viaje') }}</label>
+                      <label for="fecha_vuelta" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de Viaje') }}</label>
                   </div>
                   <div class="form-group row">
-                      <input id="fecha_viaje" style="max-width: 300px;margin-left: 30px" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}">
-                          @if ($errors->has('fecha_viaje'))
+                      <input id="fecha_vuelta" style="max-width: 300px;margin-left: 30px" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}">
+                          @if ($errors->has('fecha_vuelta'))
                           <span class="invalid-feedback" role="alert"></span>
                           @endif  
                       <div class style="margin-left: 60px">            

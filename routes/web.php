@@ -88,7 +88,7 @@ Route::get('/hospedajes', function () {
     $hospedajes = Hospedaje::all();
     return View('hospedajes')->with('hospedajes', $hospedajes);
 });
-Route::post('/Reserva/Habitacion','ReservaController@reservaHab');
+Route::post('/Reserva/Habitacion/{id}','ReservasController@reservaHab')->name('Reservas.reservaHab');
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');
