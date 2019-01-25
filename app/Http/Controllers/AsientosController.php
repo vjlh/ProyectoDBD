@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Asiento;
+use App\Reserva;
+use App\Ciudad;
 use Illuminate\Http\Request;
 use App\Http\Requests\AsientosRequest;
 use App\Avion;
@@ -57,9 +59,56 @@ class AsientosController extends Controller
     {
         //
     }
+    public function resas($id){
+        $id_asiento = $id;
+        $asiento = Asiento::find($id_asiento);
+        $costoFinal = $asiento->precio_asiento;
+
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=$costoFinal;
+        $reserva->check_in=null;
+        $reserva->id_user=auth()->id();
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
+
+        $asiento = Asiento::find($id_asiento);
+        $asiento->id_reserva = $reserva->id;
+        $asiento->save();
+
+        $ciudades = Ciudad::all();
+
+        return view('welcome',compact('ciudades'));
+    }
 
     public function update(AsientosRequest $request, $id)
     {
+        $id_asiento = $request->get('asiento_id');
+        $asiento = Asiento::find($id_asiento);
+        $costoFinal = $asiento->precio_asiento;
+
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=$costoFinal;
+        $reserva->check_in=null;
+        $reserva->id_user=auth()->id();
+        $reserva->id_seguro=null;
+        $reserva->id_promocion=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
+
+        $asiento = Asiento::find($id_asiento);
+        $asiento->id_reserva = $reserva->id;
+        $asiento->save();
+
+
+        /*
         $asiento = Asiento::find($id);
         try{
             $id_reserva = $request->get('id_reserva');
@@ -73,7 +122,7 @@ class AsientosController extends Controller
         }
         catch(\Exception $e){
             return $e->getMessage();
-        }
+        }*/
     }
 
     public function destroy($id)
@@ -89,4 +138,5 @@ class AsientosController extends Controller
             return "El asiento con el id ingresado no existe o ya fue eliminado";
         
     }
+    
 }

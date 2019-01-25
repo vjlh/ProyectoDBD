@@ -5,7 +5,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-<form action="/reserva" method="post">
+<form action="/Asiento" method="PATCH">
 
 <h1>
     Asientos disponibles
@@ -27,7 +27,7 @@
 <tr>
 <th>
 <center>
-    <button type="submit" class="btn btn-success">Reserva el asiento</button>
+    <a href="/Asiento/Reservar/{{$asiento->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Reservar</a>
     </center>
     </th>
 
@@ -37,13 +37,6 @@
 <th><h5 class="card-title">{{$asiento->precio_asiento}}</h5></th>
 <th><h5 class="card-title">{{$asiento->disponibilidad}}</h5></th>
 <th><h5 class="card-title">{{$asiento->cabina}}</h5></th>
-
-
-<input type="hidden" value="{{$asiento->id}}" name="asiento_id" id="asiento_id">
-<input type="hidden" value="{{$asiento->id}}" name="asiento_id" id="asiento_id">
-<input type="hidden" value="{{$asiento->id}}" name="asiento_id" id="asiento_id">
-
-
 
 
 </tr>
