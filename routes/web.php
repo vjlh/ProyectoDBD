@@ -80,15 +80,21 @@ Route::get('/vuelos', function () {
     return View('vuelos')->with('vuelos', $vuelos);
 });
 
+Route::get('/hospedajes', function () {
+    $hospedajes = Hospedaje::all();
+    return View('hospedajes')->with('hospedajes', $hospedajes);
+});
+
 Route::get('/reservaHospedaje', function () {
     $ciudades = Ciudad::all();
     return View('reservaHospedaje')->with('ciudades', $ciudades);
 });
 
-Route::get('/hospedajes', function () {
-    $hospedajes = Hospedaje::all();
-    return View('hospedajes')->with('hospedajes', $hospedajes);
+Route::get('/detallesReservaHospedaje', function () {
+    return view('detallesReservaHospedaje');
 });
+
+
 Route::post('/Reserva/Habitacion/{id}','ReservasController@reservaHab')->name('Reservas.reservaHab');
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');

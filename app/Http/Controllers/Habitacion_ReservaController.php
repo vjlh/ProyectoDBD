@@ -51,15 +51,16 @@ class Habitacion_ReservaController extends Controller
 
     public function show($id)
     {
+        $habitacion = Habitacion::find($id);
         $numero_dias = session()->get('diasDiferencia');
-        $costoFinal = $numero_dias* Habitacion::find($id)->precio;
+        $costoFinal = $numero_dias* $habitacion->precio;
         $fecha_inicio = session()->get('fecha_ida');
         $fecha_fin = session()->get('fecha_vuelta');
 
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
         $reserva->check_in=null;
-        $reserva->id_user=4;
+        $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
         $reserva->id_promocion=null;
         $reserva->id_paquete=null;
@@ -75,9 +76,12 @@ class Habitacion_ReservaController extends Controller
         $res_hab->fecha_inicio = $fecha_inicio;
         $res_hab->fecha_fin =$fecha_fin;
         $res_hab->save();
-        
+
+        $habitacion->disponibilidad = false;
+        $habitacion->save();
+        session()->put('costo_final', $costoFinal);        
         $hospedajes = Hospedaje::all();
-        return view('hospedajes',compact('hospedajes'));
+        return view('detallesReservaHospedaje',compact('habitacion'));
     }
 
     public function edit(Habitacion_Reserva $hab_res)
@@ -87,28 +91,7 @@ class Habitacion_ReservaController extends Controller
 
     public function update($id)
     {
-        $reserva = new Reserva;
-        $reserva->monto_total_reserva=271660000;
-        $reserva->check_in=null;
-        $reserva->id_user=4;
-        $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
-        $reserva->id_paquete=null;
-        $reserva->transporte=false;
-        $reserva->hospedaje=false;
-        $reserva->vuelo=true;
-        $reserva->save();
-
-
-        $res_hab = new Habitacion_Reserva;
-        $res_hab->id_habitacion = $id;
-        $res_hab->id_reserva = $reserva->id;
-        $res_hab->fecha_inicio = "2019-10-10";
-        $res_hab->fecha_fin ="2019-10-10";
-        $res_hab->save();
-        
-        Hospedaje::all();
-        return view('hospedajes',compact('hospedajes'));
+        //
     }
 
     public function destroy($id)

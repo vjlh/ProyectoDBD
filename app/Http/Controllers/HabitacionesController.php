@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
+use App\Hospedaje;
 use Illuminate\Http\Request;
 use App\Http\Requests\HabitacionesRequest;
 
@@ -42,9 +43,11 @@ class HabitacionesController extends Controller
 
     public function show($id)
     {
+        $hospedaje = Hospedaje::find($id);
         $habitaciones = Habitacion::all()->where('id_hospedaje', '=' , $id)
                                          ->where('disponibilidad', '=' , 1);
         session()->put('id_hospedaje', $id);
+        session()->put('hospedaje', $hospedaje);
         return view('habitaciones',compact('habitaciones'));
                  
     }
