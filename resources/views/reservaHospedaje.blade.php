@@ -15,7 +15,7 @@
 
                   <div class="form-group row">
                       <label for="ciudad_origen" style="margin-left: 30px" class="col-form-label">{{ __('Lugar') }}</label>                        
-                      <label for="num_habitaciones" style="margin-left: 45px" class="col-md-10 col-form-label">{{ __('Habitaciones') }}</label>
+                      <label for="numero_personas" style="margin-left: 370px" class="col-form-label">{{ __('Numero de personas') }}</label>
                   </div>
                       
                   <div class="form-group row">
@@ -29,8 +29,8 @@
                       </select>
 
                       <div >
-                          <select style="margin-left: 45px" class="form-control selectpicker custom-select" id="num_habitaciones" name="num_habitaciones">
-                              <option selected="">Cantidad de habitaciones</option>
+                          <select style="margin-left: 45px" class="form-control selectpicker custom-select" id="numero_personas" name="numero_personas">
+                              <option selected="">Cantidad de personas</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -43,36 +43,26 @@
                   </div>
                   
                   <div class="form-group row">
-                      <label for="numero_personas" style="margin-top: 20px" class="col-md-3 col-form-label">{{ __('Número de Personas') }}</label>
-                      <label for="fecha_viaje" style="margin-top: 20px" class="col-md-9 col-form-label">{{ __('Fecha de inicio') }}</label>
+                      <label for="numero_personas" style="margin-top: 20px" class="col-md-3 col-form-label">{{ __('Fecha de inicio') }}</label>
+                      <label for="fecha_viaje" style="margin-top: 20px" class="col-md-9 col-form-label">{{ __('Fecha de termino') }}</label>
                   </div>
                   <div class="form-group row">
-                          <select name="numero_personas" style="margin-left: 30px; max-width: 300px" class="custom-select">
-                              <option selected="">Cantidad de personas</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                          </select>   
+                        <input id="fecha_ida" style="width: 300px; margin-left: 30px" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}">
+                            @if ($errors->has('fecha_ida'))
+                            <span class="invalid-feedback" role="alert"></span>
+                            @endif
+                          
                       <div >           
-                          <input id="fecha_ida" style="width: 300px; margin-left: 45px" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}">
-                              @if ($errors->has('fecha_ida'))
-                              <span class="invalid-feedback" role="alert"></span>
-                              @endif
+                        <input id="fecha_vuelta" style="max-width: 300px;margin-left: 100px" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}">
+                                @if ($errors->has('fecha_vuelta'))
+                                <span class="invalid-feedback" role="alert"></span>
+                                @endif
                       </div>          
                   </div>
               
                   <div class="form-group row">
-                      <label for="fecha_vuelta" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de termino') }}</label>
-                  </div>
-                  <div class="form-group row">
-                      <input id="fecha_vuelta" style="max-width: 300px;margin-left: 30px" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}">
-                          @if ($errors->has('fecha_vuelta'))
-                          <span class="invalid-feedback" role="alert"></span>
-                          @endif  
-                      <div class style="margin-left: 60px">            
+    
+                      <div class style="margin-left: 200px;margin-top:30px">            
                           <button type="submit" style="width: 300px; height:70px;margin-left: 45px" class=" btn btn-success">Ver Hoteles</button>
                       </div>
                   </div>        

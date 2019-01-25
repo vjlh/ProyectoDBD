@@ -102,6 +102,10 @@ Route::get('/reservaHospedaje', function () {
     return View('reservaHospedaje')->with('ciudades', $ciudades);
 });
 
+Route::get('/detallesReservaTransporte', function () {
+    return view('detallesReservaTransporte');
+});
+
 Route::get('/detallesReservaHospedaje', function () {
     return view('detallesReservaHospedaje');
 });
@@ -110,7 +114,7 @@ Route::get('/detallePaquete', function () {
     return view('detallePaquete');
 });
 
-Route::post('/Reserva/Habitacion/{id}','ReservasController@reservaHab')->name('Reservas.reservaHab');
+Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');

@@ -31,7 +31,7 @@
                         
                     </tbody>
                 </table>
-                <a href="/" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Añadir al carrito</a>
+                <a href="/Paquete/Reservar/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Reservar</a>
             </div>       
         </div>
     </div>

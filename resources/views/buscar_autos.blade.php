@@ -16,7 +16,7 @@
     <div class="form-group">
     
     <div class="form-group row">
-        <label for="ciudad_inicio" style="margin-right: 103px; margin-left: -75px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Ciudad Inicio') }}</label><label for="ciudad_entrega" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Ciudad Entrega') }}</label>
+        <label for="ciudad_inicio" style="margin-right: 113px; margin-left: -60px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Ciudad Inicio') }}</label><label for="ciudad_entrega" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Ciudad Entrega') }}</label>
       </div>
     <span><select class="form-control selectpicker custom-select" id="ciudad_inicio" name="ciudad_inicio">
       <option selected disable>Ciudad Inicio</option>
@@ -42,7 +42,7 @@
   <div class="form-group">
     
     <div class="form-group row">
-        <label for="modelo_transporte" style="margin-right: 103px; margin-left: -75px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Modelo Transporte') }}</label><label for="num_asientos_transporte" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Asientos') }}</label>
+        <label for="modelo_transporte" style="margin-right: 73px; margin-left: -40px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Modelo Transporte') }}</label><label for="num_asientos_transporte" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Asientos') }}</label>
       </div>
     <span><select class="form-control selectpicker custom-select" id="modelo_transporte" name="modelo_transporte">
       <option selected disable>Modelo Transporte</option>
@@ -66,7 +66,7 @@
   <div class="form-group">
     
     <div class="form-group row">
-        <label for="aire_acondicionado_transporte" style="margin-right: 103px; margin-left: -75px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Aire acondicionado') }}</label><label for="num_puertas_transporte" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Puertas') }}</label>
+        <label for="aire_acondicionado_transporte" style="margin-right: 73px; margin-left: -40px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Aire acondicionado') }}</label><label for="num_puertas_transporte" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Puertas') }}</label>
       </div>
     <span><select class="form-control selectpicker custom-select" id="aire_acondicionado_transporte" name="aire_acondicionado_transporte">
       <option selected disable>Aire acondicionado</option>
