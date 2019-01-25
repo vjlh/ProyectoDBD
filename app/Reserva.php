@@ -9,7 +9,7 @@ class Reserva extends Model
     protected $table = 'reservas';
     protected $fillable = [
         'monto_total_reserva', 'check_in', 'id_user', 'id_paquete', 'id_seguro', 'id_promocion',
-        'transporte','reserva','vuelo'
+        'id_asiento', 'transporte','reserva','vuelo'
     ];
     
     public function promociones()
@@ -32,7 +32,7 @@ class Reserva extends Model
 
     public function asientos()
     {
-        return $this->hasMany(Asiento::class);
+        return $this->hasOne(Asiento::class);
     }
 
     public function users()

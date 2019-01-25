@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Asiento;
 use Illuminate\Http\Request;
 use App\Http\Requests\AsientosRequest;
+use App\Avion;
+use App\Http\Requests\AvionesRequest;
 
 class AsientosController extends Controller
 {
     //Probado
     public function index()
     {
-        return Asiento::all();
+
+        $asientos = Asiento::all()->where('id_avion', request("avioncito_id"));
+
+        return view('seleccion_asiento',compact('asientos'));
     }
 
     public function create()

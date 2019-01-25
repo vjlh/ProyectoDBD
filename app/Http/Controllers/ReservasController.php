@@ -29,6 +29,10 @@ class ReservasController extends Controller
             \App\Seguro::find($id_seguro)->id;
             $id_promocion = $request->get('id_promocion');
             \App\Promocion::find($id_promocion)->id;
+            $id_user = $request->get('id_user');
+            \App\User::find($id_user)->id;
+            $id_asiento = $request->get('id_asiento');
+            \App\Asiento::find($id_asiento)->id;
 
             $reserva = Reserva::create($request->all());
             $reserva->save();

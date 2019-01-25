@@ -15,6 +15,7 @@ $factory->define(App\Reserva::class, function (Faker $faker) {
         'id_seguro' => $id_seguro->random()->id,
         'id_promocion' => $id_promocion->random()->id,
         'id_paquete' => $id_paquete->random()->id,
+        'id_asiento' => $id_asiento->random()->id,
         'transporte' => $faker->boolean, 
         'hospedaje' => $faker->boolean, 
         'vuelo' => $faker->boolean

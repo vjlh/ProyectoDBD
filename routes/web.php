@@ -19,6 +19,9 @@ use App\Paquete;
 use App\Seguro;
 use App\Promocion;
 use App\Pais;
+use App\Asiento;
+use App\Avion;
+
 use Illuminate\Pagination\LengthAwarePaginator;
 
 Auth::routes();

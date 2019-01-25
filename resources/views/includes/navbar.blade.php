@@ -36,9 +36,12 @@
         <ul class="navbar-nav ml-auto">
     <!-- Authentication Links -->
 <form class="form-inline my-2 my-lg-0">
-    <a title="icono_carrito" href="/carrito">
-        <i class="fas fa-shopping-cart fa-3x" style="color: white;"> </i>
-    </a>
+    @guest
+    @else
+        <a title="icono_carrito" href="/carrito">
+            <i class="fas fa-shopping-cart fa-3x" style="color: white;"> </i>
+        </a>
+    @endguest
 </form>
                         @guest
                             <li class="nav-item">

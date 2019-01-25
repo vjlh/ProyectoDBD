@@ -5,7 +5,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
-
 <form action="/Vuelo" method="get">
         
        
@@ -69,7 +68,17 @@
                 </span>
             @endif
 
+            @guest
+             <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
+
+            @include('includes.registrarse')
+
+            @else
+
             <button type="submit" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
+
+            @endguest
         </div>
     </div>
 

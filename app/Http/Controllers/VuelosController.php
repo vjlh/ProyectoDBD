@@ -14,7 +14,8 @@ class VuelosController extends Controller
         $vuelos = Vuelo::all()->where('origen_vuelo', '=' , request("ciudad_origen"))
                               ->where('destino_vuelo', '=' , request("ciudad_destino"))
                               ->where('fecha_viaje', '=' , request("fecha_vuelo"));
-            
+
+                            
         return view('vuelos',compact('vuelos'));
     }
 
