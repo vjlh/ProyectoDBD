@@ -15,6 +15,8 @@ class HabitacionesController extends Controller
                                         ->where('capacidad_habitacion', '>=' , request("numero_personas"))
                                         ->where('disponibilidad', '=' , 1);
         
+        
+        
         return view('habitaciones',compact('habitaciones'));
     }
 
@@ -42,6 +44,7 @@ class HabitacionesController extends Controller
     {
         $habitaciones = Habitacion::all()->where('id_hospedaje', '=' , $id)
                                          ->where('disponibilidad', '=' , 1);
+        session()->put('id_hospedaje', $id);
         return view('habitaciones',compact('habitaciones'));
                  
     }

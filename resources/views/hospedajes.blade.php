@@ -6,6 +6,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
+
 <form action="/Habitacion" method="get">
 <div class="form-group row" style="margin-left:50px">
 @foreach ($hospedajes as $hospedaje)
@@ -15,7 +16,6 @@
             <h5 class="card-title">{{$hospedaje->nombre_hospedaje}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{$hospedaje->ubicacion}}</h6>
             <p class="card-text">
-                <p>aiuda: {{$diasDiferencia}}</p>
                 <p>Estrellas: {{$hospedaje->estrellas_hospedaje}}</p>
                 <p>Estacionamiento: {{$hospedaje->estacionamiento_hospedaje}}</p>
                 <p>Piscina: {{$hospedaje->piscina_hospedaje}}</p>

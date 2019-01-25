@@ -46,7 +46,8 @@ Route::get('/promociones', function () {
 });
 
 Route::get('/hoteles', function () {
-    return view('hoteles');
+    $hospedajes = Hospedaje::all();
+    return View('hoteles')->with('hospedajes', $hospedajes);
 });
 
 Route::get('/autos', function () {

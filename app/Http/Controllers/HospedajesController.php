@@ -12,14 +12,24 @@ class HospedajesController extends Controller
     //probado
     public function index()
     {
-        $fechaEmision = Carbon::parse(request('fecha_ida'));
-        $fechaExpiracion = Carbon::parse(request('fecha_vuelta'));
+        $fecha_ida = Carbon::parse(request('fecha_ida'));
+        $fecha_vuelta = Carbon::parse(request('fecha_vuelta'));
 
-        $diasDiferencia = $fechaExpiracion->diffInDays($fechaEmision);
+        $diasDiferencia = $fecha_vuelta->diffInDays($fecha_ida);
+        $ciudad_hospedaje= request('ciudad_origen');
+        $numHabitaciones=request('num_habitaciones');
+        $numero_personas=request('numero_personas');
 
-        $hospedajes = Hospedaje::all()->where('ubicacion','=',request('ciudad_origen'))
-                                    ->where('cantidad_disponible','>=',request('num_habitaciones'));
+        $hospedajes = Hospedaje::all()->where('ubicacion','=',$ciudad_hospedaje)
+                                      ->where('cantidad_disponible','>=',$numHabitaciones);
         
+        session()->put('diasDiferencia', $diasDiferencia);
+        session()->put('fecha_ida', $fecha_ida);
+        session()->put('fecha_vuelta', $fecha_vuelta);
+        session()->put('ciudad_hospedaje', $ciudad_hospedaje);
+        session()->put('numHabitaciones', $numHabitaciones);
+        session()->put('numero_personas', $numero_personas);
+
         return view('hospedajes',compact('hospedajes','diasDiferencia'));
     }
 

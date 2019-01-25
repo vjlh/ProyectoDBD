@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h5 class="card-title">Clase: {{$habitacion->tipo}}</h5>
                 <p class="card-text">
-                    <p>Costo (por dia): {{$diasDiferencia}}</p>
+                    <p>Costo (por dia): {{$habitacion->precio}}</p>
                     <p>Capacidad: {{$habitacion->capacidad_habitacion}}</p>
                     <p>Baño Privado: {{$habitacion->banio_privado}}</p>
                     <p>Aire Acondicionado: {{$habitacion->aire_acondicionado_habitacion}}</p>
