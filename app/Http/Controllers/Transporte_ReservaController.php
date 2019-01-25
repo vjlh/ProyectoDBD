@@ -42,8 +42,8 @@ class Transporte_ReservaController extends Controller
         $res_trans->fecha_fin ="2019-10-10";
         $res_trans->save();
         
-        Hospedaje::all();
-        return view('hospedajes',compact('hospedajes'));
+        Transporte::all();
+        return view('transportes',compact('transportes'));
     }
 
     public function show($id)
@@ -67,18 +67,18 @@ class Transporte_ReservaController extends Controller
         $reserva->save();
 
 
-        $res_trans = new Habitacion_Reserva;
+        $res_trans = new Transporte_Reserva;
         $res_trans->id_habitacion = $id;
         $res_trans->id_reserva = $reserva->id;
         $res_trans->fecha_inicio = $fecha_inicio;
         $res_trans->fecha_fin =$fecha_fin;
         $res_trans->save();
 
-        $habitacion->disponibilidad = false;
-        $habitacion->save();
+        $transporte->disponibilidad = false;
+        $transporte->save();
         session()->put('costo_final', $costoFinal);        
-        $hospedajes = Hospedaje::all();
-        return view('detallesReservaHospedaje',compact('habitacion'));
+        $transportes = Transporte::all();
+        return view('detallesReservaTransporte',compact('transporte'));
     }
 
     public function edit(Transporte_reserva $tran_res)

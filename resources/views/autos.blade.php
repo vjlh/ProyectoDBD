@@ -5,7 +5,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-<form action="/reservar_auto" method="get">
+<form action="/detalleReservaTransporte" method="get">
 <div class="form-group row" style="margin-left:50px">
 @foreach ($transportes as $transporte)
     <div class="card mb-3 border-dark mb-3" style="width: 18rem; margin-top:20px;margin-left:40px;margin-rigth:20px">
@@ -21,7 +21,7 @@
                     <p>Aire acondicionado: {{$transporte->aire_acondicionado_transporte}}</p>
                     
                 </p>
-            <a class="btn btn-primary">Reservar</a>
+            <a href="Transporte_Reserva/{{$transporte->id}}" class="btn btn-primary">Reservar</a>
         </div>
     </div>          
 @endforeach

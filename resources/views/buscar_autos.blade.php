@@ -5,7 +5,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-<form action="/seleccionar_autos" method="get">
+<form action="/autos" method="get">
 
 <div class="content" style="padding: 50px;">
   <div class="flex-center position-ref">
