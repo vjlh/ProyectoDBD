@@ -1,14 +1,15 @@
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content" style="margin-top: 100%;">
-        <div class="modal-header">
-            <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body" style="color: blue;">
-            <p>Favor registrarse antes de realizar una reserva</p>
+        <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
+
+        <div class="modal-body" style="color: white;">
+            <p>Favor registrarse antes de realizar una reserva.</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button> -->
+            <a href="/login" class="btn btn-success">Iniciar Sesión</a>
+            <a href="/register" class="btn btn-success">Registrarse</a>
+
         </div>
         </div>
     </div>

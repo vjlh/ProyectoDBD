@@ -98,7 +98,7 @@
   <div class="card-body">
     <h4 class="card-title">Seguros</h4>
     <img src="/images/seguro.jpg" alt="img_seguro" style="height: 155px; width: 280px">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="margin-top: 5%;" >Viaja sin preocupaciones.</p>
   </div>
 </div>
 </a>
@@ -109,7 +109,7 @@
   <div class="card-body">
     <h4 class="card-title">Paquetes</h4>
     <img src="/images/paquetes.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="margin-top: 5%;">Todo en uno!</p>
   </div>
 </div>
 </a> 
@@ -120,7 +120,7 @@
   <div class="card-body">
     <h4 class="card-title">Promociones</h4>
     <img src="/images/promociones.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="margin-top: 5%;">Ahora o nunca!</p>
   </div>
 </div>
 </a>
@@ -135,7 +135,7 @@
   <div class="card-body">
     <h4 class="card-title">Hoteles</h4>
     <img src="/images/hoteles.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="margin-top: 5%;">Un lugar pensado para tu comodidad.</p>
   </div>
 </div>
 </a>
@@ -147,7 +147,7 @@
   <div class="card-body">
     <h4 class="card-title">Autos</h4>
     <img src="/images/car.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="margin-top: 5%;"> Maneja el deportivo de tus sueños!</p>
   </div>
 </div>
 </a>
@@ -158,7 +158,7 @@
   <div class="card-body">
     <h4 class="card-title">Destinos</h4>
     <img src="/images/avioncito.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text" style="margin-top: 5%;">Todos los lugares en un sólo sitio.</p>
   </div>
 </div>
 </a>

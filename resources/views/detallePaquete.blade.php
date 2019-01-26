@@ -31,7 +31,20 @@
                         
                     </tbody>
                 </table>
-                <a href="/Paquete/Reservar/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Reservar</a>
+
+                @guest
+             <!-- Trigger the modal with a button -->
+             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success" data-toggle="modal" data-target="#myModal">Reservar</button>
+             
+            @include('includes.registrarse')
+
+            @else
+
+            <a href="/Paquete/Reservar/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Reservar</a>
+            
+            @endguest  
+
+                
             </div>       
         </div>
     </div>

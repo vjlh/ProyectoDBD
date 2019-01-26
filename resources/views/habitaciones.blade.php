@@ -18,7 +18,18 @@
                     <p>Baño Privado: {{$habitacion->banio_privado}}</p>
                     <p>Aire Acondicionado: {{$habitacion->aire_acondicionado_habitacion}}</p>
                 </p>
+
+            @guest
+             <!-- Trigger the modal with a button -->
+             <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Reservar</button>
+           
+            @include('includes.registrarse')
+
+            @else
+
             <button type="submit" class="btn btn-primary">Reservar</button>
+            
+            @endguest  
             </div>
         </div>
     </form>          
