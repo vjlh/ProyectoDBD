@@ -23,13 +23,16 @@
           </div>
 
 
+
         
 @endforeach
+
+
+
 </div>
 </div>
 </section><!-- #about -->
 </section>
 
-</div>
 
 @endsection

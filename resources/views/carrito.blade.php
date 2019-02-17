@@ -5,10 +5,14 @@
 
 
 <section id="intro">
-<div class="carousel-background"><img src="{{asset('images/1.jpg')}}" alt=""></div>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card dbd-auth" style="margin-top: -60%; color: white; background-color: #212529c7;">
+<style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>
+<section id="about">
+<div class="container" style="margin-top: 10%;">
+<div class="row about-cols">
+       
+        <div class="col-md-10" style="float: none; margin: 0 auto;">
+        
+            <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
                 <h1><small> CARRITO DE COMPRAS</h1></small>
             </center>
@@ -71,10 +75,16 @@
 
                         </div>
                 </div>
+
             </div>
+            
         </div>
+        
     </div>
 </div>
+
+</section><!-- #about -->
+</section>
 
 
 @endsection
