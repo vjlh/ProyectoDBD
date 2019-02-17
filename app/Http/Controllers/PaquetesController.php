@@ -44,7 +44,7 @@ class PaquetesController extends Controller
         
         $ciudades = Ciudad::all();
 
-        return view('welcome',compact('ciudades'));
+        return view('home',compact('ciudades'));
 
     }
 

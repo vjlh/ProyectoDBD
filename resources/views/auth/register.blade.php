@@ -1,9 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
-<div class="container">
+
+<!--==========================
+    Intro Section
+  ============================-->
+<section id="intro">
+<div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card dbd-auth">
+            <div class="card dbd-auth" style="margin-top: -80%; color: white; background-color: #212529c7;">
                 <div class="card-header">{{ __('Registro') }}</div>
 
                 <div class="card-body">
@@ -118,7 +123,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-get-started scrollto">
                                     {{ __('Registrar') }}
                                 </button>
                             </div>
@@ -128,5 +133,7 @@
             </div>
         </div>
     </div>
+    <div class="container">
 </div>
+
 @endsection

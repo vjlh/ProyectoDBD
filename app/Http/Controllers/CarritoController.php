@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Carrito;
+use App\Reserva;
+use App\Http\Requests\ReservaRequest;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -12,9 +15,9 @@ class CarritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        
     }
 
     /**
@@ -44,9 +47,10 @@ class CarritoController extends Controller
      * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrito $carrito)
+    public function show($id)
     {
-        //
+        $reservas = Reserva::all()->where('id_user', '=' , $id);
+        return view('carrito',compact('reservas'));
     }
 
     /**

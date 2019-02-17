@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AsientosRequest;
 use App\Avion;
 use App\Http\Requests\AvionesRequest;
+use Session;
 
 class AsientosController extends Controller
 {
@@ -82,7 +83,8 @@ class AsientosController extends Controller
 
         $ciudades = Ciudad::all();
 
-        return view('welcome',compact('ciudades'));
+
+        return view('home',compact('ciudades'));
     }
 
     public function update(AsientosRequest $request, $id)

@@ -1,39 +1,69 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
-@include('includes.carousel')
+@include('includes.registrarse')
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-<div class="form-group row" style="margin-left:50px">
+
+<section id="intro">
+<style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
+<section id="about" >
+<div class="container" style="margin-top: 10%;">
+<div class="row about-cols">
     @foreach ($habitaciones as $habitacion)
-    <form action="/Habitacion_Reserva/{{$habitacion->id}}/" method="PATCH">
-        <div class="card mb-3 border-dark mb-3" style="width: 18rem;margin-top:10px;margin-left:20px">
-            <img class="card-img-top" src="/images/habitacion.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Clase: {{$habitacion->tipo}}</h5>
-                <p class="card-text">
-                
-                    <p>Costo (por dia): {{$habitacion->precio}}</p>
+   
+        <div class="col-md-4 wow ">
+            <div class="about-col">
+              <div class="img">
+              <img src="{{asset('images/habitacion.jpg')}}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-home"></i></div>
+              </div>
+              <form action="/Habitacion_Reserva/{{$habitacion->id}}/" method="PATCH">
+              <h2 class="title"><a>{{$habitacion->tipo}}</a></h2>
+              <p>Costo (por dia): {{$habitacion->precio}}</p>
                     <p>Capacidad: {{$habitacion->capacidad_habitacion}}</p>
-                    <p>Baño Privado: {{$habitacion->banio_privado}}</p>
-                    <p>Aire Acondicionado: {{$habitacion->aire_acondicionado_habitacion}}</p>
-                </p>
+                    @if($habitacion->banio_privado == 0)
+                    <p>Baño Privado: No</p>
+                    @endif
+                    @if($habitacion->banio_privado == 1)
+                    <p>Baño Privado: Sí</p>
+                    @endif
+                    @if($habitacion->aire_acondicionado_habitacion == 0)
+                    <p>Aire Acondicionado: No</p>
+                    @endif
+                    @if($habitacion->aire_acondicionado_habitacion == 1)
+                    <p>Aire Acondicionado: Sí</p>
+                    @endif   
 
             @guest
              <!-- Trigger the modal with a button -->
-             <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Reservar</button>
+             <center>
+                <button type="button" class="btn btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Reservar</button>
+             </center>
            
-            @include('includes.registrarse')
 
             @else
 
-            <button type="submit" class="btn btn-primary">Reservar</button>
+            <center>
+                
+                <button type="submit" class="btn btn-get-started scrollto">Reservar</button>
+            </center>
             
-            @endguest  
+            @endguest
+
+            </form>   
             </div>
-        </div>
-    </form>          
-    @endforeach
+          </div>
+    </form>   
+         
+         
+@endforeach
+
 </div>
+</div>
+</section><!-- #about -->  
+</section>
+
+
+</div>
+
 
 @endsection

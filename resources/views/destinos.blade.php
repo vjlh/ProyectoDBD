@@ -1,22 +1,35 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
-@include('includes.carousel')
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 
-<form action="/reservar_auto" method="get">
-<div class="form-group row" style="margin-left:50px">
+
+<section id="intro">
+<style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>
+<section id="about">
+<div class="container" style="margin-top: 10%;">
+<div class="row about-cols">
 @foreach ($paises as $pais)
-    <div class="card mb-3 border-dark mb-3" style="width: 18rem; margin-top:20px;margin-left:40px;margin-rigth:20px">
-        <img class="card-img-top" src="/images/hotel.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">País: {{$pais->nombre_pais}}</h5>
-                <h5 class="card-title">Moneda: {{$pais->moneda_pais}}</h5>
-        </div>
-    </div>          
+
+
+          <div class="col-md-4 wow ">
+            <div class="about-col">
+              <div class="img">
+              <img src="{{asset('assets/img/destinos.jpeg')}}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-plane"></i></div>
+              </div>
+              <h2 class="title"><a>{{$pais->nombre_pais}}</a></h2>
+              <center><h5 class="card-title" style="margin-boot: 30%;">Moneda: {{$pais->moneda_pais}}</h5></center>
+            </div>
+          </div>
+
+
+        
 @endforeach
 </div>
+</div>
+</section><!-- #about -->
+</section>
 
-</form>
+</div>
+
 @endsection

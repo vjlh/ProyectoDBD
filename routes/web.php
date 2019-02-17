@@ -27,23 +27,26 @@ use Illuminate\Pagination\LengthAwarePaginator;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/', 'HomeController@index')->name('welcome');
 
-/*
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-*/
+
+
+Route::get('/inicio', function () {
+    return view('home');
+});
+
 
 Route::get('/paquetes', function () {
     $paquetes = Paquete::all();
     return view('paquetes')->with('paquetes',$paquetes);
 });
 
-Route::get('/carrito', function () {
-    return view('carrito');
-});
+
 
 Route::get('/seguros', function () {
     $seguros = Seguro::all();
@@ -86,6 +89,11 @@ Route::get('/buscar_autos', function () {
     return View('buscar_autos', ['ciudades' => $ciudades, 'transportes' => $transportes]);
 });
  
+Route::get('/buscar_vuelos', function () {
+    $ciudades = Ciudad::all();
+    $vuelos = Vuelo::all();
+    return View('buscar_vuelos', ['ciudades' => $ciudades, 'vuelos' => $vuelos]);
+});
 
 Route::get('/vuelos', function () {
     $vuelos = Vuelo::all();
@@ -113,6 +121,8 @@ Route::get('/detallesReservaHospedaje', function () {
 Route::get('/detallePaquete', function () {
     return view('detallePaquete');
 });
+
+
 
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');
@@ -143,3 +153,4 @@ Route::resource('/Beneficio_Seguro','Beneficio_SeguroController');
 Route::resource('/Habitacion_Reserva','Habitacion_ReservaController');
 Route::resource('/Pasajero_Reserva','Pasajero_ReservaController');
 Route::resource('/Transporte_Reserva','Transporte_ReservaController');
+Route::resource('/carrito','CarritoController');

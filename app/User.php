@@ -16,13 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
-        'password', 
-        'apellido_usuario', 
-        'fecha_nacimiento', 
-        'num_documento_usuario', 
-        'pais_usuario',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -33,17 +27,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function administradores(){
-        return $this ->hasOne(Administrador::class);
-    }
-
-    public function historiales(){
-        return $this ->hasMany(Historial::class);
-    }
-
-    public function reservas(){
-        return $this ->hasMany(Reserva::class);
-    }
-
 }

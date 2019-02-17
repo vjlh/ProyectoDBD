@@ -1,23 +1,36 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
-@include('includes.carousel')
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 
 <form action="/Paquete" method="get">
-<div class="form-group row" style="margin-left:50px">
+<section id="intro">
+<style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>
+<section id="about">
+<div class="container" style="margin-top: 10%;">
+<div class="row about-cols">
 @foreach ($paquetes as $paquete)
-    <div class="card mb-3 border-dark mb-3" style="width: 18rem; margin-top:20px;margin-left:40px;margin-rigth:20px">
-        <img class="card-img-top" src="/images/paquete.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{$paquete->destino_paquete}}</h5>
-          
-            <a href="/Paquete/{{$paquete->id}}" class="btn btn-primary">Ver detalles</a>
-        </div>
-    </div>          
+
+
+          <div class="col-md-4 wow ">
+            <div class="about-col">
+              <div class="img">
+              <img src="/images/paquete.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-box"></i></div>
+              </div>
+              <h2 class="title"><a>{{$paquete->destino_paquete}}</a></h2>
+              <center><a href="/Paquete/{{$paquete->id}}" class="btn btn-get-started scrollto">Ver detalles</a></center>
+            </div>
+          </div>
+
+
+        
 @endforeach
 </div>
-
 </form>
+</div>
+</section><!-- #about -->
+</section>
+
+</div>
+
 @endsection

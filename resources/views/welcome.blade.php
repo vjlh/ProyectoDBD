@@ -1,168 +1,98 @@
-@extends('layouts.app')
-@section('content')
-@include('includes.carousel')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-<form action="/Vuelo" method="get">
-        
-       
-       
-<div class="content" style="padding: 50px;">
-<div class="flex-center position-ref">
-<div class="card card_compra text-white bg-primary mb-3 border-success" style="top: -155px; background-color: #2c3e50d9 !important;">
-  <h1><div class="card-header"> <i class="fas fa-plane-departure"></i> Reserva tu vuelo!</div></h1>
-  <div class="card-body">
-    <h4 class="card-title"></h4>
-    <div class="form-group">
-    
-    <div class="form-group row">
-        <label for="city_origen" style="margin-right: 103px; margin-left: -75px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Origen') }}</label><label for="city_destino" class="col-md-4 col-form-label" style= "padding: 0; margin-top: 20px;">{{ __('Destino') }}</label>
-      </div>
-    <span><select class="form-control selectpicker custom-select" id="ciudad_origen" name="ciudad_origen">
-      <option selected disable>Ciudad Origen</option>
-      @foreach ($ciudades as $ciudad)
-      <option value="{{ $ciudad->nombre_ciudad }}">
-        {{$ciudad->nombre_ciudad}}
-      </option>
-      @endforeach
-    </select></span>
+        <title>Laravel</title>
 
-    
-    <span><select class="form-control selectpicker custom-select" id="ciudad_destino" name="ciudad_destino">
-      <option selected disable>Ciudad Destino</option>
-      @foreach ($ciudades as $ciudad)
-      <option value="{{ $ciudad->nombre_ciudad }}">
-        {{$ciudad->nombre_ciudad}}
-      </option>
-      @endforeach
-    </select></span>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
-  </div>
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
 
-  <div class="form-group">
-  <div class="form-group row">
-        <label for="numero_pasajeros" style="margin-left: -27px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Número de Pasajeros') }}</label>
-      </div>
-    <select class="custom-select" style="margin-right: 423px">
-      <option selected="">Número de Pasajeros</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-    </select>
-  </div>
-  
-      <div class="form-group row">
-        <label for="fecha_viaje" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de Viaje') }}</label>
-      </div>
-        <div class="col-md-6">
-            
-            <input id="fecha_viaje" style="max-width: 300px;" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}">
-            @if ($errors->has('fecha_viaje'))
-                <span class="invalid-feedback" role="alert">
-                </span>
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
             @endif
 
-            @guest
-             <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
+            <div class="content">
+                <div class="title m-b-md">
+                    Laravel
+                </div>
 
-            @include('includes.registrarse')
-
-            @else
-
-            <button type="submit" style="font-size: 2.0rem; margin-left: 150%;margin-top: -15%;width: 300px;height: 150px;margin-left: 104%;margin-top: -49%;" class="btn btn-success">Busca tu vuelo</button>
-
-            @endguest
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div>
+            </div>
         </div>
-    </div>
-
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-</form>
-
-<div class="content" style="margin-top: -5%;">
-  <div class="flex-center position-ref">    
-
-<a title="img_seguro" href="/seguros">     
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">Seguros</h4>
-    <img src="/images/seguro.jpg" alt="img_seguro" style="height: 155px; width: 280px">
-    <p class="card-text" style="margin-top: 5%;" >Viaja sin preocupaciones.</p>
-  </div>
-</div>
-</a>
-
-<a title="img_paquetes" href="/paquetes">
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">Paquetes</h4>
-    <img src="/images/paquetes.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text" style="margin-top: 5%;">Todo en uno!</p>
-  </div>
-</div>
-</a> 
-
-<a title="img_promociones" href="/promociones">
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">Promociones</h4>
-    <img src="/images/promociones.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text" style="margin-top: 5%;">Ahora o nunca!</p>
-  </div>
-</div>
-</a>
-</div>
-
-
-<div class="flex-center position-ref">
-
-<a title="img_hoteles" href="/reservaHospedaje">
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">Hoteles</h4>
-    <img src="/images/hoteles.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text" style="margin-top: 5%;">Un lugar pensado para tu comodidad.</p>
-  </div>
-</div>
-</a>
-
-
-<a title="img_autos" href="/buscar_autos">
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">Autos</h4>
-    <img src="/images/car.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text" style="margin-top: 5%;"> Maneja el deportivo de tus sueños!</p>
-  </div>
-</div>
-</a>
-
-<a title="img_destinos" href="/destinos">
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin-right: 30px; margin-top: 30px;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">Destinos</h4>
-    <img src="/images/avioncito.jpg" alt="" style="height: 155px; width: 280px">
-    <p class="card-text" style="margin-top: 5%;">Todos los lugares en un sólo sitio.</p>
-  </div>
-</div>
-</a>
-
-        </div>
-
-        @endsection
+    </body>
+</html>

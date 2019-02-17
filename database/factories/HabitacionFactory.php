@@ -11,6 +11,6 @@ $factory->define(App\Habitacion::class, function (Faker $faker) {
         'banio_privado' => $faker->boolean,
         'aire_acondicionado_habitacion' => $faker->boolean,
         'disponibilidad' => $faker->boolean,
-        'tipo' => $faker->randomElement($array = array('Permium','VIP','Suite','Luxury','Economica')),
+        'tipo' => $faker->randomElement($array = array('Premium','VIP','Suite','Luxury','Economica')),
     ];
 });

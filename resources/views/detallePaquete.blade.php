@@ -1,15 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
-@include('includes.carousel')
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 
-<div class="content" style="padding: 50px;">
-    <div class="flex-center position-ref">
-        <div class="card card_compra text-white bg-primary mb-3 border-success" style="top: -155px; background-color: #2c3e50d9 !important;">
-            <h2><div class="card-header">Detalle del paquete seleccionado</div></h2>
-            <div class="card-body">
+
+ <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+  <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card dbd-auth" style="margin-top: -80%; color: white; background-color: #212529c7;">
+                <div class="card-header">Reserva Realizada</div>
+                <div class="card-body">
                 <table class="table" >
                     <tbody>
                         <tr>
@@ -34,20 +37,31 @@
 
                 @guest
              <!-- Trigger the modal with a button -->
-             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success" data-toggle="modal" data-target="#myModal">Reservar</button>
-             
+             <center>
+             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Reservar</button>
+             </center>
+
             @include('includes.registrarse')
 
             @else
-
-            <a href="/Paquete/Reservar/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success">Reservar</a>
             
+            <center>
+            <a href="/Paquete/Reservar/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto">Reservar</a>
+            </center>
             @endguest  
 
                 
             </div>       
-        </div>
+                
+                </div>
+            </div>
+        </div>    
     </div>
-</div>
+
+    </div>
+
+
+
+
 
 @endsection

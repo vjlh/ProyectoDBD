@@ -1,30 +1,56 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
-@include('includes.carousel')
 
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 
 <form action="/Habitacion" method="get">
-<div class="form-group row" style="margin-left:50px">
+<section id="intro">
+<style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
+<section id="about" >
+<div class="container" style="margin-top: 10%;">
+<div class="row about-cols">
 @foreach ($hospedajes as $hospedaje)
-    <div class="card mb-3 border-dark mb-3" style="width: 18rem; margin-top:20px;margin-left:40px;margin-rigth:20px">
-        <img class="card-img-top" src="/images/hotel.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{$hospedaje->nombre_hospedaje}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{$hospedaje->ubicacion}}</h6>
-            <p class="card-text">
-                <p>Estrellas: {{$hospedaje->estrellas_hospedaje}}</p>
-                <p>Estacionamiento: {{$hospedaje->estacionamiento_hospedaje}}</p>
-                <p>Piscina: {{$hospedaje->piscina_hospedaje}}</p>
+
+
+          <div class="col-md-4 wow ">
+            <div class="about-col">
+              <div class="img">
+              <img src="{{asset('assets/img/hyatt.jpg')}}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-home"></i></div>
+              </div>
+              <h2 class="title"><a>{{$hospedaje->nombre_hospedaje}}</a></h2>
+              <center><h6 class="subtitle"><a>{{$hospedaje->ubicacion}}</a></h6></center>
+              <p>Estrellas: {{$hospedaje->estrellas_hospedaje}}</p>
+                @if($hospedaje->estacionamiento_hospedaje == 0)
+                    <p>Estacionamiento: No </p>
+                @endif
+                @if($hospedaje->estacionamiento_hospedaje == 1)
+                    <p>Estacionamiento: Sí </p>
+                @endif
+                @if($hospedaje->piscina_hospedaje == 0)
+                    <p>Piscina: No </p>
+                @endif
+                @if($hospedaje->piscina_hospedaje== 1)
+                    <p>Piscina: Sí </p>
+                @endif
                 <p>Habitaciones disponibles: {{$hospedaje->cantidad_disponible}}</p>
-            </p>
-            <a href="/Habitacion/{{$hospedaje->id}}" class="btn btn-primary">Ver Habitaciones</a>
-        </div>
-    </div>          
+                <center>
+                <a href="/Habitacion/{{$hospedaje->id}}" class="btn btn-get-started scrollto">Ver Habitaciones</a>
+                </center>
+            </div>
+          </div>
+
+
+        
 @endforeach
 </div>
+</div>
+</section><!-- #about -->
+</section>
+
+
+
+
 
 </form>
 
