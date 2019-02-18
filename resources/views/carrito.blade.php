@@ -27,6 +27,7 @@
                     <th><h5 class="card-title">Monto total</h5></th>
                     <th><h5 class="card-title">Tipo</h5></th>
                     <th><h5 class="card-title">Comprar</h5></th>
+                    <th><h5 class="card-title">Eliminar</h5></th>
 
                     </tr>
 
@@ -64,6 +65,15 @@
                     <th><button type="submit" class="btn btn-get-started scrollto">Comprar</button></th>
                     </center>
                     </form>
+                    
+                    <form action="/Reserva/{{$reserva->id}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <center>
+                    <th><button type="submit" class="btn btn-get-started scrollto">Eliminar</button></th>
+                    </center>
+                    </form>
+
                     @endguest
 
 
