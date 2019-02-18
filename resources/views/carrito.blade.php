@@ -50,18 +50,20 @@
                     
                     @guest
                     <!-- Trigger the modal with a button -->
+                    
                     <center>
                     <th><button type="button" class="btn btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Comprar</button></th>
                     </center>
                 
 
                     @else
-
+                    <form action="/Reserva/{{$reserva->id}}" method="post">
+                    @method('DELETE')
+                    @csrf
                     <center>
-                        
                     <th><button type="submit" class="btn btn-get-started scrollto">Comprar</button></th>
                     </center>
-                    
+                    </form>
                     @endguest
 
 
@@ -85,6 +87,6 @@
 
 </section><!-- #about -->
 </section>
-
+</form>
 
 @endsection
