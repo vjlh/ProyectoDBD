@@ -17,10 +17,10 @@
 
                     <ul class="nav nav-tabs  justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active btn btn-get-started scrollto" id="vuelo-tab" data-toggle="tab" href="#vuelo" role="tab" aria-controls="vuelo" aria-selected="true" href="#">VUELOS</a>
+                        <a class="nav-link active btn-get-started scrollto" id="vuelo-tab" data-toggle="tab" href="#vuelo" role="tab" aria-controls="vuelo" aria-selected="true" href="#">VUELOS</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-get-started scrollto" href="#">HOTELES</a>
+                    <a class="nav-link btn-get-started scrollto" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false" href="#">HOTELES</a>
                     </li>
                     </li>
                     <li class="nav-item">
@@ -42,7 +42,9 @@
                         <div class="tab-pane fade show active" id="vuelo" role="tabpanel" aria-labelledby="vuelo-tab">
                             @include('includes.admin_vuelos')
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                        <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+                            @include('includes.admin_hospedajes')
+                        </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                     </div>
             
