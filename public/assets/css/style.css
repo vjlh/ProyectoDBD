@@ -381,7 +381,7 @@ h6 {
 .nav-menu a {
   padding: 0 8px 10px 8px;
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;

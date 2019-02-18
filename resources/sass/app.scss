@@ -8,8 +8,10 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
 
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #18d26e !important;
+  text-decoration: none !important;
+  background-color: rgba(33, 37, 41, 0.78) !important;
+}

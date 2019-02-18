@@ -154,3 +154,5 @@ Route::resource('/Habitacion_Reserva','Habitacion_ReservaController');
 Route::resource('/Pasajero_Reserva','Pasajero_ReservaController');
 Route::resource('/Transporte_Reserva','Transporte_ReservaController');
 Route::resource('/carrito','CarritoController');
+// Route::resource('/admin','AdministradoresController');
+Route::get('/admin', 'AdministradoresController@f1');

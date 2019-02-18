@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\User;
+use App\Vuelo;
 use App\Administrador;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdministradoresRequest;
@@ -36,12 +39,14 @@ class AdministradoresController extends Controller
 
     public function show($id)
     {
-            $administrador = Administrador::find($id);
-            if ($administrador != NULL)
-                return $administrador;
-            else   
-                return "No existe un administrador con esa id";    
-        
+        $vuelos = Vuelo::all();
+        return view('admin',compact('vuelos'));
+    }
+
+    public function f1()
+    {
+        $vuelos = Vuelo::all();
+        return view('admin',compact('vuelos'));
     }
 
     public function edit(Administrador $administrador)
