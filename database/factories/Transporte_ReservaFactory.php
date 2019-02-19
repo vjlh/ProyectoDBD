@@ -8,7 +8,7 @@ $factory->define(App\Transporte_Reserva::class, function (Faker $faker) {
     return [
         'id_transporte' => $id_transporte->random()->id,
         'id_reserva' => $id_reserva->random()->id,
-        'fecha_inicio' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL),
-        'fecha_fin' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL),
+        'fecha_inicio' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+2 weeks', $timezone = NULL),
+        'fecha_fin' => $faker->dateTimeBetween($startDate = '+3 weeks', $endDate = '+6 weeks', $timezone = NULL),
     ];
 });

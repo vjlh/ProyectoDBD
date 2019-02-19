@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
+use App\Quotation;
 use App\Habitacion;
 use App\Hospedaje;
 use Illuminate\Http\Request;
@@ -12,11 +13,26 @@ class HabitacionesController extends Controller
 
     public function index()
     { 
-        $habitaciones = Habitacion::all()->where('id_hospedaje', '=' , request("id_hospedaje"))
-                                        ->where('capacidad_habitacion', '>=' , request("numero_personas"))
-                                        ->where('disponibilidad', '=' , 1);
+        $habitaciones_reservadas1 =  DB::table('habitaciones_reservas')->where('fecha_fin','<',$fecha_inicio)->select('id_habitacion')->get();                        
+        $habitaciones_reservadas2 =  DB::table('habitaciones_reservas')->where('fecha_inicio','>',$fecha_fin)->select('id_habitacion')->get();                        
         
-        
+        $ids = [];
+        $ids_NoDisponibles =[];
+
+        foreach($habitaciones_reservadas1 as $tr1){
+            array_push($ids,$tr1->id_habitacion);
+        }
+        foreach($habitaciones_reservadas2 as $tr2){
+            array_push($ids,$tr2->id_habitacion);
+        }
+
+        $habitaciones_reservadas3 = DB::table('habitaciones_reservas')->whereNotIn('id_habitacion',$ids)->select('id_habitacion')->get();
+        foreach($habitaciones_reservadas3 as $tr3){
+            array_push($ids_NoDisponibles,$tr3->id_habitacion);
+        }
+
+        $habitaciones = Habitacion::all()->whereNotIn('id',$ids_NoDisponibles)
+                                        ->where('id_hospedaje', '=' , request("id_hospedaje"));
         
         return view('habitaciones',compact('habitaciones'));
     }

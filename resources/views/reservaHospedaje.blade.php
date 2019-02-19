@@ -17,10 +17,7 @@
 
                 <div class="row justify-content-start">
                     <div class="col-4">
-                    <label for="ciudad_origen" style="margin-left: 15%" class="col-form-label">{{ __('Lugar') }}</label>   
-                    </div>
-                    <div class="col-4">
-                    <label for="numero_personas" style="margin-left: 15%" class="col-form-label">{{ __('Numero de personas') }}</label>
+                    <label for="ciudad_origen" style="margin-left: 15%" class="col-form-label">{{ __('Ciudad de hospedaje') }}</label>   
                     </div>
                 </div>
 
@@ -28,7 +25,7 @@
                 <div class="row justify-content-start">
                     <div class="col-4"> 
                       <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_origen" name="ciudad_origen">
-                          <option selected disable>Lugar de Hospedaje</option>
+                          <option selected disable>Ciudad</option>
                           @foreach ($ciudades as $ciudad)
                           <option value="{{ $ciudad->nombre_ciudad }}">
                               {{$ciudad->nombre_ciudad}}
@@ -36,27 +33,15 @@
                           @endforeach 
                       </select>
                     </div>
-
-                      <div class="col-4">
-                          <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="numero_personas" name="numero_personas">
-                              <option selected="">Cantidad de personas</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                          </select>
-                      </div>
                   </div>
 
 
                   <div class="row justify-content-start">
                     <div class="col-4">
-                      <label for="numero_personas" style="margin-top: 10%; margin-left: 15%;" class="col-form-label">{{ __('Fecha de inicio') }}</label>
+                      <label for="fecha_inicio" style="margin-top: 10%; margin-left: 15%;" class="col-form-label">{{ __('Fecha entrada') }}</label>
                     </div>
                     <div class="col-4">
-                      <label for="fecha_viaje" style="margin-top: 10%; margin-left: 15%;" class="col-form-label">{{ __('Fecha de termino') }}</label>
+                      <label for="fecha_viaje" style="margin-top: 10%; margin-left: 15%;" class="col-form-label">{{ __('Fecha salida') }}</label>
                     </div>
                   </div>
 

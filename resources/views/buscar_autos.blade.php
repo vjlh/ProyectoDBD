@@ -19,9 +19,6 @@
                     <div class="col-4">
                     <label for="ciudad_inicio" style="margin-left: 15%" class="col-form-label">{{ __('Ciudad') }}</label>   
                     </div>
-                    <div class="col-4">
-                    <label for="numero_asientos" style="margin-left: 15%" class="col-form-label">{{ __('Número de asientos') }}</label>
-                    </div>
                 </div>
 
 
@@ -34,15 +31,6 @@
                               {{$ciudad->nombre_ciudad}}
                           </option>
                           @endforeach 
-                      </select>
-                    </div>
-
-                    <div class="col-4"> 
-                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="num_asientos_transporte" name="num_asientos_transporte">
-                          <option selected disable>Número de asientos</option>
-                          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-                          <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-                          <option value="7">7</option><option value="8">8</option><option value="9">9</option>
                       </select>
                     </div>
                   </div>
