@@ -3,7 +3,7 @@
 
 
 
-<form action="/autos" method="get">
+<form action="/Transporte" method="get">
 
 <section id="intro">
 <div class="carousel-background"><img src="{{asset('images/1.jpg')}}" alt=""></div>
@@ -17,10 +17,10 @@
 
                 <div class="row justify-content-start">
                     <div class="col-4">
-                    <label for="ciudad_origen" style="margin-left: 15%" class="col-form-label">{{ __('Ciudad Inicio') }}</label>   
+                    <label for="ciudad_inicio" style="margin-left: 15%" class="col-form-label">{{ __('Ciudad') }}</label>   
                     </div>
                     <div class="col-4">
-                    <label for="numero_personas" style="margin-left: 15%" class="col-form-label">{{ __('Número de asientos') }}</label>
+                    <label for="numero_asientos" style="margin-left: 15%" class="col-form-label">{{ __('Número de asientos') }}</label>
                     </div>
                 </div>
 

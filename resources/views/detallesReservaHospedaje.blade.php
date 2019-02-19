@@ -4,9 +4,7 @@
 
 <?php
 $dias = session()->get('diasDiferencia');
-$hospedaje = session()->get('hospedaje');
 ?>
-
 
   <!--==========================
     Intro Section
@@ -22,7 +20,7 @@ $hospedaje = session()->get('hospedaje');
                     <tbody>
                         <tr>
                             <th>Nombre Hotel</th>
-                            <td>{{$hospedaje->nombre_hospedaje}}</td>
+                            <td>{{$habitacion->nombre_hospedaje}}</td>
                         </tr>
                         <tr>
                             <th>Tipo de habitación:</th>
@@ -59,7 +57,7 @@ $hospedaje = session()->get('hospedaje');
         </div>    
     </div>
 
-    </div>
+</div>
 
 
 

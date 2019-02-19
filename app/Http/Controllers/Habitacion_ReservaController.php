@@ -53,7 +53,7 @@ class Habitacion_ReservaController extends Controller
     {
         $habitacion = Habitacion::find($id);
         $numero_dias = session()->get('diasDiferencia');
-        $costoFinal = $numero_dias* $habitacion->precio;
+        $costoFinal = $numero_dias * $habitacion->precio;
         $fecha_inicio = session()->get('fecha_ida');
         $fecha_fin = session()->get('fecha_vuelta');
 
