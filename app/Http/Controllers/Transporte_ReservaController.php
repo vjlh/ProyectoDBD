@@ -88,8 +88,8 @@ class Transporte_ReservaController extends Controller
         $transporte = Transporte::find($id);
         $numero_dias = session()->get('diasTransporte');
         $costoFinal = $numero_dias* $transporte->precio;
-        $fecha_inicio = session()->get('fecha_ida');
-        $fecha_fin = session()->get('fecha_vuelta');
+        $fecha_inicio = session()->get('fechaInicioTransporte');
+        $fecha_fin = session()->get('fechaFinTransporte');
 
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
