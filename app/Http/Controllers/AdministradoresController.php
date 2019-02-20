@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Vuelo;
 use App\Hospedaje;
+use App\Seguro;
 use App\Administrador;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdministradoresRequest;
@@ -48,8 +49,11 @@ class AdministradoresController extends Controller
     {
         $vuelos = Vuelo::all();
         $hospedajes = Hospedaje::all();
-        return view('admin',compact('vuelos','hospedajes'));
+        $seguros = Seguro::all();
+        return view('admin',compact('vuelos','hospedajes','seguros'));
     }
+
+    
 
     public function edit(Administrador $administrador)
     {
