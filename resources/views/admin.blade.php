@@ -47,24 +47,3 @@
 </section>
 @endsection
 
-
-<!--<ul class="nav nav-tabs  justify-content-center" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active btn-get-started scrollto" id="vuelo-tab" data-toggle="tab" href="#vuelo" role="tab" aria-controls="vuelo" aria-selected="true" href="#">VUELOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-get-started scrollto" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false" href='#'>HOTELES</a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-get-started scrollto" id="seguro-tab" data-toggle="tab" href="#seguro" role="tab" aria-controls="seguro" aria-selected="false" href='#'>SEGUROS</a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link btn btn-get-started scrollto" href="#">PAQUETES</a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link btn btn-get-started scrollto" href="#">AUTOS</a>
-                    </li>
-                    </ul> -->

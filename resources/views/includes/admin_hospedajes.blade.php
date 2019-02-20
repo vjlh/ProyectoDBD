@@ -40,7 +40,7 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/hospedaje/{{$hospedaje->id}}" method="post">
+                    <form action="/Hospedaje/{{$hospedaje->id}}" method="post">
                     @method('DELETE')
                     @csrf
                     <center>
@@ -48,7 +48,7 @@
                     </center>
                     </form>
                     
-                    <form action="/hospedaje/{{$hospedaje->id}}" method="post">
+                    <form action="/Hospedaje/{{$hospedaje->id}}" method="post">
                     @method('DELETE')
                     @csrf
                     <center>

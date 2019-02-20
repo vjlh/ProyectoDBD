@@ -35,7 +35,7 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/seguro/{{$seguro->id}}" method="post">
+                    <form action="/Seguro/{{$seguro->id}}" method="post">
                     @method('DELETE')
                     @csrf
                     <center>
@@ -43,7 +43,7 @@
                     </center>
                     </form>
                     
-                    <form action="/seguro/{{$seguro->id}}" method="post">
+                    <form action="/Seguro/{{$seguro->id}}" method="post">
                     @method('DELETE')
                     @csrf
                     <center>
