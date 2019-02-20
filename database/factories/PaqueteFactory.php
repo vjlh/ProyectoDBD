@@ -17,6 +17,8 @@ $factory->define(App\Paquete::class, function (Faker $faker) {
         'num_dias' => $dias,
         'num_noches' => $noches,
         'precio_paquete' => $faker->randomElement($array = array(300000,350000,400000,450000)),
-        'destino_paquete' => $faker->randomElement($ciudades)
+        'destino_paquete' => $faker->randomElement($ciudades),
+        'tipo_paquete' => $faker->randomElement($array = array('Alojamiento','Automóvil')),
+        'fecha_paquete' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL)
     ];
 });

@@ -17,8 +17,10 @@ class CreatePaquetesTable extends Migration
             $table->increments('id');
             $table->integer('num_dias');
             $table->integer('num_noches');
+            $table->date('fecha_paquete');
             $table->integer('precio_paquete');
             $table->string('destino_paquete');
+            $table->string('tipo_paquete');
             $table->timestamps();
         });
     }

@@ -180,7 +180,7 @@
                 <img src="{{asset('assets/img/paquete.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-box"></i></div>
               </div>
-              <h2 class="title"><a href="/paquetes">Paquetes</a></h2>
+              <h2 class="title"><a href="/seleccion_tipo_paquetes">Paquetes</a></h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
@@ -368,7 +368,7 @@
       <div class="container">
 
         <div class="section-header">
-          <h3>Contact Us</h3>
+          <h3>Contactanos</h3>
           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
         </div>
 

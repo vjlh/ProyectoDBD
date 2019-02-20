@@ -27,7 +27,9 @@ class PaquetesRequest extends FormRequest
             'num_dias' => 'required|integer', 
             'num_noches' => 'required|integer', 
             'precio_paquete' => 'required|integer', 
-            'destino_paquete' => 'required|string'
+            'destino_paquete' => 'required|string',
+            'tipo_paquete' => 'required|string',
+            'fecha_paquete' => 'required|date'
         ];
     }
 }
