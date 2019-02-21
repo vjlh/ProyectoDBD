@@ -8,6 +8,10 @@ use App\Vuelo;
 use App\Hospedaje;
 use App\Seguro;
 use App\Administrador;
+use App\Paquete;
+use App\Transporte;
+use App\Habitacion;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\AdministradoresRequest;
 
@@ -50,7 +54,10 @@ class AdministradoresController extends Controller
         $vuelos = Vuelo::all();
         $hospedajes = Hospedaje::all();
         $seguros = Seguro::all();
-        return view('admin',compact('vuelos','hospedajes','seguros'));
+        $paquetes = Paquete::all();
+        $transportes = Transporte::all();
+        $habitaciones = Habitacion::all();
+        return view('admin',compact('vuelos','hospedajes','seguros','paquetes','transportes','habitaciones'));
     }
 
     

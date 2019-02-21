@@ -42,13 +42,13 @@
     @include('includes.admin_seguros')
   </div>
   <div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="paquetes-tab">
-    @include('includes.admin_vuelos')
+    @include('includes.admin_paquetes')
   </div>
   <div class="tab-pane fade" id="autos" role="tabpanel" aria-labelledby="autos-tab">
-    @include('includes.admin_hospedajes')
+    @include('includes.admin_autos')
   </div>
   <div class="tab-pane fade" id="habitaciones" role="tabpanel" aria-labelledby="habitaciones-tab">
-    @include('includes.admin_seguros')
+    @include('includes.admin_habitaciones')
   </div>
   
 </div>
