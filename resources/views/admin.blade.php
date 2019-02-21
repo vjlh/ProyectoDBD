@@ -3,6 +3,7 @@
 
 
 
+
 <section id="intro">
 <style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>
 <section id="about">

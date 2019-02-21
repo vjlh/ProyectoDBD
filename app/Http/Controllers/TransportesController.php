@@ -93,10 +93,31 @@ class TransportesController extends Controller
 
     public function update(TransportesRequest $request, $id)
     {
+
         $transporte = Transporte::find($id);
+        $outcome = $transporte->fill($this->validate($request, [
+            'precio' => 'required',
+            'patente_transporte' => 'required',
+            'disponibilidad' => 'required',
+            'modelo_transporte' => 'required',
+            'num_asientos_transporte' => 'required',
+            'num_puertass_transporte' => 'required',
+            'aire_acondicionado_transporte' => 'required',
+            'puntuacion_transporte' => 'required',
+        ]))->save();
+
+        if ($outcome) {
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+        }
+
+
+
+        /*$transporte = Transporte::find($id);
         $transporte->fill($request->all());
         $transporte->save();
-        return $transporte;
+        return $transporte;*/
     }
 
     public function destroy($id)
