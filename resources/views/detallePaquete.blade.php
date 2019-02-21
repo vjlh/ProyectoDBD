@@ -42,8 +42,20 @@
                         
                     </tbody>
                 </table>
-
-                @guest
+            <?php
+            use App\Vuelo;
+            $vuelos = Vuelo::all();
+            $validos = array();
+            foreach ($vuelos as $vuelo) {
+                if($vuelo->destino_vuelo == $paquete->destino_paquete){
+                    if($vuelo->fecha_vuelo == $paquete->fecha_paquete){
+                        $validos[] = $vuelo;
+                    }
+                }
+            }
+            ?>
+            @if ($validos != NULL)
+            @guest
              <!-- Trigger the modal with a button -->
              <center>
              <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Seleccionar vuelo</button>
@@ -57,7 +69,22 @@
             <a href="/vuelo_paquete/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto">Seleccionar vuelo</a>
             </center>
             @endguest  
+            @elseif($validos == NULL)
+            @guest
+             <!-- Trigger the modal with a button -->
+             <center>
+             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Seleccionar vuelo</button>
+             </center>
 
+            @include('includes.registrarse')
+
+            @else
+            @include('includes.alerta_vuelos_paquete')
+            <center>
+            <a style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalAlertaVueloPaquete">Seleccionar vuelo</a>
+            </center>
+            @endguest  
+            @endif
                 
             </div>       
                 

@@ -40,6 +40,12 @@ Route::get('/inicio', function () {
     return view('home');
 });
 
+Route::get('/hospedaje_paquete/{id_paquete}/{ciudad_origen_vuelo}/{num_pasajeros}', function ($id_paquete, $ciudad_origen_vuelo, $num_pasajeros) {
+    $hospedajes = Hospedaje::all();
+    $paquete = Paquete::find($id_paquete);
+    return View('hospedaje_paquete', ['hospedajes' => $hospedajes, 'paquete' => $paquete, 'ciudad_origen_vuelo' => $ciudad_origen_vuelo, 'num_pasajeros' => $num_pasajeros]);
+});
+
 Route::get('/vuelo_paquete/{id_paquete}', function ($id_paquete) {
     $paquete = Paquete::find($id_paquete);
     $vuelos = Vuelo::all();
