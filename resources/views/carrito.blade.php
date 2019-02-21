@@ -8,8 +8,10 @@
 <style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>
 <section id="about">
 <div class="container" style="margin-top: 10%;">
-<div class="row about-cols">
-       
+
+<div class="row justify-content-center">
+<div class="col-md-12">
+            
             <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
                 <h1><small> CARRITO DE COMPRAS</h1></small>
@@ -68,7 +70,7 @@
                     @method('DELETE')
                     @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started scrollto">Eliminar</button></th>
+                    <th><button type="submit" class="btn btn-get-eliminar">Eliminar</button></th>
                     </center>
                     </form>
 
@@ -89,6 +91,7 @@
         </div>
         
     </div>
+</div>
 </div>
 
 </section><!-- #about -->

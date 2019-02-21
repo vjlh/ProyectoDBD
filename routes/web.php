@@ -149,6 +149,11 @@ Route::get('/detallePaquete', function () {
     return view('detallePaquete');
 });
 
+Route::get('/prueba', function () {
+    return view('prueba');
+});
+
+
 
 
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');

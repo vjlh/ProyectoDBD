@@ -110,11 +110,11 @@
           @endguest
           @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
+                                <a class="nav-link" style="display: -webkit-inline-box;" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
                             </li>
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                                    <a class="nav-link" style="display: -webkit-inline-box;" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                 @endif
                             </li>
                         @else

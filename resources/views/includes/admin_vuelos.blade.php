@@ -46,7 +46,7 @@
                     @method('DELETE')
                     @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started scrollto">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started ">Editar</button></th>
                     </center>
                     </form>
                     
@@ -54,7 +54,7 @@
                     @method('DELETE')
                     @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started scrollto" style ="background: red;">Eliminar</button></th>
+                    <th><button type="submit" class="btn btn-get-eliminar " >Eliminar</button></th>
                     </center>
                     </form>
 
