@@ -4,7 +4,6 @@
             <center>
                 <h1><small> VUELOS</h1></small>
             </center>
-                <div class="card-header">{{ __('') }}</h5></div>
 
                 <div class="card-body">
 
@@ -69,7 +68,7 @@
 
                     </table>
 
-                        </div>
+
                 </div>
 
             </div>
