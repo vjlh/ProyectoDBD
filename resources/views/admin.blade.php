@@ -10,7 +10,11 @@
 <div class="container" style="margin-top: 10%;">
 <div class="row justify-content-center">
 <div class="col-md-12">      
-
+@if (session()->has('success_message'))
+          <div class="alert alert-success">
+              {{ session()->get('success_message')}}
+          </div>
+@endif
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active btn-get-started" id="vuelos-tab" data-toggle="tab" href="#vuelos" role="tab" aria-controls="vuelos" aria-selected="true">Vuelos</a>

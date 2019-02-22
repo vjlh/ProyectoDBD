@@ -23,7 +23,7 @@
                     </tr>
 
                     @foreach($transportes as $transporte)
-
+                    @include('includes.modal_transporte_edit')
                     <tr>
                     
 
@@ -44,7 +44,7 @@
                     <center>
                     <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-update{{$transporte->id}}">Editar</button></th>
                     </center>
-                    @include('includes.modal_transporte_edit')
+                    
                     </form>
                     
                     <form action="/Transporte/{{$transporte->id}}" method="post">

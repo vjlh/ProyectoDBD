@@ -9,7 +9,9 @@
 # General
 --------------------------------------------------------------*/
 
-
+.modal-backdrop {
+  z-index: 0 !important;
+}
 
 body {
   background: #fff;

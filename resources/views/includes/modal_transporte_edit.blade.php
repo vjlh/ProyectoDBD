@@ -1,8 +1,8 @@
 <!-- Modal -->
 
-<form action="/Transporte/{{ $transporte->id }}" method="post">
+<form action="{{ route('transporte.update', $transporte->id)}}" method="post">
 @method('PATCH')
-@csrf
+            @csrf
     <div class="modal fade" id="modal-transporte-update{{$transporte->id}}" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -172,16 +172,17 @@
                         required 
                         autofocus
                         >
-                        @if($transporte->aire_acondicionado_habitacion == 1)
+                        @if($transporte->aire_acondicionado_transporte == 1)
                         <option value="{{ $transporte->aire_acondicionado_transporte }}" selected>
                           Sí
                         </option>
                         @endif
-                        @if($transporte->aire_acondicionado_habitacion == 0)
+                        @if($transporte->aire_acondicionado_transporte == 0)
                         <option value="{{ $transporte->aire_acondicionado_transporte }}" selected>
                           No
                         </option>
                         @endif
+                        </option>
                         <option value="1">
                           Sí
                         </option>
@@ -217,7 +218,10 @@
 
 
                 <div class="modal-footer">
-          <button type="submit" class="btn btn-get-started">Editar</button>
+          
+            
+            <button type="submit" class="btn btn-get-started">Editar</button>
+          
           <button type="button" class="btn btn-get-eliminar" data-dismiss="modal">Cancelar</button>
         </div>
             </div>

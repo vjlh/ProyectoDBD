@@ -93,9 +93,8 @@ class TransportesController extends Controller
         //
     }
 
-    public function update(TransportesRequest $request, $id)
+    public function update(Request $request, $id)
     {
-
         $transporte = Transporte::find($id);
         $outcome = $transporte->fill($this->validate($request, [
             'precio' => 'required',
@@ -103,15 +102,17 @@ class TransportesController extends Controller
             'disponibilidad' => 'required',
             'modelo_transporte' => 'required',
             'num_asientos_transporte' => 'required',
-            'num_puertass_transporte' => 'required',
+            'num_puertas_transporte' => 'required',
             'aire_acondicionado_transporte' => 'required',
-            'puntuacion_transporte' => 'required',
+            // 'puntuacion_transporte' => 'required',
         ]))->save();
 
         if ($outcome) {
+            //dd("aqui");
             return back()->with('success_message','Actualizado con éxito!');
         } else {
             return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
         }
 
 
