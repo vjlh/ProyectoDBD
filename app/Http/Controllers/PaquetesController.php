@@ -126,15 +126,16 @@ class PaquetesController extends Controller
         //Se reserva el hospedaje/automóvil
         if($paquete->tipo_paquete == 'Alojamiento'){
             $hospedaje = Hospedaje::find($id_extra);
-            $habitacionesValidas = array();
-            $habitaciones = Habitacion::All()->where('id_hospedaje', $hospedaje->id);
-            foreach($habitaciones as $habitacion){
+            $habitaciones = Habitacion::All()->where('id_hospedaje', '=', $hospedaje->id);
+            $habitacionesValidas = [];
+            foreach ($habitaciones as $habitacion) {
                 if($habitacion->id_hospedaje == $hospedaje->id){
-                    $habitacionesValidas[] = $habitacion;
+                    array_push($habitacionesValidas, $habitacion);
                 }
             }
             $len = sizeof($habitacionesValidas);
-            $elemento = rand(0,$len);
+            echo "<script> console.log('$len');</script>";
+            $elemento = rand(0,$len-1);
             $habitacion = $habitacionesValidas[$elemento];
             $res_hab = new Habitacion_Reserva;
             $res_hab->id_habitacion = $habitacion->id;

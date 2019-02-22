@@ -97,7 +97,7 @@ class HospedajesController extends Controller
             array_push($vuelos,$vuelo);
         }
         $len = sizeof($vuelos);
-        $element = rand(0,$len);;
+        $element = rand(0,$len-1);
         $fecha_inicio = $paquete->fecha_paquete;
         $fecha_fin = date('Y-m-d', strtotime($paquete->fecha_paquete. ' + ' .$paquete->num_dias. ' days'));
         $hospedajes = Hospedaje::all()->where('ubicacion','=',$paquete->destino_paquete);
