@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vuelo;
+use App\Paquete;
 use Illuminate\Http\Request;
 use App\Http\Requests\VuelosRequest;
 

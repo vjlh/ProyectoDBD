@@ -40,10 +40,10 @@ Route::get('/inicio', function () {
     return view('home');
 });
 
-Route::get('/hospedaje_paquete/{id_paquete}/{ciudad_origen_vuelo}/{num_pasajeros}', function ($id_paquete, $ciudad_origen_vuelo, $num_pasajeros) {
+Route::get('/hospedaje_paquete/{id_paquete}', function ($id_paquete) {
     $hospedajes = Hospedaje::all();
     $paquete = Paquete::find($id_paquete);
-    return View('hospedaje_paquete', ['hospedajes' => $hospedajes, 'paquete' => $paquete, 'ciudad_origen_vuelo' => $ciudad_origen_vuelo, 'num_pasajeros' => $num_pasajeros]);
+    return View('hospedaje_paquete', ['hospedajes' => $hospedajes, 'paquete' => $paquete]);
 });
 
 Route::get('/vuelo_paquete/{id_paquete}', function ($id_paquete) {
@@ -153,8 +153,9 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
-
-
+Route::get('/Paquete/reservarPaquete/{id_paquete}/{id_vuelo}/{id_extra}/{num_pasajeros}', 'PaquetesController@reservarPaquete');
+Route::get('/Hospedaje/obtenerAlojamientoPaquete/{id}', 'HospedajesController@obtenerAlojamientoPaquete');
+Route::get('/Transporte/obtenerAutosPaquete/{id}', 'TransportesController@obtenerAutosPaquete');
 
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');

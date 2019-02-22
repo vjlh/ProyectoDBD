@@ -10,15 +10,16 @@
 <section id="about" >
 <div class="container" style="margin-top: 10%;">
 <div class="row about-cols">
-<?php 
-    $hospedajeValido = array();
+
+<?php
+    $hospedajes_ciudad = array();
     foreach ($hospedajes as $hospedaje) {
-        if($hospedaje->ubicacion == $ciudad_origen_vuelo){
-            $hosepdajeValido[] = $hospedaje;
+        if($hospedaje->ubicacion == $paquete->destino_paquete){
+            $hospedajes_ciudad[] = $hospedaje;
         }
     }
 ?>
-@foreach ($hospedajeValido as $hospedaje)
+@foreach ($hospedajes_ciudad as $hospedaje )
 
 
 <div class="col-md-4 wow ">
@@ -44,7 +45,7 @@
         @endif
         <p>Habitaciones disponibles: {{$hospedaje->cantidad_disponible}}</p>
         <center>
-        <a href="/Habitacion/{{$hospedaje->id}}" class="btn btn-get-started scrollto">Ver Habitaciones</a>
+        <a href="/Habitacion/{{$hospedaje->id}}" class="btn btn-get-started scrollto">Seleccionar</a>
         </center>
     </div>
 </div>

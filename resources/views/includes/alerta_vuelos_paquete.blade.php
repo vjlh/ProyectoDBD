@@ -3,7 +3,7 @@
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
 
         <div class="modal-body" style="color: white;">
-            <p style="color: white;">Lo sentimos!, no existen vuelos para este paquete.</p>
+            <p style="color: white;">Lo sentimos!, no existen vuelos disponibles para este paquete.</p>
         </div>
         <div class="modal-footer">
             <!-- <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button> -->

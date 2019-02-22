@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Hospedaje;
+use App\Paquete;
+use App\Vuelo;
 use Illuminate\Http\Request;
 use App\Http\Requests\HospedajesRequest;
 use Carbon\Carbon;
@@ -29,8 +31,8 @@ class HospedajesController extends Controller
         session()->put('ciudad_hospedaje', $ciudad_hospedaje);
         session()->put('numHabitaciones', $numHabitaciones);
         session()->put('numero_personas', $numero_personas);
-
-        return view('hospedajes',compact('hospedajes'));
+        $paquete = NULL;
+        return view('hospedajes',compact('hospedajes','paquete'));
     }
 
     public function create()
@@ -80,5 +82,26 @@ class HospedajesController extends Controller
         else
             return "El hospedaje con el id ingresado no existe o fue eliminado"; 
 
+    }
+
+    public function obtenerAlojamientoPaquete($id){
+        $paquete = Paquete::find($id);
+        $ciudad_origen = request('ciudad_origen_vuelo');
+        $num_pasajeros = request('num_pasajeros');
+        $vuelosPosibles = Vuelo::all()
+            ->where('origen_vuelo', '=', $ciudad_origen)
+            ->where('destino_vuelo', '=', $paquete->destino_paquete)
+            ->where('fecha_vuelo', '=', $paquete->fecha_paquete);
+        $vuelos = [];
+        foreach ($vuelosPosibles as $vuelo) {
+            array_push($vuelos,$vuelo);
+        }
+        $len = sizeof($vuelos);
+        $element = rand(0,$len);;
+        $fecha_inicio = $paquete->fecha_paquete;
+        $fecha_fin = date('Y-m-d', strtotime($paquete->fecha_paquete. ' + ' .$paquete->num_dias. ' days'));
+        $hospedajes = Hospedaje::all()->where('ubicacion','=',$paquete->destino_paquete);
+        
+        return View('hospedajes',['paquete' => $paquete, 'hospedajes' => $hospedajes, 'vuelo' => $vuelo, 'num_pasajeros' => $num_pasajeros]);
     }
 }

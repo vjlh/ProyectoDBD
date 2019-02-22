@@ -16,7 +16,11 @@
                             <img src="{{asset('assets/img/auto.jpg')}}" alt="" class="img-fluid">
                             <div class="icon"><i class="ion-android-car"></i></div>
                         </div>
+                        @if($paquete != NULL)
+                        <form action="/Paquete/reservarPaquete/{{$paquete->id}}/{{$vuelo->id}}/{{$transporte->id}}/{{$num_pasajeros}}" method="get">
+                        @else
                         <form action="/Transporte_Reserva/{{$transporte->id}}/" method="PATCH">
+                        @endif
                             <h2 class="title"><a>Modelo: {{$transporte->modelo_transporte}}</a></h2>
                             <center><h6 class="subtitle"><a>Puntuación: {{$transporte->puntuacion_transporte}}</a></h6></center>
                             <p>Precio: {{$transporte->precio}}</p>
@@ -29,7 +33,8 @@
                             @if($transporte->aire_acondicionado_transporte == 1)
                                 <p>Aire acondicionado: Sí </p>
                             @endif
-                    
+                            
+
                             @guest
                                 <!-- Trigger the modal with a button -->
                                 <center>

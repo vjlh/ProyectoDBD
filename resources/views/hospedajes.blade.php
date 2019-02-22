@@ -3,15 +3,17 @@
 
 
 
-
+@if($paquete != NULL)
+<form action="/Paquete" method="get">
+@else
 <form action="/Habitacion" method="get">
+@endif
 <section id="intro">
 <style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
 <section id="about" >
 <div class="container" style="margin-top: 10%;">
 <div class="row about-cols">
 @foreach ($hospedajes as $hospedaje)
-
 
 <div class="col-md-4 wow ">
     <div class="about-col">
@@ -35,12 +37,17 @@
             <p>Piscina: Sí </p>
         @endif
         <p>Habitaciones disponibles: {{$hospedaje->cantidad_disponible}}</p>
+        @if($paquete != NULL)
+        <center>
+        <a href="/Paquete/reservarPaquete/{{$paquete->id}}/{{$vuelo->id}}/{{$hospedaje->id}}/{{$num_pasajeros}}" class="btn btn-get-started scrollto">Seleccionar</a>
+        </center>
+        @else
         <center>
         <a href="/Habitacion/{{$hospedaje->id}}" class="btn btn-get-started scrollto">Ver Habitaciones</a>
         </center>
+        @endif
     </div>
 </div>
-
 
         
 @endforeach
