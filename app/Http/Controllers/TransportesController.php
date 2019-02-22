@@ -53,8 +53,8 @@ class TransportesController extends Controller
             array_push($ids_NoDisponibles,$tr3->id_transporte);
         }
 
-        $transportes = Transporte::all()->whereNotIn('id',$ids_NoDisponibles)
-                                        ->where('num_asientos_transporte','=',$num_asientos);
+        $transportes = Transporte::all()->whereNotIn('id',$ids_NoDisponibles);
+                                        
 
         
         /*->where('ubicacion','=',$ciudad_hospedaje) */
