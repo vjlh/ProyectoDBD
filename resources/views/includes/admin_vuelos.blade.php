@@ -3,6 +3,8 @@
             <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
                 <h1><small> VUELOS</h1></small>
+                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-create">Agregar</button></th>
+
             </center>
 
                 <div class="card-body">
