@@ -4,8 +4,12 @@
             <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
                 <h1><small>AUTOMÓVILES</h1></small>
+            
+            
+            <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-create">Agregar</button></th>
+            @include('includes.modal_transporte_create')
             </center>
-
+            
                 <div class="card-body">
 
                     <table class="table table-hover table-striped">
@@ -71,4 +75,4 @@
 
             </div>
         </div>
-            
+

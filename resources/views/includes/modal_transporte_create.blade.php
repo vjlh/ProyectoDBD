@@ -1,13 +1,13 @@
 <!-- Modal -->
 
-<form action="{{ route('Transporte.update', $transporte->id)}}" method="post">
-@method('PATCH')
+<form action="{{ route('Transporte.store')}}" method="post">
+@method('POST')
             @csrf
-    <div class="modal fade" id="modal-transporte-update{{$transporte->id}}" role="dialog">
+  <div class="modal fade" id="modal-transporte-create" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5  style="color: black;" class="modal-title" id="exampleModalCenterTitle">Editando Vehículo Nº: {{$transporte->id}}</h5>
+          <h5  style="color: black;" class="modal-title" id="exampleModalCenterTitle">Agregando Vehículo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -29,7 +29,6 @@
                         type="number"
                         min="0"
                         class="form-control"  
-                        value="{{ $transporte->precio }}" 
                         required 
                         autofocus
                         >
@@ -49,7 +48,6 @@
                         name="patente_transporte" 
                         type="number"
                         class="form-control"  
-                        value="{{ $transporte->patente_transporte }}" 
                         required 
                         autofocus
                         >
@@ -70,17 +68,6 @@
                         required 
                         autofocus
                         >
-                        @if($transporte->disponibilidad == 1)
-                        <option value="{{ $transporte->disponibilidad }}" selected>
-                          Sí
-                        </option>
-                        @endif
-                        @if($transporte->disponibilidad == 0)
-                        <option value="{{ $transporte->disponibilidad }}" selected>
-                          No
-                        </option>
-                        @endif
-                        </option>
                         <option value="1">
                           Sí
                         </option>
@@ -104,7 +91,6 @@
                         name="modelo_transporte" 
                         type="text"
                         class="form-control"  
-                        value="{{ $transporte->modelo_transporte }}" 
                         required 
                         autofocus
                         >
@@ -125,7 +111,6 @@
                         name="num_asientos_transporte" 
                         type="number" 
                         class="form-control"  
-                        value="{{ $transporte->num_asientos_transporte }}"
                         min="1"
                         max="8"
                         required 
@@ -148,7 +133,6 @@
                         name="num_puertas_transporte" 
                         type="number" 
                         class="form-control"  
-                        value="{{ $transporte->num_puertas_transporte }}"
                         min="1"
                         max="6"
                         required 
@@ -172,17 +156,6 @@
                         required 
                         autofocus
                         >
-                        @if($transporte->aire_acondicionado_transporte == 1)
-                        <option value="{{ $transporte->aire_acondicionado_transporte }}" selected>
-                          Sí
-                        </option>
-                        @endif
-                        @if($transporte->aire_acondicionado_transporte == 0)
-                        <option value="{{ $transporte->aire_acondicionado_transporte }}" selected>
-                          No
-                        </option>
-                        @endif
-                        </option>
                         <option value="1">
                           Sí
                         </option>
@@ -207,7 +180,6 @@
                         name="puntuacion_transporte" 
                         type="number" 
                         class="form-control"  
-                        value="{{ $transporte->puntuacion_transporte }}"
                         min="1"
                         max="6"
                         required 
@@ -220,11 +192,11 @@
                 <div class="modal-footer">
           
             
-            <button type="submit" class="btn btn-get-started">Editar</button>
+            <button type="submit" class="btn btn-get-started">Agregar</button>
           
           <button type="button" class="btn btn-get-eliminar" data-dismiss="modal">Cancelar</button>
         </div>
             </div>
     </div>
-    </div>
+  </div>
 </form>

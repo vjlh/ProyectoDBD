@@ -72,11 +72,14 @@ class TransportesController extends Controller
         //
     }
 
-    public function store(TransportesRequest $request)
+    public function store(Request $request)
     {
         $transporte = Transporte::create($request->all());
         $transporte->save();
-        return $transporte;
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
+
     }
 
     public function show($id)
