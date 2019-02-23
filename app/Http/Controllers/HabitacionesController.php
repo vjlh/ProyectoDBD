@@ -13,28 +13,7 @@ class HabitacionesController extends Controller
 
     public function index()
     { 
-        $habitaciones_reservadas1 =  DB::table('habitaciones_reservas')->where('fecha_fin','<',$fecha_inicio)->select('id_habitacion')->get();                        
-        $habitaciones_reservadas2 =  DB::table('habitaciones_reservas')->where('fecha_inicio','>',$fecha_fin)->select('id_habitacion')->get();                        
-        
-        $ids = [];
-        $ids_NoDisponibles =[];
-
-        foreach($habitaciones_reservadas1 as $tr1){
-            array_push($ids,$tr1->id_habitacion);
-        }
-        foreach($habitaciones_reservadas2 as $tr2){
-            array_push($ids,$tr2->id_habitacion);
-        }
-
-        $habitaciones_reservadas3 = DB::table('habitaciones_reservas')->whereNotIn('id_habitacion',$ids)->select('id_habitacion')->get();
-        foreach($habitaciones_reservadas3 as $tr3){
-            array_push($ids_NoDisponibles,$tr3->id_habitacion);
-        }
-
-        $habitaciones = Habitacion::all()->whereNotIn('id',$ids_NoDisponibles)
-                                        ->where('id_hospedaje', '=' , request("id_hospedaje"));
-        
-        return view('habitaciones',compact('habitaciones'));
+        //
     }
 
     public function create()
@@ -60,11 +39,33 @@ class HabitacionesController extends Controller
     public function show($id)
     {
         $hospedaje = Hospedaje::find($id);
-        $habitaciones = Habitacion::all()->where('id_hospedaje', '=' , $id)
-                                         ->where('disponibilidad', '=' , 1);
-        session()->put('id_hospedaje', $id);
+        $fecha_inicio = session()->get('fecha_ida');
+        $fecha_fin = session()->get('fecha_vuelta');
+
+        $habitaciones_reservadas1 =  DB::table('habitaciones_reservas')->where('fecha_fin','<',$fecha_inicio)->select('id_habitacion')->get();                        
+        $habitaciones_reservadas2 =  DB::table('habitaciones_reservas')->where('fecha_inicio','>',$fecha_fin)->select('id_habitacion')->get();                        
+        
+        $ids = [];
+        $ids_NoDisponibles =[];
+
+        foreach($habitaciones_reservadas1 as $tr1){
+            array_push($ids,$tr1->id_habitacion);
+        }
+        foreach($habitaciones_reservadas2 as $tr2){
+            array_push($ids,$tr2->id_habitacion);
+        }
+
+        $habitaciones_reservadas3 = DB::table('habitaciones_reservas')->whereNotIn('id_habitacion',$ids)->select('id_habitacion')->get();
+        foreach($habitaciones_reservadas3 as $tr3){
+            array_push($ids_NoDisponibles,$tr3->id_habitacion);
+        }
+
+        $habitaciones = Habitacion::all()->whereNotIn('id',$ids_NoDisponibles)
+                                        ->where('id_hospedaje', '=' , $id);
+        
         session()->put('hospedaje', $hospedaje);
-        return view('habitaciones',compact('habitaciones'));
+
+        return view('reservar_habitaciones',compact('habitaciones'));
                  
     }
 

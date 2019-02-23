@@ -32,7 +32,7 @@ class HospedajesController extends Controller
         session()->put('numHabitaciones', $numHabitaciones);
         session()->put('numero_personas', $numero_personas);
         $paquete = NULL;
-        return view('hospedajes',compact('hospedajes','paquete'));
+        return view('seleccion_hospedajes',compact('hospedajes','paquete'));
     }
 
     public function create()

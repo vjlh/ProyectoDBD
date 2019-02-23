@@ -4,6 +4,10 @@
 
 <?php
 $dias = session()->get('diasDiferencia');
+$fecha_ida = session()->get('fecha_ida');
+$fecha_vuelta = session()->get('fecha_vuelta');
+$costo_final = session()->get('costo_final');
+$hospedaje = session()->get('hospedaje');
 ?>
 
   <!--==========================
@@ -20,7 +24,7 @@ $dias = session()->get('diasDiferencia');
                     <tbody>
                         <tr>
                             <th>Nombre Hotel</th>
-                            <td>{{$habitacion->nombre_hospedaje}}</td>
+                            <td>{{$hospedaje->nombre_hospedaje}}</td>
                         </tr>
                         <tr>
                             <th>Tipo de habitación:</th>
@@ -35,13 +39,13 @@ $dias = session()->get('diasDiferencia');
                             <td>{{$dias}}</td>
                         </tr>
                             <th>Fecha inicio</th>
-                            <td>{{session()->get('fecha_ida')}}</td>
+                            <td>{{$fecha_ida}}</td>
                         </tr>
                             <th>Fecha termino</th>
-                            <td>{{session()->get('fecha_vuelta')}}</td>
+                            <td>{{$fecha_vuelta}}</td>
                         </tr>
                             <th>Costo total</th>
-                            <td>${{session()->get('costo_final')}}</td>
+                            <td>${{$costo_final}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -54,7 +54,6 @@ class TransportesController extends Controller
         }
 
         $transportes = Transporte::all()->whereNotIn('id',$ids_NoDisponibles);
-                                        
 
         
         /*->where('ubicacion','=',$ciudad_hospedaje) */

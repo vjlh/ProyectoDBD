@@ -77,7 +77,7 @@ Route::get('/paquetes/{tipo}', function ($tipo) {
 
 Route::get('/seguros', function () {
     $seguros = Seguro::all();
-    return view('seguros')->with('seguros',$seguros);
+    return view('reservar_seguro',compact('seguros'));
 });
 
 Route::get('/promociones', function () {
@@ -115,6 +115,9 @@ Route::get('/buscar_autos', function () {
     $transportes = Transporte::all();
     return View('buscar_autos', ['ciudades' => $ciudades, 'transportes' => $transportes]);
 });
+Route::get('/buscar_seguros', function () {
+    return View('buscar_seguro');
+});
  
 Route::get('/buscar_vuelos', function () {
     $ciudades = Ciudad::all();
@@ -134,7 +137,10 @@ Route::get('/hospedajes', function () {
 
 Route::get('/reservaHospedaje', function () {
     $ciudades = Ciudad::all();
-    return View('reservaHospedaje')->with('ciudades', $ciudades);
+    return View('reservaHospedaje',compact('ciudades'));
+});
+Route::get('/reservar_seguro', function () {
+    return View('reservar_seguro');
 });
 
 Route::get('/detallesReservaTransporte', function () {
