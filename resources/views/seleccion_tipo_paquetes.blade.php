@@ -47,6 +47,22 @@
               </center>
             </div>
           </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="about-col">
+              <div class="img">
+                <img src="{{asset('assets/img/auto.jpg')}}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-android-car"></i></div>
+              </div>
+              <h2 class="title"><a href="/paquetes/All">Vuelo + Alojamiento + Automóvil</a></h2>
+              <p>
+                Aquí puedes encontrar todos los paquetes que involucran el vuelo hacia un maravilloso destino y también un vehículo que te permitirá desplazarte a donde sea que desees ir.
+              </p>
+              <center>
+              <a  href="/paquetes/All" class="btn btn-get-started scrollto">Seleccionar</a>
+              </center>
+            </div>
+          </div>
             </div>
         </div>
     </div>

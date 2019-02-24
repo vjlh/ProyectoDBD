@@ -18,9 +18,10 @@ use App\Http\Requests\PaquetesRequest;
 class PaquetesController extends Controller
 {
     //Probado
-    public function index()
+    public function index($tipo)
     {
-        return Paquete::all();
+        $paquetes = Paquete::All()->where('tipo_paquete','=', $tipo);
+        return $paquetes;
     }
 
     public function create()
@@ -91,52 +92,41 @@ class PaquetesController extends Controller
 
     }
 
-    public function reservarPaquete($id_paquete, $id_vuelo, $id_extra, $num_pasajeros){
+    public function reservarPaquete($id_paquete){
         $paquete = Paquete::find($id_paquete);
-        $vuelo = Vuelo::find($id_vuelo);
+        $num_pasajeros = request('num_pasajeros');
         if($paquete->tipo_paquete == 'Alojamiento'){
-            $hospedaje = Hospedaje::find($id_extra);
+            $hospedaje = Hospedaje::find($paquete->id_hospedaje);
+            $habitacion = Habitacion::find($paquete->id_habitacion);
         }
         elseif($paquete->tipo_paquete == 'Automóvil'){
             $transporte = Transporte::find($id_extra);
         }
+        elseif($paquete->tipo_paquete == 'All'){
+            $hospedaje = Hospedaje::find($paquete->id_hospedaje);
+            $habitacion = Habitacion::find($paquete->id_habitacion);
+            $transporte = Transporte::find($id_extra);
+        }
         //Se reserva el paquete
         $reserva = new Reserva;
-        $reserva->monto_total_reserva=$paquete->precio_paquete*$num_pasajeros;
+        $reserva->monto_total_reserva= $paquete->precio_paquete * $num_pasajeros;
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
         $reserva->id_promocion=null;
         $reserva->id_paquete=$paquete->id;
-        if($paquete->tipo_paquete == 'Alojamiento'){
-            $reserva->hospedaje=true;
-        }else{
-            $reserva->hospedaje=false;
-        }
-        if($paquete->tipo_paquete == 'Automóvil'){
-            $reserva->transporte=true;
-        }else{
-            $reserva->transporte=false;
-        }
         $reserva->vuelo=true;
+        $reserva->hospedaje=false;
+        $reserva->transporte=false;
+        if($paquete->tipo_paquete == 'Alojamiento'){$reserva->hospedaje=true;}
+        if($paquete->tipo_paquete == 'Automóvil'){$reserva->transporte=true;}
+        if($paquete->tipo_paquete == 'All'){
+            $reserva->hospedaje=true;
+            $reserva->transporte=true;
+        }
         $reserva->save();   
-
-        //Falta reservar los asientos del vuelo
-
         //Se reserva el hospedaje/automóvil
         if($paquete->tipo_paquete == 'Alojamiento'){
-            $hospedaje = Hospedaje::find($id_extra);
-            $habitaciones = Habitacion::All()->where('id_hospedaje', '=', $hospedaje->id);
-            $habitacionesValidas = [];
-            foreach ($habitaciones as $habitacion) {
-                if($habitacion->id_hospedaje == $hospedaje->id){
-                    array_push($habitacionesValidas, $habitacion);
-                }
-            }
-            $len = sizeof($habitacionesValidas);
-            echo "<script> console.log('$len');</script>";
-            $elemento = rand(0,$len-1);
-            $habitacion = $habitacionesValidas[$elemento];
             $res_hab = new Habitacion_Reserva;
             $res_hab->id_habitacion = $habitacion->id;
             $res_hab->id_reserva = $reserva->id;
@@ -146,7 +136,26 @@ class PaquetesController extends Controller
             $res_hab->save();
         }
         elseif($paquete->tipo_paquete == 'Automóvil'){
-            $transporte = Transporte::find($id_extra);
+            $res_trans = new Transporte_Reserva;
+            $res_trans->id_transporte = $transporte->id;
+            $res_trans->id_reserva = $reserva->id;
+            $res_trans->fecha_inicio = $paquete->fecha_paquete;
+            $fecha_fin = date('Y-m-d',strtotime($paquete->fecha_paquete.' + '.$paquete->num_dias.' days'));
+            $res_trans->fecha_fin = $fecha_fin;
+            $res_trans->save();
+
+            $transporte->disponibilidad = false;
+            $transporte->save();
+        }
+        elseif($paquete->tipo_paquete == 'All'){
+            $res_hab = new Habitacion_Reserva;
+            $res_hab->id_habitacion = $habitacion->id;
+            $res_hab->id_reserva = $reserva->id;
+            $res_hab->fecha_inicio = $paquete->fecha_paquete;
+            $fecha_fin = date('Y-m-d',strtotime($paquete->fecha_paquete.' + '.$paquete->num_dias.' days'));
+            $res_hab->fecha_fin =$fecha_fin;
+            $res_hab->save();
+
             $res_trans = new Transporte_Reserva;
             $res_trans->id_transporte = $transporte->id;
             $res_trans->id_reserva = $reserva->id;

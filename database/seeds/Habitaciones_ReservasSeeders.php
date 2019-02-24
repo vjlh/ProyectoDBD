@@ -12,6 +12,6 @@ class Habitaciones_ReservasSeeders extends Seeder
      */
     public function run()
     {
-       factory(Habitacion_Reserva::class, 50)->create();
+       factory(Habitacion_Reserva::class, 100)->create();
     }
 }

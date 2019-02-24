@@ -29,7 +29,12 @@ class PaquetesRequest extends FormRequest
             'precio_paquete' => 'required|integer', 
             'destino_paquete' => 'required|string',
             'tipo_paquete' => 'required|string',
-            'fecha_paquete' => 'required|date'
+            'fecha_paquete' => 'required|date',
+            'id_vuelo_ida' => 'required|numeric',
+            'id_vuelo_vuelta' => 'required|numeric',
+            'id_hospedaje' => 'required|numeric',
+            'id_habitacion' => 'required|numeric',
+            'id_transporte' => 'required|numeric',
         ];
     }
 }

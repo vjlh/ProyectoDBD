@@ -9,7 +9,7 @@ class Transporte extends Model
 	protected $table = 'transportes';
     protected $fillable = [
         'patente_transporte', 'modelo_transporte', 'num_asientos_transporte', 'num_puertas_transporte',
-        'aire_acondicionado_transporte', 'puntuacion_transporte', 'disponibilidad','precio'
+        'aire_acondicionado_transporte', 'puntuacion_transporte', 'disponibilidad','precio', 'ubicacion'
     ];
 
     public function reservas(){

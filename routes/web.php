@@ -40,39 +40,13 @@ Route::get('/inicio', function () {
     return view('home');
 });
 
-Route::get('/hospedaje_paquete/{id_paquete}', function ($id_paquete) {
-    $hospedajes = Hospedaje::all();
-    $paquete = Paquete::find($id_paquete);
-    return View('hospedaje_paquete', ['hospedajes' => $hospedajes, 'paquete' => $paquete]);
-});
-
-Route::get('/vuelo_paquete/{id_paquete}', function ($id_paquete) {
-    $paquete = Paquete::find($id_paquete);
-    $vuelos = Vuelo::all();
-    $vuelosValidos = array();
-    foreach ($vuelos as $vuelo) {
-        if($vuelo->destino_vuelo == $paquete->destino_paquete){
-            if($vuelo->fecha_vuelo == $paquete->fecha_paquete){
-                $vuelosValidos[] = $vuelo;
-            }
-        }
-    }
-    return view('vuelo_paquete', ['paquete' => $paquete, 'vuelos' => $vuelosValidos]);
-});
-
 Route::get('/seleccion_tipo_paquetes/', function () {
     return View('seleccion_tipo_paquetes');
 });
 
 Route::get('/paquetes/{tipo}', function ($tipo) {
-    $paquetes = Paquete::all();
-    $paquetesValidos = array();
-    foreach($paquetes as $paquete){
-        if($paquete->tipo_paquete == $tipo){
-            $paquetesValidos[] = $paquete;
-        }
-    }
-    return view('paquetes')->with('paquetes',$paquetesValidos);
+    $paquetes = Paquete::all()->where('tipo_paquete','=',$tipo);
+    return view('paquetes')->with('paquetes',$paquetes);
 });
 
 Route::get('/seguros', function () {
@@ -159,10 +133,8 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
-Route::get('/Paquete/reservarPaquete/{id_paquete}/{id_vuelo}/{id_extra}/{num_pasajeros}', 'PaquetesController@reservarPaquete');
-Route::get('/Hospedaje/obtenerAlojamientoPaquete/{id}', 'HospedajesController@obtenerAlojamientoPaquete');
-Route::get('/Transporte/obtenerAutosPaquete/{id}', 'TransportesController@obtenerAutosPaquete');
 
+Route::get('/Paquete/reservarPaquete/{id_paquete}', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');
 Route::resource('/Administrador','AdministradoresController');

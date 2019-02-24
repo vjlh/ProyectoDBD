@@ -12,6 +12,6 @@ class PaquetesSeeders extends Seeder
      */
     public function run()
     {
-        factory(Paquete::class, 20)->create();
+        factory(Paquete::class, 50)->create();
     }
 }

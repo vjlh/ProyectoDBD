@@ -1,7 +1,6 @@
 @extends('layouts.base')
 @section('content')
 
-
 <form action="/Paquete" method="get">
 <section id="intro">
 <style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>

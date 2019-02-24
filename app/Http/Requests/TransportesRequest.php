@@ -32,6 +32,7 @@ class TransportesRequest extends FormRequest
             'puntuacion_transporte' => 'required|integer|min:1|max:6', 
             'fecha_inicio' => 'required|date', 
             'fecha_fin' => 'required|date',
+            'ubicacion' => 'required|string',
         ];
     }
 }

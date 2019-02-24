@@ -23,6 +23,7 @@ class CreateTransportesTable extends Migration
             $table->integer('num_puertas_transporte');
             $table->boolean('aire_acondicionado_transporte');
             $table->integer('puntuacion_transporte');
+            $table->string('ubicacion');
             $table->timestamps();
             
         });

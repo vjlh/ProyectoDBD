@@ -1,11 +1,22 @@
 @extends('layouts.base')
 @section('content')
-
-
+<?php
+use App\Hospedaje;
+use App\Habitacion;
+use App\Transporte;
+if($paquete->tipo_paquete == 'Alojamiento'){
+    $tipo = 'Alojamiento';
+} elseif($paquete->tipo_paquete == 'Automóvil'){
+    $tipo = 'Automóvil';
+} elseif($paquete->tipo_paquete == 'All'){
+    $tipo = 'Alojamiento + Automóvil';
+}
+?>
 
  <!--==========================
     Intro Section
   ============================-->
+  <form action="Paquete/reservarPaquete/" method="get">
   <section id="intro">
   <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
     <div class="row justify-content-center">
@@ -20,6 +31,10 @@
                             <td>{{$paquete->destino_paquete}}</td>
                         </tr>
                         <tr>
+                            <th>Paquete incluye:</th>
+                            <td>{{$tipo}}</td>
+                        </tr>
+                        <tr>
                             <th>Número de días</th>
                             <td>{{$paquete->num_dias}}</td>
                         </tr>
@@ -28,37 +43,75 @@
                             <td>{{$paquete->num_noches}}</td>
                         </tr>
                         <tr>
-                            <th>Paquete incluye:</th>
-                            <td>{{$paquete->tipo_paquete}}</td>
-                        </tr>
-                        <tr>
                             <th>Fecha de partida:</th>
                             <td>{{$paquete->fecha_paquete}}</td>
                         </tr>
                         <tr>
                             <th>Precio del paquete:</th>
-                            <td>${{$paquete->precio_paquete}}</td>
+                            <td>${{$paquete->precio_paquete}}/Pers.</td>
                         </tr>
-                        
+                        <tr>
+                            <th>Datos de los vuelos</th>
+                            <td>
+                                @include('includes.datos_vuelo_paquete')
+                                <a class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalDatosVueloPaquete">Vuelo</a>
+                            </td>
+                        </tr>
+                        @if($paquete->tipo_paquete == 'Alojamiento')
+                        <tr>
+                            <th>Datos del alojamiento</th>
+                            <td>
+                                @include('includes.datos_hospedaje_paquete')
+                                <a class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalDatosHospedajePaquete">Hospedaje</a>
+                            </td>
+                        </tr>
+                        @elseif($paquete->tipo_paquete == 'Automóvil')
+                        <tr>
+                            <th>Datos del transporte</th>
+                            <td>
+                                @include('includes.datos_transporte_paquete')
+                                <a class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalDatosTransportePaquete">Transporte</a>
+                            </td>
+                        </tr>
+                        @elseif($paquete->tipo_paquete == 'All')
+                        <tr>
+                           <th>Datos del alojamiento</th>
+                            <td>
+                                @include('includes.datos_hospedaje_paquete')
+                                <a class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalDatosHospedajePaquete">Hospedaje</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Datos del transporte</th>
+                            <td>
+                                @include('includes.datos_transporte_paquete')
+                                <a class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalDatosTransportePaquete">Transporte</a>
+                            </td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <th>Ingrese el número de pasajeros</th>
+                            <td>
+                                <select class="form-control selectpicker custom-select" name="num_pasajeros">
+                                  <option selected disable>Número de pasajeros</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                </select>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-            <?php
-            use App\Vuelo;
-            $vuelos = Vuelo::all();
-            $validos = array();
-            foreach ($vuelos as $vuelo) {
-                if($vuelo->destino_vuelo == $paquete->destino_paquete){
-                    if($vuelo->fecha_vuelo == $paquete->fecha_paquete){
-                        $validos[] = $vuelo;
-                    }
-                }
-            }
-            ?>
-            @if ($validos != NULL)
             @guest
              <!-- Trigger the modal with a button -->
              <center>
-             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Seleccionar vuelo</button>
+             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Reservar</button>
              </center>
 
             @include('includes.registrarse')
@@ -66,35 +119,15 @@
             @else
             
             <center>
-            <a href="/vuelo_paquete/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto">Seleccionar vuelo</a>
+            <a href="/Paquete/reservarPaquete/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto">Reservar</a>
             </center>
             @endguest  
-            @elseif($validos == NULL)
-            @guest
-             <!-- Trigger the modal with a button -->
-             <center>
-             <button type="button" style="margin-top:40px;text-align:center;height:60px;width:200px" class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Seleccionar vuelo</button>
-             </center>
-
-            @include('includes.registrarse')
-
-            @else
-            @include('includes.alerta_vuelos_paquete')
-            <center>
-            <a style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalAlertaVueloPaquete">Seleccionar vuelo</a>
-            </center>
-            @endguest  
-            @endif
-                
             </div>       
-                
-                </div>
             </div>
-        </div>    
+        </div>
     </div>
-
-    </div>
-
+</section>
+</form>
 <!--/Paquete/Reservar/{{$paquete->id}}-->
 
 
