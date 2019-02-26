@@ -134,7 +134,7 @@ Route::get('/prueba', function () {
 });
 
 
-Route::get('/Paquete/reservarPaquete/{id_paquete}', 'PaquetesController@reservarPaquete');
+Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');
 Route::resource('/Administrador','AdministradoresController');

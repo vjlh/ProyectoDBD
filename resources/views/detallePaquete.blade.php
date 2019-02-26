@@ -1,5 +1,10 @@
 @extends('layouts.base')
 @section('content')
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 <?php
 use App\Hospedaje;
 use App\Habitacion;
@@ -12,11 +17,34 @@ if($paquete->tipo_paquete == 'Alojamiento'){
     $tipo = 'Alojamiento + Automóvil';
 }
 ?>
+@if (session('status'))
+    <div class="modal fade" id="ModalAlertaVueloPaquete" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
 
+        <div class="modal-body" id="modal-body" style="color: white;">
+            <p style="color: white;">Lo sentimos!, no existen vuelos disponibles para este paquete.</p>
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button> -->
+            <a style="margin: auto;"class="btn btn-success " data-dismiss="modal">Cerrar</a>
+
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  // Show the Modal on load
+  $("#ModalAlertaVueloPaquete").modal("show");
+});
+</script>
+@endif
  <!--==========================
     Intro Section
   ============================-->
-  <form action="Paquete/reservarPaquete/" method="get">
+  <form action="reservarPaquete/" method="get">
   <section id="intro">
   <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
     <div class="row justify-content-center">
@@ -92,7 +120,7 @@ if($paquete->tipo_paquete == 'Alojamiento'){
                         <tr>
                             <th>Ingrese el número de pasajeros</th>
                             <td>
-                                <select class="form-control selectpicker custom-select" name="num_pasajeros">
+                                <select class="form-control selectpicker custom-select" id="num_pasajeros" name="num_pasajeros">
                                   <option selected disable>Número de pasajeros</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
@@ -108,6 +136,7 @@ if($paquete->tipo_paquete == 'Alojamiento'){
                         </tr>
                     </tbody>
                 </table>
+            <input type="hidden" value="{{$paquete->id}}" name="paquete" id="paquete">
             @guest
              <!-- Trigger the modal with a button -->
              <center>
@@ -119,7 +148,7 @@ if($paquete->tipo_paquete == 'Alojamiento'){
             @else
             
             <center>
-            <a href="/Paquete/reservarPaquete/{{$paquete->id}}" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto">Reservar</a>
+            <button type="submit" style="margin-top:40px;text-align:center;height:60px;width:200px"class="btn btn-success btn-get-started scrollto">Reservar</button>
             </center>
             @endguest  
             </div>       

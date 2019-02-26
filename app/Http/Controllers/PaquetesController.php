@@ -92,9 +92,13 @@ class PaquetesController extends Controller
 
     }
 
-    public function reservarPaquete($id_paquete){
-        $paquete = Paquete::find($id_paquete);
+    public function reservarPaquete(){
+        $paquete = Paquete::find(request('paquete'));
         $num_pasajeros = request('num_pasajeros');
+        if($num_pasajeros == NULL){
+            $num_pasajeros = -1;
+        }
+        echo "<script> console.log('num_pasajeros = $num_pasajeros');</script>";
         if($paquete->tipo_paquete == 'Alojamiento'){
             $hospedaje = Hospedaje::find($paquete->id_hospedaje);
             $habitacion = Habitacion::find($paquete->id_habitacion);
@@ -124,8 +128,50 @@ class PaquetesController extends Controller
             $reserva->hospedaje=true;
             $reserva->transporte=true;
         }
-        $reserva->save();   
-        //Se reserva el hospedaje/automóvil
+        $reserva->save();
+
+        //Se reservan los asientos para el vuelo de ida
+        $vuelo_ida = Vuelo::find($paquete->id_vuelo_ida);
+        $asientos_ida = Asiento::All()->where('id_avion','=', $vuelo_ida->id_avion)
+                                      ->where('cabina','=', 'Salon-Cama')
+                                      ->where('disponibilidad', '=', 1);
+        $len_ida = sizeof($asientos_ida);
+        
+        echo "<script> console.log('len_ida = $len_ida');</script>";
+        if($len_ida <= $num_pasajeros){
+            $i = 0;
+            while($i<=$num_pasajeros){
+                $asiento = array_rand($asientos_ida);
+                if($asiento->disponibilidad == 1){
+                    $asiento->disponibilidad = 0;
+                    $i++;
+                }
+            }
+        } else {
+            return redirect()->action('PaquetesController@show',['id' => $paquete->id])
+            ->with('status','No quedan suficientes asientos disponibles en el vuelo de ida para el paquete que solicitó.');
+        }
+
+        //Se reservan los asientos para el vuelo de regreso
+        $vuelo_vuelta = Vuelo::find($paquete->id_vuelo_vuelta);
+        $asientos_vuelta = Asiento::All()->where('id_avion','=', $vuelo_vuelta->id_avion)
+                                         ->where('cabina','=', 'Salon-Cama')
+                                         ->where('disponibilidad','=', 1);
+        $len_vuelta = sizeof($asientos_vuelta);
+        if($len_vuelta <= $num_pasajeros){
+            $i = 0;
+            while($i<=$num_pasajeros){
+                $asiento = array_rand($asientos_vuelta);
+                if($asiento->disponibilidad == 1){
+                    $asiento->disponibilidad = 0;
+                    $i++;
+                }
+            }
+        } else {
+            return redirect()->action('PaquetesController@show',['id' => $paquete->id])
+            ->with('status','No quedan suficientes asientos disponibles en el vuelo de ida para el paquete que solicitó.');
+        }
+        //Se reserva el hospedaje
         if($paquete->tipo_paquete == 'Alojamiento'){
             $res_hab = new Habitacion_Reserva;
             $res_hab->id_habitacion = $habitacion->id;
@@ -135,6 +181,7 @@ class PaquetesController extends Controller
             $res_hab->fecha_fin =$fecha_fin;
             $res_hab->save();
         }
+        //Se reserva el automóvil
         elseif($paquete->tipo_paquete == 'Automóvil'){
             $res_trans = new Transporte_Reserva;
             $res_trans->id_transporte = $transporte->id;
@@ -147,6 +194,7 @@ class PaquetesController extends Controller
             $transporte->disponibilidad = false;
             $transporte->save();
         }
+        //Se reserva el hospedaje y automóvil
         elseif($paquete->tipo_paquete == 'All'){
             $res_hab = new Habitacion_Reserva;
             $res_hab->id_habitacion = $habitacion->id;
