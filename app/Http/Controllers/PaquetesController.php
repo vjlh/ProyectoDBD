@@ -85,10 +85,10 @@ class PaquetesController extends Controller
         {
             $paquete->delete();
             Paquete::destroy($id);
-            return "Se ha eliminado el paquete de la DB";
+            return back()->with('success_message','Se ha eliminado el paquete con éxito!');
         }
         else
-            return "El paquete con el id ingresado no existe o fue eliminado"; 
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
 
     }
 

@@ -96,9 +96,10 @@ class HabitacionesController extends Controller
         {
             $habitacion->delete();
             Habitacion::destroy($id);
-            return "Se ha eliminado la habitacion de la DB";
+            return back()->with('success_message','Se ha eliminado la habitación con éxito!');
         }
         else
-            return "La habitacion con el id ingresado no existe o fue eliminado"; 
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+
     }
 }

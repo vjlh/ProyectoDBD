@@ -9,7 +9,7 @@
 <section id="about">
 <div class="container" style="margin-top: 10%;">
 <div class="row justify-content-center">
-<div class="col-md-12">      
+<div class="col-md-14">      
 @if (session()->has('success_message'))
           <div class="alert alert-success">
               {{ session()->get('success_message')}}
