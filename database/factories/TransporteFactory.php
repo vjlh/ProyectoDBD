@@ -1,8 +1,10 @@
 <?php
 
+
 use Faker\Generator as Faker;
 
 $factory->define(App\Transporte::class, function (Faker $faker) {
+    $city = DB::table('ciudades')->select('nombre_ciudad')->get();
     $ciudades = array('Florencia','Pekín','Budapest','Bombay','Berlín','Orlando','Nueva Delhi',
     'Johannesburgo','Moscú','Venecia','Los Ángeles','Viena','Ámsterdam','Barcelona',
     'Tokio','Milán','La Meca','Las Vegas','Praga','Shanghái','Pattaya','Miami',
@@ -21,7 +23,7 @@ $factory->define(App\Transporte::class, function (Faker $faker) {
         'aire_acondicionado_transporte' => $faker->boolean,
         'disponibilidad' => $faker->boolean,
         'puntuacion_transporte' => $faker->numberBetween(1,6),
-        'ubicacion' => $faker->randomElement($ciudades),
+        'ubicacion' => $city->random()->nombre_ciudad,
 
     ];
 });

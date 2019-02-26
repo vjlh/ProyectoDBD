@@ -21,6 +21,7 @@
                     <th><h5 class="card-title">Modelo</h5></th>
                     <th><h5 class="card-title">Nº de asientos</h5></th>
                     <th><h5 class="card-title">Nº de puertas</h5></th>
+                    <th><h5 class="card-title">Ubicación</h5></th>
                     <th><h5 class="card-title">Editar</h5></th>
                     <th><h5 class="card-title">Eliminar</h5></th>
 
@@ -37,6 +38,7 @@
                     <th><h5 class="card-title">{{$transporte->modelo_transporte}}</h5></th>
                     <th><h5 class="card-title">{{$transporte->num_asientos_transporte}}</h5></th>
                     <th><h5 class="card-title">{{$transporte->num_puertas_transporte}}</h5></th>
+                    <th><h5 class="card-title">{{$transporte->ubicacion}}</h5></th>
 
 
                     

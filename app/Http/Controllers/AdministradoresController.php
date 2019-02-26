@@ -11,6 +11,7 @@ use App\Administrador;
 use App\Paquete;
 use App\Transporte;
 use App\Habitacion;
+use App\Ciudad;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AdministradoresRequest;
@@ -57,7 +58,8 @@ class AdministradoresController extends Controller
         $paquetes = Paquete::all();
         $transportes = Transporte::all();
         $habitaciones = Habitacion::all();
-        return view('admin',compact('vuelos','hospedajes','seguros','paquetes','transportes','habitaciones'));
+        $ciudades = Ciudad::all();
+        return view('admin',compact('vuelos','hospedajes','seguros','paquetes','transportes','habitaciones','ciudades'));
     }
 
     

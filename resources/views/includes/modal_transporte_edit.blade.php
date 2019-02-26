@@ -216,6 +216,35 @@
                   </div>
                 </div>
 
+                <div class="form-group row">
+                  <label 
+                  for="ubicacion" 
+                  class="col-sm-4 col-form-label text-md-right"
+                  >
+                    {{ __('Ubicación') }}
+                  </label>
+                <div class="col-md-6">
+                    <select 
+                        id="ubicacion"
+                        name="ubicacion"
+                        class="form-control selectpicker custom-select" 
+                        required 
+                        autofocus
+                        >
+                        <option value="{{ $transporte->ubicacion }}" selected>
+                          {{ $transporte->ubicacion }}
+                        </option>
+                        
+                          @foreach ($ciudades as $ciudadita)
+                          <option value="{{ $ciudadita->nombre_ciudad }}">
+                              {{$ciudadita->nombre_ciudad}}
+                          </option>
+                          @endforeach 
+                          
+                    </select>
+                  </div>
+                </div>
+
 
                 <div class="modal-footer">
           

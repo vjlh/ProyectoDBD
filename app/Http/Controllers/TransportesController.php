@@ -106,6 +106,7 @@ class TransportesController extends Controller
             'num_asientos_transporte' => 'required',
             'num_puertas_transporte' => 'required',
             'aire_acondicionado_transporte' => 'required',
+            'ubicacion' =>'required',
             // 'puntuacion_transporte' => 'required',
         ]))->save();
 
