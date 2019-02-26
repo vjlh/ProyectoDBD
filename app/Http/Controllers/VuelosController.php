@@ -56,23 +56,29 @@ class VuelosController extends Controller
         //
     }
 
-    public function update(VuelosRequest $request, $id)
+
+    public function update(Request $request, $id)
     {
         $vuelo = Vuelo::find($id);
-        try{
-            $id_avion = $request->get('id_avion');
-            \App\Avion::find($id_avion)->id;
-            $id_aeropuerto = $request->get('id_aeropuerto');
-            \App\Aeropuerto::find($id_aeropuerto)->id;
+        $outcome = $vuelo->fill($this->validate($request, [
+            'hora_vuelo' => 'required',
+            'duracion_vuelo' => 'required',
+            'fecha_vuelo' => 'required',
+            'origen_vuelo' => 'required',
+            'destino_vuelo' => 'required',
+            'id_avion' => 'required',
+            'id_aeropuerto' => 'required',
+        ]))->save();
 
-            $vuelo->fill($request->all());
-            $vuelo->save();
-            return $vuelo;
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
+        if ($outcome) {
+            //dd("aqui");
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
         }
     }
+
 
     public function destroy($id)
     {

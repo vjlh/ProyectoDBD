@@ -25,7 +25,7 @@
                     </tr>
 
                     @foreach($vuelos as $vuelo)
-
+                    
                     <tr>
                     
 
@@ -43,12 +43,13 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/Vuelo/{{$vuelo->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
+                    
+
                     <center>
-                    <th><button type="submit" class="btn btn-get-started ">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-vuelo-update{{$vuelo->id}}">Editar</button></th>
                     </center>
+                    @include('includes.modal_vuelo_edit')
+
                     </form>
                     
                     <form action="/Vuelo/{{$vuelo->id}}" method="post">
