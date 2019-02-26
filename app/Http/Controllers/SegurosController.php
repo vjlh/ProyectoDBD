@@ -87,19 +87,22 @@ class SegurosController extends Controller
     public function calcularCosto()
     {
         $beneficios = Beneficio::all();
-        $costoFinal = 0;
+        $costoFinal_individual = 0;
+        $personas = session()->get('numeroPasajeros_seguro');
         $seguros_seleccionados = [];
 
         foreach($beneficios as $beneficio){
             if(request($beneficio->id)=='on'){
                 array_push($seguros_seleccionados,$beneficio);
-                $costoFinal = $costoFinal + $beneficio->precio_beneficio;
+                $costoFinal_individual = $costoFinal_individual + $beneficio->precio_beneficio;
             }
         }
+        $costoFinal_grupal = $costoFinal_individual*$personas;
         //echo"<script>console.log('eeh prueba: $x->precio_beneficio')</script>";
 
         session()->put('beneficiosSeleccionados_seguro', $seguros_seleccionados);
-        session()->put('costoFinal_seguro', $costoFinal);
+        session()->put('costoFinalIndividual_seguro', $costoFinal_individual);
+        session()->put('costoFinalGrupal_seguro', $costoFinal_grupal);
         return view('reservar_seguro',compact('seguros_seleccionados'));
     }
     

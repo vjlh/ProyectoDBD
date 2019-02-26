@@ -2,7 +2,11 @@
 @section('content')
 
 
-
+<?php
+$costoFinal_individual = session()->get('costoFinalIndividual_seguro');
+$costoFinal_grupal = session()->get('costoFinalGrupal_seguro');
+$num_personas = session()->get('numeroPasajeros_seguro');
+?>
 
   <!--==========================
     Intro Section
@@ -16,29 +20,38 @@
                     <center><div class="card-header">Los beneficios que desea incorporar a su seguro son los siguientes</div></center>
                     
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-sm table-bordered table-hover">
                             <thead >
                                 <tr>
                                     <th scope="col">Beneficio</th>
                                     <th scope="col">Costo</th>
                                 </tr>
-                            <thead>
+                            </thead>
                             <tbody>
                                 @foreach ($seguros_seleccionados as $seguros)
                                 <tr>
                                     <td>{{$seguros->nombre_beneficio}}</td>
                                     <td>${{$seguros->precio_beneficio}}</td>
                                 </tr>
-                                @endforeach   
+                                @endforeach
                                 <tr>
-                                    <th>Costo total del seguro</th>
-                                    <td>${{session()->get('costoFinal_seguro')}}</td>
-                                </tr> 
-                            </tbody>
+                                </tbody>
+                                <table class="table table-hover">
+                                <tbody >
+                                    <td>Costo individual del seguro</td>
+                                    <td>${{$costoFinal_individual}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Costo final del seguro con los beneficios para {{$num_personas}} personas</td>
+                                    <td>${{$costoFinal_grupal}}</td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                 
                         </table>
                         <center>
-                        <a href="/" class="btn btn-success btn-get-started scrollto">Reservar Seguro</a>
                         <a href="{{ URL::previous() }}" class="btn btn-success btn-get-started scrollto">Regresar</a>
+                        <a href="/Beneficio_Seguro/AdquirirSeguro/" class="btn btn-success btn-get-started scrollto">Reservar Seguro</a>
                         </center>
                     </div>     
                 </div>
