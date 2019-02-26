@@ -2,43 +2,52 @@
 @section('content')
 
 
-<!--<form action="/reservar_seguro" method="get">-->
 
+
+  <!--==========================
+    Intro Section
+    
+  ============================-->
 <section id="intro">
-  <style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
-  <section id="about" >
-    <div class="container" style="margin-top: 10%;">
-      <div class="row about-cols">
-      @foreach ($seguros as $seguro)
-        <div class="col-md-4 wow ">
-          <div class="about-col">
-            <div class="img">
-              <img src="{{asset('assets/img/about-plan.jpg')}}" alt="" class="img-fluid">
-              <div class="icon"><i class="ion-ios-medkit"></i></div>
+    <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card dbd-auth" style="margin-top: -80%; color: white; background-color: #212529c7;">
+                    <center><div class="card-header">Los beneficios que desea incorporar a su seguro son los siguientes</div></center>
+                    
+                    <div class="card-body">
+                        <table class="table">
+                            <thead >
+                                <tr>
+                                    <th scope="col">Beneficio</th>
+                                    <th scope="col">Costo</th>
+                                </tr>
+                            <thead>
+                            <tbody>
+                                @foreach ($seguros_seleccionados as $seguros)
+                                <tr>
+                                    <td>{{$seguros->nombre_beneficio}}</td>
+                                    <td>${{$seguros->precio_beneficio}}</td>
+                                </tr>
+                                @endforeach   
+                                <tr>
+                                    <th>Costo total del seguro</th>
+                                    <td>${{session()->get('costoFinal_seguro')}}</td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                        <center>
+                        <a href="/" class="btn btn-success btn-get-started scrollto">Reservar Seguro</a>
+                        <a href="{{ URL::previous() }}" class="btn btn-success btn-get-started scrollto">Regresar</a>
+                        </center>
+                    </div>     
+                </div>
             </div>
-            <form action="/Seguro/{{$seguro->id}}/" method="PATCH">
-              <h2 class="title"><a>Seguro: {{$seguro->tipo_seguro}}</a></h2>
-              <p>Precio: {{$seguro->precio_seguro}}</p>
-              <p>Tipo Seguro: {{$seguro->tipo_seguro}}</p>
-              <p>Costo Seguro: En proceso</p>
-              @guest
-                <!-- Trigger the modal with a button -->
-                <center>
-                    <button type="button" class="btn btn-get-started scrollto" data-toggle="modal" data-target="#myModal">Incorporar</button>
-                </center>
-                @else
-                <center>
-                    <button type="submit" class="btn btn-get-started scrollto">Incorporar</button>
-                </center>
-              @endguest
-            </form> 
-          </div>
-        </div>          
-      @endforeach
-      </div>
+        </div>    
     </div>
-  </section><!-- #about -->
-</section>
+</div>
+
+
 
 
 @endsection

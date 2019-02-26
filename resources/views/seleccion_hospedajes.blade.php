@@ -2,12 +2,6 @@
 @section('content')
 
 
-
-@if($paquete != NULL)
-<form action="/Paquete" method="get">
-@else
-<form action="/Habitacion" method="get">
-@endif
 <section id="intro">
 <style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
 <section id="about" >
@@ -60,7 +54,6 @@
 
 
 
-</form>
 
 @endsection
 

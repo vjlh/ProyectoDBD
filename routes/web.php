@@ -21,6 +21,7 @@ use App\Promocion;
 use App\Pais;
 use App\Asiento;
 use App\Avion;
+use App\Beneficio;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -50,7 +51,7 @@ Route::get('/paquetes/{tipo}', function ($tipo) {
 });
 
 Route::get('/seguros', function () {
-    $seguros = Seguro::all();
+    $seguros = Beneficio::all();
     return view('reservar_seguro',compact('seguros'));
 });
 
@@ -137,6 +138,9 @@ Route::get('/prueba', function () {
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');
+Route::get('/Beneficio/Listado/','BeneficiosController@mostrarSeguros')->name('Beneficios.mosSeg');
+Route::get('/Seguro/CalculoCosto/','SegurosController@calcularCosto')->name('Seguros.calCos');
+
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');

@@ -17,8 +17,10 @@ class CreateSegurosTable extends Migration
             $table->increments('id');
             $table->integer('precio_seguro');
             $table->string('tipo_seguro');
-            $table->integer('precio_ticket');
+            $table->string('destino_seguro');
             $table->integer('numero_pasajeros_seguros');
+            $table->date('fecha_inicio_seguro');
+            $table->date('fecha_fin_seguro');
             $table->timestamps();
             
         });

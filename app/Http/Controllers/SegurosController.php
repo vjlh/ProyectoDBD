@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Seguro;
+use App\Beneficio;
 use Illuminate\Http\Request;
 use App\Http\Requests\SegurosRequest;
 use Carbon\Carbon;
@@ -13,19 +14,6 @@ class SegurosController extends Controller
     public function index()
     {
         //Funcion que se utilizará para desplegar los seguros según las busqueda
-        $fecha_ida = Carbon::parse(request('fecha_ida'));
-        $fecha_vuelta = Carbon::parse(request('fecha_vuelta'));
-        $diasDiferencia = $fecha_vuelta->diffInDays($fecha_ida);
-
-        $destino= request('destino');
-        $numero_pasajeros= request('numero_pasajeros');
-
-        
-        session()->put('diasDuracion_seguro', $diasDiferencia);
-        session()->put('fechaInicio_seguro', $fecha_ida);
-        session()->put('fechaFin_seguro', $fecha_vuelta);
-        session()->put('destino_seguro', $destino);
-        session()->put('numeroPasajeros_seguro', $numero_pasajeros);
 
         $seguros = Seguro::all();
         return view('reservar_seguro',compact('seguros'));
@@ -96,4 +84,23 @@ class SegurosController extends Controller
             return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
 
     }
+    public function calcularCosto()
+    {
+        $beneficios = Beneficio::all();
+        $costoFinal = 0;
+        $seguros_seleccionados = [];
+
+        foreach($beneficios as $beneficio){
+            if(request($beneficio->id)=='on'){
+                array_push($seguros_seleccionados,$beneficio);
+                $costoFinal = $costoFinal + $beneficio->precio_beneficio;
+            }
+        }
+        //echo"<script>console.log('eeh prueba: $x->precio_beneficio')</script>";
+
+        session()->put('beneficiosSeleccionados_seguro', $seguros_seleccionados);
+        session()->put('costoFinal_seguro', $costoFinal);
+        return view('reservar_seguro',compact('seguros_seleccionados'));
+    }
+    
 }
