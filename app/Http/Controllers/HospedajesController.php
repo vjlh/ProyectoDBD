@@ -77,10 +77,10 @@ class HospedajesController extends Controller
         {
             $hospedaje->delete();
             Hospedaje::destroy($id);
-            return "Se ha eliminado el hospedaje de la DB";
+            return back()->with('success_message','Se ha eliminado el hotel con éxito!');
         }
         else
-            return "El hospedaje con el id ingresado no existe o fue eliminado"; 
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
 
     }
 

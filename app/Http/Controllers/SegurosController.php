@@ -90,9 +90,10 @@ class SegurosController extends Controller
         {
             $seguro->delete();
             Seguro::destroy($id);
-            return "Se ha eliminado el seguro de la DB";
+            return back()->with('success_message','Se ha eliminado el seguro con éxito!');
         }
         else
-            return "El seguro con el id ingresado no existe o fue eliminado"; 
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+
     }
 }

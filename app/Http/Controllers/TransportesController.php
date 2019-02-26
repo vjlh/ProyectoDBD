@@ -132,10 +132,10 @@ class TransportesController extends Controller
         {
             $transporte->delete();
             Transporte::destroy($id);
-            return "Se ha eliminado el transporte de la DB";
+            return back()->with('success_message','Se ha eliminado el automóvil con éxito!');
         }
         else
-            return "El transporte con el id ingresado no existe o fue eliminado"; 
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
 
     }
 

@@ -81,11 +81,11 @@ class VuelosController extends Controller
         {
             $vuelo->delete();
             Vuelo::destroy($id);
-            return "Se ha eliminado el vuelo de la DB";
+            return back()->with('success_message','Se ha eliminado el vuelo con éxito!');
         }
-
         else
-            return "El vuelo con el id ingresado no existe o fue eliminado";  
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+
     }
     public function filtrarVuelos(Request $request){
         $origen = $request->get('ciudad_origen');        
