@@ -24,15 +24,23 @@ class HospedajesController extends Controller
 
         $hospedajes = Hospedaje::all()->where('ubicacion','=',$ciudad_hospedaje)
                                       ->where('cantidad_disponible','>=',$numHabitaciones);
-        
-        session()->put('diasDiferencia', $diasDiferencia);
-        session()->put('fecha_ida', $fecha_ida);
-        session()->put('fecha_vuelta', $fecha_vuelta);
-        session()->put('ciudad_hospedaje', $ciudad_hospedaje);
-        session()->put('numHabitaciones', $numHabitaciones);
-        session()->put('numero_personas', $numero_personas);
-        $paquete = NULL;
-        return view('seleccion_hospedajes',compact('hospedajes','paquete'));
+        $hospedajesUbicacion = [];
+        foreach($hospedajes as $hospedaje){
+            array_push($hospedajesUbicacion, $hospedaje->id);
+        }
+        if(!empty($hospedajesUbicacion)){
+            session()->put('diasDiferencia', $diasDiferencia);
+            session()->put('fecha_ida', $fecha_ida);
+            session()->put('fecha_vuelta', $fecha_vuelta);
+            session()->put('ciudad_hospedaje', $ciudad_hospedaje);
+            session()->put('numHabitaciones', $numHabitaciones);
+            session()->put('numero_personas', $numero_personas);
+            $paquete = NULL;
+            return view('seleccion_hospedajes',compact('hospedajes','paquete'));
+        }
+        else{
+            return \Redirect::back()->with('statusCity','statusCity');
+        }
     }
 
     public function create()

@@ -37,17 +37,17 @@
 
                     <th><h5 class="card-title">{{ $reserva->id }}</h5></th>
                     <th><h5 class="card-title">{{$reserva->monto_total_reserva}}</h5></th>
-
-                    @if($reserva->vuelo == 1)
-                    <th><h5 class="card-title"></h5>Vuelo</th>
+                    @if($reserva->id_seguro != NULL)
+                        <th><h5 class="card-title"></h5>Seguro</th>
+                    @elseif($reserva->id_paquete != NULL)
+                        <th><h5 class="card-title"></h5>Paquete</th>
+                    @elseif($reserva->vuelo == 1)
+                        <th><h5 class="card-title"></h5>Vuelo</th>
+                    @elseif($reserva->hospedaje == 1)
+                        <th><h5 class="card-title"></h5>Hospedaje</th>
+                    @elseif($reserva->transporte == 1)
+                        <th><h5 class="card-title"></h5>Transporte</th>
                     @endif
-                    @if($reserva->hospedaje == 1)
-                    <th><h5 class="card-title"></h5>Hospedaje</th>
-                    @endif
-                    @if($reserva->transporte == 1)
-                    <th><h5 class="card-title"></h5>Transporte</th>
-                    @endif
-
                     
                     @guest
                     <!-- Trigger the modal with a button -->

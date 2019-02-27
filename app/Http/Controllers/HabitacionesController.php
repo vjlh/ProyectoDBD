@@ -38,6 +38,7 @@ class HabitacionesController extends Controller
 
     public function show($id)
     {
+        
         $hospedaje = Hospedaje::find($id);
         $fecha_inicio = session()->get('fecha_ida');
         $fecha_fin = session()->get('fecha_vuelta');

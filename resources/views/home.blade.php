@@ -149,7 +149,7 @@ $(document).ready(function(){
 
         <header class="section-header">
           <h3>Nuestros Servicios</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Estos son los servicios que ofrece la Aerolínea G8, no te arrepentirás de explorarlos.</p>
         </header>
 
         <div class="row about-cols">
@@ -162,7 +162,7 @@ $(document).ready(function(){
               </div>
               <h2 class="title"><a href="destinos">Destinos</a></h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Aquí puedes encontrar todos los destinos que tenemos para ofrecerte.
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ $(document).ready(function(){
               </div>
               <h2 class="title"><a href="/buscar_seguros">Seguros</a></h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                No olvides contratar tu seguro para tu viaje o durante tus vacaciones en el caribe.
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ $(document).ready(function(){
               </div>
               <h2 class="title"><a href="/reservaHospedaje">Hoteles</a></h2>
               <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                Tenemos los mejores hoteles disponibles para que puedas disfrutar de las mejores comodidades en tus vacaciones y durante tu estadía en el destino que desees.
               </p>
             </div>
           </div>
@@ -205,7 +205,7 @@ $(document).ready(function(){
               </div>
               <h2 class="title"><a href="/seleccion_tipo_paquetes">Paquetes</a></h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Los mejores paquetes con precios inigualables que incluyen un viaje de ida y regreso a los mejores sectores para vacacionar, con la estadía en los hoteles más destacados y los mejores vehiculos para desplazarte cómodamente.
               </p>
             </div>
           </div>
@@ -218,7 +218,7 @@ $(document).ready(function(){
               </div>
               <h2 class="title"><a href="/buscar_autos">Autos</a></h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                Si deseas reservar un vehículo para trasladarte, te ofrecemos una gran variedad de alternativas y los mejores precios.
               </p>
             </div>
           </div>
@@ -231,7 +231,7 @@ $(document).ready(function(){
               </div>
               <h2 class="title"><a href="#">Promociones</a></h2>
               <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                Las mejores promociones y descuentos en tus reservas se encuentran aqui, no olvides revisar que promoción puedes obtener antes de viajar.
               </p>
             </div>
           </div>
