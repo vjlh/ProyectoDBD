@@ -23,10 +23,9 @@ if($paquete->tipo_paquete == 'Alojamiento'){
         <div class="modal-content" id="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
 
         <div class="modal-body" id="modal-body" style="color: white;">
-            <p style="color: white;">Lo sentimos!, no existen vuelos disponibles para este paquete.</p>
+            <p style="color: white;">Lo sentimos!, no existen asientos disponibles para este paquete.</p>
         </div>
         <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button> -->
             <a style="margin: auto;"class="btn btn-success " data-dismiss="modal">Cerrar</a>
 
         </div>
@@ -44,9 +43,10 @@ $(document).ready(function(){
  <!--==========================
     Intro Section
   ============================-->
-  <form action="reservarPaquete/" method="get">
-  <section id="intro">
-  <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
+  
+<form action="reservarPaquete/" method="get">
+<section id="intro">
+<div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card dbd-auth" style="margin-top: -80%; color: white; background-color: #212529c7;">
@@ -120,8 +120,8 @@ $(document).ready(function(){
                         <tr>
                             <th>Ingrese el número de pasajeros</th>
                             <td>
-                                <select class="form-control selectpicker custom-select" id="num_pasajeros" name="num_pasajeros">
-                                  <option selected disable>Número de pasajeros</option>
+                                <select class="form-control selectpicker custom-select" id="num_pasajeros" name="num_pasajeros" required>
+                                  <option value="" selected disable>Número de pasajeros</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>

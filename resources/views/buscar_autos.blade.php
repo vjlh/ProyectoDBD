@@ -2,7 +2,53 @@
 @section('content')
 
 
+@if (session('statusCity'))
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="modal fade" id="ModalAlertaUbicacionTransporte" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" id="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
+      <div class="modal-body" id="modal-body" style="color: white;">
+        <p style="color: white;">Lo sentimos!, aún no existen vehículos disponibles para esta ciudad.</p>
+      </div>
+      <div class="modal-footer">
+        <a style="margin: auto;"class="btn btn-success " data-dismiss="modal">Cerrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    // Show the Modal on load
+    $("#ModalAlertaUbicacionTransporte").modal("show");
+  });
+</script>
+@endif
 
+@if (session('statusDisponibilidad'))
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="modal fade" id="ModalAlertaFechaDisponible" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" id="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
+      <div class="modal-body" id="modal-body" style="color: white;">
+        <p style="color: white;">Lo sentimos!, no existen vehículos disponibles para la fecha seleccionada.</p>
+      </div>
+      <div class="modal-footer">
+        <a style="margin: auto;"class="btn btn-success " data-dismiss="modal">Cerrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    // Show the Modal on load
+    $("#ModalAlertaFechaDisponible").modal("show");
+  });
+</script>
+@endif
 <form action="/Transporte" method="get">
 
 <section id="intro">
@@ -24,8 +70,8 @@
 
                 <div class="row justify-content-start">
                     <div class="col-4"> 
-                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_inicio" name="ciudad_inicio">
-                          <option selected disable>Ciudad Inicio</option>
+                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_inicio" name="ciudad_inicio" required>
+                          <option value="" selected disable>Ciudad Inicio</option>
                           @foreach ($ciudades as $ciudad)
                           <option value="{{ $ciudad->nombre_ciudad }}">
                               {{$ciudad->nombre_ciudad}}
