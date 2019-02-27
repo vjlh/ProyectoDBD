@@ -34,10 +34,11 @@ $num_personas = session()->get('numeroPasajeros_seguro');
                                     <td>${{$seguros->precio_beneficio}}</td>
                                 </tr>
                                 @endforeach
+                            </tbody>
+                        </table>
+                        <table class="table table-hover">
+                            <tbody>
                                 <tr>
-                                </tbody>
-                                <table class="table table-hover">
-                                <tbody >
                                     <td>Costo individual del seguro</td>
                                     <td>${{$costoFinal_individual}}</td>
                                 </tr>
@@ -45,10 +46,9 @@ $num_personas = session()->get('numeroPasajeros_seguro');
                                     <td>Costo final del seguro con los beneficios para {{$num_personas}} personas</td>
                                     <td>${{$costoFinal_grupal}}</td>
                                 </tr>
-                                </tbody>
-                                </table>
-                                 
+                            </tbody>
                         </table>
+                        
                         <center>
                         <a href="{{ URL::previous() }}" class="btn btn-success btn-get-started scrollto">Regresar</a>
                         <a href="/Beneficio_Seguro/AdquirirSeguro/" class="btn btn-success btn-get-started scrollto">Reservar Seguro</a>

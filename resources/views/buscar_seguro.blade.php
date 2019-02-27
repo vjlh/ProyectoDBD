@@ -26,7 +26,7 @@
 
                         <div class="row justify-content-start">
                             <div class="col-4">
-                                <select style="margin-left: 15%" class="form-control selectpicker custom-select" if="destino" name="destino">
+                                <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="destino" name="destino">
                                     <option selected="">Destino</option>
                                     <option value = "Africa">Africa</option>
                                     <option value = "Asia">Asia</option>

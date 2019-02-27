@@ -97,7 +97,11 @@ class Beneficio_SeguroController extends Controller
         $beneficios_seguro = session()->get('beneficiosSeleccionados_seguro');
 
         $seguro->precio_seguro = $costo_seguro;
-        $seguro->tipo_seguro = "algo";
+        if($personas_seguro==1)
+            $seguro->tipo_seguro = "individual";
+        else
+            $seguro->tipo_seguro = "grupal";
+
         $seguro->destino_seguro = $destino_seguro;
         $seguro->numero_pasajeros_seguros = $personas_seguro;
         $seguro->fecha_inicio_seguro = $inicio_seguro;
@@ -122,7 +126,7 @@ class Beneficio_SeguroController extends Controller
         $reserva->hospedaje=false;
         $reserva->vuelo=false;
         $reserva->save();
-        return view('home');
+        return view('detalleReservaSeguro',compact('seguro'));
 
     }
 }
