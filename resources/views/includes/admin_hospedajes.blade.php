@@ -4,8 +4,9 @@
             <center>
                 <h1><small> HOTELES</h1></small>
 
-                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-create">Agregar</button></th>
-                
+                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-hospedaje-create">Agregar</button></th>
+                @include('includes.modal_hoteles_create')
+
             </center>
 
                 <div class="card-body">

@@ -48,11 +48,14 @@ class HospedajesController extends Controller
         //
     }
 
-    public function store(HospedajesRequest $request)
+    public function store(Request $request)
     {
         $hospedaje = Hospedaje::create($request->all());
         $hospedaje->save();
-        return $hospedaje;
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
+
     }
 
     public function show($id)
