@@ -25,21 +25,14 @@ class VuelosController extends Controller
         //
     }
 
-    public function store(VuelosRequest $request)
+    public function store(Request $request)
     {
-        try{
-            $id_avion = $request->get('id_avion');
-            \App\Avion::find($id_avion)->id;
-            $id_aeropuerto = $request->get('id_aeropuerto');
-            \App\Aeropuerto::find($id_aeropuerto)->id;
+        $vuelo = Vuelo::create($request->all());
+        $vuelo->save();
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
 
-            $vuelo = Vuelo::create($request->all());
-            $vuelo->save();
-            return $vuelo;
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
-        }
     }
 
     public function show($id)
