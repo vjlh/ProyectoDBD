@@ -70,14 +70,30 @@ class HospedajesController extends Controller
         //
     }
 
-    public function update(HospedajesRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $hospedaje = Hospedaje::find($id);
-        $hospedaje->fill($request->all());
-        $hospedaje->save();
-        return $hospedaje;
-    }
+        $outcome = $hospedaje->fill($this->validate($request, [
+            'ubicacion' => 'required',
+            'nombre_hospedaje' => 'required',
+            'cadena_hospedaje' => 'required',
+            'cantidad_disponible' => 'required',
+            'estrellas_hospedaje' => 'required',
+            'piscina_hospedaje' => 'required',
+            'sauna_hospedaje' => 'required',
+            'zona_infantil_hospedaje' => 'required',
+            'gimnasio_hospedaje' => 'required',
+            
+        ]))->save();
 
+        if ($outcome) {
+            //dd("aqui");
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
+        }
+    }
     public function destroy($id)
     {
         $hospedaje = Hospedaje::find($id);

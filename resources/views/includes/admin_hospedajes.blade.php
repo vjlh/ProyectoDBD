@@ -42,12 +42,12 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/Hospedaje/{{$hospedaje->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
+                    
                     <center>
-                    <th><button type="submit" class="btn btn-get-started">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-hospedaje-update{{$hospedaje->id}}">Editar</button></th>
                     </center>
+                    @include('includes.modal_hoteles_edit')
+
                     </form>
                     
                     <form action="/Hospedaje/{{$hospedaje->id}}" method="post">
