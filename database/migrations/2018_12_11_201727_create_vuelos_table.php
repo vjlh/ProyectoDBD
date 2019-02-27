@@ -18,6 +18,7 @@ class CreateVuelosTable extends Migration
             $table->time('hora_vuelo');
             $table->time('duracion_vuelo');
             $table->date('fecha_vuelo');
+            $table->integer('cantidad_disponible');
             $table->string('origen_vuelo');
             $table->string('destino_vuelo');
             $table->unsignedInteger('id_avion');

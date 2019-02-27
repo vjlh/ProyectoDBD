@@ -22,5 +22,6 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
         'fecha_vuelo' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL),
         'origen_vuelo' => $faker->randomElement($ciudades), 
         'destino_vuelo' => $faker->randomElement($ciudades),
+        'cantidad_disponible' => $id_avion->capacidad_avion,
     ];
 });
