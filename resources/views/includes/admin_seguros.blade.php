@@ -3,8 +3,10 @@
 <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
                 <h1><small>SEGUROS</h1></small>
-                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-create">Agregar</button></th>
                 
+                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-seguro-create">Agregar</button></th>
+                @include('includes.modal_seguro_create')
+
             </center>
 
 
@@ -36,12 +38,11 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/Seguro/{{$seguro->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-seguro-update{{$seguro->id}}">Editar</button></th>
                     </center>
+                    @include('includes.modal_seguro_edit')
+
                     </form>
                     
                     <form action="/Seguro/{{$seguro->id}}" method="post">

@@ -24,11 +24,14 @@ class SegurosController extends Controller
         //
     }
 
-    public function store(SegurosRequest $request)
+    public function store(Request $request)
     {
         $seguro = Seguro::create($request->all());
         $seguro->save();
-        return $seguro;
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
+
     }
 
     public function show($id)
@@ -63,12 +66,25 @@ class SegurosController extends Controller
         //
     }
 
-    public function update(SegurosRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $seguro = Seguro::find($id);
-        $seguro->fill($request->all());
-        $seguro->save();
-        return $seguro;
+        $outcome = $seguro->fill($this->validate($request, [
+            'precio_seguro' => 'required',
+            'tipo_seguro' => 'required',
+            'destino_seguro' => 'required',
+            'numero_pasajeros_seguros' => 'required',
+            'fecha_inicio_seguro' => 'required',
+            'fecha_fin_seguro' => 'required',
+        ]))->save();
+
+        if ($outcome) {
+            //dd("aqui");
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
+        }
     }
 
     public function destroy($id)
