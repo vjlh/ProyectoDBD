@@ -12,12 +12,58 @@ class VuelosController extends Controller
 
     public function index()
     {
-        $vuelos = Vuelo::all()->where('origen_vuelo', '=' , request("ciudad_origen"))
-                              ->where('destino_vuelo', '=' , request("ciudad_destino"))
-                              ->where('fecha_viaje', '=' , request("fecha_vuelo"));
-
+        $origen = request("ciudad_origen");
+        $destino = request("ciudad_destino");
+        $fecha_viaje = request("fecha_vuelo");
+        $num_pasajeros = request("num_pasajeros");
+        if(($destino != "") && ($origen == "")){
+            $vuelos = Vuelo::all()->where('destino_vuelo', '=' , $destino)
+                                  ->where('fecha_viaje', '>=' , $fecha_viaje)
+                                  ->where('cantidad_disponible', '>=', $num_pasajeros);
+            $vuelosAux = [];
+            foreach($vuelos as $vuelo){
+                array_push($vuelosAux,$vuelo->id);
+            }
+            if(!empty($vuelosAux)){
+                return view('vuelos',compact('vuelos'));
+            }
+            else{
+                return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
+            }
+        }
+        
+        elseif(($destino == "") && ($origen != "")){
+            $vuelos = Vuelo::all()->where('origen_vuelo', '=' , $origen)
+                                  ->where('fecha_viaje', '>=' , $fecha_viaje)
+                                  ->where('cantidad_disponible', '>=', $num_pasajeros);
+            $vuelosAux = [];
+            foreach($vuelos as $vuelo){
+                array_push($vuelosAux,$vuelo->id);
+            }
+            if(!empty($vuelosAux)){
+                return view('vuelos',compact('vuelos'));
+            }
+            else{
+                return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
+            }
+        }
+        else{
+            $vuelos = Vuelo::all()->where('origen_vuelo', '=' , $origen)
+                                  ->where('destino_vuelo', '=' , $destino)
+                                  ->where('fecha_viaje', '>=' , $fecha_viaje)
+                                  ->where('cantidad_disponible', '>=', $num_pasajeros);
+            $vuelosAux = [];
+            foreach($vuelos as $vuelo){
+                array_push($vuelosAux,$vuelo->id);
+            }
+            if(!empty($vuelosAux)){
+                return view('vuelos',compact('vuelos'));
+            }
+            else{
+                return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
+            }
+        }
                             
-        return view('vuelos',compact('vuelos'));
     }
 
     public function create()

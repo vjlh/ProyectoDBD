@@ -1,8 +1,6 @@
 @extends('layouts.base')
 @section('content')
 @include('includes.registrarse')
-@include('includes.reservado')
-
 
 
 <form action="/Asiento" method="PATCH">
