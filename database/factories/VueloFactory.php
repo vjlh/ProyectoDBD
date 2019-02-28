@@ -13,14 +13,15 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
     'Londres','Hong Kong','Cancun','Bariloche','Mendoza','Rio de Janeiro',
     'Valparaiso','Temuco','Arica','Puerto Montt','Punta Cana','PercyTown','Santiago',
     'Sao paulo','Chiloe','Isla de Pascua');
-
+    $avion = App\Avion::find($id_avion->random()->id);
     return [
-    	'id_avion' => $id_avion->random()->id,
+    	'id_avion' => $avion->id,
     	'id_aeropuerto' => $id_aeropuerto->random()->id,
         'hora_vuelo' => $faker->time($format = 'H:i:s', $max = 'now'),
         'duracion_vuelo' => $faker->time($format = 'H:i', $max = 'now'),
         'fecha_vuelo' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+10 weeks', $timezone = NULL),
         'origen_vuelo' => $faker->randomElement($ciudades), 
         'destino_vuelo' => $faker->randomElement($ciudades),
+        'cantidad_disponible' => $avion->capacidad_avion,
     ];
 });

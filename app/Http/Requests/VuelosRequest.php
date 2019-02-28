@@ -31,6 +31,7 @@ class VuelosRequest extends FormRequest
             'destino_vuelo' => 'required|string', 
             'id_avion' => 'required|numeric', 
             'id_aeropuerto' => 'required|numeric',
+            'cantidad_disponible' => 'required|numeric',
         ];
     }
 }

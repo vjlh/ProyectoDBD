@@ -8,7 +8,7 @@ class Vuelo extends Model
 {
 	protected $table = 'vuelos';
     protected $fillable = [
-        'hora_vuelo', 'duracion_vuelo', 'fecha_vuelo', 'origen_vuelo', 'destino_vuelo', 'id_avion', 'id_aeropuerto',
+        'hora_vuelo', 'duracion_vuelo', 'fecha_vuelo', 'origen_vuelo', 'destino_vuelo', 'cantidad_disponible', 'id_avion', 'id_aeropuerto',
     ];
 
     public function aviones(){
