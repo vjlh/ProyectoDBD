@@ -39,7 +39,7 @@ class HospedajesController extends Controller
             return view('seleccion_hospedajes',compact('hospedajes','paquete'));
         }
         else{
-            return \Redirect::back()->with('statusCity','statusCity');
+            return \Redirect::back()->with('statusCity','No hay hospedajes disponibles en la ubicación indicada.');
         }
     }
 

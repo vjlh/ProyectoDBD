@@ -63,11 +63,17 @@ class HabitacionesController extends Controller
 
         $habitaciones = Habitacion::all()->whereNotIn('id',$ids_NoDisponibles)
                                         ->where('id_hospedaje', '=' , $id);
-        
-        session()->put('hospedaje', $hospedaje);
-
-        return view('reservar_habitaciones',compact('habitaciones'));
-                 
+        $habitacionesAux = [];
+        foreach($habitaciones as $habitacion){
+            array_push($habitacionesAux,$habitacion);
+        }
+        if(!empty($habitacionesAux)){
+            session()->put('hospedaje', $hospedaje);
+            return view('reservar_habitaciones',compact('habitaciones'));
+        }
+        else{
+            return \Redirect::back()->with('statusHabitaciones','No existen habitaciones disponibles en la fecha indicada.');
+        }
     }
 
     public function edit(Habitacion $habitacion)
