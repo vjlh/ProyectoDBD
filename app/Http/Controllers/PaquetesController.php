@@ -29,12 +29,17 @@ class PaquetesController extends Controller
         //
     }
 
-    public function store(PaquetesRequest $request)
+    public function store(Request $request)
     {
         $paquete = Paquete::create($request->all());
         $paquete->save();
-        return $paquete;
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
+
     }
+
+
     public function respaq($id){
         $paquete = Paquete::find($id);
 
@@ -70,12 +75,31 @@ class PaquetesController extends Controller
         //
     }
 
-    public function update(PaquetesRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $paquete = Paquete::find($id);
-        $paquete->fill($request->all());
-        $paquete->save();
-        return $paquete;
+        $outcome = $paquete->fill($this->validate($request, [
+            'num_dias' => 'required',
+            'num_noches' => 'required',
+            'fecha_paquete' => 'required',
+            'precio_paquete' => 'required',
+            'destino_paquete' => 'required',
+            'tipo_paquete' => 'required',
+            'id_vuelo_ida' => 'required',
+            'id_vuelo_vuelta' => 'required',
+            'id_transporte' => 'required',
+            'id_hospedaje' => 'required',
+            'id_habitacion' => 'required',
+
+        ]))->save();
+
+        if ($outcome) {
+            //dd("aqui");
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
+        }
     }
 
     public function destroy($id)

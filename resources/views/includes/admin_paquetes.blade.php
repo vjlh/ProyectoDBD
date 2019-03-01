@@ -3,8 +3,9 @@
             <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
                 <h1><small>PAQUETES</h1></small>
-                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-create">Agregar</button></th>
                 
+                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-paquete-create">Agregar</button></th>
+                @include('includes.modal_paquete_create')
             </center>
 
                 <div class="card-body">
@@ -39,12 +40,11 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/Paquete/{{$paquete->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started ">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-paquete-update{{$paquete->id}}">Editar</button></th>
                     </center>
+                    @include('includes.modal_paquete_edit')
+
                     </form>
                     
                     <form action="/Paquete/{{$paquete->id}}" method="post">

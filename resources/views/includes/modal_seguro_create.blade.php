@@ -51,11 +51,27 @@
                         autofocus
                         >
 
-                          @foreach ($seguros as $segurito)
-                          <option value="{{ $segurito->destino_seguro }}">
-                              {{$segurito->destino_seguro}}
+                          <option value="Africa ">
+                              Africa
                           </option>
-                          @endforeach 
+                          <option value="Asia ">
+                              Asia
+                          </option>
+                          <option value="Europa ">
+                              Europa
+                          </option>
+                          <option value="Norteamerica">
+                              Norteamerica
+                          </option>
+                          <option value=" Centroamerica ">
+                              Centroamerica 
+                          </option>
+                          <option value="Latinoamerica ">
+                              Latinoamerica
+                          </option>
+                          <option value="Oceania ">
+                              Oceania
+                          </option>
                           
                     </select>
                   </div>
