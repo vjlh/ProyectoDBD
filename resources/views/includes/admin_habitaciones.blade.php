@@ -4,8 +4,9 @@
             <center>
                 <h1><small>HABITACIONES</h1></small>
 
-                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-transporte-create">Agregar</button></th>
-                
+                <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-habitacion-create">Agregar</button></th>
+                @include('includes.modal_habitacion_create')
+
             </center>
 
                 <div class="card-body">
@@ -40,12 +41,12 @@
                     <!-- Trigger the modal with a button -->
 
                     @else
-                    <form action="/Habitacion/{{$habitacion->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
+                    
                     <center>
-                    <th><button type="submit" class="btn btn-get-started ">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-habitacion-update{{$habitacion->id}}">Editar</button></th>
                     </center>
+                    @include('includes.modal_habitacion_edit')
+
                     </form>
                     
                     <form action="/Habitacion/{{$habitacion->id}}" method="post">

@@ -21,7 +21,7 @@ class HabitacionesController extends Controller
         //
     }
 
-    public function store(HabitacionesRequest $request)
+  /*  public function store(HabitacionesRequest $request)
     {
         try{
             $id_hospedaje = $request->get('id_hospedaje');
@@ -34,6 +34,17 @@ class HabitacionesController extends Controller
         catch(\Exception $e){
             return $e->getMessage();
         }
+    }
+  */
+
+    public function store(Request $request)
+    {
+        $habitacion = Habitacion::create($request->all());
+        $habitacion->save();
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
+
     }
 
     public function show($id)
@@ -81,18 +92,25 @@ class HabitacionesController extends Controller
         //
     }
 
-    public function update(HabitacionesRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        try{
-            $id_hospedaje = $request->get('id_hospedaje');
-            \App\Hospedaje::find($id_hospedaje)->id;
+        $habitacion = Habitacion::find($id);
+        $outcome = $habitacion->fill($this->validate($request, [
+            'precio' => 'required',
+            'capacidad_habitacion' => 'required',
+            'banio_privado' => 'required',
+            'aire_acondicionado_habitacion' => 'required',
+            'disponibilidad' => 'required',
+            'tipo' => 'required',
+            'id_hospedaje' => 'required',
+        ]))->save();
 
-            $habitacion->fill($request->all());
-            $habitacion->save();
-            return $habitacion;
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
+        if ($outcome) {
+            //dd("aqui");
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
         }
     }
 
