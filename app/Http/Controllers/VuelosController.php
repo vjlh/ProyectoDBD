@@ -25,7 +25,7 @@ class VuelosController extends Controller
                 array_push($vuelosAux,$vuelo->id);
             }
             if(!empty($vuelosAux)){
-                return view('vuelos',compact('vuelos'));
+                return view('vuelos',compact('vuelos','num_pasajeros'));
             }
             else{
                 return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
@@ -41,7 +41,7 @@ class VuelosController extends Controller
                 array_push($vuelosAux,$vuelo->id);
             }
             if(!empty($vuelosAux)){
-                return view('vuelos',compact('vuelos'));
+                return view('vuelos',compact('vuelos','num_pasajeros'));
             }
             else{
                 return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
@@ -57,7 +57,7 @@ class VuelosController extends Controller
                 array_push($vuelosAux,$vuelo->id);
             }
             if(!empty($vuelosAux)){
-                return view('vuelos',compact('vuelos'));
+                return view('vuelos',compact('vuelos','num_pasajeros'));
             }
             else{
                 return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');

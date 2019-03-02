@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Asiento;
 use App\Reserva;
 use App\Ciudad;
+use App\Vuelo;
+use App\Asiento_Vuelo;
 use Illuminate\Http\Request;
 use App\Http\Requests\AsientosRequest;
 use App\Avion;
@@ -16,10 +18,23 @@ class AsientosController extends Controller
     //Probado
     public function index()
     {
-
-        $asientos = Asiento::all()->where('id_avion', request("avioncito_id"));
-
-        return view('seleccion_asiento',compact('asientos'));
+        $vuelo = Vuelo::find(request('vuelo'));
+        $num_pasajeros = request('num_pasajeros');
+        $asientos_vuelo = Asiento_Vuelo::All()->where('id_vuelo', '=', $vuelo->id)
+                                              ->where('disponible', '=', true);
+        $asientos_vuelo_array = [];
+        foreach($asientos_vuelo as $asiento){
+            array_push($asientos_vuelo_array, $asiento->id);
+        }
+        $len = sizeof($asientos_vuelo_array);
+        if($len >= $num_pasajeros)
+        {
+            $asientos = Asiento::all()->whereIn('id', $asientos_vuelo_array);
+            return view('seleccion_asiento',compact('asientos', 'num_pasajeros','vuelo'));
+        }
+        else{
+            return \Redirect::back()->with('statusAsientos','No hay suficientes asientos.');
+        }
     }
 
     public function create()
@@ -60,10 +75,29 @@ class AsientosController extends Controller
     {
         //
     }
-    public function resas($id){
-        $id_asiento = $id;
-        $asiento = Asiento::find($id_asiento);
-        $costoFinal = $asiento->precio_asiento;
+    public function resas(){
+        $asientos = Asiento::All();
+        $vuelo = Vuelo::find(request('id_vuelo'));
+        $asientos_seleccionados = [];
+        $costoFinal = 0;
+        foreach($asientos as $asiento){
+            if(request($asiento->id) == 'on'){
+                array_push($asientos_seleccionados,$asiento->id);
+                $costoFinal = $costoFinal + $asiento->precio_asiento;
+            }
+        }
+        $asientos_seleccionados_vuelo = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo->id)
+                                                            ->whereIn('id_asiento',$asientos_seleccionados);
+        $asientos_seleccionados_vuelo_array = [];
+        foreach($asientos_seleccionados_vuelo as $asiento){
+            array_push($asientos_seleccionados_vuelo_array,$asiento->id);
+        }
+        $len = sizeof($asientos_seleccionados_vuelo_array);
+        for($i=0;$i<$len;$i++){
+            $asiento = Asiento_Vuelo::find($asientos_seleccionados_vuelo_array[$i]);
+            $asiento->disponible = false;
+            $asiento->save();
+        }
 
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
@@ -76,15 +110,7 @@ class AsientosController extends Controller
         $reserva->hospedaje=false;
         $reserva->vuelo=true;
         $reserva->save();
-
-        $asiento = Asiento::find($id_asiento);
-        $asiento->id_reserva = $reserva->id;
-        $asiento->save();
-
-        $ciudades = Ciudad::all();
-
-
-        return view('home',compact('ciudades'));
+        return \Redirect::to('/')->with('statusReservaVuelo','El vuelo ha sido reservado.');
     }
 
     public function update(AsientosRequest $request, $id)

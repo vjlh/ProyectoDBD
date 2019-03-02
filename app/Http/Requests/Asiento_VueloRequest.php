@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AsientosRequest extends FormRequest
+class Asiento_VueloRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class AsientosRequest extends FormRequest
     public function rules()
     {
         return[
-            'id_reserva' => 'required|numeric',
-            'id_avion' => 'required|numeric',    
-            'numero_asiento' => 'required|numeric|max:300|min:1',
-            'letra_asiento' => 'required|string|size:1',
-            'precio_asiento' => 'required|integer',
-            'cabina' => 'required|in:Economica,Salon-Cama,Premium,VIP'
+            'id_vuelo' => 'required|numeric',
+            'id_asiento' => 'required|numeric',
+            'disponible' => 'required|boolean',
         ];
     }
 }

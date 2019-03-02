@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Paquete;
 use App\Reserva;
 use App\Ciudad;
 use App\Vuelo;
 use App\Asiento;
+use App\Asiento_Vuelo;
 use App\Hospedaje;
 use App\Habitacion;
 use App\Transporte;
@@ -155,23 +157,55 @@ class PaquetesController extends Controller
 
         //Se reservan los asientos para el vuelo de ida
         $vuelo_ida = Vuelo::find($paquete->id_vuelo_ida);
-        $asientos_ida = Asiento::All()->where('id_avion','=', $vuelo_ida->id_avion)
-                                      ->where('cabina','=', 'Salon-Cama')
-                                      ->where('disponibilidad', '=', true);
-        $len_ida = sizeof($asientos_ida);
-        if($len_ida >= $num_pasajeros){}
+        $asientos_ida = Asiento::All()->where('id_avion', '=', $vuelo_ida->id_avion)
+                                      ->where('cabina', '=','Salon-Cama');
+        $asientos_idaArray = [];
+        foreach($asientos_ida as $asiento){
+            array_push($asientos_idaArray, $asiento->id);
+        }
+        $asientos_vuelo_ida = Asiento_Vuelo::All()->where('id_vuelo', '=', $vuelo_ida->id)
+                                                  ->whereIn('id_asiento', $asientos_idaArray)
+                                                  ->where('disponible', '=', true);
+        $asientos_vuelo_ida_array = [];
+        foreach($asientos_vuelo_ida as $asiento){
+            array_push($asientos_vuelo_ida_array, $asiento->id);
+        }
+        $len_ida = sizeof($asientos_vuelo_ida_array);
+        if($len_ida >= $num_pasajeros){
+            for($i=0;$i<$num_pasajeros;$i++){
+                $as_vue_ida = Asiento_Vuelo::find($asientos_vuelo_ida_array[$i]);
+                $as_vue_ida->disponible = false;
+                $as_vue_ida->save();
+            }
+        }
         else {
-            return redirect()->action('PaquetesController@show',['id' => $paquete->id])
+            return redirect()->action('PaquetesController@show', ['id' => $paquete->id])
             ->with('status','No quedan suficientes asientos disponibles en el vuelo de ida para el paquete que solicitó.');
         }
 
         //Se reservan los asientos para el vuelo de regreso
         $vuelo_vuelta = Vuelo::find($paquete->id_vuelo_vuelta);
-        $asientos_vuelta = Asiento::All()->where('id_avion','=', $vuelo_vuelta->id_avion)
-                                         ->where('cabina','=', 'Salon-Cama')
-                                         ->where('disponibilidad','=', true);
-        $len_vuelta = sizeof($asientos_vuelta);
-        if($len_vuelta >= $num_pasajeros){} 
+        $asientos_vuelta = Asiento::All()->where('id_avion', '=', $vuelo_vuelta->id_avion)
+                                      ->where('cabina', '=','Salon-Cama');
+        $asientos_vueltaArray = [];
+        foreach($asientos_vuelta as $asiento){
+            array_push($asientos_vueltaArray, $asiento->id);
+        }
+        $asientos_vuelo_vuelta = Asiento_Vuelo::All()->where('id_vuelo', '=', $vuelo_vuelta->id)
+                                                  ->whereIn('id_asiento', $asientos_vueltaArray)
+                                                  ->where('disponible', '=', true);
+        $asientos_vuelo_vuelta_array = [];
+        foreach($asientos_vuelo_vuelta as $asiento){
+            array_push($asientos_vuelo_vuelta_array,$asiento->id);
+        }
+        $len_ida = sizeof($asientos_vuelo_vuelta);
+        if($len_ida >= $num_pasajeros){
+            for($i=0;$i<$num_pasajeros;$i++){
+                $as_vue_vuelta = Asiento_Vuelo::find($asientos_vuelo_vuelta_array[$i]);
+                $as_vue_vuelta->disponible = false;
+                $as_vue_vuelta->save();
+            }
+        }
         else {
             return redirect()->action('PaquetesController@show',['id' => $paquete->id])
             ->with('status','No quedan suficientes asientos disponibles en el vuelo de ida para el paquete que solicitó.');

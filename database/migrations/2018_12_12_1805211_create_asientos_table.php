@@ -18,7 +18,6 @@ class CreateAsientosTable extends Migration
             $table->integer('numero_asiento');
             $table->string('letra_asiento');
             $table->integer('precio_asiento');
-            $table->boolean('disponibilidad');
             $table->string('cabina');
             $table->unsignedInteger('id_reserva');
             $table->unsignedInteger('id_avion');

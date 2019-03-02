@@ -143,7 +143,7 @@ Route::get('/checkin_2', function () {
 Route::get('/Reserva/CheckInVuelo/', 'ReservasController@buscarCheckIn');
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
-Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');
+Route::get('/Asiento/Reservar/','AsientosController@resas')->name('Reservas.resas');
 Route::get('/Beneficio/Listado/','BeneficiosController@mostrarSeguros')->name('Beneficios.mosSeg');
 Route::get('/Seguro/CalculoCosto/','SegurosController@calcularCosto')->name('Seguros.calCos');
 Route::get('/Beneficio_Seguro/AdquirirSeguro/','Beneficio_SeguroController@adquirirSeguro')->name('Beneficio_Seguro.adqSeg');
