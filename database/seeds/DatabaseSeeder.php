@@ -29,14 +29,11 @@ class DatabaseSeeder extends Seeder
         $this->call(HistorialesSeeders::class);
         $this->call(PasajerosSeeders::class);
         $this->call(EquipajesSeeders::class);
-        //$this->call(PaquetesSeeders::class);
+        $this->call(PaquetesSeeders::class);
         $this->call(ReservasSeeders::class);
         $this->call(AsientosSeeders::class);
         $this->call(TicketsSeeders::class); 
         $this->call(Beneficios_SegurosSeeders::class);
         $this->call(Pasajeros_ReservasSeeders::class);
-        $this->call(Habitaciones_ReservasSeeders::class);
-        $this->call(Transportes_ReservasSeeders::class);
-        $this->call(Asientos_VuelosSeeders::class);
     }
 }

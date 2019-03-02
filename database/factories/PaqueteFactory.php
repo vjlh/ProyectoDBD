@@ -25,16 +25,23 @@ $factory->define(App\Paquete::class, function (Faker $faker) {
     'Sao paulo','Chiloe','Isla de Pascua');
     $destino = $faker->randomElement($ciudades);
     $tipo_paquete = $faker->randomElement($array = array('Alojamiento','Automóvil','All'));
-
+    /*
+    //se obtiene el vuelo de ida
     $vuelosUbicacion = Vuelo::All()->where('destino_vuelo', '=', $destino)
                                    ->where('fecha_vuelo','=', $fecha_paquete);
-    $vuelos = [];
+    $vuelos_id = [];
     foreach ($vuelosUbicacion as $vuelo) {
-        array_push($vuelos,$vuelo);
+        array_push($vuelos_id,$vuelo->id);
     }
-    $lenVuelos = sizeof($vuelos);
-    $randomVuelos = rand(0,$lenVuelos);
-    $vuelo = $vuelos[$randomVuelos];
+    $vuelo_ida = Vuelo::find($vuelos_id[0]);
+
+    $vuelosUbicacion = Vuelo::All()->where('origen_vuelo','=',$destino)
+                                   ->where('destino_vuelo','=',$vuelo_ida->origen_vuelo);
+    $vuelos_id = [];
+    foreach($vuelosUbicacion as $vuelo){
+        array_push($vuelos_id,$vuelo->id);
+    }
+    $vuelo_vuelta = Vuelo::find($vuelos_id[0]);
 
 
     if($tipo_paquete == 'Alojamiento'){
@@ -113,6 +120,26 @@ $factory->define(App\Paquete::class, function (Faker $faker) {
         $transporte = $transportes[$randomTransporte];
 
     }
+    */
+    $id_vuelo_ida = DB::table('vuelos')->select('id')->get()->random()->id;
+    $id_vuelo_vuelta = DB::table('vuelos')->select('id')->get()->random()->id;
+
+    $id_hospedaje = NULL;
+    $id_habitacion = NULL;
+    $id_transporte = NULL;
+    if($tipo_paquete == 'Alojamiento'){
+        $id_hospedaje = DB::table('hospedajes')->select('id')->get()->random()->id;
+        $id_habitacion = DB::table('habitaciones')->select('id')->get()->random()->id;
+    }
+    elseif($tipo_paquete == 'Automóvil'){
+        $id_transporte = DB::table('transportes')->select('id')->get()->random()->id;
+    }
+    elseif($tipo_paquete == 'All'){
+        $id_hospedaje = DB::table('hospedajes')->select('id')->get()->random()->id;
+        $id_habitacion = DB::table('habitaciones')->select('id')->get()->random()->id;
+        $id_transporte = DB::table('transportes')->select('id')->get()->random()->id;
+    }
+
     return [
         'num_dias' => $dias,
         'num_noches' => $noches,
@@ -120,9 +147,10 @@ $factory->define(App\Paquete::class, function (Faker $faker) {
         'precio_paquete' => $faker->randomElement($array = array(500000, 700000,750000,600000,1000000)),
         'destino_paquete' => $destino,
         'fecha_paquete' => $fecha_paquete,
-        'id_vuelo' => $vuelo->id,
-        'id_hospedaje' => $hospedaje->id,
-        'id_habitacion' => $habitacion->id,
-        'id_transporte' => $transporte->id
+        'id_vuelo_ida' => $id_vuelo_ida,
+        'id_vuelo_vuelta' => $id_vuelo_vuelta,
+        'id_hospedaje' => $id_hospedaje,
+        'id_habitacion' => $id_habitacion,
+        'id_transporte' => $id_transporte
     ];
 });

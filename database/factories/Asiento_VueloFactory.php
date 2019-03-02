@@ -10,7 +10,7 @@ $factory->define(App\Asiento_Vuelo::class, function (Faker $faker) {
     return [
         'id_vuelo' => $id_vuelo,
         'id_asiento' => $id_asiento,
-        'id_reserva' => $id_reserva,
-        'disponible' => $faker->boolean,
+        'id_reserva' => NULL,
+        'disponible' => false,
     ];
 });
