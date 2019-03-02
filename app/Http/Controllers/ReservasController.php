@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reserva;
+use App\Vuelo;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
 
@@ -88,6 +89,18 @@ class ReservasController extends Controller
         }
         else
             return "La reserva con el id ingresado no existe o fue eliminada"; 
+
+    }
+    public function buscarCheckIn()
+    {
+        $id_obtenida = $request->get('codigo_reserva');
+        $reserva = Reserva::find($id_obtenida);
+        if($reserva->vuelo == true)
+        {
+            $vuelo = Vuelo::all()->whereNotIn('id',$ids_NoDisponibles)
+                                        ->where('id_hospedaje', '=' , $id);
+            return(view('checkin_2'),compact('vuelo'));
+        }
 
     }
 }

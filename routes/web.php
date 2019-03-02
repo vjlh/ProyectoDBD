@@ -133,8 +133,14 @@ Route::get('/detallePaquete', function () {
 Route::get('/prueba', function () {
     return view('prueba');
 });
+Route::get('/checkin_1', function () {
+    return view('checkin_1');
+});
+Route::get('/checkin_2', function () {
+    return view('checkin_2');
+});
 
-
+Route::get('/Reserva/CheckInVuelo/', 'ReservasController@buscarCheckIn');
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/{id}','AsientosController@resas')->name('Reservas.resas');
