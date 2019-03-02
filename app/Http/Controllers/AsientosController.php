@@ -86,18 +86,6 @@ class AsientosController extends Controller
                 $costoFinal = $costoFinal + $asiento->precio_asiento;
             }
         }
-        $asientos_seleccionados_vuelo = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo->id)
-                                                            ->whereIn('id_asiento',$asientos_seleccionados);
-        $asientos_seleccionados_vuelo_array = [];
-        foreach($asientos_seleccionados_vuelo as $asiento){
-            array_push($asientos_seleccionados_vuelo_array,$asiento->id);
-        }
-        $len = sizeof($asientos_seleccionados_vuelo_array);
-        for($i=0;$i<$len;$i++){
-            $asiento = Asiento_Vuelo::find($asientos_seleccionados_vuelo_array[$i]);
-            $asiento->disponible = false;
-            $asiento->save();
-        }
 
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
@@ -110,6 +98,21 @@ class AsientosController extends Controller
         $reserva->hospedaje=false;
         $reserva->vuelo=true;
         $reserva->save();
+
+        $asientos_seleccionados_vuelo = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo->id)
+                                                            ->whereIn('id_asiento',$asientos_seleccionados);
+        $asientos_seleccionados_vuelo_array = [];
+        foreach($asientos_seleccionados_vuelo as $asiento){
+            array_push($asientos_seleccionados_vuelo_array,$asiento->id);
+        }
+        $len = sizeof($asientos_seleccionados_vuelo_array);
+        for($i=0;$i<$len;$i++){
+            $asiento = Asiento_Vuelo::find($asientos_seleccionados_vuelo_array[$i]);
+            $asiento->disponible = false;
+            $asiento->id_reserva = $reserva->id;
+            $asiento->save();
+        }
+
         return \Redirect::to('/')->with('statusReservaVuelo','El vuelo ha sido reservado.');
     }
 

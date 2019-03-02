@@ -17,6 +17,7 @@ class CreateAsientosVuelosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_vuelo');
             $table->unsignedInteger('id_asiento');
+            $table->unsignedInteger('id_reserva')->nullable();
             $table->boolean('disponible');
             $table->timestamps();
 
@@ -28,6 +29,11 @@ class CreateAsientosVuelosTable extends Migration
             $table->foreign('id_asiento')
                 ->references('id')
                 ->on('asientos')
+                ->onDelete('cascade');
+
+            $table->foreign('id_reserva')
+                ->references('id')
+                ->on('reservas')
                 ->onDelete('cascade');
         });
     }

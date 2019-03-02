@@ -26,7 +26,9 @@ class Asiento_VueloController extends Controller
             \App\Vuelo::find($id_vuelo)->id;
             $id_asiento = $request->get('id_asiento');
             \App\Asiento::find($id_asiento)->id;
-
+            $id_reserva = $request->get('id_reserva');
+            \App\Reserva::find($id_reserva)->id;
+            
             $as_vue = Asiento_Vuelo::create($request->all());
             $as_vue->save();
             return $as_vue;
@@ -59,6 +61,8 @@ class Asiento_VueloController extends Controller
             \App\Vuelo::find($id_vuelo)->id;
             $id_asiento = $request->get('id_asiento');
             \App\Asiento::find($id_asiento)->id;
+            $id_reserva = $request->get('id_reserva');
+            \App\Reserva::find($id_reserva)->id;
 
             $as_vue->fill($request->all());
             $as_vue->save();

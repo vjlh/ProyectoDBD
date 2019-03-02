@@ -175,6 +175,7 @@ class PaquetesController extends Controller
             for($i=0;$i<$num_pasajeros;$i++){
                 $as_vue_ida = Asiento_Vuelo::find($asientos_vuelo_ida_array[$i]);
                 $as_vue_ida->disponible = false;
+                $as_vue_ida->id_reserva = $reserva->id;
                 $as_vue_ida->save();
             }
         }
@@ -203,6 +204,7 @@ class PaquetesController extends Controller
             for($i=0;$i<$num_pasajeros;$i++){
                 $as_vue_vuelta = Asiento_Vuelo::find($asientos_vuelo_vuelta_array[$i]);
                 $as_vue_vuelta->disponible = false;
+                $as_vue_vuelta->id_reserva = $reserva->id;
                 $as_vue_vuelta->save();
             }
         }

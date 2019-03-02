@@ -26,6 +26,7 @@ class Asiento_VueloRequest extends FormRequest
         return[
             'id_vuelo' => 'required|numeric',
             'id_asiento' => 'required|numeric',
+            'id_reserva' => 'required|numeric',
             'disponible' => 'required|boolean',
         ];
     }
