@@ -95,8 +95,11 @@ class Asiento_VueloController extends Controller
         $id_obtenida = request('codigo_reserva');
         $reserva = Reserva::find($id_obtenida);
         $id_user = $reserva->id_user;
+        if($reserva->check_in == true){
+            return \Redirect::to('/checkin_1')->with('statusCheckIn1','Esta reserva ya cuenta con su Check In realizado');
+        }
 
-        if($reserva->vuelo == true)
+        else if($reserva->check_in == false && $reserva->vuelo == true)
         {
             /*$asiento_vuelo = Asiento_Vuelo::find(1)all()->where('id_reserva', '=' , $id_obtenida)*/
             $asiento_vuelo = DB::table('asientos_vuelos')->where('id_reserva', $id_obtenida)->first();

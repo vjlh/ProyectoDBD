@@ -86,7 +86,9 @@ Route::get('/reservar_auto/{id}', function ($id) {
 });
 
 Route::get('/buscar_autos', function () {
-    $ciudades = Ciudad::all();
+    $ciudades1 = Ciudad::all();
+    $ciudades = $ciudades1->sortBy('nombre_ciudad');
+
     $transportes = Transporte::all();
     return View('buscar_autos', ['ciudades' => $ciudades, 'transportes' => $transportes]);
 });
@@ -95,7 +97,9 @@ Route::get('/buscar_seguros', function () {
 });
  
 Route::get('/buscar_vuelos', function () {
-    $ciudades = Ciudad::all();
+    $ciudades1 = Ciudad::all();
+    $ciudades = $ciudades1->sortBy('nombre_ciudad');
+
     $vuelos = Vuelo::all();
     return View('buscar_vuelos', ['ciudades' => $ciudades, 'vuelos' => $vuelos]);
 });
@@ -111,7 +115,9 @@ Route::get('/hospedajes', function () {
 });
 
 Route::get('/reservaHospedaje', function () {
-    $ciudades = Ciudad::all();
+    $ciudades1 = Ciudad::all();
+    $ciudades = $ciudades1->sortBy('nombre_ciudad');
+
     return View('reservaHospedaje',compact('ciudades'));
 });
 Route::get('/reservar_seguro', function () {
