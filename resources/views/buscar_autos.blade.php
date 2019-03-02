@@ -92,13 +92,13 @@
                   
                   <div class="row justify-content-start">
                     <div class="col-4">
-                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" value="{{ old('fecha_inicio') }}">
+                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" value="{{ old('fecha_inicio') }}" required>
                             @if ($errors->has('fecha_inicio'))
                             <span class="invalid-feedback" role="alert"></span>
                             @endif
                     </div>
                     <div class="col-4">
-                        <input id="fecha_vuelta" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_fin') ? ' is-invalid' : '' }}" name="fecha_fin" value="{{ old('fecha_fin') }}">
+                        <input id="fecha_vuelta" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_fin') ? ' is-invalid' : '' }}" name="fecha_fin" value="{{ old('fecha_fin') }}" required>
                                 @if ($errors->has('fecha_fin'))
                                 <span class="invalid-feedback" role="alert"></span>
                                 @endif

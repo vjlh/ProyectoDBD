@@ -26,7 +26,7 @@
 </script>
 @endif
 
-<form action="/Asiento" method="get">
+
 <section id="intro">
 <style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
 <section id="about" >
@@ -41,6 +41,7 @@
               <img src="{{asset('images/avioncito.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-plane"></i></div>
               </div>
+              <form action="/Asiento" method="get">
               <h2 class="title"><a>Destino: {{$vuelo->destino_vuelo}}</a></h2>
               <center><h6 class="subtitle"><a>Origen: {{$vuelo->origen_vuelo}}</a></h6></center>
               
@@ -53,6 +54,7 @@
                 <input type="hidden" value="{{$vuelo->id}}" name="vuelo" id="vuelo">
                 <button type="submit" class="btn btn-get-started">Ver Asientos</button>
                 </center>
+                </form>
             </div>
           </div>
 
@@ -68,6 +70,6 @@
 
 
 
-</form>
+
 
 @endsection
