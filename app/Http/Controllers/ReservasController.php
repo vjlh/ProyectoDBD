@@ -91,16 +91,14 @@ class ReservasController extends Controller
             return "La reserva con el id ingresado no existe o fue eliminada"; 
 
     }
-    public function buscarCheckIn()
+    public function checkIn()
     {
-        $id_obtenida = $request->get('codigo_reserva');
+        $id_obtenida = request('codigo_reserva');
         $reserva = Reserva::find($id_obtenida);
-        if($reserva->vuelo == true)
-        {
-            $vuelo = Vuelo::all()->whereNotIn('id',$ids_NoDisponibles)
-                                        ->where('id_hospedaje', '=' , $id);
-            return(view('checkin_2'),compact('vuelo'));
-        }
+        $reserva->check_in = true;
+        $reserva->save();
+        return \Redirect::to('/')->with('statusCheckIn','El check-in ha sido realizado');
+
 
     }
 }

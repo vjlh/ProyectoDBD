@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Asiento_VueloRequest;
 use App\Asiento_Vuelo;
+use App\Reserva;
+use App\Asiento;
+use App\Vuelo;
+use App\User;
+use DB;
+
 
 class Asiento_VueloController extends Controller
 {
@@ -83,5 +89,25 @@ class Asiento_VueloController extends Controller
         }
         else
             return "No existe un as_vue con la id ingresada";
+    }
+    public function buscarCheckIn()
+    {
+        $id_obtenida = request('codigo_reserva');
+        $reserva = Reserva::find($id_obtenida);
+        $id_user = $reserva->id_user;
+
+        if($reserva->vuelo == true)
+        {
+            /*$asiento_vuelo = Asiento_Vuelo::find(1)all()->where('id_reserva', '=' , $id_obtenida)*/
+            $asiento_vuelo = DB::table('asientos_vuelos')->where('id_reserva', $id_obtenida)->first();
+            $id_asiento =  $asiento_vuelo->id_asiento;           
+            $id_vuelo =  $asiento_vuelo->id_vuelo;
+
+            $vuelo = Vuelo::find($id_vuelo);
+            $asiento = Asiento::find($id_asiento);
+            $user = User::find($id_user);
+            return view('checkin_2',compact('vuelo','asiento','user','id_obtenida'));
+        }
+
     }
 }

@@ -10,30 +10,59 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
-<form action="/Beneficio/Listado/" method="get">
+<form action="/Reserva/Check-in/" method="get">
 <section id="intro">
 <div class="carousel-background"><img src="{{asset('images/1.jpg')}}" alt=""></div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card dbd-auth" style="margin-top: -60%; color: white; background-color: #212529c7;">
-                <div class="card-header">{{ __('Realiza tu Check In') }}</div>
+                <div class="card-header">{{ __('Codigo de reserva: ') }} {{$id_obtenida}}</div>
 
                     <div class="card-body">
                     <div class="row">
-                        <div class="col-4">
-                        <i class="material-icons" style="font-size:450%;color:white;">airplanemode_active</i>
-                        </div>
-                        <div class="col-4" style="margin-left:-25%;margin-top:2%">                        
-                        <!--<h3>$vuelo->origen_vuelo -> $vuelo->destino_vuelo</h3>-->
-                        <h3>Tu viaje a Percy</h3>
+                        <div class="col-4">                        
+                            <label style="font-family:WildWest;font-size:200%">{{$vuelo->origen_vuelo}}</label> 
+                            <i class="material-icons" style="font-size:200%;color:orange;">flight_takeoff</i>
+                            <label style="font-family:WildWest;font-size:200%">  {{$vuelo->destino_vuelo}}</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6" style="margin-left:30%">
-                            <h4>Detalles del vuelo reservado</h4>
+                        <div class="col-md-4">
+                            <label style="font-family:Trebuchet MS;font-size:130%">{{$user->name}} {{$user->apellido_usuario}}</label>
                         </div>    
-                    </div>    
+                    </div>
+                    
+                    <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>
+                            <i class="material-icons" style="font-size:170%;color:orange;">date_range</i>
+                            Fecha del vuelo</th>
+
+                            <td>{{$vuelo->fecha_vuelo}} </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            <i class="material-icons" style="font-size:170%;color:orange;">watch_later</i>
+                            Hora del vuelo</th>
+                            <td>
+                                {{$vuelo->hora_vuelo}} 
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            <i class="material-icons" style="font-size:200%;color:orange;">event_seat</i>
+                            Asiento reservado</th>
+
+                            <td>
+                                {{$asiento->letra_asiento}} {{$asiento->numero_asiento}}
+                            </td>
+                        </tr>
+                            
+                    </tbody>
+                </table>
+                <input type="hidden" value="{{$id_obtenida}}" name="codigo_reserva", id="codigo_reserva">   
 
                         <div class="form-group row mb-0" style="margin-top: 10%;">
                             <div class="col-md-6 offset-md-4">

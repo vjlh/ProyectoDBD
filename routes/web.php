@@ -140,17 +140,19 @@ Route::get('/checkin_2', function () {
     return view('checkin_2');
 });
 
-Route::get('/Reserva/CheckInVuelo/', 'ReservasController@buscarCheckIn');
+Route::get('/Asiento_Vuelo/CheckInVuelo/', 'Asiento_VueloController@buscarCheckIn');
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
 Route::get('/Asiento/Reservar/','AsientosController@resas')->name('Reservas.resas');
 Route::get('/Beneficio/Listado/','BeneficiosController@mostrarSeguros')->name('Beneficios.mosSeg');
 Route::get('/Seguro/CalculoCosto/','SegurosController@calcularCosto')->name('Seguros.calCos');
 Route::get('/Beneficio_Seguro/AdquirirSeguro/','Beneficio_SeguroController@adquirirSeguro')->name('Beneficio_Seguro.adqSeg');
+Route::get('/Reserva/Check-in/','ReservasController@checkIn')->name('Reserva.chIn');
 
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');
 Route::resource('/Asiento','AsientosController');
+Route::resource('/Asiento_Vuelo','Asiento_VueloController');
 Route::resource('/Avion','AvionesController');
 Route::resource('/Beneficio','BeneficiosController');
 Route::resource('/Ciudad','CiudadesController');

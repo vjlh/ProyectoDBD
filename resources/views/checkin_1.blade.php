@@ -4,7 +4,7 @@
 <!--==========================
     Intro Section
   ============================-->
-<form action="/Reserva/CheckInVuelo/" method="get">
+<form action="/Asiento_Vuelo/CheckInVuelo/" method="get">
 <section id="intro">
 <div class="carousel-background"><img src="{{asset('images/1.jpg')}}" alt=""></div>
     <div class="row justify-content-center">

@@ -51,6 +51,29 @@ $(document).ready(function(){
 </script>
 @endif
 
+@if (session('statusCheckIn'))
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="modal fade" id="ModalVueloReservado" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" id="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
+      <div class="modal-body" id="modal-body" style="color: white;">
+        <p style="color: white;">Se ha generado su check-in exitosamente.</p> 
+      </div>
+      <div class="modal-footer">
+        <a style="margin: auto;"class="btn btn-success " data-dismiss="modal">Cerrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+  // Show the Modal on load
+  $("#ModalVueloReservado").modal("show");
+});
+</script>
+@endif
   
 
   <!--==========================

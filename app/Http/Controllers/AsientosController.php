@@ -20,8 +20,10 @@ class AsientosController extends Controller
     {
         $vuelo = Vuelo::find(request('vuelo'));
         $num_pasajeros = request('num_pasajeros');
-        $asientos_vuelo = Asiento_Vuelo::All()->where('id_vuelo', '=', $vuelo->id)
-                                              ->where('disponible', '=', true);
+        $id_avion = $vuelo->id_avion;
+        $asientos = Asiento::all()->where('id_avion','=',$id_avion);
+        /*$asientos_vuelo = Asiento_Vuelo::All()->where('id_vuelo', '=', $vuelo->id);
+
         $asientos_vuelo_array = [];
         foreach($asientos_vuelo as $asiento){
             array_push($asientos_vuelo_array, $asiento->id);
@@ -34,7 +36,9 @@ class AsientosController extends Controller
         }
         else{
             return \Redirect::back()->with('statusAsientos','No hay suficientes asientos.');
-        }
+        }*/
+        return view('seleccion_asiento',compact('asientos', 'num_pasajeros','vuelo'));
+
     }
 
     public function create()
