@@ -16,21 +16,21 @@
                     <tr>
                     
                     <th><h5 class="card-title">Nº de Seguro</h5></th>
-                    <th><h5 class="card-title">Precio Seguro</h5></th>
                     <th><h5 class="card-title">Tipo</h5></th>
+                    <th><h5 class="card-title">Precio</h5></th>
                     <th><h5 class="card-title">Editar</h5></th>
                     <th><h5 class="card-title">Eliminar</h5></th>
 
                     </tr>
 
-                    @foreach($seguros as $seguro)
+                    @foreach($beneficios as $beneficio)
 
                     <tr>
                     
 
-                    <th><h5 class="card-title">{{$seguro->id}}</h5></th>
-                    <th><h5 class="card-title">{{$seguro->precio_seguro}}</h5></th>
-                    <th><h5 class="card-title">{{$seguro->tipo_seguro}}</h5></th>
+                    <th><h5 class="card-title">{{$beneficio->id}}</h5></th>
+                    <th><h5 class="card-title">{{$beneficio->nombre_beneficio}}</h5></th>
+                    <th><h5 class="card-title">{{$beneficio->precio_beneficio}}</h5></th>
 
 
                     
@@ -39,13 +39,13 @@
 
                     @else
                     <center>
-                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-seguro-update{{$seguro->id}}">Editar</button></th>
+                    <th><button type="submit" class="btn btn-get-started" data-toggle="modal" data-target="#modal-seguro-update{{$beneficio->id}}">Editar</button></th>
                     </center>
                     @include('includes.modal_seguro_edit')
 
                     </form>
                     
-                    <form action="/Seguro/{{$seguro->id}}" method="post">
+                    <form action="/Beneficio/{{$beneficio->id}}" method="post">
                     @method('DELETE')
                     @csrf
                     <center>

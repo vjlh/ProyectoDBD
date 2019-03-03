@@ -20,11 +20,14 @@ class BeneficiosController extends Controller
         //
     }
 
-    public function store(BeneficiosRequest $request)
+    public function store(Request $request)
     {
         $beneficio = Beneficio::create($request->all());
         $beneficio->save();
-        return $beneficio;
+        
+        return back()->with('success_message','Agregado con éxito!');
+ 
+
     }
 
     public function show($id)
@@ -41,14 +44,24 @@ class BeneficiosController extends Controller
         //
     }
 
-    public function update(BeneficiosRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $beneficio = Beneficio::find($id);
-        $beneficio->fill($request->all());
-        $beneficio->save();
-        return $beneficio;
-        
+        $outcome = $beneficio->fill($this->validate($request, [
+            'nombre_beneficio' => 'required',
+            'descripcion_beneficio' => 'required',
+            'precio_beneficio' => 'required',
+        ]))->save();
+
+        if ($outcome) {
+            //dd("aqui");
+            return back()->with('success_message','Actualizado con éxito!');
+        } else {
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
+            //dd("aqui2");
+        }
     }
+
 
     public function destroy($id)
     {

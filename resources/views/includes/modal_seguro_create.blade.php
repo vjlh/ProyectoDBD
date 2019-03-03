@@ -1,6 +1,6 @@
 <!-- Modal -->
 
-<form action="{{ route('Seguro.store')}}" method="post">
+<form action="{{ route('Beneficio.store')}}" method="post">
 @method('POST')
             @csrf
   <div class="modal fade" id="modal-seguro-create" role="dialog">
@@ -16,70 +16,7 @@
                         
             <div class="form-group row">
                     <label 
-                    for="precio_seguro" 
-                    class="col-sm-4 col-form-label text-md-right"
-                    >
-                    {{ __('Precio') }}
-                    </label>
-
-                    <div class="col-md-6">
-                        <input 
-                        id="precio_seguro" 
-                        name="precio_seguro" 
-                        type="number"
-                        min="0"
-                        class="form-control"  
-                        required 
-                        autofocus
-                        >
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                  <label 
-                  for="destino_seguro" 
-                  class="col-sm-4 col-form-label text-md-right"
-                  >
-                    {{ __('Destino') }}
-                  </label>
-                <div class="col-md-6">
-                    <select 
-                        id="destino_seguro"
-                        name="destino_seguro"
-                        class="form-control selectpicker custom-select" 
-                        required 
-                        autofocus
-                        >
-
-                          <option value="Africa ">
-                              Africa
-                          </option>
-                          <option value="Asia ">
-                              Asia
-                          </option>
-                          <option value="Europa ">
-                              Europa
-                          </option>
-                          <option value="Norteamerica">
-                              Norteamerica
-                          </option>
-                          <option value=" Centroamerica ">
-                              Centroamerica 
-                          </option>
-                          <option value="Latinoamerica ">
-                              Latinoamerica
-                          </option>
-                          <option value="Oceania ">
-                              Oceania
-                          </option>
-                          
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                    <label 
-                    for="tipo_seguro" 
+                    for="nombre_beneficio" 
                     class="col-sm-4 col-form-label text-md-right"
                     >
                     {{ __('Tipo') }}
@@ -87,8 +24,8 @@
 
                     <div class="col-md-6">
                         <input 
-                        id="tipo_seguro" 
-                        name="tipo_seguro" 
+                        id="nombre_beneficio" 
+                        name="nombre_beneficio" 
                         type="text"
                         class="form-control"  
                         required 
@@ -97,69 +34,46 @@
                     </div>
                 </div>
 
-             
+                <div class="form-group row">
+                    <label 
+                    for="descripcion_beneficio" 
+                    class="col-sm-4 col-form-label text-md-right"
+                    >
+                    {{ __('Descripción') }}
+                    </label>
+
+                    <div class="col-md-6">
+                        <input 
+                        id="descripcion_beneficio" 
+                        name="descripcion_beneficio" 
+                        type="text"
+                        class="form-control"  
+                        required 
+                        autofocus
+                        >
+                    </div>
+                </div>
 
                 <div class="form-group row">
                   <label 
-                  for="numero_pasajeros_seguros" 
+                  for="precio_beneficio" 
                   class="col-sm-4 col-form-label text-md-right"
                   >
-                    {{ __('Nº de Pasajeros') }}
+                    {{ __('Precio') }}
                   </label>
 
                   <div class="col-md-6">
                       <input 
-                        id="numero_pasajeros_seguros" 
-                        name="numero_pasajeros_seguros" 
+                        id="precio_beneficio" 
+                        name="precio_beneficio" 
                         type="number" 
                         class="form-control"  
                         min="1"
-                        max="10"
                         required 
                         autofocus
                       >
                   </div>
-                </div>
-
-                <div class="form-group row">
-                    <label 
-                    for="fecha_inicio_seguro" 
-                    class="col-sm-4 col-form-label text-md-right"
-                    >
-                    {{ __('Fecha Inicio') }}
-                    </label>
-
-                    <div class="col-md-6">
-                        <input 
-                        id="fecha_inicio_seguro" 
-                        name="fecha_inicio_seguro" 
-                        type="date"
-                        class="form-control"  
-                        required 
-                        autofocus
-                        >
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label 
-                    for="fecha_fin_seguro" 
-                    class="col-sm-4 col-form-label text-md-right"
-                    >
-                    {{ __('Fecha Fin') }}
-                    </label>
-
-                    <div class="col-md-6">
-                        <input 
-                        id="fecha_fin_seguro" 
-                        name="fecha_fin_seguro" 
-                        type="date"
-                        class="form-control"  
-                        required 
-                        autofocus
-                        >
-                    </div>
-                </div>
+                </div> 
 
             
             <button type="submit" class="btn btn-get-started">Agregar</button>
