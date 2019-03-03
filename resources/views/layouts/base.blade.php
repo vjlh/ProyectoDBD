@@ -89,6 +89,7 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="/inicio#intro">Inicio</a></li>
+          <li><a href="/checkin_1">Check-In</a></li>
           <li><a href="/inicio#about">Servicios</a></li>
           <!--<li><a href="#services">Services</a></li>-->
           <!--<li><a href="#portfolio">Portfolio</a></li>-->
