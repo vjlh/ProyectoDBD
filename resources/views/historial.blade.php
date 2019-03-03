@@ -60,13 +60,11 @@
                 
 
                     @else
-                    <form action="/Reserva/{{$reserva->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started scrollto">Ver Detalles</button></th>
+                    <th>
+                    @include('includes.modal_historial_detalle')
+                    <a class="btn btn-success btn-get-started scrollto" data-toggle="modal" data-target="#ModalHistorialDetalle">Detalles</a></th>
                     </center>
-                    </form>
                     
                     
 

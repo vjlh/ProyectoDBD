@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Historial;
+use App\Reserva;
 use Illuminate\Http\Request;
 use App\Http\Requests\HistorialesRequest;
 
@@ -36,11 +37,8 @@ class HistorialesController extends Controller
 
     public function show($id)
     {
-        $historial = Historial::find($id);
-        if($historial != NULL)
-            return $historial;
-        else
-            return "El historial con el id ingresado no existe o fue eliminado"; 
+        $reservas = Reserva::all()->where('id_user', '=' , $id);
+        return view('historial',compact('reservas'));
     }
 
     public function edit(Historial $historial)
