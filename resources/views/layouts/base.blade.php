@@ -103,12 +103,12 @@
             </ul>
           </li> -->
           <li><a href="/inicio#contact">Contacto</a></li>
-          @guest
+          <!-- @guest
           @else
               <a title="icono_carrito" method="get" href="{{ route('carrito.show', Auth::user()->id )}}">
                   <i class="fas fa-shopping-cart fa-2x" style="color: white;"> </i>
               </a>
-          @endguest
+          @endguest -->
           @guest
                             <li class="nav-item">
                                 <a class="nav-link" style="display: -webkit-inline-box;" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
@@ -125,7 +125,7 @@
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" style="background-color: #212529c7;" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Historial</a>
+                                    <a class="dropdown-item" href="{{ route('carrito.show', Auth::user()->id )}}">Historial</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

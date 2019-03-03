@@ -14,7 +14,7 @@
             
             <div class="card dbd-auth" style=" margin-bottom: 20%; color: white; background-color: #212529c7;">
             <center>
-                <h1><small> CARRITO DE COMPRAS</h1></small>
+                <h1><small> HITORIAL DE RESERVAS (COMPRAS)</h1></small>
             </center>
                 <div class="card-header">{{ __('') }}</h5></div>
 
@@ -26,8 +26,8 @@
                     <th><h5 class="card-title">Nº de reserva</h5></th>
                     <th><h5 class="card-title">Monto total</h5></th>
                     <th><h5 class="card-title">Tipo</h5></th>
-                    <th><h5 class="card-title">Comprar</h5></th>
-                    <th><h5 class="card-title">Eliminar</h5></th>
+                    <th><h5 class="card-title">Fecha</h5></th>
+                    <th><h5 class="card-title">Detalles</h5></th>
 
                     </tr>
 
@@ -48,6 +48,8 @@
                     @elseif($reserva->transporte == 1)
                         <th><h5 class="card-title"></h5>Transporte</th>
                     @endif
+
+                    <th><h5 class="card-title">{{$reserva->created_at}}</h5></th>
                     
                     @guest
                     <!-- Trigger the modal with a button -->
@@ -62,17 +64,11 @@
                     @method('DELETE')
                     @csrf
                     <center>
-                    <th><button type="submit" class="btn btn-get-started scrollto">Comprar</button></th>
+                    <th><button type="submit" class="btn btn-get-started scrollto">Ver Detalles</button></th>
                     </center>
                     </form>
                     
-                    <form action="/Reserva/{{$reserva->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <center>
-                    <th><button type="submit" class="btn btn-get-eliminar">Eliminar</button></th>
-                    </center>
-                    </form>
+                    
 
                     @endguest
 

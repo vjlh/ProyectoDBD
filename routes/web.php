@@ -145,6 +145,9 @@ Route::get('/checkin_1', function () {
 Route::get('/checkin_2', function () {
     return view('checkin_2');
 });
+Route::get('/historial', function () {
+    return view('historial');
+});
 
 Route::get('/Asiento_Vuelo/CheckInVuelo/', 'Asiento_VueloController@buscarCheckIn');
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');

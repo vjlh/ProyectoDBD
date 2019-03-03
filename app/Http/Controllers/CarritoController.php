@@ -50,7 +50,7 @@ class CarritoController extends Controller
     public function show($id)
     {
         $reservas = Reserva::all()->where('id_user', '=' , $id);
-        return view('carrito',compact('reservas'));
+        return view('historial',compact('reservas'));
     }
 
     /**
