@@ -53,13 +53,24 @@
                         <tr>
                             <th>
                             <i class="material-icons" style="font-size:200%;color:orange;">event_seat</i>
-                            Asiento reservado</th>
-
+                            Asientos reservados</th><td></td>
+                        </tr>
+                        <?php
+                            $count = 0;
+                        ?>
+                        @foreach ($asientos as $asiento)
+                        <?php
+                            $count++;
+                        ?>
+                        <tr>
+                            <th style="margin: 10%;">
+                                {{$count}} - {{$asiento->cabina}}
+                            </th>
                             <td>
                                 {{$asiento->letra_asiento}} {{$asiento->numero_asiento}}
                             </td>
                         </tr>
-                            
+                        @endforeach
                     </tbody>
                 </table>
                 <input type="hidden" value="{{$id_obtenida}}" name="codigo_reserva", id="codigo_reserva">   

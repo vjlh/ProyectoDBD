@@ -102,14 +102,16 @@ class Asiento_VueloController extends Controller
         else if($reserva->check_in == false && $reserva->vuelo == true)
         {
             /*$asiento_vuelo = Asiento_Vuelo::find(1)all()->where('id_reserva', '=' , $id_obtenida)*/
-            $asiento_vuelo = DB::table('asientos_vuelos')->where('id_reserva', $id_obtenida)->first();
-            $id_asiento =  $asiento_vuelo->id_asiento;           
-            $id_vuelo =  $asiento_vuelo->id_vuelo;
-
+            $asiento_vuelo = Asiento_Vuelo::All()->where('id_reserva', $id_obtenida);
+            $id_asientos = [];
+            foreach($asiento_vuelo as $asiento){
+                array_push($id_asientos, $asiento->id);
+                $id_vuelo = $asiento->id_vuelo;
+            }           
             $vuelo = Vuelo::find($id_vuelo);
-            $asiento = Asiento::find($id_asiento);
+            $asientos = Asiento::All()->whereIn('id', $id_asientos);
             $user = User::find($id_user);
-            return view('checkin_2',compact('vuelo','asiento','user','id_obtenida'));
+            return view('checkin_2',compact('vuelo','asientos','user','id_obtenida'));
         }
 
     }
