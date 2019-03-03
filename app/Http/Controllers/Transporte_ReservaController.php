@@ -7,6 +7,9 @@ use App\Http\Requests\Transporte_reservaRequest;
 use App\Transporte_reserva;
 use App\Transporte;
 use App\Reserva;
+use Mail;
+use App\User;
+use App\Mail\SendEmail;
 
 
 class Transporte_ReservaController extends Controller
@@ -50,6 +53,8 @@ class Transporte_ReservaController extends Controller
         session()->put('costoReservaTransporte', $costoFinal);        
        /* $hospedajes = Hospedaje::all();*/
         return view('detallesReservaTransporte',compact('transporte'));
+
+        
     }
 
     public function create()
@@ -81,6 +86,14 @@ class Transporte_ReservaController extends Controller
         
         Transporte::all();
         return view('transportes',compact('transportes'));
+
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $email = $usuario->email;
+        $subject = "Reserva de Automóvil";
+        $message = $fecha_inicio;
+        
+        Mail::to($email)->send(new SendEmail($subject,$message));
     }
 
     public function show($id)
@@ -111,11 +124,21 @@ class Transporte_ReservaController extends Controller
         $res_trans->fecha_fin =$fecha_fin;
         $res_trans->save();
 
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $email = $usuario->email;
+        $subject = "Reserva de Automóvil";
+        
+        Mail::to($email)->send(new SendEmail($subject,$fecha_inicio, $fecha_fin));
+
         $transporte->disponibilidad = false;
         $transporte->save();
         session()->put('costoReservaTransporte', $costoFinal);        
         $transportes = Transporte::all();
         return view('detallesReservaTransporte',compact('transporte'));
+
+        
+
     }
 
     public function edit(Transporte_reserva $tran_res)

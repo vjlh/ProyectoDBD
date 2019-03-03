@@ -18,12 +18,14 @@ class SendEmail extends Mailable
      */
 
     public $sub;
-    public $mes;
+    public $inicio;
+    public $fin;
 
-    public function __construct($subject, $message)
+    public function __construct($subject,$fecha_inicio,$fecha_fin)
     {
         $this->sub = $subject;
-        $this->mes = $message;
+        $this->inicio = $fecha_inicio;
+        $this->fin = $fecha_fin;
     }
 
     /**
@@ -34,7 +36,8 @@ class SendEmail extends Mailable
     public function build()
     {
         $e_subject=$this->sub;
-        $e_message=$this->mes;
-        return $this->view('mail.sendemail',compact("e_message"))->subject($e_subject);
+        $e_inicio=$this->inicio;
+        $e_fin=$this->fin;
+        return $this->view('mail.sendemail',compact("e_inicio", "e_fin"))->subject($e_subject);
     }
 }
