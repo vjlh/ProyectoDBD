@@ -3,7 +3,7 @@
 
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
+
 <?php
 $dias = session()->get('diasTransporte');
 $fecha_i = session()->get('fechaInicioTransporte');

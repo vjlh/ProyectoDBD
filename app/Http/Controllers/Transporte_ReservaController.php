@@ -124,12 +124,22 @@ class Transporte_ReservaController extends Controller
         $res_trans->fecha_fin =$fecha_fin;
         $res_trans->save();
 
+        if($transporte->aire_acondicionado_transporte == true){$aire = 'Si';}
+        else{$aire = 'No';}
+
         $id_usuario = auth()->id();
         $usuario = User::find($id_usuario);
         $email = $usuario->email;
         $subject = "Reserva de Automóvil";
+        $modelo = $transporte->modelo_transporte;
+        $patente = $transporte->patente_transporte;
+        $puntuacion = $transporte->puntuacion_transporte;
+        $asientos = $transporte->num_asientos_transporte;
+        $puertas =  $transporte->num_puertas_transporte;
+
         
-        Mail::to($email)->send(new SendEmail($subject,$fecha_inicio, $fecha_fin));
+        
+        Mail::to($email)->send(new SendEmail($subject,$fecha_inicio, $fecha_fin, $costoFinal, $aire, $modelo, $patente, $puntuacion, $asientos, $puertas ));
 
         $transporte->disponibilidad = false;
         $transporte->save();
