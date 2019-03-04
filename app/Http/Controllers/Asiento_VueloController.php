@@ -92,26 +92,34 @@ class Asiento_VueloController extends Controller
     }
     public function buscarCheckIn()
     {
-        $id_obtenida = request('codigo_reserva');
-        $reserva = Reserva::find($id_obtenida);
-        $id_user = $reserva->id_user;
-        if($reserva->check_in == true){
-            return \Redirect::to('/checkin_1')->with('statusCheckIn1','Esta reserva ya cuenta con su Check In realizado');
+        $cod_obtenido = request('codigo_reserva');
+        $reserva = DB::table('reservas')->where('codigo_reserva', $cod_obtenido)->first();
+
+        if($reserva == null){
+            return \Redirect::to('/checkin_1')->with('statusCheckIn1','El codigo de reserva ingresado no es válido, intente nuevamente');
+        }
+
+        else if($reserva->check_in == true){
+            return \Redirect::to('/checkin_1')->with('statusCheckIn1','El codigo de reserva ingresado no es válido, intente nuevamente');
         }
 
         else if($reserva->check_in == false && $reserva->vuelo == true)
         {
-            /*$asiento_vuelo = Asiento_Vuelo::find(1)all()->where('id_reserva', '=' , $id_obtenida)*/
-            $asiento_vuelo = Asiento_Vuelo::All()->where('id_reserva', $id_obtenida);
+            /*$asiento_vuelo = Asiento_Vuelo::find(1)all()->where('id_reserva', '=' , $cod_obtenido)*/
+            $asiento_vuelo = Asiento_Vuelo::All()->where('id_reserva', $reserva->id);
             $id_asientos = [];
             foreach($asiento_vuelo as $asiento){
                 array_push($id_asientos, $asiento->id);
                 $id_vuelo = $asiento->id_vuelo;
-            }           
+            } 
+            $id_user = $reserva->id_user;
             $vuelo = Vuelo::find($id_vuelo);
             $asientos = Asiento::All()->whereIn('id', $id_asientos);
             $user = User::find($id_user);
-            return view('checkin_2',compact('vuelo','asientos','user','id_obtenida'));
+            return view('checkin_2',compact('vuelo','asientos','user','cod_obtenido'));
+        }
+        else{
+            return \Redirect::to('/checkin_1')->with('statusCheckIn1','El codigo de reserva ingresado no es válido, intente nuevamente');
         }
 
     }

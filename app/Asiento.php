@@ -8,14 +8,11 @@ class Asiento extends Model
 {
 	protected $table = 'asientos';
     protected $fillable = [
-        'numero_asiento', 'letra_asiento', 'precio_asiento', 'cabina', 'id_avion', 'id_reserva',
+        'numero_asiento', 'letra_asiento', 'precio_asiento', 'cabina', 'id_avion',
     ];
 
     public function aviones(){
         return $this ->belongsTo(Avion::class, 'id_avion');
     }
 
-    public function reservas(){
-        return $this ->belongTo(Reserva::class, 'id_reserva');
-    }
 }

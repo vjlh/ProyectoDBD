@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reserva;
 use App\Vuelo;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
 
@@ -93,8 +94,8 @@ class ReservasController extends Controller
     }
     public function checkIn()
     {
-        $id_obtenida = request('codigo_reserva');
-        $reserva = Reserva::find($id_obtenida);
+        $cod_obtenido = request('codigo_reserva');
+        $reserva = Reserva::where('codigo_reserva', $cod_obtenido)->first();
         $reserva->check_in = true;
         $reserva->save();
         return \Redirect::to('/')->with('statusCheckIn2','El check-in ha sido realizado');

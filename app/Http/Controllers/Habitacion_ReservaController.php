@@ -41,7 +41,6 @@ class Habitacion_ReservaController extends Controller
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=null;
         $reserva->transporte=false;
         $reserva->hospedaje=true;
@@ -60,6 +59,7 @@ class Habitacion_ReservaController extends Controller
         $habitacion->save();
         session()->put('costo_final', $costoFinal);        
         $hospedajes = Hospedaje::all();
+        
         return view('detallesReservaHospedaje',compact('habitacion'));
     }
 

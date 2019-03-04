@@ -101,9 +101,9 @@ class AsientosController extends Controller
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
         $reserva->check_in=null;
+        $reserva->codigo_reserva=str_random(9);
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=null;
         $reserva->transporte=false;
         $reserva->hospedaje=false;

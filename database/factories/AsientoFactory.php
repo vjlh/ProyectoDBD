@@ -3,10 +3,8 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Asiento::class, function (Faker $faker) {
-    $id_reserva = DB::table('reservas')->select('id')->get();
     $id_avion = DB::table('aviones')->select('id')->get();
     return [
-    	'id_reserva' => $id_reserva->random()->id,
     	'id_avion' => $id_avion->random()->id,
         'numero_asiento' => $faker->numberBetween(1,300),
         'letra_asiento' => $faker->randomLetter,

@@ -11,9 +11,6 @@ class Promocion extends Model
         'nombre_promocion', 'descuento_promocion','descripcion_promocion'
     ];
 
-    public function reservas(){
-        return $this ->hasMany(Reserva::class);
-    }
     
 
 }

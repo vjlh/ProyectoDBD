@@ -73,7 +73,7 @@ class HabitacionesController extends Controller
         }
 
         $habitaciones = Habitacion::all()->whereNotIn('id',$ids_NoDisponibles)
-                                        ->where('id_hospedaje', '=' , $id);
+                                         ->where('id_hospedaje', '=' , $id);
         $habitacionesAux = [];
         foreach($habitaciones as $habitacion){
             array_push($habitacionesAux,$habitacion);

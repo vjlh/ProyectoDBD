@@ -19,18 +19,9 @@ class CreateAsientosTable extends Migration
             $table->string('letra_asiento');
             $table->integer('precio_asiento');
             $table->string('cabina');
-            $table->unsignedInteger('id_reserva');
             $table->unsignedInteger('id_avion');
             $table->timestamps();
 
-            
-            
-            $table->foreign('id_reserva')
-                ->references('id')
-                ->on('reservas')
-                ->onDelete('cascade');
-
-            
             
             $table->foreign('id_avion')
                 ->references('id')

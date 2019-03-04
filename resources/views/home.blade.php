@@ -61,7 +61,7 @@ $(document).ready(function(){
   <div class="modal-dialog modal-sm">
     <div class="modal-content" id="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
       <div class="modal-body" id="modal-body" style="color: white;">
-        <p style="color: white;">Se ha generado su check-in exitosamente.</p> 
+        <p style="color: white;">{{session('statusCheckIn2')}}</p> 
       </div>
       <div class="modal-footer">
         <a style="margin: auto;"class="btn btn-success " data-dismiss="modal">Cerrar</a>

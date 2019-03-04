@@ -10,6 +10,7 @@
     use App\Habitacion_Reserva;
     use App\Transporte_Reserva;
     use App\Beneficio_Seguro;
+    use App\Beneficio;
 ?>
 
 @if($reserva->id_paquete != NULL)
@@ -19,7 +20,7 @@
     $vueloVuelta = Vuelo::find($paquete->id_vuelo_vuelta);
 ?>
     <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog  ">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Vuelo de ida</div>
@@ -98,11 +99,11 @@
     else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog" >
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del hospedaje</div>
-                <table class="table" style="background-color: #2c3e50d9;" >
+                <table class="table table-sm" style="background-color: #2c3e50d9;" >
                     <tbody>
                         <tr>
                             <th>Nombre hotel:</th>
@@ -136,7 +137,7 @@
                     </tbody>
                 </table>
                 <div class="card-header">Datos de la habitación</div>
-                <table class="table" style="background-color: #2c3e50d9;" >
+                <table class="table table-sm" style="background-color: #2c3e50d9;" >
                     <tbody>
                         <tr>
                             <th>Capacidad:</th>
@@ -171,7 +172,7 @@
     else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog  ">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del transporte</div>
@@ -234,7 +235,7 @@
     else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog  ">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del hospedaje</div>
@@ -306,7 +307,7 @@
     else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del transporte</div>
@@ -352,10 +353,15 @@
 
 <?php
     $seguro = Seguro::find($reserva->id_seguro);
-    $beneficios_seguro = Beneficio_Seguro::All()->where('id_seguro','=',$seguro->id);
+    $beneficios_seguro = Beneficio_Seguro::all()->where('id_seguro','=',$seguro->id);
+    $ids = [];
+    foreach($beneficios_seguro as $b_s){
+        array_push($ids,$b_s->id_beneficio);
+    }
+    $beneficios = Beneficio::all()->whereIn('id',$ids);
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
                 <div class="card-header">Datos del seguro</div>
@@ -390,11 +396,11 @@
                     </table>
 
                 <div class="card-header">Beneficios que incluye</div>
-                    <table class="table" style="background-color: #2c3e50d9;" >
+                    <table class="table table-sm" style="background-color: #2c3e50d9;" >
                         <tbody>
-                            @foreach ($beneficios_seguro as $beneficios)
+                            @foreach ($beneficios as $beneficio)
                             <tr>
-                                <td>{{$beneficios->nombre_beneficio}}</td>
+                                <td>{{$beneficio->nombre_beneficio}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -432,7 +438,7 @@
     else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog ">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del hospedaje</div>
@@ -508,7 +514,7 @@
     else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog  ">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del transporte</div>
@@ -555,7 +561,7 @@
     $vuelo = Vuelo::find($asiento_vuelo->id_vuelo);
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Vuelo de ida</div>

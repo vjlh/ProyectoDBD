@@ -4,6 +4,11 @@
 <!--==========================
     Intro Section
   ============================-->
+<?php
+use Carbon\Carbon;
+$fecha =$vuelo->fecha_vuelo;
+$fecha = $fecha->format('l jS \\of F Y ');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +21,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card dbd-auth" style="margin-top: -60%; color: white; background-color: #212529c7;">
-                <div class="card-header">{{ __('Codigo de reserva: ') }} {{$id_obtenida}}</div>
+                <div class="card-header">{{ __('Codigo de reserva: ') }} {{$cod_obtenido}}</div>
 
                     <div class="card-body">
                     <div class="row">
@@ -40,7 +45,7 @@
                             <i class="material-icons" style="font-size:170%;color:orange;">date_range</i>
                             Fecha del vuelo</th>
 
-                            <td>{{$vuelo->fecha_vuelo}} </td>
+                            <td>{{$fecha}} </td>
                         </tr>
                         <tr>
                             <th>
@@ -73,7 +78,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <input type="hidden" value="{{$id_obtenida}}" name="codigo_reserva", id="codigo_reserva">   
+                <input type="hidden" value="{{$cod_obtenido}}" name="codigo_reserva", id="codigo_reserva">   
 
                         <div class="form-group row mb-0" style="margin-top: 10%;">
                             <div class="col-md-6 offset-md-4">

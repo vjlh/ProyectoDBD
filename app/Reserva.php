@@ -8,13 +8,10 @@ class Reserva extends Model
 {
     protected $table = 'reservas';
     protected $fillable = [
-        'monto_total_reserva', 'check_in', 'id_user', 'id_paquete', 'id_seguro', 'id_promocion', 'transporte','reserva','vuelo'
+        'monto_total_reserva', 'check_in', 'codigo_reserva', 'id_user', 'id_paquete', 'id_seguro', 'transporte','reserva','vuelo'
     ];
     
-    public function promociones()
-    {
-        return $this->belongsTo(Promocion::class, 'id_promocion');
-    }
+    
     public function paquetes()
     {
         return $this->belongsTo(Paquete::class, 'id_paquete');

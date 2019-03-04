@@ -33,7 +33,6 @@ class Transporte_ReservaController extends Controller
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=null;
         $reserva->transporte=true;
         $reserva->hospedaje=false;
