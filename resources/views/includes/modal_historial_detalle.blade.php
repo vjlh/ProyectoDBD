@@ -9,6 +9,7 @@
     use App\Asiento_Vuelo;
     use App\Habitacion_Reserva;
     use App\Transporte_Reserva;
+    use App\Beneficio_Seguro;
 ?>
 
 @if($reserva->id_paquete != NULL)
@@ -17,7 +18,7 @@
     $vueloIda = Vuelo::find($paquete->id_vuelo_ida);
     $vueloVuelta = Vuelo::find($paquete->id_vuelo_vuelta);
 ?>
-    <div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+    <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -96,7 +97,7 @@
     if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -169,7 +170,7 @@
     if($transporte->aire_acondicionado_transporte == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -232,7 +233,7 @@
     if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -304,7 +305,7 @@
     if($transporte->aire_acondicionado_transporte == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -353,7 +354,7 @@
     $seguro = Seguro::find($reserva->id_seguro);
     $beneficios_seguro = Beneficio_Seguro::All()->where('id_seguro','=',$seguro->id);
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -430,7 +431,7 @@
     if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -506,7 +507,7 @@
     if($transporte->aire_acondicionado_transporte == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
@@ -553,7 +554,7 @@
     $asiento_vuelo = DB::table('asientos_vuelos')->where('id_reserva','=',$reserva->id)->first();
     $vuelo = Vuelo::find($asiento_vuelo->id_vuelo);
 ?>
-<div class="modal fade" id="ModalHistorialDetalle" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
