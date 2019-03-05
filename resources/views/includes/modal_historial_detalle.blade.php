@@ -68,12 +68,6 @@
                     </tbody>
                 </table>
             </div>
-        <div class="modal-footer">
-        <button style="margin: 0 auto;" type="button" class="btn btn-success" data-dismiss="modal">Volver</button>
-            </div>
-        </div>
-        </div>
-    </div>
         
 
 @if($paquete->tipo_paquete == "Alojamiento")
@@ -98,9 +92,6 @@
     if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog" >
-        <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del hospedaje</div>
                 <table class="table table-sm" style="background-color: #2c3e50d9;" >
@@ -171,9 +162,6 @@
     if($transporte->aire_acondicionado_transporte == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog  ">
-        <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del transporte</div>
                 <table class="table" style="background-color: #2c3e50d9;" >
@@ -234,9 +222,6 @@
     if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog  ">
-        <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del hospedaje</div>
                 <table class="table" style="background-color: #2c3e50d9;" >
@@ -294,21 +279,12 @@
                     </tbody>
                 </table>
         </div>
-        <div class="modal-footer">
-        <button style="margin: 0 auto;" type="button" class="btn btn-success" data-dismiss="modal">Volver</button>
-            </div>
-        </div>
-        </div>
-    </div>
 <?php
     $transporte = Transporte::find($paquete->id_transporte);
 
     if($transporte->aire_acondicionado_transporte == true){$aire = 'Si';}
     else{$aire = 'No';}
 ?>
-<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">
             <div class="card-header">Datos del transporte</div>
                 <table class="table" style="background-color: #2c3e50d9;" >

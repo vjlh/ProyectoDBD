@@ -141,6 +141,7 @@ class PaquetesController extends Controller
         $reserva = new Reserva;
         $reserva->monto_total_reserva= $paquete->precio_paquete * $num_pasajeros;
         $reserva->check_in=null;
+        $reserva->codigo_reserva=str_random(9);
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
         $reserva->id_paquete=$paquete->id;
