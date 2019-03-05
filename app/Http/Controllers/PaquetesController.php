@@ -14,24 +14,28 @@ use App\Habitacion;
 use App\Transporte;
 use App\Transporte_Reserva;
 use App\Habitacion_Reserva;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaquetesRequest;
+use Mail;
+use App\Mail\SendEmail_paquete;
+use Carbon\Carbon;
 
 class PaquetesController extends Controller
 {
     //Probado
-    public function index($tipo)
+    function index($tipo)
     {
         $paquetes = Paquete::All()->where('tipo_paquete','=', $tipo);
         return $paquetes;
     }
 
-    public function create()
+    function create()
     {
         //
     }
 
-    public function store(Request $request)
+    function store(Request $request)
     {
         $paquete = Paquete::create($request->all());
         $paquete->save();
@@ -42,7 +46,7 @@ class PaquetesController extends Controller
     }
 
 
-    public function respaq($id){
+    function respaq($id){
         $paquete = Paquete::find($id);
 
         $reserva = new Reserva;
@@ -50,7 +54,6 @@ class PaquetesController extends Controller
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=$id;
         $reserva->transporte=false;
         $reserva->hospedaje=false;
@@ -63,7 +66,7 @@ class PaquetesController extends Controller
 
     }
 
-    public function show($id)
+    function show($id)
     { 
         $paquete = Paquete::find($id);
         session()->put('paquete', $paquete);
@@ -72,12 +75,12 @@ class PaquetesController extends Controller
 
     }
 
-    public function edit(Paquete $paquete)
+    function edit(Paquete $paquete)
     {
         //
     }
 
-    public function update(Request $request, $id)
+    function update(Request $request, $id)
     {
         $paquete = Paquete::find($id);
         $outcome = $paquete->fill($this->validate($request, [
@@ -104,7 +107,7 @@ class PaquetesController extends Controller
         }
     }
 
-    public function destroy($id)
+    function destroy($id)
     {
         $paquete = Paquete::find($id);
         if($paquete!=NULL)
@@ -118,7 +121,7 @@ class PaquetesController extends Controller
 
     }
 
-    public function reservarPaquete(){
+    function reservarPaquete(){
         $paquete = Paquete::find(request('paquete'));
         $num_pasajeros = request('num_pasajeros');
 
@@ -140,7 +143,6 @@ class PaquetesController extends Controller
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=$paquete->id;
         $reserva->vuelo=true;
         $reserva->hospedaje=false;
@@ -158,6 +160,8 @@ class PaquetesController extends Controller
         $asientos_vuelo_ida = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_ida->id)
                                                           ->where('disponible','=',true);
         $asientos_vuelo_ida_array = [];
+        $asientos_ida_usados = [];
+
         foreach($asientos_vuelo_ida as $asiento){
             array_push($asientos_vuelo_ida_array, $asiento->id_asiento);
         }
@@ -168,6 +172,7 @@ class PaquetesController extends Controller
             foreach($asientos_ida as $asiento){
                 array_push($asientos_ida_array, $asiento->id);
             }
+
             $len_ida = sizeof($asientos_ida_array);
             if($len_ida >= $num_pasajeros){
                 for($i=0;$i<$num_pasajeros;$i++){
@@ -177,6 +182,8 @@ class PaquetesController extends Controller
                     $as_vue_ida->id_asiento = $asientos_ida_array[$i];
                     $as_vue_ida->id_vuelo = $paquete->id_vuelo_ida;
                     $as_vue_ida->save();
+                    array_push($asientos_ida_usados, $asientos_ida_array[$i]);
+
                 }
             }
             else {
@@ -197,6 +204,8 @@ class PaquetesController extends Controller
                 $as_vue_ida->id_asiento = $asientos_ida_array[$i];
                 $as_vue_ida->id_vuelo = $paquete->id_vuelo_ida;
                 $as_vue_ida->save();
+                array_push($asientos_ida_usados, $asientos_ida_array[$i]);
+
             }
         }
 
@@ -205,6 +214,8 @@ class PaquetesController extends Controller
         $asientos_vuelo_vuelta = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_vuelta->id)
                                                           ->where('disponible','=',true);
         $asientos_vuelo_vuelta_array = [];
+        $asientos_vuelta_usados = [];
+
         foreach($asientos_vuelo_vuelta as $asiento){
             array_push($asientos_vuelo_vuelta_array, $asiento->id_asiento);
         }
@@ -224,6 +235,7 @@ class PaquetesController extends Controller
                     $as_vue_vuelta->id_asiento = $asientos_vuelta_array[$i];
                     $as_vue_vuelta->id_vuelo_vueltaelo = $paquete->id_vuelo_vuelta;
                     $as_vue_vuelta->save();
+                    array_push($asientos_vuelta_usados, $asientos_vuelta_array[$i]);
                 }
             }
             else {
@@ -245,6 +257,8 @@ class PaquetesController extends Controller
                 $as_vue_vuelta->id_asiento = $asientos_vuelta_array[$i];
                 $as_vue_vuelta->id_vuelo = $paquete->id_vuelo_vuelta;
                 $as_vue_vuelta->save();
+                array_push($asientos_vuelta_usados, $asientos_vuelta_array[$i]);
+
             }
         }
         //Se reserva el hospedaje
@@ -291,6 +305,20 @@ class PaquetesController extends Controller
             $transporte->disponibilidad = false;
             $transporte->save();
         }
+
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $nombre_user = $usuario->name;
+        $apellido_user = $usuario->apellido_usuario;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado una reserva de paquete";
+        $email = $usuario->email;
+        $subject = "Reserva de Paquete";
+
+        $costo = $reserva->monto_total_reserva;
+        $asientos_ida = Asiento::all()->whereIn('id',$asientos_ida_usados);
+        $asientos_vuelta = Asiento::all()->whereIn('id',$asientos_vuelta_usados);
+        Mail::to($email)->send(new SendEmail_paquete($subject,$encabezado,$num_pasajeros, $costo, $paquete, $asientos_ida, $asientos_vuelta));
+
         return \Redirect::to('/')->with('paqueteReservado','El paquete ha sido reservado.');
     }
 }

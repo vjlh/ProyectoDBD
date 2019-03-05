@@ -38,11 +38,11 @@ $beneficios_seguro = session()->get('beneficiosSeleccionados_seguro');
                         </tr>
                         <tr>
                             <th>Fecha inicio</th>
-                            <td>{{$seguro->fecha_inicio_seguro}}</td>
+                            <td>{{session()->get('fechaInicio_seguro')}}</td>
                         </tr>
                         <tr>
                             <th>Fecha termino</th>
-                            <td>{{$seguro->fecha_fin_seguro}}</td>
+                            <td>{{session()->get('fechaFin_seguro')}}</td>
                         </tr>
                           
                     </tbody>

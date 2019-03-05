@@ -10,6 +10,7 @@ use App\Reserva;
 use Mail;
 use App\User;
 use App\Mail\SendEmail;
+use Carbon\Carbon;
 
 
 class Transporte_ReservaController extends Controller
@@ -39,8 +40,8 @@ class Transporte_ReservaController extends Controller
 
         setlocale(LC_TIME, 'es_ES.UTF-8'); 
         Carbon::setLocale('es'); 
-        $fecha1 = Carbon::parse(session()->get('fecha_ida'))->formatLocalized('%d %B %Y');
-        $fecha2 = Carbon::parse(session()->get('fecha_vuelta'))->formatLocalized('%d %B %Y');
+        $fecha1 = Carbon::parse(session()->get('fechaInicioTransporte'))->formatLocalized('%d %B %Y');
+        $fecha2 = Carbon::parse(session()->get('fechaFinTransporte'))->formatLocalized('%d %B %Y');
 
         $fecha_inicio = session()->get('fechaInicioTransporte');
         $fecha_fin = session()->get('fechaFinTransporte');
@@ -72,7 +73,7 @@ class Transporte_ReservaController extends Controller
         $id_usuario = auth()->id();
         $usuario = User::find($id_usuario);
         $nombre_user = $usuario->name;
-        $encabezado = "Estimado Sr(a) ".$nombre_user." los detalles de su reserva son los siguientes;";
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ha realizado una reserva de transporte";
         $email = $usuario->email;
         $subject = "Reserva de Automóvil";
         $modelo = $transporte->modelo_transporte;

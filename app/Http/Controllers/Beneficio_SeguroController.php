@@ -143,12 +143,11 @@ class Beneficio_SeguroController extends Controller
         $usuario = User::find($id_usuario);
         $nombre_user = $usuario->name;
         $apellido_user = $usuario->apellido_usuario;
-        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." los detalles del seguro reservado son los siguientes;";
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado una reserva de seguro";
         $email = $usuario->email;
         $subject = "Reserva de seguro";
-        $tipo = $seguro->tipo_seguro;
 
-        Mail::to($email)->send(new SendEmail_seguro($subject,$encabezado, $fecha1, $fecha2, $costo_seguro, $tipo, $personas_seguro, $destino_seguro,$duracion_seguro, $beneficios_seguro));
+        Mail::to($email)->send(new SendEmail_seguro($subject,$encabezado, $fecha1, $fecha2, $seguro,$duracion_seguro, $beneficios_seguro));
         return view('detalleReservaSeguro',compact('seguro'));
 
     }

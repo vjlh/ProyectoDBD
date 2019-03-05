@@ -22,23 +22,17 @@ class SendEmail_seguro extends Mailable
 
     public $inicio;
     public $fin;
-    public $costo;
-    public $tipo;
-    public $personas;
-    public $destino;
+    public $seguro;
     public $dias;
     public $beneficios;
 
-    public function __construct($subject,$encabezado,$fecha_inicio, $fecha_fin, $costo, $tipo, $personas, $destino, $dias, $beneficios)
+    public function __construct($subject,$encabezado,$fecha_inicio, $fecha_fin, $seguro, $dias, $beneficios)
     {
         $this->sub = $subject;
         $this->encabezado = $encabezado;
         $this->inicio = $fecha_inicio;
         $this->fin = $fecha_fin;
-        $this->costo = $costo;
-        $this->tipo = $tipo;
-        $this->personas = $personas;
-        $this->destino = $destino;
+        $this->seguro = $seguro;
         $this->dias = $dias;
         $this->beneficios = $beneficios;
     }
@@ -54,13 +48,10 @@ class SendEmail_seguro extends Mailable
         $e_encab = $this->encabezado;
         $e_inicio=$this->inicio;
         $e_fin=$this->fin;
-        $e_costo=$this->costo;
-        $e_tipo=$this->tipo;
-        $e_personas=$this->personas;
+        $e_seguro=$this->seguro;
         $e_dias=$this->dias;
-        $e_destino=$this->destino;
         $e_beneficios=$this->beneficios;
 
-        return $this->view('mail.sendemail_seguro',compact("e_encab","e_inicio", "e_fin", "e_costo", "e_tipo","e_personas","e_destino","e_dias","e_beneficios"))->subject($e_subject);
+        return $this->view('mail.sendemail_seguro',compact("e_encab","e_inicio", "e_fin", "e_seguro","e_dias","e_beneficios"))->subject($e_subject);
     }
 }

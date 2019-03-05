@@ -9,17 +9,40 @@
 <body>
 
     <h2>{{$e_encab}} </h2>
-    <p>Fecha de inicio de la reserva: {{$e_inicio}} </p>
-    <p>Fecha de fin de la reserva: {{$e_fin}} </p>
-    <p>Número de días reservados: {{$e_dias}}</p>
-    <p>Nombre del Hotel: {{$e_nom_hot}}</p>
-    <h3>Caracteristicas de la habitacion reservada</h3>
-    <p>Tipo: {{$e_tip_hab}}</p>
-    <p>Capacidad: {{$e_capa_hab}}</p>
-    <p>Baño privado: {{$e_ban_pr}}</p>
-    <p>Aire Acondicionado: {{$e_air}}</p>
+    <h4>Detalles de la reserva </h4>
+    <ul>
+        <li>Fecha de inicio de la reserva: {{$e_inicio}} </li>
+        <li>Fecha de fin de la reserva: {{$e_fin}} </li>
+        <li>Número de días reservados: {{$e_dias}}</li>
+    </ul>
 
-    <p>VALOR TOTAL DE LA RESERVA: ${{$e_costo}}</p>
+    <h4>Detalles del hotel </h4>
+    <ul>
+        <li>Ubicacion: {{$e_hotel->ubicacion}}</li>
+        <li>Nombre: {{$e_hotel->nombre_hospedaje}}</li>
+        <li>Cadena: {{$e_hotel->cadena_hospedaje}}</li>
+        <li>Numero de estrellas: {{$e_hotel->estrellas_hospedaje}}</li>
+    </ul>
+
+    <h4>Caracteristicas de la habitacion reservada</h4>
+    <ul>
+        <li>Tipo: {{$e_habi->tipo}}</li>
+        <li>Capacidad: {{$e_habi->capacidad}}</li>
+        @if($e_habi->banio_privado == 1)
+        <li>Baño privado: Sí</li>
+        @else
+        <li>Baño privado: No</li>
+        @endif
+
+        @if($e_habi->aire_acondicionado_habitacion == 1)
+        <li>Aire Acondicionado: Sí</li>
+        @else
+        <li>Aire Acondicionado: No</li>
+        @endif
+
+    </ul>
+
+    <h3>Valor total de la reserva: ${{$e_costo}}</h3>
     
 </body>
 </html>

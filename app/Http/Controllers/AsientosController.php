@@ -7,16 +7,20 @@ use App\Reserva;
 use App\Ciudad;
 use App\Vuelo;
 use App\Asiento_Vuelo;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\AsientosRequest;
 use App\Avion;
 use App\Http\Requests\AvionesRequest;
 use Session;
+use Mail;
+use App\Mail\SendEmail_vuelo;
+use Carbon\Carbon;
 
 class AsientosController extends Controller
 {
     //Probado
-    public function index()
+    function index()
     {
         $vuelo = Vuelo::find(request('vuelo'));
         $num_pasajeros = request('num_pasajeros');
@@ -48,12 +52,12 @@ class AsientosController extends Controller
 
     }
 
-    public function create()
+    function create()
     {
         //
     }
 
-    public function store(AsientosRequest $request)
+    function store(AsientosRequest $request)
     {
 
         try{
@@ -72,7 +76,7 @@ class AsientosController extends Controller
 
     }
 
-    public function show($id)
+    function show($id)
     {
         $asiento = Asiento::find($id);
         if($asiento!=NULL)
@@ -82,11 +86,11 @@ class AsientosController extends Controller
             return "No existe asiento con la id ingresada";
     }
 
-    public function edit(Asiento $asiento)
+    function edit(Asiento $asiento)
     {
         //
     }
-    public function resas(){
+    function resas(){
         $asientos = Asiento::All();
         $vuelo = Vuelo::find(request('id_vuelo'));
         $asientos_seleccionados = [];
@@ -120,10 +124,30 @@ class AsientosController extends Controller
             $asiento->save();
         }
 
+        setlocale(LC_TIME, 'es_ES.UTF-8'); 
+        Carbon::setLocale('es'); 
+
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $nombre_user = $usuario->name;
+        $apellido_user = $usuario->apellido_usuario;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado una reserva de vuelo";
+        $email = $usuario->email;
+        $subject = "Reserva de Vuelo";
+
+        $fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
+        $hora = Carbon::parse($vuelo->hora_vuelo)->format('H:i');
+        $origen = $vuelo->origen_vuelo;
+        $destino = $vuelo->destino_vuelo;
+        $costo = $costoFinal;
+        $asientos_select = Asiento::all()->whereIn('id',$asientos_seleccionados);
+        
+        Mail::to($email)->send(new SendEmail_vuelo($subject,$encabezado,$reserva->codigo_reserva, $fecha, $hora, $origen, $destino, $costo, $asientos_select));
+
         return \Redirect::to('/')->with('statusReservaVuelo','El vuelo ha sido reservado.');
     }
 
-    public function update(AsientosRequest $request, $id)
+    function update(AsientosRequest $request, $id)
     {
         $id_asiento = $request->get('asiento_id');
         $asiento = Asiento::find($id_asiento);
@@ -163,7 +187,7 @@ class AsientosController extends Controller
         }*/
     }
 
-    public function destroy($id)
+    function destroy($id)
     {
         $asiento = Asiento::find($id);
         if($asiento != NULL)

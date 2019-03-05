@@ -43,7 +43,7 @@ class Habitacion_ReservaController extends Controller
 
         $fecha_inicio = session()->get('fecha_ida');
         $fecha_fin = session()->get('fecha_vuelta');
-        
+
         session()->put('fecha_ida',$fecha1);
         session()->put('fecha_vuelta',$fecha2);
 
@@ -78,17 +78,13 @@ class Habitacion_ReservaController extends Controller
         $usuario = User::find($id_usuario);
         $nombre_user = $usuario->name;
         $apellido_user = $usuario->apellido_usuario;
-        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." los detalles de su reserva son los siguientes;";
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado una reserva de hospedaje";
         $email = $usuario->email;
         $subject = "Reserva de Habitacion";
         $hospedaje = session()->get('hospedaje');
-        $nombre_hotel = $hospedaje->nombre_hospedaje;
         
-        $tipo_habitacion = $habitacion->tipo;
-        $capacidad_hab = $habitacion->capacidad_habitacion." personas";
-
         
-        Mail::to($email)->send(new SendEmail_hospedaje($subject,$encabezado, $fecha1, $fecha2, $costoFinal, $nombre_hotel, $tipo_habitacion, $numero_dias,$capacidad_hab, $banio_privado, $aire_acondicionado));
+        Mail::to($email)->send(new SendEmail_hospedaje($subject,$encabezado, $fecha1, $fecha2, $costoFinal, $hospedaje, $habitacion, $numero_dias));
 
         $habitacion->disponibilidad = false;
         $habitacion->save();

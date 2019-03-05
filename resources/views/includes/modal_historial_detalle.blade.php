@@ -417,25 +417,24 @@
 @elseif($reserva->hospedaje == true)
 
 <?php
-    $habitacion_reserva = DB::table('habitaciones_reservas')->where('id_reserva','=',$reserva->id)->first();
-    $habitacion = Habitacion::find($habitacion_reserva->id_habitacion);
-    $hospedaje = Hospedaje::find($habitacion->id_hospedaje);
+        $habitacion_reserva = Habitacion_Reserva::where('id_reserva',$reserva->id)->first();
+        $habitacion = Habitacion::find($habitacion_reserva->id_habitacion);
+        $hospedaje = Hospedaje::find($habitacion->id_hospedaje);
 
-    if($hospedaje->estacionamiento_hospedaje == true){$estacionamientoHospedaje = 'Si';}
-    else{$estacionamientoHospedaje = 'No';}
-    if($hospedaje->piscina_hospedaje == true){$piscinaHospedaje = 'Si';}
-    else{$piscinaHospedaje = 'No';}
-    if($hospedaje->sauna_hospedaje == true){$saunaHospedaje = 'Si';}
-    else{$saunaHospedaje = 'No';}
-    if($hospedaje->zona_infantil_hospedaje == true){$infantilHospedaje = 'Si';}
-    else{$infantilHospedaje = 'No';}
-    if($hospedaje->gimnasio_hospedaje == true){$gimnasioHospedaje = 'Si';}
-    else{$gimnasioHospedaje = 'No';}
-
-    if($habitacion->banio_privado == true){$banio = 'Si';}
-    else{$banio = 'No';}
-    if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
-    else{$aire = 'No';}
+        if($hospedaje->estacionamiento_hospedaje == true){$estacionamientoHospedaje = 'Si';}
+        else{$estacionamientoHospedaje = 'No';}
+        if($hospedaje->piscina_hospedaje == true){$piscinaHospedaje = 'Si';}
+        else{$piscinaHospedaje = 'No';}
+        if($hospedaje->sauna_hospedaje == true){$saunaHospedaje = 'Si';}
+        else{$saunaHospedaje = 'No';}
+        if($hospedaje->zona_infantil_hospedaje == true){$infantilHospedaje = 'Si';}
+        else{$infantilHospedaje = 'No';}
+        if($hospedaje->gimnasio_hospedaje == true){$gimnasioHospedaje = 'Si';}
+        else{$gimnasioHospedaje = 'No';}
+        if($habitacion->banio_privado == true){$banio = 'Si';}
+        else{$banio = 'No';}
+        if($habitacion->aire_acondicionado_habitacion == true){$aire = 'Si';}
+        else{$aire = 'No';}
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog ">
