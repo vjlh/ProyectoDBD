@@ -80,10 +80,14 @@
                     <label for="numPasajeros" style="margin-left: 15%" class="col-form-label">{{ __('Número de Pasajeros') }}</label>
                     </div>
                 </div>
+                <?php 
+                  use Carbon\Carbon;
+                  $hoy= Carbon::now(); 
+                  ?>
                   
                   <div class="row justify-content-start">
                     <div class="col-4">
-                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}">
+                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}" min={{$hoy}}>
                             @if ($errors->has('fecha_viaje'))
                             <span class="invalid-feedback" role="alert"></span>
                             @endif

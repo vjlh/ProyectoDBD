@@ -39,9 +39,10 @@
         <div class="form-group row">
         <label for="fecha_viaje" style="margin-left: -50px; padding: 0; margin-top: 20px" class="col-md-4 col-form-label">{{ __('Fecha de Viaje') }}</label>
       </div>
+        
         <div class="col-md-6">
             
-            <input id="fecha_viaje" style="max-width: 300px;" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}">
+            <input id="fecha_viaje" style="max-width: 300px;" type="date" min={{$hoy}} class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}" required >
             @if ($errors->has('fecha_viaje'))
                 <span class="invalid-feedback" role="alert">
                 </span>

@@ -68,17 +68,25 @@
                       <label for="fecha_viaje" style="margin-top: 10%; margin-left: 15%;" class="col-form-label">{{ __('Fecha salida') }}</label>
                     </div>
                   </div>
-
+                  <?php 
+                    use Carbon\Carbon;
+                    $hoy= Carbon::now(); 
+                  ?>
                   
                   <div class="row justify-content-start">
                     <div class="col-4">
-                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}" required>
+                        <input id="fecha_ida" onchange="changeFecha(this.value)" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}" min={{$hoy}} required>
                             @if ($errors->has('fecha_ida'))
                             <span class="invalid-feedback" role="alert"></span>
                             @endif
                     </div>
+                    <script>
+                      function changeFecha(fecha){
+                        document.getElementById("fecha_vuelta").min = fecha;
+                      }
+                    </script>
                     <div class="col-4">
-                        <input id="fecha_vuelta" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}" required>
+                        <input id="fecha_vuelta" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}" min={{$hoy}} required>
                                 @if ($errors->has('fecha_vuelta'))
                                 <span class="invalid-feedback" role="alert"></span>
                                 @endif

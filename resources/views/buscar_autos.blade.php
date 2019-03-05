@@ -71,7 +71,7 @@
                 <div class="row justify-content-start">
                     <div class="col-4"> 
                       <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_inicio" name="ciudad_inicio" required>
-                          <option value="" selected disable>Ciudad Inicio</option>
+                          <option value="" selected disable>Ciudad</option>
                           @foreach ($ciudades as $ciudad)
                           <option value="{{ $ciudad->nombre_ciudad }}">
                               {{$ciudad->nombre_ciudad}}
@@ -80,6 +80,7 @@
                       </select>
                     </div>
                   </div>
+                  
 
                   <div class="row justify-content-start">
                     <div class="col-4">
@@ -89,16 +90,25 @@
                     <label for="numero_personas" style="margin-left: 15%" class="col-form-label">{{ __('Fecha Fin') }}</label>
                     </div>
                 </div>
+                <?php 
+                use Carbon\Carbon;
+                $hoy= Carbon::now(); 
+                ?>
                   
                   <div class="row justify-content-start">
                     <div class="col-4">
-                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" value="{{ old('fecha_inicio') }}" required>
+                        <input id="fecha_ida" onchange="changeFecha(this.value)" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" value="{{ old('fecha_inicio') }}" min={{$hoy}} required>
                             @if ($errors->has('fecha_inicio'))
                             <span class="invalid-feedback" role="alert"></span>
                             @endif
                     </div>
+                    <script>
+                      function changeFecha(val){
+                        document.getElementById("fecha_vuelta").min = val;
+                      }
+                    </script>
                     <div class="col-4">
-                        <input id="fecha_vuelta" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_fin') ? ' is-invalid' : '' }}" name="fecha_fin" value="{{ old('fecha_fin') }}" required>
+                        <input id="fecha_vuelta" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_fin') ? ' is-invalid' : '' }}" name="fecha_fin" min={{$hoy}} required>
                                 @if ($errors->has('fecha_fin'))
                                 <span class="invalid-feedback" role="alert"></span>
                                 @endif
