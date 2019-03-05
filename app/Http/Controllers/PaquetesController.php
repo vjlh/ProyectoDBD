@@ -158,17 +158,16 @@ class PaquetesController extends Controller
         //Se reservan los asientos para el vuelo de ida
         $vuelo_ida = Vuelo::find($paquete->id_vuelo_ida);
         $asientos_vuelo_ida = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_ida->id)
-                                                          ->where('disponible','=',true);
+                                                          ->where('disponible','=',false);
         $asientos_vuelo_ida_array = [];
-        $asientos_ida_usados = [];
-
         foreach($asientos_vuelo_ida as $asiento){
             array_push($asientos_vuelo_ida_array, $asiento->id_asiento);
         }
         if(!empty($asientos_vuelo_ida_array)){
             $asientos_ida = Asiento::All()->where('id_avion', '=', $vuelo_ida->id_avion)
-                                                 ->whereNotIn('id', $asientos_vuelo_ida_array);
+                                          ->whereNotIn('id', $asientos_vuelo_ida_array);
             $asientos_ida_array = [];
+            $asientos_ida_usados = [];
             foreach($asientos_ida as $asiento){
                 array_push($asientos_ida_array, $asiento->id);
             }
@@ -212,16 +211,15 @@ class PaquetesController extends Controller
         //Se reservan los asientos para el vuelo de regreso
         $vuelo_vuelta = Vuelo::find($paquete->id_vuelo_vuelta);
         $asientos_vuelo_vuelta = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_vuelta->id)
-                                                          ->where('disponible','=',true);
+                                                     ->where('disponible','=',false);
         $asientos_vuelo_vuelta_array = [];
         $asientos_vuelta_usados = [];
-
         foreach($asientos_vuelo_vuelta as $asiento){
             array_push($asientos_vuelo_vuelta_array, $asiento->id_asiento);
         }
         if(!empty($asientos_vuelo_vuelta_array)){
             $asientos_vuelta = Asiento::All()->where('id_avion', '=', $vuelo_vuelta->id_avion)
-                                                 ->whereNotIn('id', $asientos_vuelo_vuelta_array);
+                                             ->whereNotIn('id', $asientos_vuelo_vuelta_array);
             $asientos_vuelta_array = [];
             foreach($asientos_vuelta as $asiento){
                 array_push($asientos_vuelta_array, $asiento->id);
@@ -233,7 +231,7 @@ class PaquetesController extends Controller
                     $as_vue_vuelta->disponible = false;
                     $as_vue_vuelta->id_reserva = $reserva->id;
                     $as_vue_vuelta->id_asiento = $asientos_vuelta_array[$i];
-                    $as_vue_vuelta->id_vuelo_vueltaelo = $paquete->id_vuelo_vuelta;
+                    $as_vue_vuelta->id_vuelo = $paquete->id_vuelo_vuelta;
                     $as_vue_vuelta->save();
                     array_push($asientos_vuelta_usados, $asientos_vuelta_array[$i]);
                 }
@@ -247,7 +245,6 @@ class PaquetesController extends Controller
             $asientos_vuelta = Asiento::All()->where('id_avion', '=', $vuelo_vuelta->id_avion);
             $asientos_vuelta_array = [];
             foreach($asientos_vuelta as $asiento){
-                echo "<script>console.log('id asiento = $asiento->id');</script>";
                 array_push($asientos_vuelta_array, $asiento->id);
             }
             for($i=0;$i<$num_pasajeros;$i++){
