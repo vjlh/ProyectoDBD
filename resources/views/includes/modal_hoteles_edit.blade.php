@@ -146,12 +146,12 @@
                         autofocus
                         >
                         @if($hospedaje->estacionamiento_hospedaje == 1)
-                        <option value="{{ $hospedaje->estacionamiento_hospedaje }}" selected>
+                        <option value="1" selected>
                           Sí
                         </option>
                         @endif
                         @if($hospedaje->estacionamiento_hospedaje == 0)
-                        <option value="{{ $hospedaje->estacionamiento_hospedaje }}" selected>
+                        <option value="0" selected>
                           No
                         </option>
                         @endif
@@ -183,12 +183,12 @@
                         autofocus
                         >
                         @if($hospedaje->piscina_hospedaje == 1)
-                        <option value="{{ $hospedaje->piscina_hospedaje }}" selected>
+                        <option value="1" selected>
                           Sí
                         </option>
                         @endif
                         @if($hospedaje->piscina_hospedaje == 0)
-                        <option value="{{ $hospedaje->piscina_hospedaje }}" selected>
+                        <option value="0" selected>
                           No
                         </option>
                         @endif
@@ -219,12 +219,12 @@
                         autofocus
                         >
                         @if($hospedaje->sauna_hospedaje == 1)
-                        <option value="{{ $hospedaje->sauna_hospedaje }}" selected>
+                        <option value="1" selected>
                           Sí
                         </option>
                         @endif
                         @if($hospedaje->sauna_hospedaje == 0)
-                        <option value="{{ $hospedaje->sauna_hospedaje }}" selected>
+                        <option value="0" selected>
                           No
                         </option>
                         @endif
@@ -255,12 +255,12 @@
                         autofocus
                         >
                         @if($hospedaje->zona_infantil_hospedaje == 1)
-                        <option value="{{ $hospedaje->zona_infantil_hospedaje }}" selected>
+                        <option value="1" selected>
                           Sí
                         </option>
                         @endif
                         @if($hospedaje->zona_infantil_hospedaje == 0)
-                        <option value="{{ $hospedaje->zona_infantil_hospedaje }}" selected>
+                        <option value="0" selected>
                           No
                         </option>
                         @endif
@@ -291,12 +291,12 @@
                         autofocus
                         >
                         @if($hospedaje->gimnasio_hospedaje == 1)
-                        <option value="{{ $hospedaje->gimnasio_hospedaje }}" selected>
+                        <option value="1" selected>
                           Sí
                         </option>
                         @endif
                         @if($hospedaje->gimnasio_hospedaje == 0)
-                        <option value="{{ $hospedaje->gimnasio_hospedaje }}" selected>
+                        <option value="0" selected>
                           No
                         </option>
                         @endif

@@ -26,8 +26,8 @@
 
                         <div class="row justify-content-start">
                             <div class="col-4">
-                                <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="destino" name="destino">
-                                    <option selected="">Destino</option>
+                                <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="destino" name="destino" required>
+                                    <option value = "" selected="">Destino</option>
                                     <option value = "Africa">Africa</option>
                                     <option value = "Asia">Asia</option>
                                     <option value = "Centroamerica">Centroamerica</option>
@@ -66,13 +66,13 @@
                   
                   <div class="row justify-content-start">
                     <div class="col-4">
-                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}">
+                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_ida') ? ' is-invalid' : '' }}" name="fecha_ida" value="{{ old('fecha_ida') }}" required>
                             @if ($errors->has('fecha_ida'))
                             <span class="invalid-feedback" role="alert"></span>
                             @endif
                     </div>
                     <div class="col-4">
-                        <input id="fecha_vuelta" style="margin-left: 40%" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}">
+                        <input id="fecha_vuelta" style="margin-left: 40%" type="date" class="form-control{{ $errors->has('fecha_vuelta') ? ' is-invalid' : '' }}" name="fecha_vuelta" value="{{ old('fecha_vuelta') }}" required>
                                 @if ($errors->has('fecha_vuelta'))
                                 <span class="invalid-feedback" role="alert"></span>
                                 @endif

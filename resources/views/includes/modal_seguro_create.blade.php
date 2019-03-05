@@ -19,7 +19,7 @@
                     for="nombre_beneficio" 
                     class="col-sm-4 col-form-label text-md-right"
                     >
-                    {{ __('Tipo') }}
+                    {{ __('Nombre') }}
                     </label>
 
                     <div class="col-md-6">

@@ -55,13 +55,13 @@ class AdministradoresController extends Controller
 
     public function f1()
     {
-        $vuelos = Vuelo::all();
-        $hospedajes = Hospedaje::all();
-        $seguros = Seguro::all();
-        $paquetes = Paquete::all();
-        $transportes = Transporte::all();
-        $habitaciones = Habitacion::all();
-        $ciudades = Ciudad::all();
+        $vuelos = Vuelo::all()->sortBy('id');
+        $hospedajes = Hospedaje::all()->sortBy('id');
+        $seguros = Seguro::all()->sortBy('id');
+        $paquetes = Paquete::all()->sortBy('id');
+        $transportes = Transporte::all()->sortBy('id');
+        $habitaciones = Habitacion::all()->sortBy('id');
+        $ciudades = Ciudad::all()->sortBy('nombre_ciudad');
         $aviones = Avion::all();
         $aeropuertos = Aeropuerto::all();
         $beneficios = Beneficio::all();

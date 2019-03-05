@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vuelo;
+use App\Avion;
 use App\Paquete;
 use Illuminate\Http\Request;
 use App\Http\Requests\VuelosRequest;
@@ -74,7 +75,11 @@ class VuelosController extends Controller
     public function store(Request $request)
     {
         $vuelo = Vuelo::create($request->all());
+        $avion = Avion::find($vuelo->id_avion);
+        $vuelo->cantidad_disponible = $avion->capacidad_avion;
         $vuelo->save();
+        $vuelos = Vuelo::All();
+        $vuelos->sortBy('id');
         
         return back()->with('success_message','Agregado con éxito!');
  
