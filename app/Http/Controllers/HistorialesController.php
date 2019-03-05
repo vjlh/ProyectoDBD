@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Historial;
 use App\Reserva;
+use App\User;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\HistorialesRequest;
 
@@ -37,8 +39,14 @@ class HistorialesController extends Controller
 
     public function show($id)
     {
-        $reservas = Reserva::all()->where('id_user', '=' , $id);
-        return view('historial',compact('reservas'));
+        if(auth()->id() == $id){
+            $reservas = Reserva::all()->where('id_user', '=' , $id);
+            return view('historial',compact('reservas'));
+        }
+        else{
+            return \Redirect::to('/');
+            
+        }
     }
 
     public function edit(Historial $historial)

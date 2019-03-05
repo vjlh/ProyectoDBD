@@ -7,22 +7,26 @@ use App\Http\Requests\Beneficio_SeguroRequest;
 use App\Beneficio_Seguro;
 use App\Reserva;
 use App\Seguro;
+use App\User;
+use Mail;
+use App\Mail\SendEmail_seguro;
+use Carbon\Carbon;
 
 
 class Beneficio_SeguroController extends Controller
 {
     //Probado
-    public function index()
+     function index()
     {
         return Beneficio_Seguro::all();
     }
 
-    public function create()
+     function create()
     {
         //
     }
 
-    public function store(Beneficio_SeguroRequest $request)
+     function store(Beneficio_SeguroRequest $request)
     {
         try{
             $id_beneficio = $request->get('id_beneficio');
@@ -39,7 +43,7 @@ class Beneficio_SeguroController extends Controller
         }
     }
 
-    public function show($id)
+     function show($id)
     {
         $ben_seg = Beneficio_Seguro::find($id);
         
@@ -49,12 +53,12 @@ class Beneficio_SeguroController extends Controller
             return "No existe un bs con la id ingresada";
     }
 
-    public function edit(Beneficio_Seguro $ben_seg)
+     function edit(Beneficio_Seguro $ben_seg)
     {
         //
     }
 
-    public function update(Beneficio_SeguroRequest $request, $id)
+     function update(Beneficio_SeguroRequest $request, $id)
     {
         $ben_seg = Beneficio_Seguro::find($id);
         try{
@@ -72,7 +76,7 @@ class Beneficio_SeguroController extends Controller
         }
     }
 
-    public function destroy($id)
+     function destroy($id)
     {
         $ben_seg = Beneficio_Seguro::find($id);
         if($ben_seg != NULL){
@@ -83,10 +87,12 @@ class Beneficio_SeguroController extends Controller
         else
             return "No existe un bs con la id ingresada";
     }
-    public function adquirirSeguro()
+     function adquirirSeguro()
     {
         $seguro = new Seguro;
         $reserva = new Reserva;
+
+         
 
         $duracion_seguro = session()->get('diasDuracion_seguro');
         $inicio_seguro = session()->get('fechaInicio_seguro');
@@ -95,12 +101,19 @@ class Beneficio_SeguroController extends Controller
         $personas_seguro = session()->get('numeroPasajeros_seguro');
         $costo_seguro = session()->get('costoFinalGrupal_seguro');
         $beneficios_seguro = session()->get('beneficiosSeleccionados_seguro');
+        
+        setlocale(LC_TIME, 'es_ES.UTF-8'); 
+        Carbon::setLocale('es');
+        $fecha1 = Carbon::parse($inicio_seguro)->formatLocalized('%d %B %Y');
+        $fecha2 = Carbon::parse($fin_seguro)->formatLocalized('%d %B %Y');
+        session()->put('fechaInicio_seguro',$fecha1);
+        session()->put('fechaFin_seguro',$fecha2);
 
         $seguro->precio_seguro = $costo_seguro;
         if($personas_seguro==1)
-            $seguro->tipo_seguro = "individual";
+            $seguro->tipo_seguro = "Individual";
         else
-            $seguro->tipo_seguro = "grupal";
+            $seguro->tipo_seguro = "Grupal";
 
         $seguro->destino_seguro = $destino_seguro;
         $seguro->numero_pasajeros_seguros = $personas_seguro;
@@ -120,12 +133,22 @@ class Beneficio_SeguroController extends Controller
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=$seguro->id;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=null;
         $reserva->transporte=false;
         $reserva->hospedaje=false;
         $reserva->vuelo=false;
         $reserva->save();
+
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $nombre_user = $usuario->name;
+        $apellido_user = $usuario->apellido_usuario;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." los detalles del seguro reservado son los siguientes;";
+        $email = $usuario->email;
+        $subject = "Reserva de seguro";
+        $tipo = $seguro->tipo_seguro;
+
+        Mail::to($email)->send(new SendEmail_seguro($subject,$encabezado, $fecha1, $fecha2, $costo_seguro, $tipo, $personas_seguro, $destino_seguro,$duracion_seguro, $beneficios_seguro));
         return view('detalleReservaSeguro',compact('seguro'));
 
     }

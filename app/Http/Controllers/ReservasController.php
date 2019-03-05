@@ -98,7 +98,7 @@ class ReservasController extends Controller
         $reserva = Reserva::where('codigo_reserva', $cod_obtenido)->first();
         $reserva->check_in = true;
         $reserva->save();
-        return \Redirect::to('/')->with('statusCheckIn2','El check-in ha sido realizado');
+        return \Redirect::to('/')->with('statusCheckIn2','El Check-In ha sido realizado exitósamente');
 
 
     }

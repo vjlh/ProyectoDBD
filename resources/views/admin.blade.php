@@ -2,7 +2,7 @@
 @section('content')
 
 
-
+@if(Auth::user()->administrador == 1)
 
 <section id="intro">
 <style>#about::before {background: rgba(35, 32, 32, 0.92) !important }</style>
@@ -63,5 +63,13 @@
 
 </section><!-- #about -->
 </section>
+@endif
+
+@if(Auth::user()->administrador == 0)
+<?php
+header('Location: /');
+?>
+@endif
+
 @endsection
 

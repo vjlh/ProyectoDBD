@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <h3>{{$e_encab}} </h3>
     <p>Fecha de inicio: {{$e_inicio}} </p>
     <p>Fecha de fin: {{$e_fin}} </p>
     <p>Modelo de Autómovil: {{$e_model}}</p>

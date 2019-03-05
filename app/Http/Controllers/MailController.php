@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Mail;
 use App\User;
 use App\Mail\SendEmail;
+use App\Mail\SendEmail_hospedaje;
 
 
 use Illuminate\Http\Request;

@@ -126,11 +126,16 @@
                                 
                                 <div class="dropdown-menu dropdown-menu-right" style="background-color: #212529c7;" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('Historial.show', Auth::user()->id )}}">Historial</a>
+                                    @if(Auth::user()->administrador == 1)
+                                    <a class="dropdown-item" href="/admin">Administración</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
+                          
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    
   
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

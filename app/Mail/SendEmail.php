@@ -18,6 +18,7 @@ class SendEmail extends Mailable
      */
 
     public $sub;
+    public $encabezado;
     public $inicio;
     public $fin;
     public $costo;
@@ -28,9 +29,10 @@ class SendEmail extends Mailable
     public $asien;
     public $puert;
 
-    public function __construct($subject,$fecha_inicio, $fecha_fin, $costoFinal, $aire, $modelo, $patente, $puntuacion, $asientos, $puertas )
+    public function __construct($subject,$encabezado,$fecha_inicio, $fecha_fin, $costoFinal, $aire, $modelo, $patente, $puntuacion, $asientos, $puertas )
     {
         $this->sub = $subject;
+        $this->encabezado = $encabezado;
         $this->inicio = $fecha_inicio;
         $this->fin = $fecha_fin;
         $this->costo = $costoFinal;
@@ -50,6 +52,7 @@ class SendEmail extends Mailable
     public function build()
     {
         $e_subject=$this->sub;
+        $e_encab = $this->encabezado;
         $e_inicio=$this->inicio;
         $e_fin=$this->fin;
         $e_costo=$this->costo;
@@ -60,6 +63,6 @@ class SendEmail extends Mailable
         $e_asien=$this->asien;
         $e_puert=$this->puert;
 
-        return $this->view('mail.sendemail',compact("e_inicio", "e_fin", "e_costo", "e_air","e_model","e_patent","e_puntua","e_asien","e_puert"))->subject($e_subject);
+        return $this->view('mail.sendemail',compact("e_encab","e_inicio", "e_fin", "e_costo", "e_air","e_model","e_patent","e_puntua","e_asien","e_puert"))->subject($e_subject);
     }
 }

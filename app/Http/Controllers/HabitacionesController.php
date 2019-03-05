@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Quotation;
 use App\Habitacion;
+use App\Habitacion_Reserva;
 use App\Hospedaje;
 use Illuminate\Http\Request;
 use App\Http\Requests\HabitacionesRequest;
@@ -53,27 +54,31 @@ class HabitacionesController extends Controller
         $hospedaje = Hospedaje::find($id);
         $fecha_inicio = session()->get('fecha_ida');
         $fecha_fin = session()->get('fecha_vuelta');
-
-        $habitaciones_reservadas1 =  DB::table('habitaciones_reservas')->where('fecha_fin','<',$fecha_inicio)->select('id_habitacion')->get();                        
-        $habitaciones_reservadas2 =  DB::table('habitaciones_reservas')->where('fecha_inicio','>',$fecha_fin)->select('id_habitacion')->get();                        
         
-        $ids = [];
-        $ids_NoDisponibles =[];
+        $preHabitaciones = Habitacion::all()->where('id_hospedaje', '=', $id);
+        $id_habitaciones = [];
 
-        foreach($habitaciones_reservadas1 as $tr1){
-            array_push($ids,$tr1->id_habitacion);
+        foreach($preHabitaciones as $hab){
+            array_push($id_habitaciones, $hab->id);
         }
-        foreach($habitaciones_reservadas2 as $tr2){
-            array_push($ids,$tr2->id_habitacion);
-        }
+  
+        $habitaciones_r = Habitacion_reserva::all()->whereIn('id_habitacion',$id_habitaciones);
+    
+        foreach ($habitaciones_r as $test){
+            if($fecha_fin > $test->fecha_inicio && $fecha_fin < $test->fecha_fin){
+                $clave = array_search($test->id_habitacion, $id_habitaciones);
+                unset($id_habitaciones[$clave]);
 
-        $habitaciones_reservadas3 = DB::table('habitaciones_reservas')->whereNotIn('id_habitacion',$ids)->select('id_habitacion')->get();
-        foreach($habitaciones_reservadas3 as $tr3){
-            array_push($ids_NoDisponibles,$tr3->id_habitacion);
-        }
 
-        $habitaciones = Habitacion::all()->whereNotIn('id',$ids_NoDisponibles)
-                                         ->where('id_hospedaje', '=' , $id);
+            }
+            if($fecha_inicio > $test->fecha_inicio && $fecha_inicio < $test->fecha_fin){
+                $clave = array_search($test->id_habitacion, $id_habitaciones);
+                unset($id_habitaciones[$clave]);
+            }
+        }
+   
+        $habitaciones = Habitacion::all()->whereIn('id',$id_habitaciones);
+                                         
         $habitacionesAux = [];
         foreach($habitaciones as $habitacion){
             array_push($habitacionesAux,$habitacion);

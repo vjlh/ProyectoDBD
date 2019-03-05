@@ -17,43 +17,8 @@ class Transporte_ReservaController extends Controller
     //Probado
     public function index($id)
     {
-        /*$transporte = Transporte::find($id);
-        return view('reservar_auto', compact('reservar_auto'));*/
-        $transporte = Transporte::find($id);
-        $precio_tr = $transporte->precio;
-        $numero_dias = session()->get('diasTransporte');
-
-        $costoFinal = $numero_dias* $precio_tr;
-
-        $fecha_inicio = session()->get('fechaInicioTransporte');
-        $fecha_fin = session()->get('fechaFinTransporte');
-
-        $reserva = new Reserva;
-        $reserva->monto_total_reserva=$costoFinal;
-        $reserva->check_in=null;
-        $reserva->id_user=auth()->id();
-        $reserva->id_seguro=null;
-        $reserva->id_paquete=null;
-        $reserva->transporte=true;
-        $reserva->hospedaje=false;
-        $reserva->vuelo=false;
-        $reserva->save();
-
-
-        $res_trans = new Transporte_Reserva;
-        $res_trans->id_transporte = $id;
-        $res_trans->id_reserva = $reserva->id;
-        $res_trans->fecha_inicio = $fecha_inicio;
-        $res_trans->fecha_fin =$fecha_fin;
-        $res_trans->save();
-
-        $transporte->disponibilidad = false;
-        $transporte->save();
-        session()->put('costoReservaTransporte', $costoFinal);        
-       /* $hospedajes = Hospedaje::all();*/
-        return view('detallesReservaTransporte',compact('transporte'));
-
-        
+        //
+    
     }
 
     public function create()
@@ -63,36 +28,7 @@ class Transporte_ReservaController extends Controller
 
     public function store(Transporte_reservaRequest $request)
     {
-        $reserva = new Reserva;
-        $reserva->monto_total_reserva=271660000;
-        $reserva->check_in=null;
-        $reserva->id_user=4;
-        $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
-        $reserva->id_paquete=null;
-        $reserva->transporte=true;
-        $reserva->hospedaje=false;
-        $reserva->vuelo=false;
-        $reserva->save();
-
-
-        $res_trans = new Transporte_Reserva;
-        $res_trans->id_transporte = $id;
-        $res_trans->id_reserva = $reserva->id;
-        $res_trans->fecha_inicio = "2019-10-10";
-        $res_trans->fecha_fin ="2019-10-10";
-        $res_trans->save();
-        
-        Transporte::all();
-        return view('transportes',compact('transportes'));
-
-        $id_usuario = auth()->id();
-        $usuario = User::find($id_usuario);
-        $email = $usuario->email;
-        $subject = "Reserva de Automóvil";
-        $message = $fecha_inicio;
-        
-        Mail::to($email)->send(new SendEmail($subject,$message));
+       //
     }
 
     public function show($id)
@@ -100,15 +36,22 @@ class Transporte_ReservaController extends Controller
         $transporte = Transporte::find($id);
         $numero_dias = session()->get('diasTransporte');
         $costoFinal = $numero_dias* $transporte->precio;
+
+        setlocale(LC_TIME, 'es_ES.UTF-8'); 
+        Carbon::setLocale('es'); 
+        $fecha1 = Carbon::parse(session()->get('fecha_ida'))->formatLocalized('%d %B %Y');
+        $fecha2 = Carbon::parse(session()->get('fecha_vuelta'))->formatLocalized('%d %B %Y');
+
         $fecha_inicio = session()->get('fechaInicioTransporte');
         $fecha_fin = session()->get('fechaFinTransporte');
+        session()->put('fechaInicioTransporte',$fecha1);
+        session()->put('fechaFinTransporte',$fecha2);
 
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
         $reserva->check_in=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
-        $reserva->id_promocion=null;
         $reserva->id_paquete=null;
         $reserva->transporte=true;
         $reserva->hospedaje=false;
@@ -128,6 +71,8 @@ class Transporte_ReservaController extends Controller
 
         $id_usuario = auth()->id();
         $usuario = User::find($id_usuario);
+        $nombre_user = $usuario->name;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." los detalles de su reserva son los siguientes;";
         $email = $usuario->email;
         $subject = "Reserva de Automóvil";
         $modelo = $transporte->modelo_transporte;
@@ -138,7 +83,7 @@ class Transporte_ReservaController extends Controller
 
         
         
-        Mail::to($email)->send(new SendEmail($subject,$fecha_inicio, $fecha_fin, $costoFinal, $aire, $modelo, $patente, $puntuacion, $asientos, $puertas ));
+        Mail::to($email)->send(new SendEmail($subject,$encabezado, $fecha1, $fecha2, $costoFinal, $aire, $modelo, $patente, $puntuacion, $asientos, $puertas ));
 
         $transporte->disponibilidad = false;
         $transporte->save();

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'fecha_nacimiento', 
         'num_documento_usuario', 
         'pais_usuario',
+        'administrador',
     ];
 
     /**

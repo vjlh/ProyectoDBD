@@ -17,10 +17,11 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'apellido_usuario' => $faker->lastName,
-        'pais_usuario' => $faker->name,
+        'pais_usuario' => $faker->country,
         'fecha_nacimiento' => $faker->dateTimeBetween($startDate = '-70 years', $endDate = 'now', $timezone = NULL),
         'num_documento_usuario' => str_shuffle('0123456789'),
         'email' => $faker->unique()->safeEmail,
+        'administrador' => $faker->boolean,
         'email_verified_at' => now(),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
