@@ -212,7 +212,7 @@ $(document).ready(function(){
                 <img src="{{asset('assets/img/destinos.jpeg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-plane"></i></div>
               </div>
-              <h2 class="title"><a href="destinos">Destinos</a></h2>
+              <h2 class="title"><a href="/buscar_vuelos">Busca tu Vuelo!</a></h2>
               <p>
                 Aquí puedes encontrar todos los destinos que tenemos para ofrecerte.
               </p>
@@ -275,19 +275,18 @@ $(document).ready(function(){
             </div>
           </div>
 
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="col-md-4 wow fadeInUp">
             <div class="about-col">
               <div class="img">
-                <img src="{{asset('assets/img/promo.jpg')}}" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-cash"></i></div>
+                <img src="{{asset('assets/img/destinos.jpeg')}}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-plane"></i></div>
               </div>
-              <h2 class="title"><a href="#">Promociones</a></h2>
+              <h2 class="title"><a href="destinos">Destinos</a></h2>
               <p>
-                Las mejores promociones y descuentos en tus reservas se encuentran aqui, no olvides revisar que promoción puedes obtener antes de viajar.
+                Aquí puedes encontrar todos los destinos que tenemos para ofrecerte.
               </p>
             </div>
           </div>
-
         </div>
 
       </div>
