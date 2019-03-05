@@ -5,9 +5,10 @@
     Intro Section
   ============================-->
 <?php
-use Carbon\Carbon;
-$fecha =$vuelo->fecha_vuelo;
-$fecha = $fecha->format('l jS \\of F Y ');
+setlocale(LC_TIME, 'es_ES.UTF-8'); 
+Carbon::setLocale('es'); 
+$fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
+
 ?>
 <!DOCTYPE html>
 <html>

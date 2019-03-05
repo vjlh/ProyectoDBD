@@ -100,7 +100,7 @@ class Asiento_VueloController extends Controller
         }
 
         else if($reserva->check_in == true){
-            return \Redirect::to('/checkin_1')->with('statusCheckIn1','El codigo de reserva ingresado no es válido, intente nuevamente');
+            return \Redirect::to('/checkin_1')->with('statusCheckIn1','El Check in para esta reserva ha sido realizado');
         }
 
         else if($reserva->check_in == false && $reserva->vuelo == true)

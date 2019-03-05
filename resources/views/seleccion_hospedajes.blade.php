@@ -1,8 +1,8 @@
 @extends('layouts.base')
 @section('content')
 
-
 @if (session('statusHabitaciones'))
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -41,20 +41,38 @@
         </div>
         <h2 class="title"><a>{{$hospedaje->nombre_hospedaje}}</a></h2>
         <center><h6 class="subtitle"><a>{{$hospedaje->ubicacion}}</a></h6></center>
+        <p>Cadena: {{$hospedaje->cadena_hospedaje}}</p>
         <p>Estrellas: {{$hospedaje->estrellas_hospedaje}}</p>
         @if($hospedaje->estacionamiento_hospedaje == 0)
             <p>Estacionamiento: No </p>
-        @endif
-        @if($hospedaje->estacionamiento_hospedaje == 1)
+        @else
             <p>Estacionamiento: Sí </p>
         @endif
+
         @if($hospedaje->piscina_hospedaje == 0)
             <p>Piscina: No </p>
-        @endif
-        @if($hospedaje->piscina_hospedaje== 1)
+        @else
             <p>Piscina: Sí </p>
         @endif
-        <p>Habitaciones disponibles: {{$hospedaje->cantidad_disponible}}</p>
+
+        @if($hospedaje->sauna_hospedaje == 0)
+            <p>Sauna: No </p>
+        @else
+            <p>Sauna: Sí </p>
+        @endif
+
+        @if($hospedaje->zona_infantil_hospedaje == 0)
+            <p>Zona infantil: No </p>
+        @else
+            <p>Zona infantil: Sí </p>
+        @endif
+
+        @if($hospedaje->gimnasio_hospedaje == 0)
+            <p>Gimnasio: No </p>
+        @else
+            <p>Gimnasio: Sí </p>
+        @endif
+
         @if($paquete != NULL)
         <center>
         <a href="/Paquete/reservarPaquete/{{$paquete->id}}/{{$vuelo->id}}/{{$hospedaje->id}}/{{$num_pasajeros}}" class="btn btn-get-started scrollto">Seleccionar</a>
