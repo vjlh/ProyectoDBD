@@ -141,6 +141,9 @@ class PaquetesController extends Controller
     function reservarPaquete(){
         $paquete = Paquete::find(request('paquete'));
         $num_pasajeros = request('num_pasajeros');
+        $asientos_ida_usados = [];
+        $asientos_vuelta_usados = [];
+
 
         if($paquete->tipo_paquete == 'Alojamiento'){
             $hospedaje = Hospedaje::find($paquete->id_hospedaje);
@@ -185,7 +188,6 @@ class PaquetesController extends Controller
             $asientos_ida = Asiento::All()->where('id_avion', '=', $vuelo_ida->id_avion)
                                           ->whereNotIn('id', $asientos_vuelo_ida_array);
             $asientos_ida_array = [];
-            $asientos_ida_usados = [];
             foreach($asientos_ida as $asiento){
                 array_push($asientos_ida_array, $asiento->id);
             }
@@ -231,7 +233,6 @@ class PaquetesController extends Controller
         $asientos_vuelo_vuelta = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_vuelta->id)
                                                      ->where('disponible','=',false);
         $asientos_vuelo_vuelta_array = [];
-        $asientos_vuelta_usados = [];
         foreach($asientos_vuelo_vuelta as $asiento){
             array_push($asientos_vuelo_vuelta_array, $asiento->id_asiento);
         }

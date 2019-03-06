@@ -9,6 +9,7 @@
 use App\Hospedaje;
 use App\Habitacion;
 use App\Transporte;
+use Carbon\Carbon;
 if($paquete->tipo_paquete == 'Alojamiento'){
     $tipo = 'Alojamiento';
 } elseif($paquete->tipo_paquete == 'Automóvil'){
@@ -16,6 +17,15 @@ if($paquete->tipo_paquete == 'Alojamiento'){
 } elseif($paquete->tipo_paquete == 'All'){
     $tipo = 'Alojamiento + Automóvil';
 }
+
+setlocale(LC_TIME, 'es_ES.UTF-8'); 
+Carbon::setLocale('es'); 
+$fecha_inicial1 = Carbon::parse($paquete->fecha_paquete);
+$fecha_fin1 = Carbon::parse($paquete->fecha_paquete)->addDays($paquete->num_dias);
+
+
+$fecha_inicio = $fecha_inicial1->formatLocalized('%d %B %Y');
+$fecha_fin = $fecha_fin1->formatLocalized('%d %B %Y');
 ?>
 @if (session('status'))
     <div class="modal fade" id="ModalAlertaVueloPaquete" role="dialog">
@@ -72,7 +82,11 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                             <th>Fecha de partida:</th>
-                            <td>{{$paquete->fecha_paquete}}</td>
+                            <td>{{$fecha_inicio}}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha de regreso:</th>
+                            <td>{{$fecha_fin}}</td>
                         </tr>
                         <tr>
                             <th>Precio del paquete:</th>
