@@ -151,6 +151,10 @@ Route::get('/historial', function () {
     return view('historial');
 });
 
+Route::get('/historial2', function () {
+    return view('historial2');
+});
+
 Route::get('/Asiento_Vuelo/CheckInVuelo/', 'Asiento_VueloController@buscarCheckIn');
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');
@@ -170,6 +174,7 @@ Route::resource('/Ciudad','CiudadesController');
 Route::resource('/Equipaje', 'EquipajesController');
 Route::resource('/Habitacion', 'HabitacionesController');
 Route::resource('/Historial', 'HistorialesController');
+Route::resource('/Historial2', 'HistorialesController');
 Route::resource('/Hospedaje','HospedajesController');
 Route::resource('/Pais','PaisesController');
 Route::resource('/Paquete','PaquetesController');
@@ -190,3 +195,4 @@ Route::resource('/Pasajero_Reserva','Pasajero_ReservaController');
 Route::resource('/Transporte_Reserva','Transporte_ReservaController');
 Route::resource('/carrito','CarritoController');
 Route::get('/admin', 'AdministradoresController@f1');
+Route::get('/historial2','HistorialesController@shaw');

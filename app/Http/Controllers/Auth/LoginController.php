@@ -41,10 +41,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $historial = new Historial;
-        $historial->id_user=51;
-        $historial->descripcion= "ha finalizado sesión";
-        $historial->save();
+            
         $this->middleware('guest')->except('logout');
         
     }

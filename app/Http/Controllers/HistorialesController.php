@@ -49,6 +49,14 @@ class HistorialesController extends Controller
         }
     }
 
+    public function shaw()
+    {
+        $id_user=auth()->id();
+        $historiales = Historial::all()->where('id_user', '=' , $id_user);
+        return view('historial2',compact('historiales'));
+
+    }
+
     public function edit(Historial $historial)
     {
         //

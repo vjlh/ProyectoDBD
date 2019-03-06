@@ -34,6 +34,12 @@
   <li class="nav-item">
     <a class="nav-link btn-get-started" id="habitaciones-tab" data-toggle="tab" href="#habitaciones" role="tab" aria-controls="habitaciones" aria-selected="false">Habitaciones</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link btn-get-started" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-get-started" id="historiales-tab" data-toggle="tab" href="#historiales" role="tab" aria-controls="historiales" aria-selected="false">Historiales</a>
+  </li>
   
 </ul>
 <div class="tab-content" id="myTabContent">
