@@ -19,6 +19,9 @@ class CreatePasajerosTable extends Migration
             $table->string('apellido_pasajero');
             $table->integer('edad_pasajero');
             $table->string('tipo_pasajero');
+            $table->string('rut_pasajero');
+            $table->string('pais_pasajero');
+            $table->string('correo_pasajero');
             $table->timestamps();
             
         });

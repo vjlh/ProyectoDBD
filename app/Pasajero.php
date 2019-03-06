@@ -9,6 +9,7 @@ class Pasajero extends Model
 	protected $table = 'pasajeros';
     protected $fillable = [
         'nombre_pasajero', 'apellido_pasajero', 'edad_pasajero', 'tipo_pasajero',
+        'rut_pasajero','pais_pasajero','correo_pasajero'
     ];
 
     public function reservas(){

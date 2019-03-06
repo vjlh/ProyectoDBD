@@ -19,7 +19,7 @@
     $vueloIda = Vuelo::find($paquete->id_vuelo_ida);
     $vueloVuelta = Vuelo::find($paquete->id_vuelo_vuelta);
 ?>
-    <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
+<div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog  ">
         <div class="modal-content" style="margin-top: 100%; background-color: #2c3e50d9;">
         <div class="modal-body" style="color: white;">

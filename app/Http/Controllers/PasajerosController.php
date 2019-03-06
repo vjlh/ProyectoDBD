@@ -23,7 +23,6 @@ class PasajerosController extends Controller
     {
         $pasajero = Pasajero::create($request->all());
         $pasajero->save();
-        return $pasajero;
     }
 
     public function show($id)
