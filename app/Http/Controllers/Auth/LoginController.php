@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Historial;
+use User;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,12 @@ class LoginController extends Controller
      *
      * @var string
      */
+
+    
     protected $redirectTo = '/inicio';
+
+    
+    
 
     /**
      * Create a new controller instance.
@@ -34,6 +41,11 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $historial = new Historial;
+        $historial->id_user=51;
+        $historial->descripcion= "ha finalizado sesión";
+        $historial->save();
         $this->middleware('guest')->except('logout');
+        
     }
 }

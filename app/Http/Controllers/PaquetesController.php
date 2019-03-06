@@ -20,6 +20,7 @@ use App\Http\Requests\PaquetesRequest;
 use Mail;
 use App\Mail\SendEmail_paquete;
 use Carbon\Carbon;
+use App\Historial;
 
 class PaquetesController extends Controller
 {
@@ -39,6 +40,11 @@ class PaquetesController extends Controller
     {
         $paquete = Paquete::create($request->all());
         $paquete->save();
+
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha creado el paquete Nº" .$paquete->id;
+            $historial->save();
         
         return back()->with('success_message','Agregado con éxito!');
  
@@ -98,6 +104,11 @@ class PaquetesController extends Controller
 
         ]))->save();
 
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha editado el paquete Nº" .$paquete->id;
+            $historial->save();
+
         if ($outcome) {
             //dd("aqui");
             return back()->with('success_message','Actualizado con éxito!');
@@ -110,6 +121,12 @@ class PaquetesController extends Controller
     function destroy($id)
     {
         $paquete = Paquete::find($id);
+
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha eliminado el paquete Nº" .$paquete->id;
+            $historial->save();
+
         if($paquete!=NULL)
         {
             $paquete->delete();
@@ -316,6 +333,11 @@ class PaquetesController extends Controller
         $asientos_ida = Asiento::all()->whereIn('id',$asientos_ida_usados);
         $asientos_vuelta = Asiento::all()->whereIn('id',$asientos_vuelta_usados);
         Mail::to($email)->send(new SendEmail_paquete($subject,$encabezado,$num_pasajeros, $costo, $paquete, $asientos_ida, $asientos_vuelta));
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de paquete";
+        $historial->save();
 
         return \Redirect::to('/')->with('paqueteReservado','El paquete ha sido reservado.');
     }

@@ -12,6 +12,7 @@ use App\Habitacion;
 use Mail;
 use App\Mail\SendEmail_hospedaje;
 use Carbon\Carbon;
+use App\Historial;
 
 class Habitacion_ReservaController extends Controller
 {
@@ -82,6 +83,11 @@ class Habitacion_ReservaController extends Controller
         $email = $usuario->email;
         $subject = "Reserva de Habitacion";
         $hospedaje = session()->get('hospedaje');
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de hospedaje";
+        $historial->save();
         
         
         Mail::to($email)->send(new SendEmail_hospedaje($subject,$encabezado, $fecha1, $fecha2, $costoFinal, $hospedaje, $habitacion, $numero_dias));

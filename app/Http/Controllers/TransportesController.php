@@ -11,6 +11,7 @@ use App\Vuelo;
 use Illuminate\Http\Request;
 use App\Http\Requests\TransportesRequest;
 use Carbon\Carbon;
+use App\Historial;
 
 
 class TransportesController extends Controller
@@ -86,6 +87,11 @@ class TransportesController extends Controller
     {
         $transporte = Transporte::create($request->all());
         $transporte->save();
+
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha creado el autómovil Nº" .$transporte->id;
+            $historial->save();
         
         return back()->with('success_message','Agregado con éxito!');
  
@@ -121,6 +127,11 @@ class TransportesController extends Controller
             // 'puntuacion_transporte' => 'required',
         ]))->save();
 
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha editado el automóvil Nº" .$transporte->id;
+            $historial->save();
+
         if ($outcome) {
             //dd("aqui");
             return back()->with('success_message','Actualizado con éxito!');
@@ -140,6 +151,12 @@ class TransportesController extends Controller
     public function destroy($id)
     {
         $transporte = Transporte::find($id);
+
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha eliminado el automóvil Nº" .$transporte->id;
+            $historial->save();
+
         if($transporte!=NULL)
         {
             $transporte->delete();

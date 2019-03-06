@@ -8,6 +8,7 @@ use App\Vuelo;
 use Illuminate\Http\Request;
 use App\Http\Requests\HospedajesRequest;
 use Carbon\Carbon;
+use App\Historial;
 
 class HospedajesController extends Controller
 {
@@ -52,6 +53,11 @@ class HospedajesController extends Controller
     {
         $hospedaje = Hospedaje::create($request->all());
         $hospedaje->save();
+
+        $historial = new Historial;
+        $historial->id_user=auth()->id();
+        $historial->descripcion="Ha creado el hospedaje Nº" .$hospedaje->id;
+        $historial->save();
         
         return back()->with('success_message','Agregado con éxito!');
  
@@ -89,6 +95,11 @@ class HospedajesController extends Controller
             
         ]))->save();
 
+        $historial = new Historial;
+        $historial->id_user=auth()->id();
+        $historial->descripcion="Ha editado el hotel Nº" .$hospedaje->id;
+        $historial->save();
+
         if ($outcome) {
             //dd("aqui");
             return back()->with('success_message','Actualizado con éxito!');
@@ -100,6 +111,12 @@ class HospedajesController extends Controller
     public function destroy($id)
     {
         $hospedaje = Hospedaje::find($id);
+
+        $historial = new Historial;
+        $historial->id_user=auth()->id();
+        $historial->descripcion="Ha eliminado el hotel Nº" .$hospedaje->id;
+        $historial->save();
+
         if($hospedaje != NULL)
         {
             $hospedaje->delete();

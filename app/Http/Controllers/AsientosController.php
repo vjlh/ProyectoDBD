@@ -16,6 +16,7 @@ use Session;
 use Mail;
 use App\Mail\SendEmail_vuelo;
 use Carbon\Carbon;
+use App\Historial;
 
 class AsientosController extends Controller
 {
@@ -141,6 +142,11 @@ class AsientosController extends Controller
         $destino = $vuelo->destino_vuelo;
         $costo = $costoFinal;
         $asientos_select = Asiento::all()->whereIn('id',$asientos_seleccionados);
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de vuelo";
+        $historial->save();
         
         Mail::to($email)->send(new SendEmail_vuelo($subject,$encabezado,$reserva->codigo_reserva, $fecha, $hora, $origen, $destino, $costo, $asientos_select));
 

@@ -7,6 +7,7 @@ use App\Avion;
 use App\Paquete;
 use Illuminate\Http\Request;
 use App\Http\Requests\VuelosRequest;
+use App\Historial;
 
 class VuelosController extends Controller
 {
@@ -80,6 +81,11 @@ class VuelosController extends Controller
         $vuelo->save();
         $vuelos = Vuelo::All();
         $vuelos->sortBy('id');
+
+        $historial = new Historial;
+        $historial->id_user=auth()->id();
+        $historial->descripcion="Ha creado el vuelo Nº" .$vuelo->id;
+        $historial->save();
         
         return back()->with('success_message','Agregado con éxito!');
  
@@ -114,6 +120,11 @@ class VuelosController extends Controller
             'id_aeropuerto' => 'required',
         ]))->save();
 
+        $historial = new Historial;
+        $historial->id_user=auth()->id();
+        $historial->descripcion="Ha editado el vuelo Nº" .$vuelo->id;
+        $historial->save();
+
         if ($outcome) {
             //dd("aqui");
             return back()->with('success_message','Actualizado con éxito!');
@@ -129,8 +140,15 @@ class VuelosController extends Controller
         $vuelo = Vuelo::find($id);
         if($vuelo!=NULL)
         {
+            $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha eliminado el vuelo Nº" .$vuelo->id;
+            $historial->save();
+
             $vuelo->delete();
             Vuelo::destroy($id);
+
+            
             return back()->with('success_message','Se ha eliminado el vuelo con éxito!');
         }
         else

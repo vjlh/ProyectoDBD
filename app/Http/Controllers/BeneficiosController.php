@@ -6,6 +6,7 @@ use App\Beneficio;
 use Illuminate\Http\Request;
 use App\Http\Requests\BeneficiosRequest;
 use Carbon\Carbon;
+use App\Historial;
 
 class BeneficiosController extends Controller
 {
@@ -24,6 +25,11 @@ class BeneficiosController extends Controller
     {
         $beneficio = Beneficio::create($request->all());
         $beneficio->save();
+
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha creado el seguro Nº" .$beneficio->id;
+            $historial->save();
         
         return back()->with('success_message','Agregado con éxito!');
  
@@ -53,6 +59,11 @@ class BeneficiosController extends Controller
             'precio_beneficio' => 'required',
         ]))->save();
 
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha editado el seguro Nº" .$beneficio->id;
+            $historial->save();
+
         if ($outcome) {
             //dd("aqui");
             return back()->with('success_message','Actualizado con éxito!');
@@ -66,6 +77,12 @@ class BeneficiosController extends Controller
     public function destroy($id)
     {
         $beneficio = Beneficio::find($id);
+
+        $historial = new Historial;
+            $historial->id_user=auth()->id();
+            $historial->descripcion="Ha eliminado el seguro Nº" .$beneficio->id;
+            $historial->save();
+
         if ($beneficio != NULL)
         {
             $beneficio->delete();

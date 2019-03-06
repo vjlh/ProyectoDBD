@@ -11,6 +11,7 @@ use App\User;
 use Mail;
 use App\Mail\SendEmail_seguro;
 use Carbon\Carbon;
+use App\Historial;
 
 
 class Beneficio_SeguroController extends Controller
@@ -146,6 +147,11 @@ class Beneficio_SeguroController extends Controller
         $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado una reserva de seguro";
         $email = $usuario->email;
         $subject = "Reserva de seguro";
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de seguro";
+        $historial->save();
 
         Mail::to($email)->send(new SendEmail_seguro($subject,$encabezado, $fecha1, $fecha2, $seguro,$duracion_seguro, $beneficios_seguro));
         return view('detalleReservaSeguro',compact('seguro'));

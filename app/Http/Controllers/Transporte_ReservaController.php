@@ -11,6 +11,7 @@ use Mail;
 use App\User;
 use App\Mail\SendEmail;
 use Carbon\Carbon;
+use App\Historial;
 
 
 class Transporte_ReservaController extends Controller
@@ -81,6 +82,11 @@ class Transporte_ReservaController extends Controller
         $puntuacion = $transporte->puntuacion_transporte;
         $asientos = $transporte->num_asientos_transporte;
         $puertas =  $transporte->num_puertas_transporte;
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de transporte";
+        $historial->save();
 
         
         
