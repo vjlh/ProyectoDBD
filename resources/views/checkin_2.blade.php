@@ -1,11 +1,24 @@
 @extends('layouts.base')
 @section('content')
 
+<?php
+if (session()->get('numPasajero_CheckIn')== NULL){
+    session()->put('numPasajero_CheckIn', 0); 
+    $contador = 0;
+}
+else
+    $contador = session()->get('numPasajero_CheckIn');
+
+echo"<script>console.log('contador: $contador')</script>";        
+      
+?>
+
 <!--==========================
     Intro Section
   ============================-->
 <?php
 use Carbon\Carbon;
+use App\Pasajero;
 setlocale(LC_TIME, 'es_ES.UTF-8'); 
 Carbon::setLocale('es'); 
 $fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
@@ -16,8 +29,8 @@ $fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
 <head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<form action="/Reserva/Check-in/" method="get">
     <section id="intro">
         <div class="carousel-background"><img src="{{asset('images/1.jpg')}}" alt=""></div>
             <div class="row justify-content-center">
@@ -78,17 +91,55 @@ $fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
                                                 {{$asiento->letra_asiento}} {{$asiento->numero_asiento}}
                                             </td>
                                             <td>
+                                            <?php
+                                            if(session()->get('pasajerosId_CheckIn')!=null){
+                                                $ids_pasajeros = session()->get('pasajerosId_CheckIn');
+                                                $id = array_get($ids_pasajeros,$count-1);
+                                                $pasajero_actual = Pasajero::find($id);
+                                                echo"<script>console.log('contador: $contador')</script>";        
+                                                
+                                            }
+                                            else{
+                                                $pasajero_actual = Pasajero::all()->last();
+
+                                            }
+                                            if($count>$contador){
+                                                $opcion = 1;
+                                            }
+                                            else{
+                                                $opcion = 0;
+                                            }
+                                            ?>
+
+                                            @if($count>$contador)
                                             @include('includes.modal_pasajeros_checkin')
-                                            <a class="btn btn-success btn-get-started scrollto" style="margin-left:40%" data-toggle="modal" data-target="#ModalPasajero">completar datos pasajero</a>
+
+                                            
+                                            <a class="btn btn-success btn-get-started scrollto" style="margin-left:30%" data-toggle="modal" data-target="#ModalPasajero{{$count}}" >Ingresar datos del pasajero</a>
+                                            @else
+                                            @include('includes.modal_pasajeros_checkin_edit')
+
+                                            <a class="btn btn-success btn-get-started scrollto" style="margin-left:30%" data-toggle="modal" data-target="#ModalPasajeroEdit{{$count}}" >Editar datos del pasajero</a>
+                                            @endif
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <?php
+                                $numero_asientos = $asientos->count();
+                                echo"<script>console.log('numero asientos: $numero_asientos')</script>";        
+
+                                ?>
                                 <input type="hidden" value="{{$cod_obtenido}}" name="codigo_reserva", id="codigo_reserva">   
                                 <div class="form-group row mb-0">
                                      <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-get-started scrollto">{{ __('Realizar Check-In') }}</button>
+                                    @if($numero_asientos == $contador)
+                                        <a href="/Reserva/Check-in/{{$cod_obtenido}}" class="btn btn-get-started scrollto">Realizar Check-in</a>
+                                    @else
+                                        <button type="button" disabled class="btn btn-get-started scrollto">Realizar Check-in</button>                                        
+                                    @endif    
+
                                     </div>
                                 </div>
                             </div>    
@@ -98,5 +149,4 @@ $fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
             </div>
         </div>
     </section>
-</form>
 @endsection

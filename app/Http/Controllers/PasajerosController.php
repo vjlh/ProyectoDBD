@@ -19,10 +19,46 @@ class PasajerosController extends Controller
         //
     }
 
-    public function store(PasajerosRequest $request)
+    public function store(Request $request)
     {
-        $pasajero = Pasajero::create($request->all());
+        $edad = $request->edad_pasajero;
+        
+        if($edad<=5){
+            $tipo = "Bebé";
+        }
+        else if($edad>5 && $edad<=18){
+            $tipo = 'Joven';
+        }
+        else if($edad>18 && $edad<=50){
+            $tipo = 'Adulto';
+        }
+        else{
+            $tipo = 'Adulto Mayor';
+        }
+        $pasajero = New Pasajero;
+        $pasajero->nombre_pasajero = $request->nombre_pasajero;
+        $pasajero->apellido_pasajero = $request->apellido_pasajero;
+        $pasajero->edad_pasajero = $request->edad_pasajero;
+        $pasajero->tipo_pasajero = $tipo;
+        $pasajero->rut_pasajero = $request->rut_pasajero;
+        $pasajero->pais_pasajero = $request->pais_pasajero;
+        $pasajero->correo_pasajero = $request->correo_pasajero;
+        //$pasajero = Pasajero::create($request->all());
         $pasajero->save();
+        $num = session()->get('numPasajero_CheckIn') + 1;
+        session()->put('numPasajero_CheckIn', $num);    
+        if(session()->get('pasajerosId_CheckIn')==null){
+            $id_pasajeros = [];
+            array_push($id_pasajeros,$pasajero->id);
+            session()->put('pasajerosId_CheckIn', $id_pasajeros);    
+        }
+        else{
+            $id_existentes = session()->get('pasajerosId_CheckIn');
+            array_push($id_existentes,$pasajero->id);
+            session()->put('pasajerosId_CheckIn', $id_existentes);    
+        }
+        return back();
+
     }
 
     public function show($id)
@@ -40,12 +76,34 @@ class PasajerosController extends Controller
         //
     }
 
-    public function update(PasajerosRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $pasajero = Pasajero::find($id);
-        $pasajero->fill($request->all());
+        $edad = $request->edad_pasajero;
+
+        if($edad<=5){
+            $tipo = "Bebé";
+        }
+        else if($edad>5 && $edad<=18){
+            $tipo = 'Joven';
+        }
+        else if($edad>18 && $edad<=50){
+            $tipo = 'Adulto';
+        }
+        else{
+            $tipo = 'Adulto Mayor';
+        }
+        $pasajero->nombre_pasajero = $request->nombre_pasajero;
+        $pasajero->apellido_pasajero = $request->apellido_pasajero;
+        $pasajero->edad_pasajero = $request->edad_pasajero;
+        $pasajero->tipo_pasajero = $tipo;
+        $pasajero->rut_pasajero = $request->rut_pasajero;
+        $pasajero->pais_pasajero = $request->pais_pasajero;
+        $pasajero->correo_pasajero = $request->correo_pasajero;
+
         $pasajero->save();
-        return $pasajero;
+
+        return back();
     }
 
     public function destroy($id)

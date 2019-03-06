@@ -158,7 +158,7 @@ Route::get('/Asiento/Reservar/','AsientosController@resas')->name('Reservas.resa
 Route::get('/Beneficio/Listado/','BeneficiosController@mostrarSeguros')->name('Beneficios.mosSeg');
 Route::get('/Seguro/CalculoCosto/','SegurosController@calcularCosto')->name('Seguros.calCos');
 Route::get('/Beneficio_Seguro/AdquirirSeguro/','Beneficio_SeguroController@adquirirSeguro')->name('Beneficio_Seguro.adqSeg');
-Route::get('/Reserva/Check-in/','ReservasController@checkIn')->name('Reserva.chIn');
+Route::get('/Reserva/Check-in/{cod_obtenido}','ReservasController@checkIn')->name('Reserva.chIn');
 
 Route::resource('/Administrador','AdministradoresController');
 Route::resource('/Aeropuerto','AeropuertosController');

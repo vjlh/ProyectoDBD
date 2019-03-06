@@ -1,11 +1,7 @@
-<?php
-    use App\Pais;
-    $paises = Pais::all()->sortBy('nombre_pais');
-?>
-<form action="{{ route('Pasajero.store') }}" method="post">
-@method('POST')
+<form action="{{ route('Pasajero.update',$pasajero_actual->id)}}" method="post">
+@method('PATCH')
             @csrf
-    <div class="modal fade" id="ModalPasajero{{$count}}" role="dialog">
+    <div class="modal fade" id="ModalPasajeroEdit{{$count}}" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,7 +27,8 @@
                             name="nombre_pasajero" 
                             type="text"
                             class="form-control"  
-                            placeholder="Nombre Pasajero"  
+                            placeholder="Nombre Pasajero" 
+                            value = "{{$pasajero_actual->nombre_pasajero}}" 
                             autofocus
                             required>
                         </div>
@@ -50,7 +47,8 @@
                             name="apellido_pasajero" 
                             type="text"
                             class="form-control" 
-                            placeholder="Apellido Pasajero"  
+                            placeholder="Apellido Pasajero" 
+                            value = "{{$pasajero_actual->apellido_pasajero}}" 
                             autofocus
                             required >
                         </div>
@@ -69,12 +67,16 @@
                             name="rut_pasajero" 
                             type="text"
                             class="form-control" 
-                            placeholder="Rut Pasajero"  
+                            placeholder="Rut Pasajero"
+                            value = "{{$pasajero_actual->rut_pasajero}}" 
                             autofocus
                             required >
                         </div>
                     </div>
-                    
+                    <?php
+                    use App\Pais;
+                    $paises = Pais::all()->sortBy('nombre_pais');
+                    ?>
                     <div class="form-group row">
                         <label for="pais_pasajero" class="col-sm-4 col-form-label text-md-right"> {{ __('Pais') }}</label>
                         <div class="col-md-6">
@@ -84,14 +86,13 @@
                             class="form-control selectpicker custom-select"
                             required 
                             autofocus>
-                                <option selected>Seleccionar Pais</option>
+                                <option value="{{$pasajero_actual->pais_pasajero}}"  selected> {{$pasajero_actual->pais_pasajero}}</option>
                                 @foreach($paises as $pais)
                                 <option value ="{{$pais->nombre_pais}}">{{$pais->nombre_pais}}</option>
                                 @endforeach 
                             </select>
                         </div>
                     </div>
-
 
                     <div class="form-group row">
                         <label 
@@ -109,12 +110,12 @@
                                 min="1"
                                 max="100"
                                 placeholder="Edad Pasajero" 
-                                value="" 
+                                value = "{{$pasajero_actual->edad_pasajero}}" 
                                 autofocus
                                 required >
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label 
                         for="correo_pasajero" 
@@ -133,11 +134,13 @@
                                     type="email"
                                     class="form-control"
                                     placeholder="Correo Pasajero"
+                                    value = "{{$pasajero_actual->correo_pasajero}}" 
                                     autofocus
                                     required>
                             </div>
                         </div>
                     </div>
+                    
                     <center><button type="submit" class="btn btn-get-started">Terminar</button>
                     <button type="button" class="btn btn-get-eliminar" data-dismiss="modal">Cancelar</button></center>
                 </div>
@@ -145,4 +148,3 @@
         </div>
     </div>
 </form>
-

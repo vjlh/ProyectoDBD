@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reserva;
+use App\Pasajero_Reserva;
 use App\Vuelo;
 use DB;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class ReservasController extends Controller
         //
     }
 
-    public function update(ReservasRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $reserva = Reserva::find($id);
         try{
@@ -92,14 +93,24 @@ class ReservasController extends Controller
             return "La reserva con el id ingresado no existe o fue eliminada"; 
 
     }
-    public function checkIn()
+    public function checkIn($cod_obtenido)
     {
-        $cod_obtenido = request('codigo_reserva');
         $reserva = Reserva::where('codigo_reserva', $cod_obtenido)->first();
         $reserva->check_in = true;
         $reserva->save();
-        return \Redirect::to('/')->with('statusCheckIn2','El Check-In ha sido realizado exitósamente');
 
+        $ids_pasajeros = session()->get('pasajerosId_CheckIn');
+        foreach($ids_pasajeros as $id){
+            $pasajero_reserva = New Pasajero_Reserva;
+            $pasajero_reserva->id_reserva = $reserva->id;
+            $pasajero_reserva->id_pasajero = $id;
+            $pasajero_reserva->save();
+        }
+
+        session()->forget('numPasajero_CheckIn');
+        session()->forget('pasajerosId_CheckIn');
+
+        return \Redirect::to('/')->with('statusCheckIn2','El Check-In ha sido realizado exitósamente');
 
     }
 }
