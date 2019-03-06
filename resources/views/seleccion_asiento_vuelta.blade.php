@@ -3,7 +3,7 @@
 @include('includes.registrarse')
 
 
-<form action="/Asiento/Reservar" method="PATCH">
+<form action="/Asiento/resasVuelta" method="PATCH">
 
 <section id="intro">
 <div class="carousel-background"><img src="{{asset('images/1.jpg')}}" alt=""></div>

@@ -16,57 +16,42 @@ class VuelosController extends Controller
     {
         $origen = request("ciudad_origen");
         $destino = request("ciudad_destino");
-        $fecha_viaje = request("fecha_vuelo");
+        $fecha_ida = request("fecha_viaje_ida");
+        $fecha_vuelta = request("fecha_viaje_vuelta");
         $num_pasajeros = request("num_pasajeros");
-        if(($destino != "") && ($origen == "")){
-            $vuelos = Vuelo::all()->where('destino_vuelo', '=' , $destino)
-                                  ->where('fecha_viaje', '>=' , $fecha_viaje)
-                                  ->where('cantidad_disponible', '>=', $num_pasajeros);
-            $vuelosAux = [];
-            foreach($vuelos as $vuelo){
-                array_push($vuelosAux,$vuelo->id);
+        $tipo_vuelo = request("tipoVuelo");
+        $fecha_limite = date('Y-m-d',strtotime($fecha_ida.' + 2 days'));
+        $vuelosIda = Vuelo::all()->where('origen_vuelo', '=' , $origen)
+                                 ->where('destino_vuelo', '=' , $destino)
+                                 ->where('fecha_vuelo', '>=' , $fecha_ida)
+                                 ->where('fecha_vuelo', '<', $fecha_limite)
+                                 ->where('cantidad_disponible', '>=', $num_pasajeros);
+        $vuelosIdaAux = [];
+        foreach($vuelosIda as $vuelo){
+            array_push($vuelosIdaAux,$vuelo->id);
+        }
+        if(empty($vuelosIdaAux)){
+            return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
+        }
+        if($tipo_vuelo == "ida_y_vuelta"){
+            $fecha_limite = date('Y-m-d',strtotime($fecha_vuelta.' + 2 days'));
+            $vuelosVuelta = Vuelo::all()->where('origen_vuelo', '=' , $destino)
+                                 ->where('destino_vuelo', '=' , $origen)
+                                 ->where('fecha_vuelo', '>=' , $fecha_vuelta)
+                                 ->where('fecha_vuelo', '<', $fecha_limite)
+                                 ->where('cantidad_disponible', '>=', $num_pasajeros);
+            $vuelosVueltaAux = [];
+            foreach($vuelosVuelta as $vuelo){
+                array_push($vuelosVueltaAux,$vuelo->id);
             }
-            if(!empty($vuelosAux)){
-                return view('vuelos',compact('vuelos','num_pasajeros'));
-            }
-            else{
+            if(empty($vuelosVueltaAux)){
                 return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
             }
         }
-        
-        elseif(($destino == "") && ($origen != "")){
-            $vuelos = Vuelo::all()->where('origen_vuelo', '=' , $origen)
-                                  ->where('fecha_viaje', '>=' , $fecha_viaje)
-                                  ->where('cantidad_disponible', '>=', $num_pasajeros);
-            $vuelosAux = [];
-            foreach($vuelos as $vuelo){
-                array_push($vuelosAux,$vuelo->id);
-            }
-            if(!empty($vuelosAux)){
-                return view('vuelos',compact('vuelos','num_pasajeros'));
-            }
-            else{
-                return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
-            }
-        }
-        else{
-            $vuelos = Vuelo::all()->where('origen_vuelo', '=' , $origen)
-                                  ->where('destino_vuelo', '=' , $destino)
-                                  ->where('fecha_viaje', '>=' , $fecha_viaje)
-                                  ->where('cantidad_disponible', '>=', $num_pasajeros);
-            $vuelosAux = [];
-            foreach($vuelos as $vuelo){
-                array_push($vuelosAux,$vuelo->id);
-            }
-            if(!empty($vuelosAux)){
-                return view('vuelos',compact('vuelos','num_pasajeros'));
-            }
-            else{
-                return \Redirect::back()->with('statusVuelos','No hay vuelos disponibles.');
-            }
-        }
-                            
+        return view('vuelos',compact('vuelosIda', 'num_pasajeros', 'tipo_vuelo','fecha_vuelta','origen','destino'));
+
     }
+                            
 
     public function create()
     {

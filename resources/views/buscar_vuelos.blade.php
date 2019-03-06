@@ -34,10 +34,42 @@
             <div class="card dbd-auth" style="margin-top: -60%; color: white; background-color: #212529c7;">
                 <div class="card-header">{{ __('Buscando Vuelo') }}</div>
 
-                <div class="card-body">
-
-
                 <div class="row justify-content-start">
+                    <div class="col-4">
+                    <label for="tipoVuelo" style="margin-left: 20%" class="col-form-label">{{ __('Seleccione el tipo de vuelo') }}</label>   
+                    </div>
+                    <div class="col-4">
+                    <label for="numPasajeros" style="margin-left: 15%" class="col-form-label">{{ __('Número de Pasajeros') }}</label>
+                    </div>
+                </div>
+                  <div class="row justify-content-start">
+                    <div class="col-4">
+                        <input style="margin-left: 50%;" onchange="changeTipoVuelo(this.value)" type="radio" name="tipoVuelo" value="ida" checked>Solo ida<br> 
+                        <input style="margin-left: 50%;" onchange="changeTipoVuelo(this.value)" type="radio" name="tipoVuelo" value="ida_y_vuelta">Ida y vuelta<br>
+                        <script>
+                          function changeTipoVuelo(val){
+                            if(val == "ida"){
+                              document.getElementById("label_fecha_vuelta").style = 'visibility: hidden';
+                              document.getElementById("fecha_viaje_vuelta").type = 'hidden';
+                            }
+                            else{
+                              document.getElementById("label_fecha_vuelta").style = 'margin-left: 15%';
+                              document.getElementById("fecha_viaje_vuelta").type = 'date';
+                            }
+                          }
+                        </script>
+                    </div>
+                    <div class="col-4"> 
+                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="num_pasajeros" name="num_pasajeros" required>
+                          <option value="" selected disable>Número de pasajeros</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                          <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                          <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="card-body">
+                  <div class="row justify-content-start">
                     <div class="col-4">
                     <label for="ciudadOrigen" style="margin-left: 15%" class="col-form-label">{{ __('Ciudad Origen') }}</label>   
                     </div>
@@ -49,7 +81,7 @@
 
                 <div class="row justify-content-start">
                     <div class="col-4"> 
-                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_origen" name="ciudad_origen">
+                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_origen" name="ciudad_origen" required>
                           <option value="" selected disable>Ciudad Origen</option>
                           @foreach ($ciudades as $ciudad)
                           <option value="{{ $ciudad->nombre_ciudad }}">
@@ -61,7 +93,7 @@
 
 
                     <div class="col-4"> 
-                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_destino" name="ciudad_destino">
+                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="ciudad_destino" name="ciudad_destino" required>
                           <option value="" selected disable>Ciudad Destino</option>
                           @foreach ($ciudades as $ciudad)
                           <option value="{{ $ciudad->nombre_ciudad }}">
@@ -74,10 +106,10 @@
 
                 <div class="row justify-content-start">
                     <div class="col-4">
-                    <label for="fechaVuelo" style="margin-left: 15%" class="col-form-label">{{ __('Fecha de Viaje') }}</label>   
+                    <label for="fechaVuelo" style="margin-left: 15%" class="col-form-label">{{ __('Fecha de ida') }}</label>   
                     </div>
                     <div class="col-4">
-                    <label for="numPasajeros" style="margin-left: 15%" class="col-form-label">{{ __('Número de Pasajeros') }}</label>
+                    <label id="label_fecha_vuelta"for="fechaVuelo" style="visibility: hidden;" class="col-form-label">{{ __('Fecha de regreso') }}</label> 
                     </div>
                 </div>
                 <?php 
@@ -87,18 +119,16 @@
                   
                   <div class="row justify-content-start">
                     <div class="col-4">
-                        <input id="fecha_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_viaje') ? ' is-invalid' : '' }}" name="fecha_viaje" value="{{ old('fecha_viaje') }}" min={{$hoy}}>
-                            @if ($errors->has('fecha_viaje'))
+                        <input id="fecha_viaje_ida" style="margin-left: 15%" type="date" class="form-control{{ $errors->has('fecha_viaje_ida') ? ' is-invalid' : '' }}" name="fecha_viaje_ida" value="{{ old('fecha_viaje_ida') }}" min={{$hoy}} required>
+                            @if ($errors->has('fecha_viaje_ida'))
                             <span class="invalid-feedback" role="alert"></span>
                             @endif
                     </div>
                     <div class="col-4"> 
-                      <select style="margin-left: 15%" class="form-control selectpicker custom-select" id="num_pasajeros" name="num_pasajeros" required>
-                          <option value="" selected disable>Número de pasajeros</option>
-                          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-                          <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-                          <option value="7">7</option><option value="8">8</option><option value="9">9</option>
-                      </select>
+                      <input id="fecha_viaje_vuelta" style="margin-left: 15%" type="hidden" class="form-control{{ $errors->has('fecha_viaje_vuelta') ? ' is-invalid' : '' }}" name="fecha_viaje_vuelta" value="{{ old('fecha_viaje_vuelta') }}" min={{$hoy}} required>
+                            @if ($errors->has('fecha_viaje_vuelta'))
+                            <span class="invalid-feedback" role="alert"></span>
+                            @endif
                     </div>
                   </div>
 

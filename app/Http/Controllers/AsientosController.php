@@ -23,6 +23,10 @@ class AsientosController extends Controller
     //Probado
     function index()
     {
+        $tipo_vuelo = request('tipoVuelo');
+        $origen = request('origen');
+        $destino = request('destino');
+        $fecha_vuelta = request('fecha_vuelta');
         $vuelo = Vuelo::find(request('vuelo'));
         $num_pasajeros = request('num_pasajeros');
         $asientos_vuelos = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo->id)
@@ -49,7 +53,7 @@ class AsientosController extends Controller
         else{
             return \Redirect::back()->with('statusAsientos','No hay suficientes asientos.');
         }*/
-        return view('seleccion_asiento',compact('asientos', 'num_pasajeros','vuelo'));
+        return view('seleccion_asiento',compact('asientos', 'num_pasajeros','vuelo','tipo_vuelo','fecha_vuelta','origen','destino'));
 
     }
 
@@ -154,7 +158,107 @@ class AsientosController extends Controller
         
         Mail::to($email)->send(new SendEmail_vuelo($subject,$encabezado,$codigo_checkin, $fecha, $hora, $origen, $destino, $costo, $asientos_select));
 
+        $tipo_vuelo = request('tipoVuelo');
+        if($tipo_vuelo == "ida_y_vuelta"){
+            $origen = request('origen');
+            $destino = request('destino');
+            $fecha_vuelta = request('fecha_vuelta');
+            $num_pasajeros = request('num_pasajeros');
+            $fecha_limite = date('Y-m-d',strtotime($fecha_vuelta.' + 2 days'));
+            $vuelos_vuelta = Vuelo::All()->where('origen_vuelo','=',$destino)
+                                         ->where('destino_vuelo','=',$origen)
+                                         ->where('fecha_vuelo','>=',$fecha_vuelta)
+                                         ->where('fecha_vuelo','<',$fecha_limite)
+                                         ->where('cantidad_disponible','>=',$num_pasajeros);
+            return view('vuelos_vuelta',compact('vuelos_vuelta','tipo_vuelo','origen','destino','fecha_vuelta','num_pasajeros'));
+        }
+        else{
+            return \Redirect::to('/')->with('statusReservaVuelo','El vuelo ha sido reservado.');
+        }
+    }
+
+    function resasVuelta(){
+        $asientos = Asiento::All();
+        $vuelo = Vuelo::find(request('id_vuelo'));
+        $asientos_seleccionados = [];
+        $codigo_checkin = str_random(9);
+
+        $costoFinal = 0;
+        foreach($asientos as $asiento){
+            if(request($asiento->id) == 'on'){
+                array_push($asientos_seleccionados,$asiento->id);
+                $costoFinal = $costoFinal + $asiento->precio_asiento;
+            }
+        }
+
+        $reserva = new Reserva;
+        $reserva->monto_total_reserva=$costoFinal;
+        $reserva->check_in=null;
+        $reserva->codigo_reserva=$codigo_checkin;
+        $reserva->id_user=auth()->id();
+        $reserva->id_seguro=null;
+        $reserva->id_paquete=null;
+        $reserva->transporte=false;
+        $reserva->hospedaje=false;
+        $reserva->vuelo=true;
+        $reserva->save();
+
+        $len = sizeof($asientos_seleccionados);
+        for($i=0;$i<$len;$i++){
+            $asiento = new Asiento_Vuelo;
+            $asiento->disponible = false;
+            $asiento->id_reserva = $reserva->id;
+            $asiento->id_vuelo = $vuelo->id;
+            $asiento->id_asiento = Asiento::find($asientos_seleccionados[$i])->id;
+            $asiento->check_in = false;
+            $asiento->codigo_checkin = $codigo_checkin;
+            $asiento->save();
+        }
+
+        setlocale(LC_TIME, 'es_ES.UTF-8'); 
+        Carbon::setLocale('es'); 
+
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $nombre_user = $usuario->name;
+        $apellido_user = $usuario->apellido_usuario;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado una reserva de vuelo";
+        $email = $usuario->email;
+        $subject = "Reserva de Vuelo";
+
+        $fecha = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
+        $hora = Carbon::parse($vuelo->hora_vuelo)->format('H:i');
+        $origen = $vuelo->origen_vuelo;
+        $destino = $vuelo->destino_vuelo;
+        $costo = $costoFinal;
+        $asientos_select = Asiento::all()->whereIn('id',$asientos_seleccionados);
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de vuelo";
+        $historial->save();
+        
+        Mail::to($email)->send(new SendEmail_vuelo($subject,$encabezado,$codigo_checkin, $fecha, $hora, $origen, $destino, $costo, $asientos_select));
         return \Redirect::to('/')->with('statusReservaVuelo','El vuelo ha sido reservado.');
+    }
+
+    function asientosVuelta(){
+        $tipo_vuelo = request('tipoVuelo');
+        $origen = request('origen');
+        $destino = request('destino');
+        $fecha_vuelta = request('fecha_vuelta');
+        $vuelo = Vuelo::find(request('vuelo'));
+        $num_pasajeros = request('num_pasajeros');
+        $asientos_vuelos = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo->id)
+                                               ->where('disponible','=', false);
+        $asientos_vuelos_array = [];
+        foreach($asientos_vuelos as $asiento){
+            array_push($asientos_vuelos_array, $asiento->id_asiento);
+        }
+        $asientos = Asiento::all()->where('id_avion','=',$vuelo->id_avion)
+                                  ->whereNotIn('id', $asientos_vuelos_array);
+        return view('seleccion_asiento_vuelta',compact('asientos', 'num_pasajeros','vuelo','tipo_vuelo','fecha_vuelta','origen','destino'));
+ 
     }
 
     function update(AsientosRequest $request, $id)

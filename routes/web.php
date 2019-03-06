@@ -155,6 +155,8 @@ Route::get('/historial2', function () {
     return view('historial2');
 });
 
+Route::get('/Asiento/resasVuelta/', 'AsientosController@resasVuelta');
+Route::get('/Asiento/asientosVuelta/', 'AsientosController@asientosVuelta');
 Route::get('/Asiento_Vuelo/CheckInVuelo/', 'Asiento_VueloController@buscarCheckIn');
 Route::get('/Paquete/reservarPaquete/', 'PaquetesController@reservarPaquete');
 Route::get('/Paquete/Reservar/{id}','PaquetesController@respaq')->name('Reservas.respaq');

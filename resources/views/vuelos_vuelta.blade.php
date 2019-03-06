@@ -31,9 +31,9 @@
 <style>#about::before {background: rgba(35, 32, 32, 0.92) }</style>
 <section id="about" >
 <div class="container" style="margin-top: 10%;">
-  <h3 style="color: white;">Seleccione el vuelo de ida</h3>
+  <h3 style="color: white;">Seleccione el vuelo de regreso</h3>
 <div class="row about-cols">
-@foreach ($vuelosIda as $vuelo)
+@foreach ($vuelos_vuelta as $vuelo)
 
 
 <div class="col-md-4 wow ">
@@ -42,7 +42,7 @@
               <img src="{{asset('images/avioncito.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-plane"></i></div>
               </div>
-              <form action="/Asiento" method="get">
+              <form action="/Asiento/asientosVuelta" method="get">
               <h2 class="title"><a>Destino: {{$vuelo->destino_vuelo}}</a></h2>
               <center><h6 class="subtitle"><a>Origen: {{$vuelo->origen_vuelo}}</a></h6></center>
               
