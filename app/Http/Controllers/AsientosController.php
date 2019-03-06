@@ -95,6 +95,8 @@ class AsientosController extends Controller
         $asientos = Asiento::All();
         $vuelo = Vuelo::find(request('id_vuelo'));
         $asientos_seleccionados = [];
+        $codigo_checkin = str_random(9);
+
         $costoFinal = 0;
         foreach($asientos as $asiento){
             if(request($asiento->id) == 'on'){
@@ -106,7 +108,7 @@ class AsientosController extends Controller
         $reserva = new Reserva;
         $reserva->monto_total_reserva=$costoFinal;
         $reserva->check_in=null;
-        $reserva->codigo_reserva=str_random(9);
+        $reserva->codigo_reserva=$codigo_checkin;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
         $reserva->id_paquete=null;
@@ -122,6 +124,8 @@ class AsientosController extends Controller
             $asiento->id_reserva = $reserva->id;
             $asiento->id_vuelo = $vuelo->id;
             $asiento->id_asiento = Asiento::find($asientos_seleccionados[$i])->id;
+            $asiento->check_in = false;
+            $asiento->codigo_checkin = $codigo_checkin;
             $asiento->save();
         }
 
@@ -148,7 +152,7 @@ class AsientosController extends Controller
         $historial->descripcion="Sr(a) ".$nombre_user." ha realizado una reserva de vuelo";
         $historial->save();
         
-        Mail::to($email)->send(new SendEmail_vuelo($subject,$encabezado,$reserva->codigo_reserva, $fecha, $hora, $origen, $destino, $costo, $asientos_select));
+        Mail::to($email)->send(new SendEmail_vuelo($subject,$encabezado,$codigo_checkin, $fecha, $hora, $origen, $destino, $costo, $asientos_select));
 
         return \Redirect::to('/')->with('statusReservaVuelo','El vuelo ha sido reservado.');
     }

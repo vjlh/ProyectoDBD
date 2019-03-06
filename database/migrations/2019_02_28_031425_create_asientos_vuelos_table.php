@@ -17,7 +17,9 @@ class CreateAsientosVuelosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_vuelo');
             $table->unsignedInteger('id_asiento');
-            $table->unsignedInteger('id_reserva')->nullable();
+            $table->unsignedInteger('id_reserva');
+            $table->string('codigo_checkin');
+            $table->boolean('check_in');
             $table->boolean('disponible');
             $table->timestamps();
 

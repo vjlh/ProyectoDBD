@@ -27,13 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TransportesSeeders::class);
         $this->call(AdministradoresSeeders::class);
         $this->call(HistorialesSeeders::class);
-        //$this->call(PasajerosSeeders::class);
-        //$this->call(EquipajesSeeders::class);
         $this->call(PaquetesSeeders::class);
-        //$this->call(ReservasSeeders::class);
         $this->call(AsientosSeeders::class);
-        //$this->call(TicketsSeeders::class); 
         $this->call(Beneficios_SegurosSeeders::class);
-        //$this->call(Pasajeros_ReservasSeeders::class);
     }
 }

@@ -8,7 +8,7 @@ class Asiento_Vuelo extends Model
 {
     protected $table = 'asientos_vuelos';
     protected $fillable = [
-    	'id_vuelo', 'id_asiento', 'id_reserva', 'disponible',
+    	'id_vuelo', 'id_asiento', 'id_reserva', 'disponible','codigo_checkin','check_in'
     ];
 
     public function vuelo(){

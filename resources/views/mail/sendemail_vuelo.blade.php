@@ -30,8 +30,6 @@
         <h2>Código para hacer Check-In</h2>
         <h1>{{$e_cod}}</h1>
         <br>
-        <p>Recuerde hacer su Check-In como máximo dos días antes de su vuelo</p>
-
 
     </body>
 
