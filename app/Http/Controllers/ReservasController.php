@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reserva;
 use App\Pasajero_Reserva;
 use App\Vuelo;
+use App\Asiento_Vuelo;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
@@ -95,14 +96,19 @@ class ReservasController extends Controller
     }
     public function checkIn($cod_obtenido)
     {
-        $reserva = Reserva::where('codigo_reserva', $cod_obtenido)->first();
-        $reserva->check_in = true;
-        $reserva->save();
+        $asientos = Asiento_Vuelo::all()->where('codigo_checkin',$cod_obtenido);
+        $asiento_1 = $asientos->first();
+        $id_reserva = $asiento_1->id_reserva;
 
+        foreach($asientos as $asiento){
+            $asiento->check_in = true;
+            $asiento->save();
+        }
+        
         $ids_pasajeros = session()->get('pasajerosId_CheckIn');
         foreach($ids_pasajeros as $id){
             $pasajero_reserva = New Pasajero_Reserva;
-            $pasajero_reserva->id_reserva = $reserva->id;
+            $pasajero_reserva->id_reserva = $id_reserva;
             $pasajero_reserva->id_pasajero = $id;
             $pasajero_reserva->save();
         }

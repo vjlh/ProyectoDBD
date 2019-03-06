@@ -93,28 +93,33 @@ class Asiento_VueloController extends Controller
     public function buscarCheckIn()
     {
         $cod_obtenido = request('codigo_reserva');
+        $asientos = Asiento_Vuelo::all()->where('codigo_checkin',$cod_obtenido);
+        $asiento_1 = $asientos->first();
+        
         $reserva = DB::table('reservas')->where('codigo_reserva', $cod_obtenido)->first();
 
-        if($reserva == null){
+        if($asientos == null){
             return \Redirect::to('/checkin_1')->with('statusCheckIn1','El codigo de reserva ingresado no es válido, intente nuevamente');
         }
 
-        else if($reserva->check_in == true){
+        else if($asiento_1->check_in == true){
             return \Redirect::to('/checkin_1')->with('statusCheckIn1','El Check in para esta reserva ha sido realizado');
         }
 
-        else if($reserva->check_in == false && $reserva->vuelo == true)
+        else if($asiento_1->check_in == false)
         {
-            /*$asiento_vuelo = Asiento_Vuelo::find(1)all()->where('id_reserva', '=' , $cod_obtenido)*/
-            $asiento_vuelo = Asiento_Vuelo::All()->where('id_reserva', $reserva->id);
+            $id_vuelo = $asiento_1->id_vuelo;
+            $id_reserva = $asiento_1->id_reserva;
+            $id_user = Reserva::find($id_reserva)->id_user;
+
             $id_asientos = [];
-            foreach($asiento_vuelo as $asiento){
+            foreach($asientos as $asiento){
                 array_push($id_asientos, $asiento->id);
-                $id_vuelo = $asiento->id_vuelo;
             } 
-            $id_user = $reserva->id_user;
+
             $vuelo = Vuelo::find($id_vuelo);
-            $asientos = Asiento::All()->whereIn('id', $id_asientos);
+            $asientos = Asiento::all()->whereIn('id', $id_asientos);
+
             $user = User::find($id_user);
             return view('checkin_2',compact('vuelo','asientos','user','cod_obtenido'));
         }
