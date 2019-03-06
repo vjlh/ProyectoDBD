@@ -92,10 +92,10 @@ $(document).ready(function(){
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/1.jpg')}}" alt=""></div>
+            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/vacaciones.jpg')}}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2  style="color: transparent;">We are professional</h2>
+                <h2>Tenemos los mejores paquetes turisticos!</h2>
                 <p  style="color: transparent;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <a href="/buscar_vuelos" class="btn-get-started scrollto">Buscar tu vuelo soñado</a>
               </div>
@@ -103,10 +103,10 @@ $(document).ready(function(){
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/2.jpg')}}" alt=""></div>
+            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/cabanias2.jpg')}}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2  style="color: transparent;">At vero eos et accusamus</h2>
+                <h2>Aprovecha ahora nuestros increibles hoteles!</h2>
                 <p  style="color: transparent;">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut.</p>
                 <a href="/buscar_vuelos" class="btn-get-started scrollto">Buscar tu vuelo soñado</a>
               </div>
@@ -114,10 +114,10 @@ $(document).ready(function(){
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/3.jpg')}}" alt=""></div>
+            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/muralla.jpg')}}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2  style="color: transparent;">Temporibus autem quibusdam</h2>
+                <h2>También contamos con servicio de renta de autómoviles</h2>
                 <p  style="color: transparent;">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste natus error sit voluptatem accusantium.</p>
                 <a href="/buscar_vuelos" class="btn-get-started scrollto">Buscar tu vuelo soñado</a>
               </div>
@@ -125,10 +125,10 @@ $(document).ready(function(){
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/4.jpg')}}" alt=""></div>
+            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/blue.jpg')}}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2  style="color: transparent;">Nam libero tempore</h2>
+                <h2>Aseguramos tu felicidad como si fuera la nuestra</h2>
                 <p  style="color: transparent;">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum.</p>
                 <a href="/buscar_vuelos" class="btn-get-started scrollto">Buscar tu vuelo soñado</a>
               </div>
@@ -136,10 +136,10 @@ $(document).ready(function(){
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/5.jpg')}}" alt=""></div>
+            <div class="carousel-background"><img src="{{asset('assets/img/intro-carousel/caribe.jpg')}}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2  style="color: transparent;">Magnam aliquam quaerat</h2>
+                <a href="/inicio#contact"> <h2>Tienes dudas? Contactanos!</h2></a>
                 <p  style="color: transparent;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <a href="/buscar_vuelos" class="btn-get-started scrollto">Buscar tu vuelo soñado</a>
               </div>
