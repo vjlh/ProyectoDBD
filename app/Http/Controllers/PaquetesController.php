@@ -161,7 +161,7 @@ class PaquetesController extends Controller
         $reserva = new Reserva;
         $reserva->monto_total_reserva= $paquete->precio_paquete * $num_pasajeros;
         $reserva->check_in=null;
-        $reserva->codigo_reserva=str_random(9);
+        $reserva->codigo_reserva=null;
         $reserva->id_user=auth()->id();
         $reserva->id_seguro=null;
         $reserva->id_paquete=$paquete->id;
@@ -177,6 +177,7 @@ class PaquetesController extends Controller
         $reserva->save();
 
         //Se reservan los asientos para el vuelo de ida
+        $codigo_vuelo_ida = str_random(9);
         $vuelo_ida = Vuelo::find($paquete->id_vuelo_ida);
         $asientos_vuelo_ida = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_ida->id)
                                                           ->where('disponible','=',false);
@@ -200,6 +201,8 @@ class PaquetesController extends Controller
                     $as_vue_ida->id_reserva = $reserva->id;
                     $as_vue_ida->id_asiento = $asientos_ida_array[$i];
                     $as_vue_ida->id_vuelo = $paquete->id_vuelo_ida;
+                    $as_vue_ida->codigo_checkin = $codigo_vuelo_ida;
+                    $as_vue_ida->check_in = false;
                     $as_vue_ida->save();
                     array_push($asientos_ida_usados, $asientos_ida_array[$i]);
 
@@ -210,6 +213,7 @@ class PaquetesController extends Controller
                 ->with('status','No quedan suficientes asientos disponibles en el vuelo de ida para el paquete que solicitó.');
             }
         }
+
         else{
             $asientos_ida = Asiento::All()->where('id_avion', '=', $vuelo_ida->id_avion);
             $asientos_ida_array = [];
@@ -222,6 +226,8 @@ class PaquetesController extends Controller
                 $as_vue_ida->id_reserva = $reserva->id;
                 $as_vue_ida->id_asiento = $asientos_ida_array[$i];
                 $as_vue_ida->id_vuelo = $paquete->id_vuelo_ida;
+                $as_vue_ida->codigo_checkin = $codigo_vuelo_ida;
+                $as_vue_ida->check_in = false;
                 $as_vue_ida->save();
                 array_push($asientos_ida_usados, $asientos_ida_array[$i]);
 
@@ -229,6 +235,7 @@ class PaquetesController extends Controller
         }
 
         //Se reservan los asientos para el vuelo de regreso
+        $codigo_vuelo_vuelta = str_random(9);
         $vuelo_vuelta = Vuelo::find($paquete->id_vuelo_vuelta);
         $asientos_vuelo_vuelta = Asiento_Vuelo::All()->where('id_vuelo','=',$vuelo_vuelta->id)
                                                      ->where('disponible','=',false);
@@ -251,6 +258,8 @@ class PaquetesController extends Controller
                     $as_vue_vuelta->id_reserva = $reserva->id;
                     $as_vue_vuelta->id_asiento = $asientos_vuelta_array[$i];
                     $as_vue_vuelta->id_vuelo = $paquete->id_vuelo_vuelta;
+                    $as_vue_vuelta->codigo_checkin = $codigo_vuelo_vuelta;
+                    $as_vue_vuelta->check_in = false;      
                     $as_vue_vuelta->save();
                     array_push($asientos_vuelta_usados, $asientos_vuelta_array[$i]);
                 }
@@ -272,6 +281,8 @@ class PaquetesController extends Controller
                 $as_vue_vuelta->id_reserva = $reserva->id;
                 $as_vue_vuelta->id_asiento = $asientos_vuelta_array[$i];
                 $as_vue_vuelta->id_vuelo = $paquete->id_vuelo_vuelta;
+                $as_vue_vuelta->codigo_checkin = $codigo_vuelo_vuelta;
+                $as_vue_vuelta->check_in = false;
                 $as_vue_vuelta->save();
                 array_push($asientos_vuelta_usados, $asientos_vuelta_array[$i]);
 
@@ -333,7 +344,7 @@ class PaquetesController extends Controller
         $costo = $reserva->monto_total_reserva;
         $asientos_ida = Asiento::all()->whereIn('id',$asientos_ida_usados);
         $asientos_vuelta = Asiento::all()->whereIn('id',$asientos_vuelta_usados);
-        Mail::to($email)->send(new SendEmail_paquete($subject,$encabezado,$num_pasajeros, $costo, $paquete, $asientos_ida, $asientos_vuelta));
+        Mail::to($email)->send(new SendEmail_paquete($subject,$encabezado,$num_pasajeros, $costo, $paquete, $asientos_ida, $asientos_vuelta,$codigo_vuelo_ida,$codigo_vuelo_vuelta));
 
         $historial = new Historial;
         $historial->id_user=$id_usuario;

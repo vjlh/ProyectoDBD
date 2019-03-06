@@ -66,7 +66,9 @@
                 @endforeach
             </ul>
         </ul> 
-
+        <h3>Código para hacer Check-In del vuelo de ida</h3>
+        <h2>{{$e_check_ida}}</h2>
+        <br> 
 
         <?php
             $vuelo_vuelta = Vuelo::find($e_paquete->id_vuelo_vuelta);
@@ -98,12 +100,17 @@
                     <br> 
                 @endforeach
             </ul>
-        </ul> 
+        </ul>
+        <h3>Código para hacer Check-In del vuelo de regreso</h3>
+        <h2>{{$e_check_vuelta}}</h2>
+        <br> 
+
+        
+        @if($e_paquete->tipo_paquete == 'Alojamiento' || $e_paquete->tipo_paquete == 'All')
         <?php
         $e_hotel = Hospedaje::find($e_paquete->id_hospedaje);
         $e_habi = Habitacion::find($e_paquete->id_habitacion);
         ?>
-        @if($e_paquete->tipo_paquete == 'Alojamiento' || $e_paquete->tipo_paquete == 'All')
             <h3>Hospedaje incluido en el paquete</h3>
             <h4>Características del hotel </h4>
             <ul>
@@ -131,10 +138,11 @@
             </ul>
             <br> 
         @endif
-            <?php
-            $auto = Transporte::find($e_paquete->id_transporte);
-            ?>
+            
         @if($paquete->tipo_paquete == 'Automóvil' || $e_paquete->tipo_paquete == 'All')
+            <?php
+                $auto = Transporte::find($e_paquete->id_transporte);
+            ?>
             <h3>Transporte incluido en el paquete</h3>
             <h4>Características del vehiculo</h4>
             <ul>
