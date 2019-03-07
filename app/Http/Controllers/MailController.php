@@ -12,5 +12,6 @@ class MailController extends Controller
     public function sendmail(Request $request){
 
         Mail::to('aerolineag8@gmail.com')->send(new ContactoEmail($request ));
+        return "Su mensaje ha sido recibido";
     }
 }

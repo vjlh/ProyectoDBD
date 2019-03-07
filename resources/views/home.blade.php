@@ -475,8 +475,9 @@ $(document).ready(function(){
         </div>
 
         <div class="form">
-          <div id="sendmessage">Your message has been sent. Thank you!</div>
-          <div id="errormessage"></div>
+          <div class="alert alert-success" style="color:white;border:white" id="sendmessage"></div>
+          <div id="errormessage" style="color:black;border:white" class="alert alert-success"></div>
+          
           <form action="/enviar" method="post" role="form" class="contactForm">
             {{ csrf_field() }}
             <div class="form-row">
