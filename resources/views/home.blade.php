@@ -173,20 +173,20 @@ $(document).ready(function(){
 
           <div class="col-lg-4 box">
             <i class="ion-ios-bookmarks-outline"></i>
-            <h4 class="title"><a href="">Lorem Ipsum Delino</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <h4 class="title"><a href="">Satisfacción</a></h4>
+            <p class="description">Garantizamos tu completa satisfacción con respecto a cualquiera de los servicios que ofrecemos.</p>
           </div>
 
           <div class="col-lg-4 box box-bg">
             <i class="ion-ios-stopwatch-outline"></i>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            <h4 class="title"><a href="">Velocidad</a></h4>
+            <p class="description">Sabemos que el tiempo es muy importante, por eso hacemos todo lo posible por evitar todo tipo de retrasos en nuestros vuelos, arriendos de vehículos u hospedajes.</p>
           </div>
 
           <div class="col-lg-4 box">
             <i class="ion-ios-heart-outline"></i>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            <h4 class="title"><a href="">Preocupación</a></h4>
+            <p class="description">El bienestar de todos nuestros pasajeros es lo más importante.</p>
           </div>
 
         </div>
@@ -299,41 +299,41 @@ $(document).ready(function(){
       <div class="container">
 
         <header class="section-header wow fadeInUp">
-          <h3>Services</h3>
-          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus, ad pro quaestio laboramus. Ei ubique vivendum pro. At ius nisl accusam lorenta zanos paradigno tridexa panatarel.</p>
+          <h3>Nuestra empresa</h3>
+          <p>Para garantizar solo lo mejor a nuestros clientes, la aerolinea G8 tiene ciertos pilares fundamentales al momento de entregar cualquier servicio.</p>
         </header>
 
         <div class="row">
 
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <h4 class="title"><a href="">Entrenamiento espacial</a></h4>
+            <p class="description">Todos nuestros pilotos han sido capacitados en la nasa.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            <h4 class="title"><a href="">Agendas</a></h4>
+            <p class="description">Un vuelo agendado que ofrezcamos jamás será cancelado o aplazado.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-paper-outline"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            <h4 class="title"><a href="">Registros</a></h4>
+            <p class="description">blablablabalablalba </p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <h4 class="title"><a href="">Eficiencia</a></h4>
+            <p class="description">Siempre trataremos de entregar los servicios de la manera más puntual posible.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <h4 class="title"><a href="">Comodidad</a></h4>
+            <p class="description">A toda costa haremos que los servicios que ofrecemos garanticen su comodidad y disfrute.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-people-outline"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <h4 class="title"><a href="">Trabajo en equipo</a></h4>
+            <p class="description">Con un equipo de trabajo unido y sincronizado nos aseguraremos de que no te haga falta nada.</p>
           </div>
 
         </div>
@@ -352,7 +352,7 @@ $(document).ready(function(){
     <section id="team">
       <div class="container">
         <div class="section-header wow fadeInUp">
-          <h3>Team</h3>
+          <h3>Equipo</h3>
           <p>El equipo de trabajo encargado de darle vida a esta aerolínea es el siguiente</p>
         </div>
 

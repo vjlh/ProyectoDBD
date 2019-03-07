@@ -453,7 +453,7 @@
 @elseif($reserva->vuelo == true)
 
 <?php
-    $asiento_vuelo = DB::table('asientos_vuelos')->where('id_reserva','=',$reserva->id)->first();
+    $asiento_vuelo = Asiento_Vuelo::All()->where('id_reserva','=',$reserva->id)->first();
     $vuelo = Vuelo::find($asiento_vuelo->id_vuelo);
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">

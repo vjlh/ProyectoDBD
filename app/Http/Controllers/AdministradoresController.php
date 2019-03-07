@@ -63,11 +63,11 @@ class AdministradoresController extends Controller
         $transportes = Transporte::all()->sortBy('id');
         $habitaciones = Habitacion::all()->sortBy('id');
         $ciudades = Ciudad::all()->sortBy('nombre_ciudad');
-        $aviones = Avion::all();
-        $aeropuertos = Aeropuerto::all();
-        $beneficios = Beneficio::all();
-        $historiales = Historial::all();
-        $usuarios = User::all();
+        $aviones = Avion::all()->sortBy('id');
+        $aeropuertos = Aeropuerto::all()->sortBy('id');
+        $beneficios = Beneficio::all()->sortBy('id');
+        $historiales = Historial::all()->sortBy('id');
+        $usuarios = User::all()->sortBy('id');
 
 
         return view('admin',compact('usuarios','vuelos','hospedajes','seguros','paquetes','transportes','habitaciones','ciudades','aviones','aeropuertos','beneficios','historiales'));
