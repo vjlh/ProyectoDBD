@@ -38,7 +38,7 @@
     <a class="nav-link btn-get-started" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link btn-get-started" id="historiales-tab" data-toggle="tab" href="#historiales" role="tab" aria-controls="historiales" aria-selected="false">Historiales</a>
+    <a class="nav-link btn-get-started" id="historiales-tab" data-toggle="tab" href="#historiales" role="tab" aria-controls="historiales" aria-selected="false">Historial del Sistema</a>
   </li>
   
 </ul>
@@ -60,6 +60,12 @@
   </div>
   <div class="tab-pane fade" id="habitaciones" role="tabpanel" aria-labelledby="habitaciones-tab">
     @include('includes.admin_habitaciones')
+  </div>
+  <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
+    @include('includes.admin_usuarios')
+  </div>
+  <div class="tab-pane fade" id="historiales" role="tabpanel" aria-labelledby="historiales-tab">
+    @include('includes.admin_historial')
   </div>
   
 </div>

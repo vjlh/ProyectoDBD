@@ -15,6 +15,7 @@ use App\Ciudad;
 use App\Avion;
 use App\Aeropuerto;
 use App\Beneficio;
+use App\Historial;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AdministradoresRequest;
@@ -65,9 +66,11 @@ class AdministradoresController extends Controller
         $aviones = Avion::all();
         $aeropuertos = Aeropuerto::all();
         $beneficios = Beneficio::all();
+        $historiales = Historial::all();
+        $usuarios = User::all();
 
 
-        return view('admin',compact('vuelos','hospedajes','seguros','paquetes','transportes','habitaciones','ciudades','aviones','aeropuertos','beneficios'));
+        return view('admin',compact('usuarios','vuelos','hospedajes','seguros','paquetes','transportes','habitaciones','ciudades','aviones','aeropuertos','beneficios','historiales'));
     }
 
     
