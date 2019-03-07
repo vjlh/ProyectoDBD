@@ -1,6 +1,11 @@
 @extends('layouts.base')
 @section('content')
 
+@guest
+<?php
+header('Location: /');
+?>
+@else
 
 @if(Auth::user()->administrador == 1)
 
@@ -82,6 +87,8 @@
 header('Location: /');
 ?>
 @endif
+@endguest
+
 
 @endsection
 

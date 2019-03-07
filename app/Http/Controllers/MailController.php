@@ -1,36 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Mail;
-use App\User;
-use App\Mail\SendEmail;
-use App\Mail\SendEmail_hospedaje;
-
-
 use Illuminate\Http\Request;
-
-
+use App\Mail\ContactoEmail;
+use Illuminate\Support\Facades\Mail;
 
 
 class MailController extends Controller
 {
-    
-    public function home(){
-        return view('mail');
+
+    public function sendmail(Request $request){
+
+        Mail::to('aerolineag8@gmail.com')->send(new ContactoEmail($request ));
     }
-
-    public function sendmail(){
-        $id_usuario = auth()->id();
-        $usuario = User::find($id_usuario);
-        $email = $usuario->email;
-        $subject = "blabla";
-        $message = "holi";
-        
-        Mail::to($email)->send(new SendEmail($subject,$message));
-
-    }
-
-
-
 }

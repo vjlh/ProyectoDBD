@@ -155,6 +155,8 @@ Route::get('/historial2', function () {
     return view('historial2');
 });
 
+Route::post('/enviar', 'MailController@sendmail');
+
 Route::get('/Asiento/resasVuelta/', 'AsientosController@resasVuelta');
 Route::get('/Asiento/asientosVuelta/', 'AsientosController@asientosVuelta');
 Route::get('/Asiento_Vuelo/CheckInVuelo/', 'Asiento_VueloController@buscarCheckIn');
