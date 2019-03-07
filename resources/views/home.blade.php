@@ -207,7 +207,7 @@ $(document).ready(function(){
         <div class="row about-cols">
 
           <div class="col-md-4 wow fadeInUp">
-            <div class="about-col">
+            <div class="about-col" style="height:100%">
               <div class="img">
                 <img src="{{asset('assets/img/destinos.jpeg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-plane"></i></div>
@@ -220,7 +220,7 @@ $(document).ready(function(){
           </div>
 
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="about-col">
+            <div class="about-col" style="height:100%">
               <div class="img">
                 <img src="{{asset('assets/img/about-plan.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-medkit"></i></div>
@@ -233,7 +233,7 @@ $(document).ready(function(){
           </div>
 
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="about-col">
+            <div class="about-col" style="height:100%">
               <div class="img">
                 <img src="{{asset('assets/img/hyatt.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-home"></i></div>
@@ -250,7 +250,7 @@ $(document).ready(function(){
         <div class="row about-cols" style="margin-top: 5%;">
 
           <div class="col-md-4 wow fadeInUp">
-            <div class="about-col">
+            <div class="about-col" style="height:100%">
               <div class="img">
                 <img src="{{asset('assets/img/paquete.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-box"></i></div>
@@ -263,7 +263,7 @@ $(document).ready(function(){
           </div>
 
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="about-col">
+            <div class="about-col" style="height:100%">
               <div class="img">
                 <img src="{{asset('assets/img/auto.jpg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-android-car"></i></div>
@@ -276,7 +276,7 @@ $(document).ready(function(){
           </div>
 
           <div class="col-md-4 wow fadeInUp">
-            <div class="about-col">
+            <div class="about-col" style="height:100%">
               <div class="img">
                 <img src="{{asset('assets/img/destinos.jpeg')}}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-plane"></i></div>
@@ -353,7 +353,7 @@ $(document).ready(function(){
       <div class="container">
         <div class="section-header wow fadeInUp">
           <h3>Team</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          <p>El equipo de trabajo encargado de darle vida a esta aerolínea es el siguiente</p>
         </div>
 
         <div class="row">
@@ -443,7 +443,7 @@ $(document).ready(function(){
 
         <div class="section-header">
           <h3>Contactanos</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          <p>Si tiene alguna duda o alguna consulta, no dude en contactarnos, intentaremos responderle a la brevedad</p>
         </div>
 
         <div class="row contact-info">
