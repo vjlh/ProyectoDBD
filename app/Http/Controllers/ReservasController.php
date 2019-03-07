@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Reserva;
+use App\Pasajero;
 use App\Pasajero_Reserva;
 use App\Vuelo;
+use App\Asiento;
 use App\Asiento_Vuelo;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
+use Mail;
+use App\User;
+use App\Mail\SendEmail_checkin;
+use Carbon\Carbon;
+use App\Historial;
 
 class ReservasController extends Controller
 {
@@ -99,10 +106,13 @@ class ReservasController extends Controller
         $asientos = Asiento_Vuelo::all()->where('codigo_checkin',$cod_obtenido);
         $asiento_1 = $asientos->first();
         $id_reserva = $asiento_1->id_reserva;
+        $id_vuelo = $asiento_1->id_vuelo;
+        $ids_asiento = [];
 
         foreach($asientos as $asiento){
             $asiento->check_in = true;
             $asiento->save();
+            array_push($ids_asiento,$asiento->id_asiento);
         }
         
         $ids_pasajeros = session()->get('pasajerosId_CheckIn');
@@ -113,6 +123,24 @@ class ReservasController extends Controller
             $pasajero_reserva->save();
         }
 
+        $id_usuario = auth()->id();
+        $usuario = User::find($id_usuario);
+        $nombre_user = $usuario->name;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado Check In";
+        $email = $usuario->email;
+        $subject = "Check In realizado";
+        $vuelo = Vuelo::find($id_vuelo);
+        $asientos_1 = Asiento::all()->whereIn('id',$ids_asiento);
+        $pasajeros = Pasajero::all()->whereIn('id',$ids_pasajeros);
+        
+
+        $historial = new Historial;
+        $historial->id_user=$id_usuario;
+        $historial->descripcion="Sr(a) ".$nombre_user." ha realizado check-in del vuelo ".$id_vuelo;
+        $historial->save();
+
+        
+        Mail::to($email)->send(new SendEmail_checkin($subject,$encabezado, $vuelo,$asientos_1,$pasajeros));
         session()->forget('numPasajero_CheckIn');
         session()->forget('pasajerosId_CheckIn');
 
