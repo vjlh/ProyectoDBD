@@ -12,6 +12,8 @@
     use App\Beneficio_Seguro;
     use App\Beneficio;
     use Carbon\Carbon;
+    setlocale(LC_TIME, 'es_ES.UTF-8'); 
+    Carbon::setLocale('es'); 
 ?>
 
 @if($reserva->id_paquete != NULL)
@@ -29,8 +31,7 @@
         $tipo = 'Vuelo + Alojamiento + Automóvil';
     }
 
-    setlocale(LC_TIME, 'es_ES.UTF-8'); 
-    Carbon::setLocale('es'); 
+    
     $fecha_inicial1 = Carbon::parse($paquete->fecha_paquete);
     $fecha_fin1 = Carbon::parse($paquete->fecha_paquete)->addDays($paquete->num_dias);
 
@@ -455,6 +456,9 @@
 <?php
     $asiento_vuelo = Asiento_Vuelo::All()->where('id_reserva','=',$reserva->id)->first();
     $vuelo = Vuelo::find($asiento_vuelo->id_vuelo);
+
+    $fecha_vuelo = Carbon::parse($vuelo->fecha_vuelo)->formatLocalized('%d %B %Y');
+
 ?>
 <div class="modal fade" id="ModalHistorialDetalle{{$reserva->id}}" role="dialog">
     <div class="modal-dialog">
@@ -478,6 +482,10 @@
                         <tr>
                             <th>Duración del vuelo:</th>
                             <td>{{$vuelo->duracion_vuelo}}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha del vuelo:</th>
+                            <td>{{$fecha_vuelo}}</td>
                         </tr>
                     </tbody>
                 </table>

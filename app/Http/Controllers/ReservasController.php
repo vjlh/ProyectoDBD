@@ -126,7 +126,8 @@ class ReservasController extends Controller
         $id_usuario = auth()->id();
         $usuario = User::find($id_usuario);
         $nombre_user = $usuario->name;
-        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido_user." ha realizado Check In";
+        $apellido = $usuario->apellido_usuario;
+        $encabezado = "Estimado Sr(a) ".$nombre_user." ".$apellido." ha realizado Check In";
         $email = $usuario->email;
         $subject = "Check In realizado";
         $vuelo = Vuelo::find($id_vuelo);
