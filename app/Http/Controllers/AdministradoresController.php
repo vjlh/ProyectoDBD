@@ -56,18 +56,18 @@ class AdministradoresController extends Controller
 
     public function f1()
     {
-        $vuelos = Vuelo::all()->sortBy('id');
-        $hospedajes = Hospedaje::all()->sortBy('id');
-        $seguros = Seguro::all()->sortBy('id');
-        $paquetes = Paquete::all()->sortBy('id');
-        $transportes = Transporte::all()->sortBy('id');
-        $habitaciones = Habitacion::all()->sortBy('id');
-        $ciudades = Ciudad::all()->sortBy('nombre_ciudad');
-        $aviones = Avion::all()->sortBy('id');
-        $aeropuertos = Aeropuerto::all()->sortBy('id');
-        $beneficios = Beneficio::all()->sortBy('id');
-        $historiales = Historial::all()->sortBy('id');
-        $usuarios = User::all()->sortBy('id');
+        $vuelos = Vuelo::paginate(10);
+        $hospedajes = Hospedaje::paginate(10);
+        $seguros = Seguro::paginate(10);
+        $paquetes = Paquete::paginate(10);
+        $transportes = Transporte::paginate(10);
+        $habitaciones = Habitacion::paginate(10);
+        $ciudades = Ciudad::paginate(10);
+        $aviones = Avion::paginate(10);
+        $aeropuertos = Aeropuerto::paginate(10);
+        $beneficios = Beneficio::paginate(10);
+        $historiales = Historial::paginate(10);
+        $usuarios = User::paginate(10);
 
 
         return view('admin',compact('usuarios','vuelos','hospedajes','seguros','paquetes','transportes','habitaciones','ciudades','aviones','aeropuertos','beneficios','historiales'));

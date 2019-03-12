@@ -72,6 +72,10 @@
 
         </table>
 
+        <center>
+        {!!$usuarios->render()!!}
+        </center>
+
 
     </div>
 

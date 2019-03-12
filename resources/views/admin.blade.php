@@ -20,6 +20,8 @@ header('Location: /');
               {{ session()->get('success_message')}}
           </div>
 @endif
+
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active btn-get-started" id="vuelos-tab" data-toggle="tab" href="#vuelos" role="tab" aria-controls="vuelos" aria-selected="true">Vuelos</a>
@@ -48,6 +50,7 @@ header('Location: /');
   
 </ul>
 <div class="tab-content" id="myTabContent">
+
   <div class="tab-pane fade show active" id="vuelos" role="tabpanel" aria-labelledby="vuelos-tab">
     @include('includes.admin_vuelos')
   </div>
@@ -74,6 +77,7 @@ header('Location: /');
   </div>
   
 </div>
+
 </div>
 </div>
 </div>
@@ -88,6 +92,8 @@ header('Location: /');
 ?>
 @endif
 @endguest
+
+
 
 
 @endsection

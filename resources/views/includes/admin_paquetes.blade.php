@@ -66,6 +66,9 @@
 
                     </table>
 
+                    <center>
+                    {!!$paquetes->render()!!}
+                    </center>
 
                 </div>
 

@@ -68,6 +68,9 @@
 
                     </table>
 
+                    <center>
+                    {!!$habitaciones->render()!!}
+                    </center>
 
                 </div>
 

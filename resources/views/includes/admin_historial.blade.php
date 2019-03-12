@@ -43,6 +43,10 @@
 
                     </table>
 
+                    <center>
+                    {!!$historiales->render()!!}
+                    </center>
+
 
                 </div>
 

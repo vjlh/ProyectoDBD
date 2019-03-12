@@ -69,12 +69,16 @@
                     </tr>
 
                     @endforeach
-
+                    
                     </table>
-
-
+                    <center>
+                    {!!$transportes->render()!!}
+                    </center>
                 </div>
 
             </div>
         </div>
+
+        
+       
 

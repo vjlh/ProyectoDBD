@@ -72,6 +72,9 @@
 
                     </table>
 
+                    <center>
+                    {!!$vuelos->render()!!}
+                    </center>
 
                 </div>
 

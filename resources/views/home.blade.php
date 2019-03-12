@@ -499,6 +499,9 @@ $(document).ready(function(){
               <div class="validation"></div>
             </div>
             <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+            <script>
+            $('email').val("");
+            </script>
           </form>
         </div>
 

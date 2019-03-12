@@ -64,6 +64,9 @@
 
                     </table>
 
+                    <center>
+                    {!!$beneficios->render()!!}
+                    </center>
 
                 </div>
 

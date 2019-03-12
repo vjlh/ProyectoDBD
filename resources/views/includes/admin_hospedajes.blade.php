@@ -70,6 +70,9 @@
 
                     </table>
 
+                    <center>
+                    {!!$hospedajes->render()!!}
+                    </center>
                 </div>
 
             </div>
